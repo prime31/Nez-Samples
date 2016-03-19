@@ -8,6 +8,6 @@ Pull a fresh copy of the Nez-Samples repository. The samples repository has the 
 
 `git clone --recursive https://github.com/prime31/Nez-Samples.git`
 
-Visual Studio/Xamarin *should* download the NuGet packages for you when opening the solution. There appears to be a bug with Xamarin where it will not properly download NuGet packages. If this happens open the Nez.sln and it should update the packages. You can then close it and reopen the Nez.Samples.sln and it should now compile.
+Open the Nez/Nez.sln. The NuGet packages should start downloading for you. Once they are downloaded build the solution creating the Nez and Nez.PipelineImporter DLLs. You can now close it and open the Nez.Samples.sln and it should now compile.
 
 

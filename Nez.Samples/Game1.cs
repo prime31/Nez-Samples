@@ -8,37 +8,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Nez.Samples
 {
-	public class Game1 : Game
+	public class Game1 : Core
 	{
-		GraphicsDeviceManager graphics;
-
-
-		public Game1()
+		protected override void Initialize()
 		{
-			graphics = new GraphicsDeviceManager( this );
-			Content.RootDirectory = "Content";
-			IsMouseVisible = true;
-		}
+			base.Initialize();
 
-
-		protected override void Update( GameTime gameTime )
-		{
-			#if !__IOS__ &&  !__TVOS__
-			if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown( Keys.Escape ) )
-				Exit();
-			#endif
-
-			base.Update( gameTime );
-		}
-
-
-		protected override void Draw( GameTime gameTime )
-		{
-			graphics.GraphicsDevice.Clear( Color.CornflowerBlue );
-            
-		
-            
-			base.Draw( gameTime );
+			Window.ClientSizeChanged += Core.onClientSizeChanged;
+			Window.AllowUserResizing = true;
+			scene = new SceneTemplate();
 		}
 	}
 }

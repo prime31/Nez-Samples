@@ -1,12 +1,19 @@
-﻿#----------------------------- Global Properties ----------------------------#
+
+#----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
+/platform:DesktopGL
 /config:
-/profile:Reach
+/profile:HiDef
 /compress:False
 
 #-------------------------------- References --------------------------------#
 
+/reference:../../Nez/Nez.PipelineImporter/bin/Debug/Nez.dll
+/reference:../../Nez/Nez.PipelineImporter/bin/Debug/Nez.PipelineImporter.dll
+/reference:../../Nez/Nez.PipelineImporter/bin/Debug/Newtonsoft.Json.dll
+/reference:../../Nez/Nez.PipelineImporter/bin/Debug/Ionic.ZLib.dll
 
 #---------------------------------- Content ---------------------------------#
+
