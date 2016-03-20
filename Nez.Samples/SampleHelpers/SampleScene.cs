@@ -3,23 +3,40 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Nez.UI;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace Nez.Samples
 {
-	public abstract class SampleScene : Scene
+	/// <summary>
+	/// this entire class is one big sweet hack job to make adding samples easier. An exceptional hack is made so that we can render small
+	/// pixel art scenes pixel perfect and still display our UI at a reasonable size.
+	/// </summary>
+	public abstract class SampleScene : Scene, IFinalRenderDelegate
 	{
 		public const int SCREEN_SPACE_RENDER_LAYER = 999;
 		public UICanvas canvas;
 
 		Table _table;
 		List<Button> _sceneButtons = new List<Button>();
+		ScreenSpaceRenderer _screenSpaceRenderer;
 
 
-		public SampleScene( bool addExcludeRenderer = true ) : base()
+		public SampleScene( bool addExcludeRenderer = true, bool needsFullRenderSizeForUI = false ) : base()
 		{
 			// setup one renderer in screen space for the UI and then (optionally) another renderer to render everything else
-			addRenderer( new ScreenSpaceRenderer( 100, SCREEN_SPACE_RENDER_LAYER ) );
+			if( needsFullRenderSizeForUI )
+			{
+				// dont actually add the renderer since we will manually call it later
+				_screenSpaceRenderer = new ScreenSpaceRenderer( 100, SCREEN_SPACE_RENDER_LAYER );
+				finalRenderDelegate = this;
+				// kill the stage's entity so that it lays out and renders using the full back buffer size
+				Core.schedule( 0, timer => canvas.stage.entity = null );
+			}
+			else
+			{
+				addRenderer( new ScreenSpaceRenderer( 100, SCREEN_SPACE_RENDER_LAYER ) );
+			}
 
 			if( addExcludeRenderer )
 				addRenderer( new RenderLayerExcludeRenderer( 0, SCREEN_SPACE_RENDER_LAYER ) );
@@ -79,8 +96,10 @@ namespace Nez.Samples
 							Core.scene = Activator.CreateInstance( type ) as Scene;
 						};
 
-						// optionally add instruction text
-						if( sampleAttr.instructionText != null )
+						_table.row().setPadTop( 10 );
+
+						// optionally add instruction text for the current scene
+						if( sampleAttr.instructionText != null && type == GetType() )
 							addInstructionText( sampleAttr.instructionText );
 					}
 				}
@@ -100,6 +119,32 @@ namespace Nez.Samples
 			foreach( var button in _sceneButtons )
 				button.setIsVisible( !button.isVisible() );
 		}
+
+
+		#region IFinalRenderDelegate
+
+		public Scene scene { get; set; }
+
+		public void onAddedToScene()
+		{}
+
+
+		public void onSceneBackBufferSizeChanged( int newWidth, int newHeight )
+		{}
+
+
+		public void handleFinalRender( Color letterboxColor, Microsoft.Xna.Framework.Graphics.RenderTarget2D source, Rectangle finalRenderDestinationRect, Microsoft.Xna.Framework.Graphics.SamplerState samplerState )
+		{
+			Core.graphicsDevice.SetRenderTarget( null );
+			Core.graphicsDevice.Clear( letterboxColor );
+			Graphics.instance.spriteBatch.Begin( 0, BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null );
+			Graphics.instance.spriteBatch.Draw( source, finalRenderDestinationRect, Color.White );
+			Graphics.instance.spriteBatch.End();
+
+			_screenSpaceRenderer.render( scene );
+		}
+
+		#endregion
 
 	}
 

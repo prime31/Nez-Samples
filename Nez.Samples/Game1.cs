@@ -16,7 +16,7 @@ namespace Nez.Samples
 
 			Window.ClientSizeChanged += Core.onClientSizeChanged;
 			Window.AllowUserResizing = true;
-			scene = new SceneTemplate();
+			scene = new BasicScene();
 		}
 	}
 }

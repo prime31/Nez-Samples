@@ -50,7 +50,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleHelpers\SampleScene.cs" />
-    <Compile Include="SampleHelpers\SceneTemplate.cs" />
+    <Compile Include="Scenes\Animated Tiles\AnimatedTilesScene.cs" />
+    <Compile Include="Scenes\Spring Grid\SpringGridScene.cs" />
+    <Compile Include="Scenes\Spring Grid\GridModifier.cs" />
+    <Compile Include="Shared\SimpleMover.cs" />
+    <Compile Include="Scenes\Empty Scene\BasicScene.cs" />
+    <Compile Include="Scenes\RigidBodies\RigidBodyScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -499,6 +504,12 @@
     <Folder Include="Content\nez\" />
     <Folder Include="Content\nez\effects\" />
     <Folder Include="Content\nez\textures\" />
+    <Folder Include="Scenes\" />
+    <Folder Include="Scenes\Animated Tiles\" />
+    <Folder Include="Scenes\Spring Grid\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Scenes\Empty Scene\" />
+    <Folder Include="Scenes\RigidBodies\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">
