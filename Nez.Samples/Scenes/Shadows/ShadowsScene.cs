@@ -25,7 +25,7 @@ namespace Nez.Samples
 			var LIGHT_RENDER_LAYER = 5;
 			clearColor = Color.MonoGameOrange;
 
-			// create a Renderer that renders all but the light layer
+			// create a Renderer that renders all but the light layer and screen space layer
 			addRenderer( new RenderLayerExcludeRenderer( 0, LIGHT_RENDER_LAYER, SCREEN_SPACE_RENDER_LAYER ) );
 
 			// create a Renderer that renders only the light layer into a render target

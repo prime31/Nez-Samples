@@ -30,6 +30,7 @@ namespace Nez.Samples
 			{
 				// dont actually add the renderer since we will manually call it later
 				_screenSpaceRenderer = new ScreenSpaceRenderer( 100, SCREEN_SPACE_RENDER_LAYER );
+				_screenSpaceRenderer.shouldDebugRender = false;
 				finalRenderDelegate = this;
 				// kill the stage's entity so that it lays out and renders using the full back buffer size
 				Core.schedule( 0, timer => canvas.stage.entity = null );
@@ -72,10 +73,12 @@ namespace Nez.Samples
 			_table.add( new TextButton( "Toggle Scene List", topButtonStyle ) ).setFillX().setMinHeight( 30 ).getElement<Button>().onClicked += onToggleSceneListClicked;
 
 			_table.row().setPadTop( 10 );
-			_table.add( new CheckBox( "Debug Render", new CheckBoxStyle {
+			var checkbox = _table.add( new CheckBox( "Debug Render", new CheckBoxStyle {
 				checkboxOn = new PrimitiveDrawable( 30, Color.Green ),
 				checkboxOff = new PrimitiveDrawable( 30, Color.MonoGameOrange )
-			} ) ).getElement<CheckBox>().onChanged += enabled => Core.debugRenderEnabled = enabled;
+			} ) ).getElement<CheckBox>();
+			checkbox.onChanged += enabled => Core.debugRenderEnabled = enabled;
+			checkbox.isChecked = Core.debugRenderEnabled;
 			_table.row().setPadTop( 30 );
 
 			var buttonStyle = new TextButtonStyle( new PrimitiveDrawable( new Color( 78, 91, 98 ), 10f ), new PrimitiveDrawable( new Color( 244, 23, 135 ) ), new PrimitiveDrawable( new Color( 168, 207, 115 ) ) ) {

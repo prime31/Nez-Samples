@@ -64,6 +64,8 @@
     <Compile Include="Scenes\Shadows\Visibility\VisibilityComputer.cs" />
     <Compile Include="Shared\TriggerListener.cs" />
     <Compile Include="Shared\MovingPlatform.cs" />
+    <Compile Include="Scenes\Destructable Tilemap\DestructableTilemapScene.cs" />
+    <Compile Include="Scenes\Destructable Tilemap\PlayerDashMover.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -189,6 +191,7 @@
     <Folder Include="Scenes\Shadows\" />
     <Folder Include="Scenes\Shadows\Visibility\" />
     <Folder Include="Content\Shadows\" />
+    <Folder Include="Scenes\Destructable Tilemap\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">

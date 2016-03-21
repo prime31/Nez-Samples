@@ -94,3 +94,20 @@
 /processorParam:TextureFormat=Color
 /build:Shadows/sprite-light.png
 
+#begin DestructableMap/desert-palace-tiles2x.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DestructableMap/desert-palace-tiles2x.png
+
+#begin DestructableMap/destructable-map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:DestructableMap/destructable-map.tmx
+
