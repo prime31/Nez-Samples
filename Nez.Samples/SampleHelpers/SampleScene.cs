@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Nez.UI;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Nez.Tweens;
 
 
 namespace Nez.Samples
@@ -93,6 +94,8 @@ namespace Nez.Samples
 						_sceneButtons.Add( button );
 						button.onClicked += butt =>
 						{
+							// stop all tweens in case any demo scene started some up
+							TweenManager.stopAllTweens();
 							Core.scene = Activator.CreateInstance( type ) as Scene;
 						};
 
@@ -110,7 +113,8 @@ namespace Nez.Samples
 		void addInstructionText( string text )
 		{
 			var instructionsEntity = createEntity( "instructions" );
-			instructionsEntity.addComponent( new Text( Graphics.instance.bitmapFont, text, new Vector2( 10, 10 ), Color.White ) );
+			instructionsEntity.addComponent( new Text( Graphics.instance.bitmapFont, text, new Vector2( 10, 10 ), Color.White ) )
+				.renderLayer = SCREEN_SPACE_RENDER_LAYER;
 		}
 
 
