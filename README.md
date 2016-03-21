@@ -1,5 +1,5 @@
 # Nez-Samples
-Samples and demos of various Nez features
+Samples and demos of various [Nez](https://github.com/prime31/Nez) features
 
 
 Setup
