@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "Nez\Nez-PCL\Nez.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.PipelineImporter", "Nez\Nez.PipelineImporter\Nez.PipelineImporter.csproj", "{63E831F4-B847-4150-B5AF-CBE059EE27B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate", "ProjectTemplate\ProjectTemplate.csproj", "{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,5 +27,9 @@ Global
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Debug|x86.Build.0 = Debug|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|x86.Build.0 = Release|Any CPU
+		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Debug|x86.ActiveCfg = Debug|x86
+		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Debug|x86.Build.0 = Debug|x86
+		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Release|x86.ActiveCfg = Release|x86
+		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

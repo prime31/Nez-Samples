@@ -14,6 +14,12 @@ Setup
 
 
 
+Creating New Projects
+----
+ProjectTemplate is an empty project that can be used as a starting point in creating your own Nez-ready project. Just duplicate the folder and name it however you see fit and you will have a template with all required references setup including for the Pipeline Tool.
+
+
+
 Assets License
 ----
 Unless otherwise noted, the assets in the Nez Samples repo project are not MIT licensed. They should not be used in any project. Most are of unknown copyright/origin so assume they are all off limits and use them only for your own personal amusement.
