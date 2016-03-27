@@ -66,6 +66,9 @@
     <Compile Include="Shared\MovingPlatform.cs" />
     <Compile Include="Scenes\Destructable Tilemap\DestructableTilemapScene.cs" />
     <Compile Include="Scenes\Destructable Tilemap\PlayerDashMover.cs" />
+    <Compile Include="Scenes\Ninja Adventure\NinjaAdventureScene.cs" />
+    <Compile Include="Scenes\Ninja Adventure\Ninja.cs" />
+    <Compile Include="Scenes\Ninja Adventure\CameraBounds.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -192,6 +195,7 @@
     <Folder Include="Scenes\Shadows\Visibility\" />
     <Folder Include="Content\Shadows\" />
     <Folder Include="Scenes\Destructable Tilemap\" />
+    <Folder Include="Scenes\Ninja Adventure\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">
