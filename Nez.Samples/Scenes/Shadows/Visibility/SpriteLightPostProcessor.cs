@@ -7,7 +7,7 @@ namespace Nez
 {
 	/// <summary>
 	/// post processor to assist with making blended sprite lights. Usage is as follows:
-	/// - render all sprite lights with a separate Renderer to a RenderTarget. The clear color is your ambient light color.
+	/// - render all sprite lights with a separate Renderer to a RenderTarget. The clear color or the Renderer is your ambient light color.
 	/// - render all normal objects in standard fashion
 	/// - add this PostProcessor with the RenderTarget from your lights Renderer
 	/// </summary>
@@ -35,6 +35,7 @@ namespace Nez
 
 		public SpriteLightPostProcessor( int executionOrder, Renderer lightsRenderer ) : base( executionOrder )
 		{
+			Assert.isNotNull( lightsRenderer.renderTarget, "SpriteLightPostProcessor requires that your lightsRenderer has a RenderTarget" );
 			_lightsRenderer = lightsRenderer;
 		}
 
