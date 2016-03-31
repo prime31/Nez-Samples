@@ -32,8 +32,6 @@ namespace Nez.Samples
 				_screenSpaceRenderer = new ScreenSpaceRenderer( 100, SCREEN_SPACE_RENDER_LAYER );
 				_screenSpaceRenderer.shouldDebugRender = false;
 				finalRenderDelegate = this;
-				// kill the stage's entity so that it lays out and renders using the full back buffer size
-				Core.schedule( 0, timer => canvas.stage.entity = null );
 			}
 			else
 			{
@@ -45,6 +43,7 @@ namespace Nez.Samples
 
 			// create our canvas and put it on the screen space render layer
 			canvas = createEntity( "ui" ).addComponent( new UICanvas() );
+			canvas.isFullScreen = true;
 			canvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
 			setupSceneSelector();
 		}

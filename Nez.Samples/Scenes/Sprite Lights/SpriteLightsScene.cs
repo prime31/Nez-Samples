@@ -9,7 +9,7 @@ using Nez.UI;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Sprite Lights", "Old-school 2D blended lighting" )]
+	[SampleScene( "Sprite Lights", "Old-school 2D blended lighting\nPlay with the controls to change the effect and add lights" )]
 	public class SpriteLightsScene : SampleScene
 	{
 		public const int SPRITE_LIGHT_RENDER_LAYER = 50;
@@ -60,15 +60,17 @@ namespace Nez.Samples
 			addSpriteLight( pixelLightTex, Screen.center - new Vector2( 200, 10 ), 13 );
 			addSpriteLight( pixelLightTex, Screen.center + new Vector2( 10, 200 ), 8 );
 
-			addUI();
+			createUI();
 		}
 
 
-		void addUI()
+		void createUI()
 		{
 			// stick a UI in so we can play with the sprite light effect
-			var uiCanvas = createEntity( "ui" ).addComponent( new UICanvas() );
+			var uiCanvas = createEntity( "sprite-light-ui" ).addComponent( new UICanvas() );
+			uiCanvas.isFullScreen = true;
 			uiCanvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
+
 			var table = uiCanvas.stage.addElement( new Table() );
 			table.setFillParent( true ).left().top().padLeft( 10 ).padTop( 50 );
 
@@ -127,7 +129,7 @@ namespace Nez.Samples
 		void addSpriteLight( Texture2D texture, Vector2 position, float scale )
 		{
 			// random target to tween towards that is on screen
-			var target = new Vector2( Nez.Random.range( 50, Screen.width - 100 ), Nez.Random.range( 50, Screen.height - 100 ) );
+			var target = new Vector2( Nez.Random.range( 50, sceneRenderTargetSize.X - 100 ), Nez.Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
 
 			var entity = createEntity( "light" );
 			var sprite = entity.addComponent( new Sprite( texture ) );
@@ -146,7 +148,7 @@ namespace Nez.Samples
 		void lightTweenCompleted( ITween<Vector2> tween )
 		{
 			// get a random point on screen and a random delay for the tweens
-			var target = new Vector2( Nez.Random.range( 50, Screen.width - 100 ), Nez.Random.range( 50, Screen.height - 100 ) );
+			var target = new Vector2( Nez.Random.range( 50, sceneRenderTargetSize.X - 100 ), Nez.Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
 			var delay = Nez.Random.range( 0f, 1f );
 
 			var transform = tween.getTargetObject() as Transform;
