@@ -70,15 +70,13 @@ namespace Nez.Samples
 			var uiCanvas = createEntity( "sprite-light-ui" ).addComponent( new UICanvas() );
 			uiCanvas.isFullScreen = true;
 			uiCanvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
+			var skin = Skin.createDefaultSkin();
 
 			var table = uiCanvas.stage.addElement( new Table() );
 			table.setFillParent( true ).left().top().padLeft( 10 ).padTop( 50 );
 
 
-			var checkbox = table.add( new CheckBox( "Toggle PostProcessor", new CheckBoxStyle {
-				checkboxOn = new PrimitiveDrawable( 30, Color.Green ),
-				checkboxOff = new PrimitiveDrawable( 30, Color.MonoGameOrange )
-			} ) ).getElement<CheckBox>();
+			var checkbox = table.add( new CheckBox( "Toggle PostProcessor", skin ) ).getElement<CheckBox>();
 			checkbox.isChecked = true;
 			checkbox.onChanged += isChecked =>
 			{
@@ -90,9 +88,7 @@ namespace Nez.Samples
 			table.add( "Blend Multiplicative Factor" );
 			table.row().setPadTop( 0 ).setAlign( Align.left );
 
-			var sliderStyle = new SliderStyle( new PrimitiveDrawable( 30, Color.MonoGameOrange ), new PrimitiveDrawable( 30, Color.Black ) );
-			sliderStyle.knobOver = new PrimitiveDrawable( 30, Color.Yellow );
-			var slider = table.add( new Slider( 0.5f, 3f, 0.1f, false, sliderStyle ) ).setFillX().getElement<Slider>();
+			var slider = table.add( new Slider( 0.5f, 3f, 0.1f, false, skin.get<SliderStyle>() ) ).setFillX().getElement<Slider>();
 			slider.setValue( 1f );
 			slider.onChanged += value =>
 			{
@@ -104,7 +100,7 @@ namespace Nez.Samples
 			table.add( "Ambient Light Intensity" );
 			table.row().setPadTop( 0 ).setAlign( Align.left );
 
-			var ambientColorStyle = table.add( new Slider( 10, 75, 1f, false, sliderStyle ) ).setFillX().getElement<Slider>();
+			var ambientColorStyle = table.add( new Slider( 10, 75, 1f, false, skin.get<SliderStyle>() ) ).setFillX().getElement<Slider>();
 			ambientColorStyle.setValue( 10f );
 			ambientColorStyle.onChanged += value =>
 			{
@@ -114,10 +110,7 @@ namespace Nez.Samples
 
 			table.row().setPadTop( 20 ).setAlign( Align.left ).setFillX();
 
-			var buttonStyle = new TextButtonStyle( new PrimitiveDrawable( new Color( 78, 91, 98 ), 10f ), new PrimitiveDrawable( new Color( 244, 23, 135 ) ), new PrimitiveDrawable( new Color( 168, 207, 115 ) ) ) {
-				downFontColor = Color.Black
-			};
-			var button = table.add( new TextButton( "Add Light", buttonStyle ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
+			var button = table.add( new TextButton( "Add Light", skin ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
 			button.onClicked += butt =>
 			{
 				var lightTex = contentManager.Load<Texture2D>( "SpriteLights/sprite-light" );
