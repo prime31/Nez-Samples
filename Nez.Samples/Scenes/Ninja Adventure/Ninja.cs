@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Nez.Samples
 {
-	public class Ninja : Component, Nez.Mover.ITriggerListener, IUpdatable
+	public class Ninja : Component, ITriggerListener, IUpdatable
 	{
 		enum Animations
 		{
@@ -22,7 +22,8 @@ namespace Nez.Samples
 
 		Sprite<Animations> _animation;
 		Mover _mover;
-		float _moveSpeed = 2.5f;
+		float _moveSpeed = 100f;
+		Vector2 _projectileVelocity = new Vector2( 175 );
 
 
 		public override void onAddedToEntity()
@@ -66,14 +67,12 @@ namespace Nez.Samples
 				subtextures[11],
 				subtextures[15]
 			}) );
-
-			// add a circle collider
-			entity.colliders.add( new CircleCollider() );
 		}
 
 
 		void IUpdatable.update()
 		{
+			// handle movement and animations
 			var moveDir = Vector2.Zero;
 			var animation = Animations.WalkDown;
 
@@ -105,7 +104,7 @@ namespace Nez.Samples
 				if( !_animation.isAnimationPlaying( animation ) )
 					_animation.play( animation );
 				
-				var movement = moveDir * _moveSpeed;
+				var movement = moveDir * _moveSpeed * Time.deltaTime;
 
 				CollisionResult res;
 				_mover.move( new Vector2( movement.X, 0 ), out res );
@@ -115,18 +114,43 @@ namespace Nez.Samples
 			{
 				_animation.stop();
 			}
+
+			// handle firing a projectile
+			if( Input.isKeyPressed( Keys.Z ) )
+			{
+				// fire a projectile in the direction we are facing
+				var dir = Vector2.Zero;
+				switch ( _animation.currentAnimation )
+				{
+					case Animations.WalkUp:
+						dir.Y = -1;
+						break;
+					case Animations.WalkDown:
+						dir.Y = 1;
+						break;
+					case Animations.WalkRight:
+						dir.X = 1;
+						break;
+					case Animations.WalkLeft:
+						dir.X = -1;
+						break;
+				}
+
+				var ninjaScene = entity.scene as NinjaAdventureScene;
+				ninjaScene.createProjectile( entity.transform.position, _projectileVelocity * dir );
+			}
 		}
 
 
 		#region ITriggerListener implementation
 
-		void Mover.ITriggerListener.onTriggerEnter( Collider other )
+		void ITriggerListener.onTriggerEnter( Collider other )
 		{
 			Debug.log( "triggerEnter: {0}", other.entity.name );
 		}
 
 
-		void Mover.ITriggerListener.onTriggerExit( Collider other )
+		void ITriggerListener.onTriggerExit( Collider other )
 		{
 			Debug.log( "triggerExit: {0}", other.entity.name );
 		}

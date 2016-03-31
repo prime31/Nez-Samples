@@ -6,15 +6,15 @@ namespace Nez.Samples
 	/// <summary>
 	/// simple trigger listener that just logs enter/exit events
 	/// </summary>
-	public class TriggerListener : Component, Mover.ITriggerListener
+	public class TriggerListener : Component, ITriggerListener
 	{
-		public void onTriggerEnter( Collider other )
+		void ITriggerListener.onTriggerEnter( Collider other )
 		{
 			Debug.log( "onTriggerEnter: {0}", other );
 		}
 
 
-		public void onTriggerExit( Collider other )
+		void ITriggerListener.onTriggerExit( Collider other )
 		{
 			Debug.log( "onTriggerExit: {0}", other );
 		}
