@@ -88,6 +88,13 @@ namespace Nez.Samples
 			sprite.addAnimation( 0, spriteAnimation );
 			sprite.play( 0 );
 
+
+			// clone the projectile and fire it off in the opposite direction
+			var newEntity = entity.clone( entity.transform.position );
+			newEntity.getComponent<FireballProjectileController>().velocity *= -1;
+			addEntity( newEntity );
+
+
 			return entity;
 		}
 	}

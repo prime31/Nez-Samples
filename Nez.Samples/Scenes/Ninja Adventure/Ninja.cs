@@ -107,8 +107,7 @@ namespace Nez.Samples
 				var movement = moveDir * _moveSpeed * Time.deltaTime;
 
 				CollisionResult res;
-				_mover.move( new Vector2( movement.X, 0 ), out res );
-				_mover.move( new Vector2( 0, movement.Y ), out res );
+				_mover.move( movement, out res );
 			}
 			else
 			{
