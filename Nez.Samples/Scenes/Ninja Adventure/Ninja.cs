@@ -28,8 +28,9 @@ namespace Nez.Samples
 
 		public override void onAddedToEntity()
 		{
-			// load up our character texture atlas
-			var texture = entity.scene.contentManager.Load<Texture2D>( "NinjaAdventure/characters/11" );
+			// load up our character texture atlas. we have different characters in 1 - 6.png for variety
+			var characterPng = Nez.Random.range( 1, 7 );
+			var texture = entity.scene.contentManager.Load<Texture2D>( "NinjaAdventure/characters/" + characterPng );
 			var subtextures = Subtexture.subtexturesFromAtlas( texture, 16, 16 );
 
 			_mover = entity.addComponent( new Mover() );
