@@ -8,7 +8,7 @@ using Nez.Tiled;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Ninja Adventure", "Tiled map with multiple layers\nArrows to move, z to fire a projectile\nFind and kill the giant moon" )]
+	[SampleScene( "Ninja Adventure", "Tiled map with multiple layers and virtual input\nArrows, d-pad or left stick to move, z key or a button to fire a projectile\nFind and kill the giant moon" )]
 	public class NinjaAdventureScene : SampleScene
 	{
 		public NinjaAdventureScene() : base( true, true )
@@ -21,7 +21,7 @@ namespace Nez.Samples
 
 			// setup a pixel perfect screen that fits our map
 			setDesignResolution( 512, 256, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
-			Screen.setSize( 512 * 4, 256 * 4 );
+			Screen.setSize( 512 * 3, 256 * 3 );
 
 
 			// load the TiledMap and display it with a TiledMapComponent

@@ -25,6 +25,10 @@ namespace Nez.Samples
 		float _moveSpeed = 100f;
 		Vector2 _projectileVelocity = new Vector2( 175 );
 
+		VirtualButton _fireInput;
+		VirtualIntegerAxis _xAxisInput;
+		VirtualIntegerAxis _yAxisInput;
+
 
 		public override void onAddedToEntity()
 		{
@@ -68,36 +72,54 @@ namespace Nez.Samples
 				subtextures[11],
 				subtextures[15]
 			}) );
+
+			setupInput();
+		}
+
+
+		public override void onRemovedFromEntity()
+		{
+			// deregister virtual input
+			_fireInput.deregister();
+		}
+
+
+		void setupInput()
+		{
+			// setup input for shooting a fireball. we will allow z on the keyboard or a on the gamepad
+			_fireInput = new VirtualButton();
+			_fireInput.nodes.Add( new Nez.VirtualButton.KeyboardKey( Keys.Z ) );
+			_fireInput.nodes.Add( new Nez.VirtualButton.GamePadButton( 0, Buttons.A ) );
+
+			// horizontal input from dpad, left stick or keyboard left/right
+			_xAxisInput = new VirtualIntegerAxis();
+			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadLeftRight() );
+			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickX() );
+			_xAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Left, Keys.Right ) );
+
+			// vertical input from dpad, left stick or keyboard up/down
+			_yAxisInput = new VirtualIntegerAxis();
+			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadUpDown() );
+			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickY() );
+			_yAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down ) );
 		}
 
 
 		void IUpdatable.update()
 		{
 			// handle movement and animations
-			var moveDir = Vector2.Zero;
+			var moveDir = new Vector2( _xAxisInput.value, _yAxisInput.value );
 			var animation = Animations.WalkDown;
 
-			if( Input.isKeyDown( Keys.Left ) )
-			{
-				moveDir.X = -1f;
+			if( moveDir.X < 0 )
 				animation = Animations.WalkLeft;
-			}
-			else if( Input.isKeyDown( Keys.Right ) )
-			{
-				moveDir.X = 1f;
+			else if( moveDir.X > 0 )
 				animation = Animations.WalkRight;
-			}
 
-			if( Input.isKeyDown( Keys.Up ) )
-			{
-				moveDir.Y = -1f;
+			if( moveDir.Y < 0 )
 				animation = Animations.WalkUp;
-			}
-			else if( Input.isKeyDown( Keys.Down ) )
-			{
-				moveDir.Y = 1f;
+			else if( moveDir.Y > 0 )
 				animation = Animations.WalkDown;
-			}
 
 
 			if( moveDir != Vector2.Zero )
@@ -116,11 +138,11 @@ namespace Nez.Samples
 			}
 
 			// handle firing a projectile
-			if( Input.isKeyPressed( Keys.Z ) )
+			if( _fireInput.isPressed )
 			{
 				// fire a projectile in the direction we are facing
 				var dir = Vector2.Zero;
-				switch ( _animation.currentAnimation )
+				switch( _animation.currentAnimation )
 				{
 					case Animations.WalkUp:
 						dir.Y = -1;
