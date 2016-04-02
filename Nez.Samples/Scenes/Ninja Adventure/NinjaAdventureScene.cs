@@ -28,8 +28,14 @@ namespace Nez.Samples
 			var tiledEntity = createEntity( "tiled-map-entity" );
 			var tiledmap = contentManager.Load<TiledMap>( "NinjaAdventure/map/tilemap" );
 			var tiledMapComponent = tiledEntity.addComponent( new TiledMapComponent( tiledmap, "collision" ) );
+			tiledMapComponent.setLayersToRender( new string[] { "tiles", "terrain", "details" } );
 			// render below/behind everything else. our player is at 0 and projectile is at 1.
 			tiledMapComponent.renderLayer = 10;
+
+			// render our above-details layer after the player so the player is occluded by it when walking behind things
+			var tiledMapDetailsComp = tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
+			tiledMapDetailsComp.setLayerToRender( "above-details" );
+			tiledMapDetailsComp.renderLayer = -1;
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
 			tiledEntity.addComponent( new CameraBounds( new Vector2( tiledmap.tileWidth, tiledmap.tileWidth ), new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) ) ) );

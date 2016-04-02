@@ -8,15 +8,15 @@ namespace Nez.Samples
 	/// </summary>
 	public class TriggerListener : Component, ITriggerListener
 	{
-		void ITriggerListener.onTriggerEnter( Collider other )
+		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
 		{
-			Debug.log( "onTriggerEnter: {0}", other );
+			Debug.log( "onTriggerEnter: {0} entered {1}", other, self );
 		}
 
 
-		void ITriggerListener.onTriggerExit( Collider other )
+		void ITriggerListener.onTriggerExit( Collider other, Collider self )
 		{
-			Debug.log( "onTriggerExit: {0}", other );
+			Debug.log( "onTriggerExit: {0} exited {1}", other, self );
 		}
 
 	}

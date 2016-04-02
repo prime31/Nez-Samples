@@ -50,19 +50,24 @@ namespace Nez.Samples
 			trail.fadeDuration = 0.2f;
 			trail.minDistanceBetweenInstances = 10f;
 			trail.initialColor = Color.White * 0.5f;
-			playerEntity.colliders.add( new BoxCollider() );
-			playerEntity.colliders.mainCollider.physicsLayer = 1 << 2;
-			playerEntity.colliders.mainCollider.collidesWithLayers = 1 << 0;
 
-			// create an object at the location set on our Tiled object layer that only colliders with tiles and not the player
+			// add a collider and put it on layer 2 but make it only collide with layer 0. This will make the player only collider with the tilemap
+			var collider = playerEntity.colliders.add( new BoxCollider() );
+			Flags.setFlagExclusive( ref collider.physicsLayer, 2 );
+			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
+
+
+			// create an object at the location set on our Tiled object layer that only collides with tiles and not the player
 			var ballSubtexture = atlasParts[96];
 			var ballEntity = createEntity( "ball" );
 			ballEntity.transform.position = new Vector2( ball.x + 8, ball.y + 8 );
 			ballEntity.addComponent( new Sprite( ballSubtexture ) );
 			ballEntity.addComponent( new ArcadeRigidbody() );
-			ballEntity.colliders.add( new CircleCollider() );
-			ballEntity.colliders.mainCollider.physicsLayer = 1 << 1;
-			ballEntity.colliders.mainCollider.collidesWithLayers = 1 << 0;
+
+			// add a collider and put it on layer 1. Make it only collider with layer 0 (the tilemap) to it doesnt interact with the player.
+			var circleCollider = ballEntity.colliders.add( new CircleCollider() );
+			Flags.setFlagExclusive( ref circleCollider.physicsLayer, 1 );
+			Flags.setFlagExclusive( ref circleCollider.collidesWithLayers, 0 );
 		}
 	}
 }

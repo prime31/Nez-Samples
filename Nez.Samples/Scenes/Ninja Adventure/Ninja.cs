@@ -143,13 +143,13 @@ namespace Nez.Samples
 
 		#region ITriggerListener implementation
 
-		void ITriggerListener.onTriggerEnter( Collider other )
+		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
 		{
 			Debug.log( "triggerEnter: {0}", other.entity.name );
 		}
 
 
-		void ITriggerListener.onTriggerExit( Collider other )
+		void ITriggerListener.onTriggerExit( Collider other, Collider self )
 		{
 			Debug.log( "triggerExit: {0}", other.entity.name );
 		}

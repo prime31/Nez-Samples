@@ -47,7 +47,7 @@ namespace Nez.Samples
 				var ent = createEntity( name );
 				ent.transform.position = pos;
 				ent.addComponent( new Sprite( blockTexture ) );
-				ent.colliders.add( new BoxCollider() );
+				var collider = ent.colliders.add( new BoxCollider() );
 
 				// add a glow sprite on the light render layer
 				var glowSprite = new Sprite( blockGlowTexture );
@@ -56,7 +56,7 @@ namespace Nez.Samples
 
 				if( isTrigger )
 				{
-					ent.colliders[0].isTrigger = true;
+					collider.isTrigger = true;
 					ent.addComponent( new TriggerListener() );
 				}
 			};

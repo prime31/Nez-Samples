@@ -23,7 +23,7 @@ namespace Nez.Samples
 		}
 
 		
-		void ITriggerListener.onTriggerEnter( Collider other )
+		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
 		{
 			if( _hitCounter > hitsUntilDead )
 			{
@@ -37,7 +37,7 @@ namespace Nez.Samples
 		}
 
 
-		void ITriggerListener.onTriggerExit( Collider other )
+		void ITriggerListener.onTriggerExit( Collider other, Collider self )
 		{}
 	}
 }

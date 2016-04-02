@@ -2,11 +2,12 @@
 using Nez.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Nez.UI;
 
 
 namespace Nez.Samples
 {
-	[SampleScene( "Basic Scene", "Scene with a single Entity. The minimum to have something to show")]
+	[SampleScene( "Basic Scene", "Scene with a single Entity. The minimum to have something to show" )]
 	public class BasicScene : SampleScene
 	{
 		public override void initialize()
