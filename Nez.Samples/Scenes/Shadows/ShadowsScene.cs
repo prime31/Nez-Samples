@@ -31,10 +31,10 @@ namespace Nez.Samples
 			// create a Renderer that renders only the light layer into a render target
 			var lightRenderer = addRenderer( new RenderLayerRenderer( -1, LIGHT_RENDER_LAYER ) );
 			lightRenderer.renderTargetClearColor = new Color( 10, 10, 10, 255 );
-			lightRenderer.renderTarget = RenderTarget.create();
+			lightRenderer.renderTexture = new RenderTexture();
 
 			// add a PostProcessor that renders the light render target
-			addPostProcessor( new SpriteLightPostProcessor( 0, lightRenderer ) );
+			addPostProcessor( new SpriteLightPostProcessor( 0, lightRenderer.renderTexture ) );
 
 			var lightTexture = contentManager.Load<Texture2D>( "Shadows/sprite-light" );
 			var moonTexture = contentManager.Load<Texture2D>( "Shared/moon" );

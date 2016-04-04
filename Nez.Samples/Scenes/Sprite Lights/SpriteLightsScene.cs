@@ -31,10 +31,10 @@ namespace Nez.Samples
 
 			addRenderer( new RenderLayerExcludeRenderer( 0, SCREEN_SPACE_RENDER_LAYER, SPRITE_LIGHT_RENDER_LAYER ) );
 			_lightRenderer = addRenderer( new RenderLayerRenderer( -1, SPRITE_LIGHT_RENDER_LAYER ) );
-			_lightRenderer.renderTarget = RenderTarget.create();
+			_lightRenderer.renderTexture = new RenderTexture();
 			_lightRenderer.renderTargetClearColor = new Color( 10, 10, 10, 255 );
 
-			_spriteLightPostProcessor = addPostProcessor( new SpriteLightPostProcessor( 0, _lightRenderer ) );
+			_spriteLightPostProcessor = addPostProcessor( new SpriteLightPostProcessor( 0, _lightRenderer.renderTexture ) );
 			addPostProcessor( new ScanlinesPostProcessor( 0 ) );
 
 

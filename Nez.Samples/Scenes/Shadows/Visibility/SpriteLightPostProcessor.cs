@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Nez.Textures;
 
 
 namespace Nez
@@ -30,20 +31,19 @@ namespace Nez
 
 		float _multiplicativeFactor = 1f;
 
-		Renderer _lightsRenderer;
+		RenderTexture _lightsRenderTexture;
 
 
-		public SpriteLightPostProcessor( int executionOrder, Renderer lightsRenderer ) : base( executionOrder )
+		public SpriteLightPostProcessor( int executionOrder, RenderTexture lightsRenderTexture ) : base( executionOrder )
 		{
-			Assert.isNotNull( lightsRenderer.renderTarget, "SpriteLightPostProcessor requires that your lightsRenderer has a RenderTarget" );
-			_lightsRenderer = lightsRenderer;
+			_lightsRenderTexture = lightsRenderTexture;
 		}
 
 
 		public override void onAddedToScene()
 		{
 			effect = scene.contentManager.loadEffect( "Content/Shadows/SpriteLightMultiply.mgfxo" );
-			effect.Parameters["lightTexture"].SetValue( _lightsRenderer.renderTarget );
+			effect.Parameters["lightTexture"].SetValue( _lightsRenderTexture );
 			effect.Parameters["_multiplicativeFactor"].SetValue( _multiplicativeFactor );
 		}
 
@@ -59,9 +59,7 @@ namespace Nez
 
 		public override void onSceneBackBufferSizeChanged( int newWidth, int newHeight )
 		{
-			_lightsRenderer.renderTarget.Dispose();
-			_lightsRenderer.renderTarget = Nez.Textures.RenderTarget.create( newWidth, newHeight );
-			effect.Parameters["lightTexture"].SetValue( _lightsRenderer.renderTarget );
+			effect.Parameters["lightTexture"].SetValue( _lightsRenderTexture );
 		}
 
 	}
