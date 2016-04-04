@@ -60,7 +60,6 @@
     <Compile Include="Scenes\Shadows\Visibility\EndPoint.cs" />
     <Compile Include="Scenes\Shadows\Visibility\PointLight.cs" />
     <Compile Include="Scenes\Shadows\Visibility\Segment.cs" />
-    <Compile Include="Scenes\Shadows\Visibility\SpriteLightPostProcessor.cs" />
     <Compile Include="Scenes\Shadows\Visibility\VisibilityComputer.cs" />
     <Compile Include="Shared\TriggerListener.cs" />
     <Compile Include="Shared\MovingPlatform.cs" />
@@ -166,11 +165,12 @@
     <None Include="Content\Shadows\Light.mgfxo">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Shadows\SpriteLightMultiply.mgfxo">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="..\Nez\DefaultContent\effects\SpriteAlphaTest.mgfxo">
       <Link>Content\nez\effects\SpriteAlphaTest.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteLightMultiply.mgfxo">
+      <Link>Content\nez\effects\SpriteLightMultiply.mgfxo</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
