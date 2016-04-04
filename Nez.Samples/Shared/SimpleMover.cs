@@ -11,7 +11,7 @@ namespace Nez.Samples
 	/// </summary>
 	public class SimpleMover : Component, IUpdatable
 	{
-		float _speed = 10f;
+		float _speed = 600f;
 		Mover _mover;
 
 
@@ -45,7 +45,7 @@ namespace Nez.Samples
 
 			if( moveDir != Vector2.Zero )
 			{
-				var movement = moveDir * _speed;
+				var movement = moveDir * _speed * Time.deltaTime;
 
 				CollisionResult res;
 				if( _mover.move( movement, out res ) )

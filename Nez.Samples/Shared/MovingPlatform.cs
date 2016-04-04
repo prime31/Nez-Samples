@@ -95,10 +95,10 @@ namespace Nez.Samples
 			}
 
 
-			foreach( var entity in ridingActors )
+			foreach( var ent in ridingActors )
 			{
 				if( !moved )
-					entity.move( new Vector2( amount, 0 ) );
+					ent.move( new Vector2( amount, 0 ) );
 			}
 		}
 
@@ -139,10 +139,10 @@ namespace Nez.Samples
 			}
 
 
-			foreach( var entity in ridingActors )
+			foreach( var ent in ridingActors )
 			{
 				if( !moved )
-					entity.move( new Vector2( 0, amount ) );
+					ent.move( new Vector2( 0, amount ) );
 			}
 		}
 
