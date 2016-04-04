@@ -42,7 +42,8 @@ namespace Nez.Samples
 
 			// add a shadow that will only be rendered when our player is behind the detailss layer of the tilemap (renderLayer -1). The shadow
 			// must be in a renderLayer ABOVE the details layer to be visible.
-			var shadow = entity.addComponent( new StencilShadow( _animation ) );
+			var shadow = entity.addComponent( new SpriteMime( _animation ) );
+			shadow.color = new Color( 10, 10, 10, 80 );
 			shadow.renderState = RenderState.stencilRead();
 			shadow.renderLayer = -2; // ABOVE our 
 
