@@ -36,9 +36,14 @@ namespace Nez.Samples
 			var tiledMapDetailsComp = tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
 			tiledMapDetailsComp.setLayerToRender( "above-details" );
 			tiledMapDetailsComp.renderLayer = -1;
+			// the details layer will write to the stencil buffer so we can draw a shadow when the player is behind it. we need an AlphaTestEffect
+			// here as well
+			tiledMapDetailsComp.renderState = RenderState.stencilWrite();
+			tiledMapDetailsComp.renderState.addAlphaTestEffect();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
 			tiledEntity.addComponent( new CameraBounds( new Vector2( tiledmap.tileWidth, tiledmap.tileWidth ), new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) ) ) );
+
 
 			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
 			playerEntity.addComponent( new Ninja() );
@@ -48,6 +53,7 @@ namespace Nez.Samples
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 			// move ourself to layer 1 so that we dont get hit by the projectiles that we fire
 			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
+
 
 			// stick something to shoot in the level
 			var moonTexture = contentManager.Load<Texture2D>( "Shared/moon" );

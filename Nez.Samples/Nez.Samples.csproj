@@ -72,6 +72,7 @@
     <Compile Include="Scenes\Sprite Lights\SpriteLightsScene.cs" />
     <Compile Include="Scenes\Ninja Adventure\FireballProjectileController.cs" />
     <Compile Include="Scenes\Ninja Adventure\ProjectileHitDetector.cs" />
+    <Compile Include="Scenes\Ninja Adventure\StencilShadow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

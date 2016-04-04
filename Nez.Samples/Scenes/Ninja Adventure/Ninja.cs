@@ -40,6 +40,12 @@ namespace Nez.Samples
 			_mover = entity.addComponent( new Mover() );
 			_animation = entity.addComponent( new Sprite<Animations>( subtextures[0] ) );
 
+			// add a shadow that will only be rendered when our player is behind the detailss layer of the tilemap (renderLayer -1). The shadow
+			// must be in a renderLayer ABOVE the details layer to be visible.
+			var shadow = entity.addComponent( new StencilShadow( _animation ) );
+			shadow.renderState = RenderState.stencilRead();
+			shadow.renderLayer = -2; // ABOVE our 
+
 			// extract the animations from the atlas
 			_animation.addAnimation( Animations.WalkDown, new SpriteAnimation( new List<Subtexture>()
 			{
