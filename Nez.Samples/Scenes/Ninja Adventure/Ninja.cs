@@ -45,7 +45,7 @@ namespace Nez.Samples
 			var shadow = entity.addComponent( new SpriteMime( _animation ) );
 			shadow.color = new Color( 10, 10, 10, 80 );
 			shadow.renderState = RenderState.stencilRead();
-			shadow.renderLayer = -2; // ABOVE our 
+			shadow.renderLayer = -2; // ABOVE our tiledmap layer so it is visible
 
 			// extract the animations from the atlas
 			_animation.addAnimation( Animations.WalkDown, new SpriteAnimation( new List<Subtexture>()
