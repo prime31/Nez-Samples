@@ -70,7 +70,7 @@ namespace Nez.Samples
 		/// <returns>The projectile.</returns>
 		/// <param name="position">Position.</param>
 		/// <param name="velocity">Velocity.</param>
-		public Entity createProjectile( Vector2 position, Vector2 velocity )
+		public Entity createProjectiles( Vector2 position, Vector2 velocity )
 		{
 			// create an Entity to house the projectile and its logic
 			var entity = createEntity( "projectile" );
