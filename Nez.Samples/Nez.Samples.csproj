@@ -71,6 +71,8 @@
     <Compile Include="Scenes\Sprite Lights\SpriteLightsScene.cs" />
     <Compile Include="Scenes\Ninja Adventure\FireballProjectileController.cs" />
     <Compile Include="Scenes\Ninja Adventure\ProjectileHitDetector.cs" />
+    <Compile Include="Scenes\Platformer\PlatformerScene.cs" />
+    <Compile Include="Scenes\Platformer\Caveman.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -204,6 +206,7 @@
     <Folder Include="Scenes\Destructable Tilemap\" />
     <Folder Include="Scenes\Ninja Adventure\" />
     <Folder Include="Scenes\Sprite Lights\" />
+    <Folder Include="Scenes\Platformer\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">

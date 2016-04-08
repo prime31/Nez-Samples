@@ -1,29 +1,31 @@
 ﻿using System;
-using Nez;
+using Microsoft.Xna.Framework;
 using Nez.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace Nez.Samples
 {
-	public class Ninja : Component, ITriggerListener, IUpdatable
+	public class Caveman : Component, ITriggerListener, IUpdatable
 	{
 		enum Animations
 		{
-			WalkUp,
-			WalkDown,
-			WalkRight,
-			WalkLeft
+			Walk,
+			Run,
+			Idle,
+			Attack,
+			Death,
+			Falling,
+			Hurt,
+			Jumping
 		}
 
 		Sprite<Animations> _animation;
 		Mover _mover;
 		float _moveSpeed = 100f;
-		Vector2 _projectileVelocity = new Vector2( 175 );
 
 		VirtualButton _fireInput;
 		VirtualIntegerAxis _xAxisInput;
@@ -32,52 +34,72 @@ namespace Nez.Samples
 
 		public override void onAddedToEntity()
 		{
-			// load up our character texture atlas. we have different characters in 1 - 6.png for variety
-			var characterPng = Nez.Random.range( 1, 7 );
-			var texture = entity.scene.contentManager.Load<Texture2D>( "NinjaAdventure/characters/" + characterPng );
-			var subtextures = Subtexture.subtexturesFromAtlas( texture, 16, 16 );
+			var texture = entity.scene.contentManager.Load<Texture2D>( "Platformer/caveman" );
+			var subtextures = Subtexture.subtexturesFromAtlas( texture, 32, 32 );
 
 			_mover = entity.addComponent( new Mover() );
 			_animation = entity.addComponent( new Sprite<Animations>( subtextures[0] ) );
 
-			// add a shadow that will only be rendered when our player is behind the detailss layer of the tilemap (renderLayer -1). The shadow
-			// must be in a renderLayer ABOVE the details layer to be visible.
-			var shadow = entity.addComponent( new SpriteMime( _animation ) );
-			shadow.color = new Color( 10, 10, 10, 80 );
-			shadow.renderState = RenderState.stencilRead();
-			shadow.renderLayer = -2; // ABOVE our tiledmap layer so it is visible
-
-			// extract the animations from the atlas
-			_animation.addAnimation( Animations.WalkDown, new SpriteAnimation( new List<Subtexture>()
+			// extract the animations from the atlas. they are setup in rows with 8 columns
+			_animation.addAnimation( Animations.Walk, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[0],
-				subtextures[4],
-				subtextures[8],
-				subtextures[12]
-			}) );
-
-			_animation.addAnimation( Animations.WalkUp, new SpriteAnimation( new List<Subtexture>()
-			{
 				subtextures[1],
-				subtextures[5],
-				subtextures[9],
-				subtextures[13]
-			}) );
-
-			_animation.addAnimation( Animations.WalkLeft, new SpriteAnimation( new List<Subtexture>()
-			{
 				subtextures[2],
-				subtextures[6],
-				subtextures[10],
-				subtextures[14]
+				subtextures[3],
+				subtextures[4],
+				subtextures[5]
 			}) );
 
-			_animation.addAnimation( Animations.WalkRight, new SpriteAnimation( new List<Subtexture>()
+			_animation.addAnimation( Animations.Run, new SpriteAnimation( new List<Subtexture>()
 			{
-				subtextures[3],
-				subtextures[7],
-				subtextures[11],
-				subtextures[15]
+				subtextures[8+0],
+				subtextures[8+1],
+				subtextures[8+2],
+				subtextures[8+3],
+				subtextures[8+4],
+				subtextures[8+5],
+				subtextures[8+6]
+			}) );
+
+			_animation.addAnimation( Animations.Idle, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[16]
+			}) );
+
+			_animation.addAnimation( Animations.Attack, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[24+0],
+				subtextures[24+1],
+				subtextures[24+2],
+				subtextures[24+3]
+			}) );
+
+			_animation.addAnimation( Animations.Death, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[40+0],
+				subtextures[40+1],
+				subtextures[40+2],
+				subtextures[40+3]
+			}) );
+
+			_animation.addAnimation( Animations.Falling, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[48]
+			}) );
+
+			_animation.addAnimation( Animations.Hurt, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[64],
+				subtextures[64+1]
+			}) );
+
+			_animation.addAnimation( Animations.Jumping, new SpriteAnimation( new List<Subtexture>()
+			{
+				subtextures[72+0],
+				subtextures[72+1],
+				subtextures[72+2],
+				subtextures[72+3]
 			}) );
 
 			setupInput();
@@ -116,24 +138,30 @@ namespace Nez.Samples
 		{
 			// handle movement and animations
 			var moveDir = new Vector2( _xAxisInput.value, _yAxisInput.value );
-			var animation = Animations.WalkDown;
+			var animation = Animations.Idle;
 
 			if( moveDir.X < 0 )
-				animation = Animations.WalkLeft;
+			{
+				animation = Animations.Walk;
+				_animation.flipX = true;
+			}
 			else if( moveDir.X > 0 )
-				animation = Animations.WalkRight;
+			{
+				animation = Animations.Run;
+				_animation.flipX = false;
+			}
 
 			if( moveDir.Y < 0 )
-				animation = Animations.WalkUp;
+				animation = Animations.Falling;
 			else if( moveDir.Y > 0 )
-				animation = Animations.WalkDown;
+				animation = Animations.Jumping;
 
 
 			if( moveDir != Vector2.Zero )
 			{
 				if( !_animation.isAnimationPlaying( animation ) )
 					_animation.play( animation );
-				
+
 				var movement = moveDir * _moveSpeed * Time.deltaTime;
 
 				CollisionResult res;
@@ -146,28 +174,7 @@ namespace Nez.Samples
 
 			// handle firing a projectile
 			if( _fireInput.isPressed )
-			{
-				// fire a projectile in the direction we are facing
-				var dir = Vector2.Zero;
-				switch( _animation.currentAnimation )
-				{
-					case Animations.WalkUp:
-						dir.Y = -1;
-						break;
-					case Animations.WalkDown:
-						dir.Y = 1;
-						break;
-					case Animations.WalkRight:
-						dir.X = 1;
-						break;
-					case Animations.WalkLeft:
-						dir.X = -1;
-						break;
-				}
-
-				var ninjaScene = entity.scene as NinjaAdventureScene;
-				ninjaScene.createProjectiles( entity.transform.position, _projectileVelocity * dir );
-			}
+				_animation.play( Animations.Attack );
 		}
 
 

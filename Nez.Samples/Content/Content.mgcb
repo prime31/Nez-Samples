@@ -260,3 +260,32 @@
 /processorParam:TextureFormat=Color
 /build:NinjaAdventure/characters/4.png
 
+#begin Platformer/PixelsphereTiles.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Platformer/PixelsphereTiles.png
+
+#begin Platformer/map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Platformer/map.tmx
+
+#begin Platformer/caveman.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Platformer/caveman.png
+
