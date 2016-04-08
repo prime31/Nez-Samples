@@ -47,13 +47,14 @@ namespace Nez.Samples
 
 			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
 			playerEntity.addComponent( new Ninja() );
-			playerEntity.addComponent( new FollowCamera( playerEntity ) );
 			var collider = playerEntity.colliders.add( new CircleCollider() );
 			// we only want to collider with the tilemap, which is on the default layer 0
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 			// move ourself to layer 1 so that we dont get hit by the projectiles that we fire
 			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
 
+			// add a component to have the Camera follow the player
+			camera.entity.addComponent( new FollowCamera( playerEntity ) );
 
 			// stick something to shoot in the level
 			var moonTexture = contentManager.Load<Texture2D>( "Shared/moon" );

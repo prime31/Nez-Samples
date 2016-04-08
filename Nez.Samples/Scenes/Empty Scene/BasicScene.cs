@@ -14,6 +14,8 @@ namespace Nez.Samples
 		{
 			base.initialize();
 
+			// setup screen that fits our map
+			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.None );
 			Screen.setSize( 1280, 720 );
 
 			var moonTex = contentManager.Load<Texture2D>( "Shared/moon" );

@@ -25,7 +25,7 @@ namespace Nez.Samples
 		{
 			base.initialize();
 
-			// setup a pixel perfect screen that fits our map
+			// setup screen that fits our map
 			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.ShowAll );
 			Screen.setSize( 1280, 720 );
 

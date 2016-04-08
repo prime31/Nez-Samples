@@ -30,10 +30,11 @@ namespace Nez.Samples
 
 			var playerEntity = createEntity( "player", new Vector2( Screen.width / 2, Screen.height / 2 ) );
 			playerEntity.addComponent( new Caveman() );
-			playerEntity.transform.position = new Vector2( 150, 150 );
-			playerEntity.addComponent( new FollowCamera( playerEntity ) );
+			playerEntity.transform.position = new Vector2( 150, 100 );
 			playerEntity.addCollider( new BoxCollider() );
 
+			// add a component to have the Camera follow the player
+			camera.entity.addComponent( new FollowCamera( playerEntity ) );
 
 			addPostProcessor( new VignettePostProcessor( 1 ) );
 		}

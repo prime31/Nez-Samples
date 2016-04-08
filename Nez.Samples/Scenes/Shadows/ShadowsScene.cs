@@ -100,9 +100,8 @@ namespace Nez.Samples
 
 
 			// add a follow camera
-			var camFollow = createEntity( "camera-follow" );
-			camFollow.addComponent( new FollowCamera( entity ) );
-			camFollow.addComponent( new CameraShake() );
+			camera.entity.addComponent( new FollowCamera( entity ) );
+			camera.entity.addComponent( new CameraShake() );
 
 
 			// setup some lights and animate the colors

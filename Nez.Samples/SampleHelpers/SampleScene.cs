@@ -98,7 +98,7 @@ namespace Nez.Samples
 						{
 							// stop all tweens in case any demo scene started some up
 							TweenManager.stopAllTweens();
-							Core.scene = Activator.CreateInstance( type ) as Scene;
+							Core.startSceneTransition( new FadeTransition( () => Activator.CreateInstance( type ) as Scene ) );
 						};
 
 						_table.row().setPadTop( 10 );
