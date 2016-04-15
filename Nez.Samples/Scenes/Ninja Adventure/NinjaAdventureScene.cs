@@ -38,8 +38,8 @@ namespace Nez.Samples
 			tiledMapDetailsComp.renderLayer = -1;
 			// the details layer will write to the stencil buffer so we can draw a shadow when the player is behind it. we need an AlphaTestEffect
 			// here as well
-			tiledMapDetailsComp.renderState = RenderState.stencilWrite();
-			tiledMapDetailsComp.renderState.effect = contentManager.loadNezEffect<SpriteAlphaTestEffect>();
+			tiledMapDetailsComp.material = Material.stencilWrite();
+			tiledMapDetailsComp.material.effect = contentManager.loadNezEffect<SpriteAlphaTestEffect>();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
 			tiledEntity.addComponent( new CameraBounds( new Vector2( tiledmap.tileWidth, tiledmap.tileWidth ), new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) ) ) );

@@ -7,7 +7,7 @@ namespace Nez.Samples
 	/// <summary>
 	/// Tiled map import that includes animated tiles from multiple different tileset images
 	/// </summary>
-	[SampleScene( "Animated Tiles", "Tiled map import with\nanimated tiles")]
+	[SampleScene( "Animated Tiles", "Tiled map import with animated tiles")]
 	public class AnimatedTilesScene : SampleScene
 	{
 		public AnimatedTilesScene() : base( true, true )

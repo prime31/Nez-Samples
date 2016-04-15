@@ -7,7 +7,7 @@ using Nez.Tiled;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Platformer", "Tiled map" )]
+	//[SampleScene( "Platformer", "Work in progress..." )]
 	public class PlatformerScene : SampleScene
 	{
 		public PlatformerScene() : base( true, true )

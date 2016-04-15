@@ -44,7 +44,7 @@ namespace Nez.Samples
 			// must be in a renderLayer ABOVE the details layer to be visible.
 			var shadow = entity.addComponent( new SpriteMime( _animation ) );
 			shadow.color = new Color( 10, 10, 10, 80 );
-			shadow.renderState = RenderState.stencilRead();
+			shadow.material = Material.stencilRead();
 			shadow.renderLayer = -2; // ABOVE our tiledmap layer so it is visible
 
 			// extract the animations from the atlas
