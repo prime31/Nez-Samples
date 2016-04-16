@@ -143,9 +143,9 @@ namespace Nez.Samples
 		{
 			Core.graphicsDevice.SetRenderTarget( null );
 			Core.graphicsDevice.Clear( letterboxColor );
-			Graphics.instance.spriteBatch.Begin( 0, BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null );
-			Graphics.instance.spriteBatch.Draw( source, finalRenderDestinationRect, Color.White );
-			Graphics.instance.spriteBatch.End();
+			Graphics.instance.batcher.begin( BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null );
+			Graphics.instance.batcher.draw( source, finalRenderDestinationRect, Color.White );
+			Graphics.instance.batcher.end();
 
 			_screenSpaceRenderer.render( scene );
 		}
