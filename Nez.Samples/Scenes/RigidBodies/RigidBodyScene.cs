@@ -53,17 +53,17 @@ namespace Nez.Samples
 
 		ArcadeRigidbody createEntity( Vector2 position, float mass, float friction, float elasticity, Vector2 velocity, Texture2D texture )
 		{
-			var rigidbody = new ArcadeRigidbody();
-			rigidbody.mass = mass;
-			rigidbody.friction = friction;
-			rigidbody.elasticity = elasticity;
-			rigidbody.velocity = velocity;
+			var rigidbody = new ArcadeRigidbody()
+				.setMass( mass )
+				.setFriction( friction )
+				.setElasticity( elasticity )
+				.setVelocity( velocity );
 
 			var entity = createEntity( Utils.randomString( 3 ) );
 			entity.transform.position = position;
 			entity.addComponent( new Sprite( texture ) );
 			entity.addComponent( rigidbody );
-			entity.colliders.add( new CircleCollider() );
+			entity.addCollider( new CircleCollider() );
 
 			return rigidbody;
 		}

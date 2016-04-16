@@ -29,7 +29,7 @@ namespace Nez.Shadows
 			{
 				if( _areBoundsDirty )
 				{
-					_bounds.calculateBounds( entity.transform.position, _localPosition, new Vector2( radius, radius ), entity.transform.scale, entity.transform.rotation, width, height );
+					_bounds.calculateBounds( entity.transform.position, _localOffset, new Vector2( radius, radius ), entity.transform.scale, entity.transform.rotation, width, height );
 					_areBoundsDirty = false;
 				}
 
@@ -96,7 +96,7 @@ namespace Nez.Shadows
 				Core.graphicsDevice.RasterizerState = RasterizerState.CullNone;
 
 				// Apply the effect
-				_lightEffect.Parameters["viewProjectionMatrix"].SetValue( entity.scene.camera.getViewProjectionMatrix() );
+				_lightEffect.Parameters["viewProjectionMatrix"].SetValue( entity.scene.camera.viewProjectionMatrix );
 				_lightEffect.Parameters["lightSource"].SetValue( entity.transform.position );
 				_lightEffect.Parameters["lightColor"].SetValue( color.ToVector3() * power );
 				_lightEffect.Parameters["lightRadius"].SetValue( radius );

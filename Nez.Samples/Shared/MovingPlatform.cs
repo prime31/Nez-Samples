@@ -153,7 +153,7 @@ namespace Nez.Samples
 		{
 			var list = new List<Entity>();
 
-			var entities = entity.scene.findEntitiesByTag( 0 );
+			var entities = entity.scene.findEntitiesWithTag( 0 );
 			for( var i = 0; i < entities.Count; i++ )
 			{
 				if( entities[i].colliders.mainCollider == entity.colliders.mainCollider || entities[i].colliders.mainCollider == null )
