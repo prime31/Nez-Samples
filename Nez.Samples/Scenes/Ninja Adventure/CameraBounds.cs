@@ -12,7 +12,7 @@ namespace Nez.Samples
 		public CameraBounds()
 		{
 			// make sure we run last so the camera is already moved before we evaluate its position
-			updateOrder = int.MaxValue;
+			setUpdateOrder( int.MaxValue );
 		}
 
 
