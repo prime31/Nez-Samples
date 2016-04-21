@@ -131,7 +131,6 @@ namespace Nez.Samples
 			sprite.renderLayer = SPRITE_LIGHT_RENDER_LAYER;
 
 			entity.transform.tweenPositionTo( target, 2 )
-				//.setLoops( Nez.Tweens.LoopType.PingPong )
 				.setCompletionHandler( lightTweenCompleted )
 				.setRecycleTween( false )
 				.start();
@@ -146,7 +145,6 @@ namespace Nez.Samples
 
 			var transform = tween.getTargetObject() as Transform;
 			tween.prepareForReuse( transform.position, target, 2f )
-				//.setLoops( Nez.Tweens.LoopType.PingPong )
 				.setCompletionHandler( lightTweenCompleted )
 				.setDelay( delay )
 				.start();

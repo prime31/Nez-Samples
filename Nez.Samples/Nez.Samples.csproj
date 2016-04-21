@@ -73,6 +73,9 @@
     <Compile Include="Scenes\Ninja Adventure\ProjectileHitDetector.cs" />
     <Compile Include="Scenes\Platformer\PlatformerScene.cs" />
     <Compile Include="Scenes\Platformer\Caveman.cs" />
+    <Compile Include="Scenes\Deferred Lighting\DeferredLightingScene.cs" />
+    <Compile Include="SampleHelpers\MouseFollow.cs" />
+    <Compile Include="Scenes\Deferred Lighting\DeferredLightingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -175,6 +178,14 @@
       <Link>Content\nez\effects\SpriteLightMultiply.mgfxo</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\Nez\DefaultContent\effects\DeferredLighting.mgfxo">
+      <Link>Content\nez\effects\DeferredLighting.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\DeferredSprite.mgfxo">
+      <Link>Content\nez\effects\DeferredSprite.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -207,6 +218,7 @@
     <Folder Include="Scenes\Ninja Adventure\" />
     <Folder Include="Scenes\Sprite Lights\" />
     <Folder Include="Scenes\Platformer\" />
+    <Folder Include="Scenes\Deferred Lighting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">

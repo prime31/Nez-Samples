@@ -116,7 +116,7 @@ namespace Nez.Samples
 		{
 			var instructionsEntity = createEntity( "instructions" );
 			instructionsEntity.addComponent( new Text( Graphics.instance.bitmapFont, text, new Vector2( 10, 10 ), Color.White ) )
-				.renderLayer = SCREEN_SPACE_RENDER_LAYER;
+				.setRenderLayer( SCREEN_SPACE_RENDER_LAYER );
 		}
 
 
