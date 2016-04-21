@@ -21,6 +21,13 @@ namespace Nez.Samples
 
 		public void update()
 		{
+			// check for debug toggle
+			if( Input.isKeyPressed( Keys.F ) )
+			{
+				var renderer = entity.scene.getRenderer<DeferredLightingRenderer>();
+				renderer.enableDebugBufferRender = !renderer.enableDebugBufferRender;
+			}
+			
 			// check for light changes
 			var lightIndex = -1;
 			if( Input.isKeyPressed( Keys.D1 ) )
