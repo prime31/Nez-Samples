@@ -76,9 +76,9 @@ namespace Nez.Samples
 					rotation += 0.1f;
 
 				if( Input.isKeyDown( Keys.Up ) )
-					zDir = Mathf.clamp( zDir + 2, 0, 300 );
+					zDir = Mathf.clamp( zDir + 2, 0, 400 );
 				else if( Input.isKeyDown( Keys.Down ) )
-					zDir = Mathf.clamp( zDir - 2, 0, 300 );
+					zDir = Mathf.clamp( zDir - 2, 0, 400 );
 
 				var newDir = new Vector3( Mathf.cos( rotation ) * magnitude, Mathf.sin( rotation ) * magnitude, zDir );
 				light.setDirection( newDir );
@@ -89,9 +89,9 @@ namespace Nez.Samples
 				var light = _currentLight as PointLight;
 
 				if( Input.isKeyDown( Keys.Up ) )
-					light.setRadius( Mathf.clamp( light.radius + 5, 10, 500 ) );
+					light.setRadius( Mathf.clamp( light.radius + 5, 10, 800 ) );
 				else if( Input.isKeyDown( Keys.Down ) )
-					light.setRadius(  Mathf.clamp( light.radius - 5, 10, 500 ) );
+					light.setRadius(  Mathf.clamp( light.radius - 5, 10, 800 ) );
 
 				if( Input.isKeyDown( Keys.Left ) )
 					light.setIntensity( Mathf.clamp( light.intensity - 0.1f, 0, 20 ) );
