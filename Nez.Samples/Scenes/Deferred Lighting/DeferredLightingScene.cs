@@ -10,7 +10,7 @@ namespace Nez.Samples
 	[SampleScene( "Deferred Lighting", "Press the number keys to change the light that is currently being controlled\nPressing f toggles the rendering of the individual buffers used by the deferred lighting system" )]
 	public class DeferredLightingScene : SampleScene
 	{
-		const int RENDERABLES_LAYER = 5;
+        const int RENDERABLES_LAYER = 5;
 		const int LIGHT_LAYER = 10;
 
 
@@ -28,7 +28,7 @@ namespace Nez.Samples
 			clearColor = Color.DarkGray;
 
 			// add our renderer setting the renderLayers we will use for lights and for renderables
-			var deferredRenderer = addRenderer( new DeferredLightingRenderer( 0, LIGHT_LAYER, RENDERABLES_LAYER ) )
+			var deferredRenderer = addRenderer( new DeferredLightingRenderer( 0, LIGHT_LAYER, RENDERABLES_LAYER) )
 				.setClearColor( Color.DarkGray );
 			deferredRenderer.enableDebugBufferRender = false;
 
@@ -49,7 +49,7 @@ namespace Nez.Samples
 			// create some Entities. When we add the Renderable (Sprite in this case) we need to be sure to set the renderLayer and Material
 			var bgEntity = createEntity( "bg" );
 			bgEntity.transform.setPosition( Screen.center ).setScale( 9 );
-			bgEntity.addComponent( new Sprite( bgTexture ) ).setRenderLayer( RENDERABLES_LAYER ).setMaterial( bgMaterial );
+			bgEntity.addComponent( new Sprite( bgTexture ) ).setRenderLayer( RENDERABLES_LAYER ).setMaterial( bgMaterial ).setLayerDepth( 1 );
 			bgEntity.addComponent( new DeferredLightingController() );
 
 			var orangeEntity = createEntity( "orange" );
