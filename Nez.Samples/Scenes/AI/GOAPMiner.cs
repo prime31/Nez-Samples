@@ -5,39 +5,22 @@ using System.Collections.Generic;
 
 namespace Nez.Samples
 {
-	public enum MinerState
+	public class GOAPMiner : SimpleStateMachine<GOAPMiner.MinerBobState>
 	{
-		Idle,
-		GoTo,
-		PerformAction
-	}
-
-	public class GOAPMiner : SimpleStateMachine<MinerState>
-	{
-		public enum Location
+		public enum MinerBobState
 		{
-			InTransit,
-			Bank,
-			Mine,
-			Home,
-			Saloon
+			Idle,
+			GoTo,
+			PerformAction
 		}
+
+		public MinerState minerState = new MinerState();
 
 		const string IS_FATIGUED = "fatigued";
 		const string IS_THIRSTY = "thirsty";
 		const string HAS_ENOUGH_GOLD = "hasenoughgold";
 
-		const int MAX_FATIGUE = 10;
-		const int MAX_GOLD = 8;
-		const int MAX_THIRST = 5;
-
-		int _fatigue;
-		int _thirst;
-		int _gold;
-		int _goldInBank;
-
-		Location _currentLocation = Location.Home;
-		Location _destinationLocation;
+		MinerState.Location _destinationLocation;
 		int _distanceToNextLocation = 10;
 
 		ActionPlanner _planner;
@@ -68,7 +51,7 @@ namespace Nez.Samples
 			depositGold.setPostcondition( HAS_ENOUGH_GOLD, false );
 			_planner.addAction( depositGold );
 
-			initialState = MinerState.Idle;
+			initialState = MinerBobState.Idle;
 		}
 
 
@@ -83,9 +66,9 @@ namespace Nez.Samples
 		WorldState getWorldState()
 		{
 			var worldState = _planner.createWorldState();
-			worldState.set( IS_FATIGUED, _fatigue >= MAX_FATIGUE );
-			worldState.set( IS_THIRSTY, _thirst >= MAX_THIRST );
-			worldState.set( HAS_ENOUGH_GOLD, _gold >= MAX_GOLD );
+			worldState.set( IS_FATIGUED, minerState.fatigue >= MinerState.MAX_FATIGUE );
+			worldState.set( IS_THIRSTY, minerState.thirst >= MinerState.MAX_THIRST );
+			worldState.set( HAS_ENOUGH_GOLD, minerState.gold >= MinerState.MAX_GOLD );
 
 			return worldState;
 		}
@@ -95,22 +78,14 @@ namespace Nez.Samples
 		{
 			var goalState = _planner.createWorldState();
 
-			if( _fatigue >= MAX_FATIGUE )
-			{
+			if( minerState.fatigue >= MinerState.MAX_FATIGUE )
 				goalState.set( IS_FATIGUED, false );
-			}
-			else if( _thirst >= MAX_THIRST )
-			{
+			else if( minerState.thirst >= MinerState.MAX_THIRST )
 				goalState.set( IS_THIRSTY, false );
-			}
-			else if( _gold >= MAX_GOLD )
-			{
+			else if( minerState.gold >= MinerState.MAX_GOLD )
 				goalState.set( HAS_ENOUGH_GOLD, false );
-			}
 			else
-			{
 				goalState.set( HAS_ENOUGH_GOLD, true );
-			}
 
 			return goalState;
 		}
@@ -124,7 +99,7 @@ namespace Nez.Samples
 
 			if( _actionPlan != null && _actionPlan.Count > 0 )
 			{
-				currentState = MinerState.GoTo;
+				currentState = MinerBobState.GoTo;
 				Debug.log( "got an action plan with {0} actions", _actionPlan.Count );
 			}
 			else
@@ -141,27 +116,27 @@ namespace Nez.Samples
 			switch( action )
 			{
 				case "sleep":
-					_destinationLocation = Location.Home;
+					_destinationLocation = MinerState.Location.Home;
 				break;
 				case "drink":
-					_destinationLocation = Location.Saloon;
+					_destinationLocation = MinerState.Location.Saloon;
 				break;
 				case "mine":
-					_destinationLocation = Location.Mine;
+					_destinationLocation = MinerState.Location.Mine;
 				break;
 				case "depositGold":
-					_destinationLocation = Location.Bank;
+					_destinationLocation = MinerState.Location.Bank;
 				break;
 			}
 
-			if( _currentLocation == _destinationLocation )
+			if( minerState.currentLocation == _destinationLocation )
 			{
-				currentState = MinerState.PerformAction;
+				currentState = MinerBobState.PerformAction;
 			}
 			else
 			{
 				_distanceToNextLocation = Nez.Random.range( 2, 8 );
-				_currentLocation = Location.InTransit;
+				minerState.currentLocation = MinerState.Location.InTransit;
 			}
 		}
 
@@ -173,16 +148,16 @@ namespace Nez.Samples
 
 			if( _distanceToNextLocation == 0 )
 			{
-				_fatigue++;
-				_currentLocation = _destinationLocation;
-				currentState = MinerState.PerformAction;
+				minerState.fatigue++;
+				minerState.currentLocation = _destinationLocation;
+				currentState = MinerBobState.PerformAction;
 			}
 		}
 
 
 		void GoTo_Exit()
 		{
-			Debug.log( "made it to the " + _currentLocation );
+			Debug.log( "made it to the " + minerState.currentLocation );
 		}
 
 
@@ -193,34 +168,34 @@ namespace Nez.Samples
 			switch( action )
 			{
 				case "sleep":
-					Debug.log( "getting some sleep. current fatigue {0}", _fatigue );
-					_fatigue--;
+					Debug.log( "getting some sleep. current fatigue {0}", minerState.fatigue );
+					minerState.fatigue--;
 
-					if( _fatigue == 0 )
-						currentState = MinerState.Idle;
+					if( minerState.fatigue == 0 )
+						currentState = MinerBobState.Idle;
 				break;
 				case "drink":
-					Debug.log( "getting my drink on. Thirst level {0}", _thirst );
-					_thirst--;
+					Debug.log( "getting my drink on. Thirst level {0}", minerState.thirst );
+					minerState.thirst--;
 
-					if( _thirst == 0 )
-						currentState = MinerState.Idle;
+					if( minerState.thirst == 0 )
+						currentState = MinerBobState.Idle;
 				break;
 				case "mine":
-					Debug.log( "digging for gold. nuggets found {0}", _gold );
-					_gold++;
-					_fatigue++;
-					_thirst++;
+					Debug.log( "digging for gold. nuggets found {0}", minerState.gold );
+					minerState.gold++;
+					minerState.fatigue++;
+					minerState.thirst++;
 
-					if( _gold >= MAX_GOLD )
-						currentState = MinerState.Idle;
+					if( minerState.gold >= MinerState.MAX_GOLD )
+						currentState = MinerBobState.Idle;
 				break;
 				case "depositGold":
-					_goldInBank += _gold;
-					_gold = 0;
+					minerState.goldInBank += minerState.gold;
+					minerState.gold = 0;
 
-					Debug.log( "depositing gold at the bank. current wealth {0}", _goldInBank );
-					currentState = MinerState.Idle;
+					Debug.log( "depositing gold at the bank. current wealth {0}", minerState.goldInBank );
+					currentState = MinerBobState.Idle;
 				break;
 			}
 		}

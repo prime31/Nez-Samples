@@ -4,30 +4,15 @@ using Nez.AI.UtilityAI;
 
 namespace Nez.Samples
 {
+	/// <summary>
+	/// Utility AI example of miner bob.
+	/// </summary>
 	public class UtilityMiner : Component, IUpdatable
 	{
-		public enum Location
-		{
-			InTransit,
-			Bank,
-			Mine,
-			Home,
-			Saloon
-		}
-
-		public const int MAX_FATIGUE = 10;
-		public const int MAX_GOLD = 8;
-		public const int MAX_THIRST = 5;
-
-		public int fatigue;
-		public int thirst;
-		public int gold;
-		public int goldInBank;
-
-		public Location currentLocation = Location.Home;
+		public MinerState minerState = new MinerState();
 
 		UtilityAI<UtilityMiner> _ai;
-		Location _destinationLocation;
+		MinerState.Location _destinationLocation;
 		int _distanceToNextLocation = 10;
 
 
@@ -41,8 +26,8 @@ namespace Nez.Samples
 			//  - we have to be home to sleep
 			//  - we have to have some fatigue
 			var fatigueConsideration = new AllOrNothingConsideration<UtilityMiner>( 1 )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.currentLocation == Location.Home ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.fatigue > 0 ? 1 : 0 ) );
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.currentLocation == MinerState.Location.Home ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.fatigue > 0 ? 1 : 0 ) );
 			fatigueConsideration.action = new ActionExecutor<UtilityMiner>( c => c.sleep() );
 			reasoner.addConsideration( fatigueConsideration );
 
@@ -51,8 +36,8 @@ namespace Nez.Samples
 			//  - we have to be at the saloon to drink
 			//  - we have to be thirsty
 			var thirstConsideration = new AllOrNothingConsideration<UtilityMiner>( 1 )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.currentLocation == Location.Saloon ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.thirst > 0 ? 1 : 0 ) );
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.currentLocation == MinerState.Location.Saloon ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.thirst > 0 ? 1 : 0 ) );
 			thirstConsideration.action = new ActionExecutor<UtilityMiner>( c => c.drink() );
 			reasoner.addConsideration( thirstConsideration );
 
@@ -61,8 +46,8 @@ namespace Nez.Samples
 			//  - we have to be at the bank to deposit gold
 			//  - we have to have gold to deposit
 			var goldConsideration = new AllOrNothingConsideration<UtilityMiner>( 1 )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.currentLocation == Location.Bank ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.gold > 0 ? 1 : 0 ) );
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.currentLocation == MinerState.Location.Bank ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.gold > 0 ? 1 : 0 ) );
 			goldConsideration.action = new ActionExecutor<UtilityMiner>( c => c.depositGold() );
 			reasoner.addConsideration( goldConsideration );
 
@@ -74,10 +59,10 @@ namespace Nez.Samples
 			//  - if we are not at the mine score
 			// Action has a scorer to score all the locations. It then moves to the location that scored highest.
 			var moveConsideration = new AllOrNothingConsideration<UtilityMiner>( 0 )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.fatigue >= MAX_FATIGUE ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.thirst >= MAX_THIRST ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.gold >= MAX_GOLD ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.currentLocation != Location.Mine ? 1 : 0 ) );
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.fatigue >= MinerState.MAX_FATIGUE ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.thirst >= MinerState.MAX_THIRST ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.gold >= MinerState.MAX_GOLD ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.currentLocation != MinerState.Location.Mine ? 1 : 0 ) );
 			var moveAction = new MoveToBestLocation();
 			moveAction.addScorer( new ChooseBestLocation() );
 			moveConsideration.action = moveAction;
@@ -88,13 +73,13 @@ namespace Nez.Samples
 			//  - we have to be at the mine to dig for gold
 			//  - we have to not be at our max gold
 			var mineConsideration = new AllOrNothingConsideration<UtilityMiner>( 1 )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.currentLocation == Location.Mine ? 1 : 0 ) )
-				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.gold >= UtilityMiner.MAX_GOLD ? 0 : 1 ) );
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.currentLocation == MinerState.Location.Mine ? 1 : 0 ) )
+				.addAppraisal( new ActionAppraisal<UtilityMiner>( c => c.minerState.gold >= MinerState.MAX_GOLD ? 0 : 1 ) );
 			mineConsideration.action = new ActionExecutor<UtilityMiner>( c => c.digForGold() );
 			reasoner.addConsideration( mineConsideration );
 
 			// default, fall-through action is to head to the mine
-			reasoner.defaultConsideration.action = new ActionExecutor<UtilityMiner>( c => c.goToLocation( Location.Mine ) );
+			reasoner.defaultConsideration.action = new ActionExecutor<UtilityMiner>( c => c.goToLocation( MinerState.Location.Mine ) );
 
 			_ai = new UtilityAI<UtilityMiner>( this, reasoner );
 		}
@@ -108,55 +93,55 @@ namespace Nez.Samples
 
 		public void sleep()
 		{
-			Debug.log( "getting some sleep. current fatigue {0}", fatigue );
-			fatigue--;
+			Debug.log( "getting some sleep. current fatigue {0}", minerState.fatigue );
+			minerState.fatigue--;
 		}
 
 
 		public void drink()
 		{
-			Debug.log( "getting my drink on. Thirst level {0}", thirst );
-			thirst--;
+			Debug.log( "getting my drink on. Thirst level {0}", minerState.thirst );
+			minerState.thirst--;
 		}
 
 
 		public void depositGold()
 		{
-			goldInBank += gold;
-			gold = 0;
+			minerState.goldInBank += minerState.gold;
+			minerState.gold = 0;
 
-			Debug.log( "depositing gold at the bank. current wealth {0}", goldInBank );
+			Debug.log( "depositing gold at the bank. current wealth {0}", minerState.goldInBank );
 		}
 
 
 		public void digForGold()
 		{
-			Debug.log( "digging for gold. nuggets found {0}", gold );
-			gold++;
-			fatigue++;
-			thirst++;
+			Debug.log( "digging for gold. nuggets found {0}", minerState.gold );
+			minerState.gold++;
+			minerState.fatigue++;
+			minerState.thirst++;
 		}
 
 
-		public void goToLocation( Location location )
+		public void goToLocation( MinerState.Location location )
 		{
-			if( location == currentLocation )
+			if( location == minerState.currentLocation )
 				return;
 
-			if( currentLocation == Location.InTransit && location == _destinationLocation )
+			if( minerState.currentLocation == MinerState.Location.InTransit && location == _destinationLocation )
 			{
 				Debug.log( "heading to {0}. its {1} miles away", location, _distanceToNextLocation );
 				_distanceToNextLocation--;
 				if( _distanceToNextLocation == 0 )
 				{
-					fatigue++;
-					currentLocation = _destinationLocation;
+					minerState.fatigue++;
+					minerState.currentLocation = _destinationLocation;
 					_distanceToNextLocation = Nez.Random.range( 2, 8 );
 				}
 			}
 			else
 			{
-				currentLocation = Location.InTransit;
+				minerState.currentLocation = MinerState.Location.InTransit;
 				_destinationLocation = location; 
 				_distanceToNextLocation = Nez.Random.range( 2, 8 );
 			}

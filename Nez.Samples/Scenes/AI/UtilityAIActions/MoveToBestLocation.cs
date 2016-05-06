@@ -5,14 +5,14 @@ using Nez.AI.UtilityAI;
 
 namespace Nez.Samples
 {
-	public class MoveToBestLocation : ActionWithOptions<UtilityMiner, UtilityMiner.Location>
+	public class MoveToBestLocation : ActionWithOptions<UtilityMiner,MinerState.Location>
 	{
-		List<UtilityMiner.Location> _locations = new List<UtilityMiner.Location>()
+		List<MinerState.Location> _locations = new List<MinerState.Location>()
 		{
-			UtilityMiner.Location.Bank,
-			UtilityMiner.Location.Home,
-			UtilityMiner.Location.Mine,
-			UtilityMiner.Location.Saloon
+			MinerState.Location.Bank,
+			MinerState.Location.Home,
+			MinerState.Location.Mine,
+			MinerState.Location.Saloon
 		};
 
 

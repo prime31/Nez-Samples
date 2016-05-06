@@ -80,9 +80,10 @@
     <Compile Include="Scenes\AI\AIUI.cs" />
     <Compile Include="Scenes\AI\BehaviorTreeMiner.cs" />
     <Compile Include="Scenes\AI\UtilityMiner.cs" />
-    <Compile Include="Scenes\AI\GOAPMiner.cs" />
     <Compile Include="Scenes\AI\UtilityAIActions\ChooseBestLocation.cs" />
     <Compile Include="Scenes\AI\UtilityAIActions\MoveToBestLocation.cs" />
+    <Compile Include="Scenes\AI\MinerState.cs" />
+    <Compile Include="Scenes\AI\GOAPMiner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
