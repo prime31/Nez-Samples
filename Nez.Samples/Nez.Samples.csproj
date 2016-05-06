@@ -76,6 +76,13 @@
     <Compile Include="Scenes\Deferred Lighting\DeferredLightingScene.cs" />
     <Compile Include="SampleHelpers\MouseFollow.cs" />
     <Compile Include="Scenes\Deferred Lighting\DeferredLightingController.cs" />
+    <Compile Include="Scenes\AI\AIScene.cs" />
+    <Compile Include="Scenes\AI\AIUI.cs" />
+    <Compile Include="Scenes\AI\BehaviorTreeMiner.cs" />
+    <Compile Include="Scenes\AI\UtilityMiner.cs" />
+    <Compile Include="Scenes\AI\GOAPMiner.cs" />
+    <Compile Include="Scenes\AI\UtilityAIActions\ChooseBestLocation.cs" />
+    <Compile Include="Scenes\AI\UtilityAIActions\MoveToBestLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -219,6 +226,8 @@
     <Folder Include="Scenes\Sprite Lights\" />
     <Folder Include="Scenes\Platformer\" />
     <Folder Include="Scenes\Deferred Lighting\" />
+    <Folder Include="Scenes\AI\" />
+    <Folder Include="Scenes\AI\UtilityAIActions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">
