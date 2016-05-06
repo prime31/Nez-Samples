@@ -136,7 +136,9 @@ namespace Nez.Samples
 
 
 		public void onSceneBackBufferSizeChanged( int newWidth, int newHeight )
-		{}
+		{
+			_screenSpaceRenderer.onSceneBackBufferSizeChanged( newWidth, newHeight );
+		}
 
 
 		public void handleFinalRender( Color letterboxColor, Microsoft.Xna.Framework.Graphics.RenderTarget2D source, Rectangle finalRenderDestinationRect, Microsoft.Xna.Framework.Graphics.SamplerState samplerState )

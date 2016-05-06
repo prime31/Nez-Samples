@@ -8,7 +8,7 @@ using Nez.Tiled;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Ninja Adventure", "Tiled map with multiple layers and virtual input\nArrows, d-pad or left stick to move, z key or a button to fire a projectile\nFind and kill the giant moon" )]
+	[SampleScene( "Ninja Adventure", "Tiled map with multiple layers, virtual input and stencil shadows\nArrows, d-pad or left stick to move, z key or a button to fire a projectile\nFind and kill the giant moon" )]
 	public class NinjaAdventureScene : SampleScene
 	{
 		public NinjaAdventureScene() : base( true, true )

@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace Nez.Samples
 {
+	/// <summary>
+	/// Goal Oriented Action Planning miner bob. Sets up Actions and uses the ActionPlanner to pick the appropriate action based on the world
+	/// and goal states. This example also uses a SimpleStateMachine to deal with exeucuting the plan that the ActionPlanner comes up with.
+	/// </summary>
 	public class GOAPMiner : SimpleStateMachine<GOAPMiner.MinerBobState>
 	{
 		public enum MinerBobState
@@ -29,8 +33,10 @@ namespace Nez.Samples
 
 		public GOAPMiner()
 		{
+			// we need an ActionPlanner before we can do anything
 			_planner = new ActionPlanner();
 
+			// setup our Actions and add them to the planner
 			var sleep = new Action( "sleep" );
 			sleep.setPrecondition( IS_FATIGUED, true );
 			sleep.setPostcondition( IS_FATIGUED, false );
@@ -51,6 +57,7 @@ namespace Nez.Samples
 			depositGold.setPostcondition( HAS_ENOUGH_GOLD, false );
 			_planner.addAction( depositGold );
 
+			// set our state machine to idle. When it is in idle it will ask the ActionPlanner for a new plan
 			initialState = MinerBobState.Idle;
 		}
 
@@ -95,6 +102,7 @@ namespace Nez.Samples
 
 		void Idle_Enter()
 		{
+			// get a plan to run that will get us from our current state to our goal state
 			_actionPlan = _planner.plan( getWorldState(), getGoalState() );
 
 			if( _actionPlan != null && _actionPlan.Count > 0 )

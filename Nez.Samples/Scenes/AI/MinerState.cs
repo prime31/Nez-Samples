@@ -3,6 +3,9 @@
 
 namespace Nez.Samples
 {
+	/// <summary>
+	/// common state for each of the AI types
+	/// </summary>
 	public class MinerState
 	{
 		public enum Location

@@ -5,7 +5,8 @@ using Nez.AI.UtilityAI;
 namespace Nez.Samples
 {
 	/// <summary>
-	/// Utility AI example of miner bob.
+	/// Utility AI example of miner bob. Utility AI is the most complex of all the AI types to setup. The complexity comes with a lot of power
+	/// though.
 	/// </summary>
 	public class UtilityMiner : Component, IUpdatable
 	{

@@ -6,6 +6,12 @@ namespace Nez.Samples
 {
 	public class ChooseBestLocation : IActionOptionAppraisal<UtilityMiner,MinerState.Location>
 	{
+		/// <summary>
+		/// Action Appraisal that will score locations providing the highest score to the best location to visit
+		/// </summary>
+		/// <returns>The score.</returns>
+		/// <param name="context">Context.</param>
+		/// <param name="option">Option.</param>
 		float IActionOptionAppraisal<UtilityMiner,MinerState.Location>.getScore( UtilityMiner context, MinerState.Location option )
 		{
 			if( option == MinerState.Location.Home )
