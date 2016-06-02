@@ -14,7 +14,7 @@ namespace Nez.Samples
 		{
 			base.initialize();
 
-			// setup screen that fits our map
+			// default to 1280x720 with no SceneResolutionPolicy
 			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.None );
 			Screen.setSize( 1280, 720 );
 
