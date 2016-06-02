@@ -32,21 +32,18 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
@@ -87,6 +84,11 @@
     <Compile Include="Scenes\AI\UtilityAIActions\MoveToBestLocation.cs" />
     <Compile Include="Scenes\AI\MinerState.cs" />
     <Compile Include="Scenes\AI\GOAPMiner.cs" />
+    <Compile Include="Scenes\Particles\ParticlesScene.cs" />
+    <Compile Include="Shared\ContentPathGenerator.cs">
+      <DependentUpon>ContentPathGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scenes\Particles\ParticleSystemSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -198,6 +200,70 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\angular.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\crissCross.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\diagonalDistort.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\horizontal.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\noise.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\pokemon.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\sawTooth.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\spiral.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\wink.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Letterbox.mgfxo">
+      <Link>Content\nez\effects\Letterbox.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\PixelGlitch.mgfxo">
+      <Link>Content\nez\effects\PixelGlitch.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Reflection.mgfxo">
+      <Link>Content\nez\effects\Reflection.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Sepia.mgfxo">
+      <Link>Content\nez\effects\Sepia.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteLines.mgfxo">
+      <Link>Content\nez\effects\SpriteLines.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\transitions\TextureWipe.mgfxo">
+      <Link>Content\nez\effects\transitions\TextureWipe.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shared\ContentPathGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ContentPathGenerator.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -218,5 +284,9 @@
       <Project>{60B7197D-D0D5-405C-90A2-A56903E9B039}</Project>
       <Name>Nez</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scenes\Particles\" />
+    <Folder Include="Content\nez\textures\textureWipeTransition\" />
   </ItemGroup>
 </Project>

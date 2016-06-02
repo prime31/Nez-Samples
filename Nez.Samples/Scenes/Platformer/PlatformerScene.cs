@@ -16,8 +16,6 @@ namespace Nez.Samples
 
 		public override void initialize()
 		{
-			base.initialize();
-
 			// setup a pixel perfect screen that fits our map
 			setDesignResolution( 512, 256, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
 			Screen.setSize( 512 * 3, 256 * 3 );
