@@ -89,6 +89,8 @@
       <DependentUpon>ContentPathGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Scenes\Particles\ParticleSystemSelector.cs" />
+    <Compile Include="Scenes\Pathfinding\PathfindingScene.cs" />
+    <Compile Include="Scenes\Pathfinding\Pathfinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -288,5 +290,6 @@
   <ItemGroup>
     <Folder Include="Scenes\Particles\" />
     <Folder Include="Content\nez\textures\textureWipeTransition\" />
+    <Folder Include="Scenes\Pathfinding\" />
   </ItemGroup>
 </Project>
