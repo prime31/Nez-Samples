@@ -48,11 +48,11 @@ namespace Nez.Samples
 		{
 			// on left click set our path end time
 			if( Input.leftMouseButtonPressed )
-				_end = _tilemap.worldPositionToTilePosition( Input.mousePosition * 2 );
+				_end = _tilemap.worldPositionToTilePosition( Input.mousePosition );
 
 			// on right click set our path start time
 			if( Input.rightMouseButtonPressed )
-				_start = _tilemap.worldPositionToTilePosition( Input.mousePosition * 2 );
+				_start = _tilemap.worldPositionToTilePosition( Input.mousePosition );
 
 			// regenerate the path on either click
 			if( Input.leftMouseButtonPressed || Input.rightMouseButtonPressed )
