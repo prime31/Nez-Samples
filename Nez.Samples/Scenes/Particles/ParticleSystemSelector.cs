@@ -43,12 +43,15 @@ namespace Nez.Samples
 		// the current emitter config index that we are playing
 		int _currentParticleSystem = 0;
 
+		// we keep around a reference to the CheckBoxes so that we can reset its state when we change particle systems
+		bool _isCollisionEnabled;
+		bool _simulateInWorldSpace = true;
 
 
 		public override void onAddedToEntity()
 		{
-			loadParticleSystem();
 			createUI();
+			loadParticleSystem();
 		}
 
 
@@ -81,6 +84,10 @@ namespace Nez.Samples
 			// load up the config then add a ParticleEmitter
 			var particleSystemConfig = entity.scene.contentManager.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
 			_particleEmitter = entity.addComponent( new ParticleEmitter( particleSystemConfig ) );
+
+			// set state based on the values of our CheckBoxes
+			_particleEmitter.collisionConfig.enabled = _isCollisionEnabled;
+			_particleEmitter.simulateInWorldSpace = _simulateInWorldSpace;
 		}
 
 
@@ -89,7 +96,6 @@ namespace Nez.Samples
 			// stick a UI in so we can play with a few emitter options
 			var uiCanvas = entity.scene.createEntity( "sprite-light-ui" ).addComponent( new UICanvas() );
 			uiCanvas.isFullScreen = true;
-			//uiCanvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
 			var skin = Skin.createDefaultSkin();
 
 			var table = uiCanvas.stage.addElement( new Table() );
@@ -98,19 +104,22 @@ namespace Nez.Samples
 
 			table.row().setPadTop( 20 ).setAlign( Align.left );
 
-			var collisionCheckbox = table.add( new CheckBox( "Toggle Collision", skin ) ).getElement<CheckBox>();
-			collisionCheckbox.onChanged += isChecked =>
+			var collisionCheckBox = table.add( new CheckBox( "Toggle Collision", skin ) ).getElement<CheckBox>();
+			collisionCheckBox.isChecked = _isCollisionEnabled;
+			collisionCheckBox.onChanged += isChecked =>
 			{
-				_particleEmitter.collisionConfig.enabled = !_particleEmitter.collisionConfig.enabled;
+				_particleEmitter.collisionConfig.enabled = isChecked;
+				_isCollisionEnabled = isChecked;
 			};
 
 			table.row().setPadTop( 20 ).setAlign( Align.left );
 
 			var worldSpaceCheckbox = table.add( new CheckBox( "Simulate in World Space", skin ) ).getElement<CheckBox>();
-			worldSpaceCheckbox.isChecked = true;
+			worldSpaceCheckbox.isChecked = _simulateInWorldSpace;
 			worldSpaceCheckbox.onChanged += isChecked =>
 			{
 				_particleEmitter.simulateInWorldSpace = isChecked;
+				_simulateInWorldSpace = isChecked;
 			};
 
 			table.row().setPadTop( 20 ).setAlign( Align.left );
