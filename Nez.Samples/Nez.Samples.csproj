@@ -94,10 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
-    <None Include="..\Nez\DefaultContent\NezDefaultBMFont.xnb">
-      <Link>Content\nez\NezDefaultBMFont.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="..\Nez\DefaultContent\effects\transitions\Squares.mgfxo">
       <Link>Content\nez\effects\transitions\Squares.mgfxo</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
