@@ -34,7 +34,7 @@ namespace Nez.Samples
 
 		public override void onAddedToEntity()
 		{
-			var texture = entity.scene.contentManager.Load<Texture2D>( "Platformer/caveman" );
+			var texture = entity.scene.contentManager.Load<Texture2D>( Content.Platformer.caveman );
 			var subtextures = Subtexture.subtexturesFromAtlas( texture, 32, 32 );
 
 			_mover = entity.addComponent( new Mover() );

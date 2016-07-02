@@ -1,12 +1,4 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
-
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	public class Game1 : Core
 	{
@@ -14,7 +6,6 @@ namespace Nez.Samples
 		{
 			base.Initialize();
 
-			Window.ClientSizeChanged += Core.onClientSizeChanged;
 			Window.AllowUserResizing = true;
 			scene = new BasicScene();
 		}

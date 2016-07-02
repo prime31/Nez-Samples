@@ -19,7 +19,7 @@ namespace Nez.Samples
 
 			Screen.setSize( 1280, 720 );
 			clearColor = Color.Black;
-			var moonTex = contentManager.Load<Texture2D>( "Shared/moon" );
+			var moonTex = contentManager.Load<Texture2D>( Content.Shared.moon );
 
 			var gridEntity = createEntity( "grid" );
 			gridEntity.addComponent( new SpringGrid( new Rectangle( 0, 0, Screen.width, Screen.height ), new Vector2( 30 ) ) );

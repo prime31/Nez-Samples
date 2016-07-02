@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 
 
@@ -14,7 +10,6 @@ namespace ProjectTemplate
 		{
 			base.Initialize();
 
-			Window.ClientSizeChanged += Core.onClientSizeChanged;
 			Window.AllowUserResizing = true;
 
 			// load up your initial scene here
