@@ -69,7 +69,7 @@ namespace Nez.Shadows
 
 		public override void onAddedToEntity()
 		{
-			_lightEffect = entity.scene.contentManager.loadEffect( "Content/Shadows/Light.mgfxo" );
+			_lightEffect = entity.scene.content.loadEffect( "Content/Shadows/Light.mgfxo" );
 		}
 
 

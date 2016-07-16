@@ -26,7 +26,7 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledmap = contentManager.Load<TiledMap>( Content.NinjaAdventure.Map.tilemap );
+			var tiledmap = content.Load<TiledMap>( Content.NinjaAdventure.Map.tilemap );
 			var tiledMapComponent = tiledEntity.addComponent( new TiledMapComponent( tiledmap, "collision" ) );
 			tiledMapComponent.setLayersToRender( new string[] { "tiles", "terrain", "details" } );
 			// render below/behind everything else. our player is at 0 and projectile is at 1.
@@ -39,7 +39,7 @@ namespace Nez.Samples
 			// the details layer will write to the stencil buffer so we can draw a shadow when the player is behind it. we need an AlphaTestEffect
 			// here as well
 			tiledMapDetailsComp.material = Material.stencilWrite();
-			tiledMapDetailsComp.material.effect = contentManager.loadNezEffect<SpriteAlphaTestEffect>();
+			tiledMapDetailsComp.material.effect = content.loadNezEffect<SpriteAlphaTestEffect>();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
 			tiledEntity.addComponent( new CameraBounds( new Vector2( tiledmap.tileWidth, tiledmap.tileWidth ), new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) ) ) );
@@ -57,7 +57,7 @@ namespace Nez.Samples
 			camera.entity.addComponent( new FollowCamera( playerEntity ) );
 
 			// stick something to shoot in the level
-			var moonTexture = contentManager.Load<Texture2D>( Content.Shared.moon );
+			var moonTexture = content.Load<Texture2D>( Content.Shared.moon );
 			var moonEntity = createEntity( "moon", new Vector2( 412, 460 ) );
 			moonEntity.addComponent( new Sprite( moonTexture ) );
 			moonEntity.addComponent( new ProjectileHitDetector() );
@@ -86,7 +86,7 @@ namespace Nez.Samples
 
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
-			var texture = contentManager.Load<Texture2D>( Content.NinjaAdventure.plume );
+			var texture = content.Load<Texture2D>( Content.NinjaAdventure.plume );
 			var subtextures = Subtexture.subtexturesFromAtlas( texture, 16, 16 );
 
 			var spriteAnimation = new SpriteAnimation( subtextures ) {

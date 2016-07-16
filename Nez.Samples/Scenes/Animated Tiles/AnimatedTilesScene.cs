@@ -24,7 +24,7 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledmap = contentManager.Load<TiledMap>( Content.AnimatedTiles.desertpalace );
+			var tiledmap = content.Load<TiledMap>( Content.AnimatedTiles.desertpalace );
 			tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
 		}
 	}

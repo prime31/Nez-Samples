@@ -82,7 +82,7 @@ namespace Nez.Samples
 				entity.removeComponent( _particleEmitter );
 
 			// load up the config then add a ParticleEmitter
-			var particleSystemConfig = entity.scene.contentManager.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
+			var particleSystemConfig = entity.scene.content.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
 			_particleEmitter = entity.addComponent( new ParticleEmitter( particleSystemConfig ) );
 
 			// set state based on the values of our CheckBoxes

@@ -38,20 +38,20 @@ namespace Nez.Samples
 			addPostProcessor( new ScanlinesPostProcessor( 0 ) );
 
 
-			var bg = contentManager.Load<Texture2D>( Content.SpriteLights.bg );
+			var bg = content.Load<Texture2D>( Content.SpriteLights.bg );
 			var bgEntity = createEntity( "bg" );
 			bgEntity.transform.position = Screen.center;
 			bgEntity.addComponent( new Sprite( bg ) );
 			bgEntity.transform.scale = new Vector2( 9.4f );
 
-			var moonTex = contentManager.Load<Texture2D>( Content.Shared.moon );
+			var moonTex = content.Load<Texture2D>( Content.Shared.moon );
 			var entity = createEntity( "moon" );
 			entity.addComponent( new Sprite( moonTex ) );
 			entity.transform.position = new Vector2( Screen.width / 4, Screen.height / 8 );
 
 
-			var lightTex = contentManager.Load<Texture2D>( Content.SpriteLights.spritelight );
-			var pixelLightTex = contentManager.Load<Texture2D>( Content.SpriteLights.pixelspritelight );
+			var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
+			var pixelLightTex = content.Load<Texture2D>( Content.SpriteLights.pixelspritelight );
 
 			addSpriteLight( lightTex, new Vector2( 50, 50 ), 2 );
 			addSpriteLight( lightTex, Screen.center, 3 );
@@ -113,7 +113,7 @@ namespace Nez.Samples
 			var button = table.add( new TextButton( "Add Light", skin ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
 			button.onClicked += butt =>
 			{
-				var lightTex = contentManager.Load<Texture2D>( Content.SpriteLights.spritelight );
+				var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
 				addSpriteLight( lightTex, Screen.center, 2f );
 			};
 		}

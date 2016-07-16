@@ -36,10 +36,10 @@ namespace Nez.Samples
 			// add a PostProcessor that renders the light render target
 			addPostProcessor( new SpriteLightPostProcessor( 0, lightRenderer.renderTexture ) );
 
-			var lightTexture = contentManager.Load<Texture2D>( Content.Shadows.spritelight );
-			var moonTexture = contentManager.Load<Texture2D>( Content.Shared.moon );
-			var blockTexture = contentManager.Load<Texture2D>( Content.Shadows.block );
-			var blockGlowTexture = contentManager.Load<Texture2D>( Content.Shadows.blockGlow );
+			var lightTexture = content.Load<Texture2D>( Content.Shadows.spritelight );
+			var moonTexture = content.Load<Texture2D>( Content.Shared.moon );
+			var blockTexture = content.Load<Texture2D>( Content.Shadows.block );
+			var blockGlowTexture = content.Load<Texture2D>( Content.Shadows.blockGlow );
 
 			// create some moons
 			Action<Vector2,string,bool> boxMaker = ( Vector2 pos, string name, bool isTrigger ) =>

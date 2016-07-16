@@ -28,7 +28,7 @@ namespace Nez.Samples
 
 
 			// create a couple moons for playing with particle collisions
-			var moonTex = contentManager.Load<Texture2D>( "Shared/moon" );
+			var moonTex = content.Load<Texture2D>( "Shared/moon" );
 
 			var moonEntity = createEntity( "moon" );
 			moonEntity.transform.position = new Vector2( Screen.backBufferWidth / 2, Screen.backBufferHeight / 2 + 100 );

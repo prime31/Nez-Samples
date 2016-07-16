@@ -22,7 +22,7 @@ namespace Nez.Samples
 
 
 			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledmap = contentManager.Load<TiledMap>( Content.Platformer.map );
+			var tiledmap = content.Load<TiledMap>( Content.Platformer.map );
 			tiledEntity.addComponent( new TiledMapComponent( tiledmap, "main" ) );
 
 
