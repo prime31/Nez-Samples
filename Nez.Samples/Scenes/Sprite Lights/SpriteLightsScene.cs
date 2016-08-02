@@ -114,7 +114,8 @@ namespace Nez.Samples
 			button.onClicked += butt =>
 			{
 				var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
-				addSpriteLight( lightTex, Screen.center, 2f );
+				var position = new Vector2( Random.range( 0, Screen.width ), Random.range( 0, Screen.height ) );
+				addSpriteLight( lightTex, position, Random.range( 2f, 3f ) );
 			};
 		}
 
@@ -122,7 +123,7 @@ namespace Nez.Samples
 		void addSpriteLight( Texture2D texture, Vector2 position, float scale )
 		{
 			// random target to tween towards that is on screen
-			var target = new Vector2( Nez.Random.range( 50, sceneRenderTargetSize.X - 100 ), Nez.Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
+			var target = new Vector2( Random.range( 50, sceneRenderTargetSize.X - 100 ), Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
 
 			var entity = createEntity( "light" );
 			var sprite = entity.addComponent( new Sprite( texture ) );
@@ -130,17 +131,29 @@ namespace Nez.Samples
 			entity.transform.scale = new Vector2( scale );
 			sprite.renderLayer = SPRITE_LIGHT_RENDER_LAYER;
 
-			entity.transform.tweenPositionTo( target, 2 )
-				.setCompletionHandler( lightTweenCompleted )
-				.setRecycleTween( false )
-				.start();
+			if( Random.chance( 50 ) )
+			{
+				sprite.setColor( Random.nextColor() );
+				var cyler = entity.addComponent( new ColorCycler() );
+				cyler.waveFunction = (WaveFunctions)Random.range( 0, 5 );
+				cyler.offset = Random.nextFloat();
+				cyler.frequency = Random.range( 0.6f, 1.5f );
+				cyler.phase = Random.nextFloat();
+			}
+			else
+			{
+				entity.transform.tweenPositionTo( target, 2 )
+				      .setCompletionHandler( lightTweenCompleted )
+					  .setRecycleTween( false )
+					  .start();
+			}
 		}
 
 
 		void lightTweenCompleted( ITween<Vector2> tween )
 		{
 			// get a random point on screen and a random delay for the tweens
-			var target = new Vector2( Nez.Random.range( 50, sceneRenderTargetSize.X - 100 ), Nez.Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
+			var target = new Vector2( Random.range( 50, sceneRenderTargetSize.X - 100 ), Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
 			var delay = Nez.Random.range( 0f, 1f );
 
 			var transform = tween.getTargetObject() as Transform;
@@ -150,7 +163,7 @@ namespace Nez.Samples
 				.start();
 
 			// every so often add a scale tween
-			if( Nez.Random.chance( 0.6f ) )
+			if( Random.chance( 60 ) )
 			{
 				transform.tweenLocalScaleTo( transform.localScale.X * 2f, 1f )
 					.setLoops( LoopType.PingPong )
@@ -160,10 +173,10 @@ namespace Nez.Samples
 			}
 
 			// every so often change our color
-			if( Nez.Random.chance( 0.8f ) )
+			if( Random.chance( 80 ) )
 			{
 				var sprite = transform.entity.getComponent<Sprite>();
-				PropertyTweens.colorPropertyTo( sprite, "color", Nez.Random.nextColor(), 2f )
+				PropertyTweens.colorPropertyTo( sprite, "color", Random.nextColor(), 2f )
 					.setDelay( delay )
 					.start();
 			}
