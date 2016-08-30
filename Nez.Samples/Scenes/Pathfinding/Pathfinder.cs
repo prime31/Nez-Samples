@@ -19,7 +19,10 @@ namespace Nez.Samples
 		UnweightedGridGraph _gridGraph;
 		List<Point> _breadthSearchPath;
 
-		WeightedGridGraph _astarGraph;
+		WeightedGridGraph _weightedGraph;
+		List<Point> _weightedSearchPath;
+
+		AstarGridGraph _astarGraph;
 		List<Point> _astarSearchPath;
 
 		TiledMap _tilemap;
@@ -37,7 +40,10 @@ namespace Nez.Samples
 			_gridGraph = new UnweightedGridGraph( layer );
 			_breadthSearchPath = _gridGraph.search( _start, _end );
 
-			_astarGraph = new WeightedGridGraph( layer );
+			_weightedGraph = new WeightedGridGraph( layer );
+			_weightedSearchPath = _weightedGraph.search( _start, _end );
+
+			_astarGraph = new AstarGridGraph( layer );
 			_astarSearchPath = _astarGraph.search( _start, _end );
 
 			Debug.drawTextFromBottom = true;
@@ -65,11 +71,17 @@ namespace Nez.Samples
 
 				var second = Debug.timeAction( () =>
 				{
+					_weightedSearchPath = _weightedGraph.search( _start, _end );
+				} );
+
+				var third = Debug.timeAction( () =>
+				{
 					_astarSearchPath = _astarGraph.search( _start, _end );
 				} );
 
 				// debug draw the times
-				Debug.drawText( "Breadth First: {0}\nAstar: {1}", first, second );
+				Debug.drawText( "Breadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
+				Debug.log( "\nBreadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
 			}
 		}
 
@@ -84,7 +96,18 @@ namespace Nez.Samples
 					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
 					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
 
-					graphics.batcher.drawPixel( x+1, y+1, Color.Yellow, 4 );
+					graphics.batcher.drawPixel( x + 2, y + 2, Color.Yellow, 4 );
+				}
+			}
+
+			if( _weightedSearchPath != null )
+			{
+				foreach( var node in _weightedSearchPath )
+				{
+					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
+					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
+
+					graphics.batcher.drawPixel( x - 2, y - 2, Color.Blue, 4 );
 				}
 			}
 
@@ -95,7 +118,7 @@ namespace Nez.Samples
 					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
 					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
 
-					graphics.batcher.drawPixel( x-1, y-1, Color.Blue, 4 );
+					graphics.batcher.drawPixel( x, y, Color.Orange, 4 );
 				}
 			}
 		}
