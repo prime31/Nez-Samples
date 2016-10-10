@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nez.Sprites;
 
 
 namespace Nez.Samples
@@ -14,10 +14,12 @@ namespace Nez.Samples
 
 		Mover _mover;
 		TiledMapComponent _tiledMapComponent;
+		Sprite _sprite;
 
 
 		public override void onAddedToEntity()
 		{
+			_sprite = this.getComponent<Sprite>();
 			_tiledMapComponent = entity.scene.findEntity( "tiled-map" ).getComponent<TiledMapComponent>();
 			_mover = new Mover();
 			entity.addComponent( _mover );
@@ -37,7 +39,7 @@ namespace Nez.Samples
 						_moveDir.X = 0;
 						return;
 					}
-					entity.getComponent<RenderableComponent>().flipY = false;
+					_sprite.flipY = false;
 					entity.transform.rotationDegrees = 90f;
 				}
 				else if( Input.isKeyPressed( Keys.Right ) )
@@ -48,7 +50,7 @@ namespace Nez.Samples
 						_moveDir.X = 0;
 						return;
 					}
-					entity.getComponent<RenderableComponent>().flipY = false;
+					_sprite.flipY = false;
 					entity.transform.rotationDegrees = -90f;
 				}
 				else if( Input.isKeyPressed( Keys.Up ) )
@@ -59,7 +61,7 @@ namespace Nez.Samples
 						_moveDir.Y = 0;
 						return;
 					}
-					entity.getComponent<RenderableComponent>().flipY = true;
+					_sprite.flipY = true;
 					entity.transform.rotationDegrees = 0f;
 				}
 				else if( Input.isKeyPressed( Keys.Down ) )
@@ -70,7 +72,7 @@ namespace Nez.Samples
 						_moveDir.Y = 0;
 						return;
 					}
-					entity.getComponent<RenderableComponent>().flipY = false;
+					_sprite.flipY = false;
 					entity.transform.rotationDegrees = 0f;
 				}
 			}

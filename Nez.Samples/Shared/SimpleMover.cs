@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nez.Sprites;
 
 
 namespace Nez.Samples
@@ -13,10 +13,12 @@ namespace Nez.Samples
 	{
 		float _speed = 600f;
 		Mover _mover;
+		Sprite _sprite;
 
 
 		public override void onAddedToEntity()
 		{
+			_sprite = this.getComponent<Sprite>();
 			_mover = new Mover();
 			entity.addComponent( _mover );
 		}
@@ -29,12 +31,14 @@ namespace Nez.Samples
 			if( Input.isKeyDown( Keys.Left ) )
 			{
 				moveDir.X = -1f;
-				entity.getComponent<RenderableComponent>().flipX = true;
+				if( _sprite != null )
+					_sprite.flipX = true;
 			}
 			else if( Input.isKeyDown( Keys.Right ) )
 			{
 				moveDir.X = 1f;
-				entity.getComponent<RenderableComponent>().flipX = false;
+				if( _sprite != null )
+					_sprite.flipX = false;
 			}
 
 			if( Input.isKeyDown( Keys.Up ) )
