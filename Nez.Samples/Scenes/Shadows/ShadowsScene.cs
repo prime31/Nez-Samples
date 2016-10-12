@@ -8,7 +8,7 @@ using Nez.Tweens;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Shadows", "2D shadow system\nArrow keys to move")]
+	[SampleScene( "Shadows", 40, "2D shadow system\nArrow keys to move")]
 	public class ShadowsScene : SampleScene
 	{
 		public ShadowsScene() : base( false, true )

@@ -1,15 +1,14 @@
-﻿using System;
-using Nez.Tiled;
+﻿using Nez.Tiled;
 using Microsoft.Xna.Framework;
 
 
 namespace Nez.Samples
 {
-	[SampleScene( "Pathfinding Tilemap", "Right click to set the start point\nLeft click to set the end point\nBreadth First is the yellow path and Astar is the blue path\nTurn on Debug Render to see path generation times" )]
+	[SampleScene( "Pathfinding Tilemap", 100, "Right click to set the start point\nLeft click to set the end point\nBreadth First is the yellow path and Astar is the blue path\nTurn on Debug Render to see path generation times" )]
 	public class PathfindingScene : SampleScene
 	{
 		public PathfindingScene() : base( true, true )
-		{}
+		{ }
 
 
 		public override void initialize()

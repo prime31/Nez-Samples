@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.DeferredLighting;
+﻿using Nez.DeferredLighting;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
@@ -7,7 +6,7 @@ using Nez.Sprites;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Deferred Lighting", "Press the number keys to change the light that is currently being controlled\nPressing f toggles the rendering of the individual buffers used by the deferred lighting system" )]
+	[SampleScene( "Deferred Lighting", 80, "Press the number keys to change the light that is currently being controlled\nPressing f toggles the rendering of the individual buffers used by the deferred lighting system" )]
 	public class DeferredLightingScene : SampleScene
 	{
         const int RENDERABLES_LAYER = 5;

@@ -1,17 +1,14 @@
-﻿using System;
-using Nez.Sprites;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Nez.Tiled;
 
 
 namespace Nez.Samples
 {
-	//[SampleScene( "Platformer", "Work in progress..." )]
+	[SampleScene( "Platformer", 120, "Work in progress..." )]
 	public class PlatformerScene : SampleScene
 	{
 		public PlatformerScene() : base( true, true )
-		{}
+		{ }
 
 
 		public override void initialize()

@@ -1,17 +1,15 @@
-﻿using System;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Nez.Sprites;
-using Nez.Particles;
 
 
 namespace Nez.Samples
 {
-	[SampleScene( "Particles", "Arrow keys to move. Exiting the Camera view will cull the particles.\nQ/W changes the particle system being played" )]
+	[SampleScene( "Particles", 90, "Arrow keys to move. Exiting the Camera view will cull the particles.\nQ/W changes the particle system being played" )]
 	public class ParticlesScene : SampleScene
 	{
 		public ParticlesScene() : base( true, true )
-		{}
+		{ }
 
 
 		public override void initialize()

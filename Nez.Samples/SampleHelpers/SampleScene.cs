@@ -5,7 +5,7 @@ using Nez.UI;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Tweens;
-
+using System.Linq;
 
 namespace Nez.Samples
 {
@@ -52,11 +52,11 @@ namespace Nez.Samples
 		IEnumerable<Type> getTypesWithSampleSceneAttribute()
 		{
 			var assembly = typeof( SampleScene ).Assembly;
-			foreach( var type in assembly.GetTypes() )
-			{
-				if( type.GetCustomAttributes( typeof( SampleSceneAttribute ), true ).Length > 0 )
-					yield return type;
-			}
+			var scenes = assembly.GetTypes().Where( t => t.GetCustomAttributes( typeof( SampleSceneAttribute ), true ).Length > 0 )
+					.OrderBy( t => ( (SampleSceneAttribute)t.GetCustomAttributes( typeof( SampleSceneAttribute ), true )[0] ).order );
+			
+			foreach( var s in scenes )
+				yield return s;
 		}
 
 
@@ -157,16 +157,18 @@ namespace Nez.Samples
 	}
 
 
-	[AttributeUsage( System.AttributeTargets.Class )]
+	[AttributeUsage( AttributeTargets.Class )]
 	public class SampleSceneAttribute : Attribute
 	{
 		public string buttonName;
+		public int order;
 		public string instructionText;
 
 
-		public SampleSceneAttribute( string buttonName, string instructionText = null )
+		public SampleSceneAttribute( string buttonName, int order, string instructionText = null )
 		{
 			this.buttonName = buttonName;
+			this.order = order;
 			this.instructionText = instructionText;
 		}
 	}

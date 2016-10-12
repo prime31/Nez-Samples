@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
 
 
 namespace Nez.Samples
 {
-	[SampleScene( "Rigid Bodies", "ArcadeRigidBodies can be used for a game-like physics effect\nThis demo just applies some impulses and lets gravity do the rest" )]
+	[SampleScene( "Rigid Bodies", 100, "ArcadeRigidBodies can be used for a game-like physics effect\nThis demo just applies some impulses and lets gravity do the rest" )]
 	public class RigidBodyScene : SampleScene
 	{
 		public override void initialize()
@@ -43,7 +42,7 @@ namespace Nez.Samples
 			createEntity( new Vector2( 800, 760 ), 15f, friction, elasticity, new Vector2( -180, -150 ), moonTexture );
 			createEntity( new Vector2( 1200, 700 ), 1f, friction, elasticity, new Vector2( 0, 0 ), moonTexture )
 				.addImpulse( new Vector2( -5, -20 ) );
-			
+
 			// top fellas
 			createEntity( new Vector2( 100, 100 ), 1f, friction, elasticity, new Vector2( 100, 90 ), moonTexture )
 				.addImpulse( new Vector2( 40, -10 ) );

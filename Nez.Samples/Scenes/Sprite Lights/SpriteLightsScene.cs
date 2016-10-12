@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.Textures;
+﻿using Nez.Textures;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
 using Microsoft.Xna.Framework;
@@ -9,16 +8,16 @@ using Nez.UI;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Sprite Lights", "Old-school 2D blended lighting\nPlay with the controls to change the effect and add lights" )]
+	[SampleScene( "Sprite Lights", 50, "Old-school 2D blended lighting\nPlay with the controls to change the effect and add lights" )]
 	public class SpriteLightsScene : SampleScene
 	{
 		public const int SPRITE_LIGHT_RENDER_LAYER = 50;
 		SpriteLightPostProcessor _spriteLightPostProcessor;
 		RenderLayerRenderer _lightRenderer;
 
-		
+
 		public SpriteLightsScene() : base( false, true )
-		{}
+		{ }
 
 
 		public override void initialize()
@@ -143,7 +142,7 @@ namespace Nez.Samples
 			else
 			{
 				entity.transform.tweenPositionTo( target, 2 )
-				      .setCompletionHandler( lightTweenCompleted )
+					  .setCompletionHandler( lightTweenCompleted )
 					  .setRecycleTween( false )
 					  .start();
 			}

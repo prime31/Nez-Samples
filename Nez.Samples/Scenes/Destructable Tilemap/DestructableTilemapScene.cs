@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez.Tiled;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
@@ -8,11 +7,11 @@ using Nez.Sprites;
 
 namespace Nez.Samples
 {
-	[SampleScene( "Destructable Tilemap", "Demonstrates more advanced Tiled map usage including custom object layers,\nfetching attributes and managing colliders\nArrow keys to move" )]
+	[SampleScene( "Destructable Tilemap", 20, "Demonstrates more advanced Tiled map usage including custom object layers,\nfetching attributes and managing colliders\nArrow keys to move" )]
 	public class DestructableTilemapScene : SampleScene
 	{
 		public DestructableTilemapScene() : base( true, true )
-		{}
+		{ }
 
 
 		public override void initialize()
@@ -43,7 +42,7 @@ namespace Nez.Samples
 			{
 				collidesWithLayers = 1 << 0,
 				color = Color.Yellow * 0.5f
-			});
+			} );
 
 			var trail = playerEntity.addComponent( new SpriteTrail( playerEntity.getComponent<Sprite>() ) );
 			trail.fadeDelay = 0;

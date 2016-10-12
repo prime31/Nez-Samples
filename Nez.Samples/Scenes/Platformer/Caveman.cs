@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
@@ -14,8 +13,8 @@ namespace Nez.Samples
 	{
 		public float moveSpeed = 150;
 		public float gravity = 1000;
-		public float jumpHeight = 16 * 7;
-		
+		public float jumpHeight = 16 * 5;
+
 		enum Animations
 		{
 			Walk,
@@ -36,7 +35,6 @@ namespace Nez.Samples
 
 		VirtualButton _fireInput;
 		VirtualIntegerAxis _xAxisInput;
-		VirtualIntegerAxis _yAxisInput;
 
 
 		public override void onAddedToEntity()
@@ -57,7 +55,7 @@ namespace Nez.Samples
 				subtextures[3],
 				subtextures[4],
 				subtextures[5]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Run, new SpriteAnimation( new List<Subtexture>()
 			{
@@ -68,12 +66,12 @@ namespace Nez.Samples
 				subtextures[8+4],
 				subtextures[8+5],
 				subtextures[8+6]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Idle, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[16]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Attack, new SpriteAnimation( new List<Subtexture>()
 			{
@@ -81,7 +79,7 @@ namespace Nez.Samples
 				subtextures[24+1],
 				subtextures[24+2],
 				subtextures[24+3]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Death, new SpriteAnimation( new List<Subtexture>()
 			{
@@ -89,18 +87,18 @@ namespace Nez.Samples
 				subtextures[40+1],
 				subtextures[40+2],
 				subtextures[40+3]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Falling, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[48]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Hurt, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[64],
 				subtextures[64+1]
-			}) );
+			} ) );
 
 			_animation.addAnimation( Animations.Jumping, new SpriteAnimation( new List<Subtexture>()
 			{
@@ -108,7 +106,7 @@ namespace Nez.Samples
 				subtextures[72+1],
 				subtextures[72+2],
 				subtextures[72+3]
-			}) );
+			} ) );
 
 			setupInput();
 		}
@@ -139,7 +137,7 @@ namespace Nez.Samples
 		void IUpdatable.update()
 		{
 			// handle movement and animations
-			var moveDir = new Vector2( _xAxisInput.value, _yAxisInput.value );
+			var moveDir = new Vector2( _xAxisInput.value, 0 );
 			var animation = Animations.Idle;
 
 			if( moveDir.X < 0 )
@@ -162,7 +160,7 @@ namespace Nez.Samples
 				if( _collisionState.below )
 					animation = Animations.Idle;
 			}
-			
+
 			if( _collisionState.below && _fireInput.isPressed )
 			{
 				animation = Animations.Jumping;
@@ -174,10 +172,12 @@ namespace Nez.Samples
 
 			// apply gravity
 			_velocity.Y += gravity * Time.deltaTime;
-			
+
 			// move
 			_mover.move( _velocity * Time.deltaTime, _boxCollider, _collisionState );
-			
+
+			if( _collisionState.below )
+				_velocity.Y = 0;
 
 			if( !_animation.isAnimationPlaying( animation ) )
 				_animation.play( animation );

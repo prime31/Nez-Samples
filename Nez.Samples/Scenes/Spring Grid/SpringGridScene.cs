@@ -10,7 +10,7 @@ namespace Nez.Samples
 	/// demos the SpringGrid with a SimpleMover entity that applies forces to the grid. vignette and bloom post processors are also
 	/// added to give the scene some life.
 	/// </summary>
-	[SampleScene( "Spring Grid", "SpringGrid component with vignette and bloom\nArrow keys to move\nSpace to apply an explosive force" )]
+	[SampleScene( "Spring Grid", 30, "SpringGrid component with vignette and bloom\nArrow keys to move\nSpace to apply an explosive force" )]
 	public class SpringGridScene : SampleScene
 	{
 		public override void initialize()
