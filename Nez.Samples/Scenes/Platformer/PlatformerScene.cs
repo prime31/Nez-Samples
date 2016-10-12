@@ -30,6 +30,7 @@ namespace Nez.Samples
 			playerEntity.addComponent( new Caveman() );
 			playerEntity.transform.position = new Vector2( 150, 100 );
 			playerEntity.addCollider( new BoxCollider() );
+			playerEntity.addComponent( new TiledMapMover( tiledmap.getLayer<TiledTileLayer>( "main" ) ) );
 
 			// add a component to have the Camera follow the player
 			camera.entity.addComponent( new FollowCamera( playerEntity ) );
