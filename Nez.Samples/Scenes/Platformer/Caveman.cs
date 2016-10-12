@@ -5,12 +5,17 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using Nez.Tiled;
 
 
 namespace Nez.Samples
 {
 	public class Caveman : Component, ITriggerListener, IUpdatable
 	{
+		public float moveSpeed = 150;
+		public float gravity = 1000;
+		public float jumpHeight = 16 * 7;
+		
 		enum Animations
 		{
 			Walk,
@@ -24,8 +29,10 @@ namespace Nez.Samples
 		}
 
 		Sprite<Animations> _animation;
-		Mover _mover;
-		float _moveSpeed = 100f;
+		TiledMapMover _mover;
+		BoxCollider _boxCollider;
+		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
+		Vector2 _velocity;
 
 		VirtualButton _fireInput;
 		VirtualIntegerAxis _xAxisInput;
@@ -37,7 +44,8 @@ namespace Nez.Samples
 			var texture = entity.scene.content.Load<Texture2D>( Content.Platformer.caveman );
 			var subtextures = Subtexture.subtexturesFromAtlas( texture, 32, 32 );
 
-			_mover = entity.addComponent( new Mover() );
+			_boxCollider = entity.getCollider<BoxCollider>();
+			_mover = entity.getComponent<TiledMapMover>();
 			_animation = entity.addComponent( new Sprite<Animations>( subtextures[0] ) );
 
 			// extract the animations from the atlas. they are setup in rows with 8 columns
@@ -125,12 +133,6 @@ namespace Nez.Samples
 			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadLeftRight() );
 			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickX() );
 			_xAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Left, Keys.Right ) );
-
-			// vertical input from dpad, left stick or keyboard up/down
-			_yAxisInput = new VirtualIntegerAxis();
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadUpDown() );
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickY() );
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down ) );
 		}
 
 
@@ -142,39 +144,43 @@ namespace Nez.Samples
 
 			if( moveDir.X < 0 )
 			{
-				animation = Animations.Walk;
+				if( _collisionState.below )
+					animation = Animations.Walk;
 				_animation.flipX = true;
+				_velocity.X = -moveSpeed;
 			}
 			else if( moveDir.X > 0 )
 			{
-				animation = Animations.Run;
+				if( _collisionState.below )
+					animation = Animations.Run;
 				_animation.flipX = false;
-			}
-
-			if( moveDir.Y < 0 )
-				animation = Animations.Falling;
-			else if( moveDir.Y > 0 )
-				animation = Animations.Jumping;
-
-
-			if( moveDir != Vector2.Zero )
-			{
-				if( !_animation.isAnimationPlaying( animation ) )
-					_animation.play( animation );
-
-				var movement = moveDir * _moveSpeed * Time.deltaTime;
-
-				CollisionResult res;
-				_mover.move( movement, out res );
+				_velocity.X = moveSpeed;
 			}
 			else
 			{
-				_animation.stop();
+				_velocity.X = 0;
+				if( _collisionState.below )
+					animation = Animations.Idle;
+			}
+			
+			if( _collisionState.below && _fireInput.isPressed )
+			{
+				animation = Animations.Jumping;
+				_velocity.Y = -Mathf.sqrt( 2f * jumpHeight * gravity );
 			}
 
-			// handle firing a projectile
-			if( _fireInput.isPressed )
-				_animation.play( Animations.Attack );
+			if( !_collisionState.below && _velocity.Y > 0 )
+				animation = Animations.Falling;
+
+			// apply gravity
+			_velocity.Y += gravity * Time.deltaTime;
+			
+			// move
+			_mover.move( _velocity * Time.deltaTime, _boxCollider, _collisionState );
+			
+
+			if( !_animation.isAnimationPlaying( animation ) )
+				_animation.play( animation );
 		}
 
 
