@@ -80,9 +80,9 @@ namespace Nez
 
 		public static class Platformer
 		{
-			public const string pixelsphereTiles = @"Platformer/PixelsphereTiles";
 			public const string caveman = @"Platformer/caveman";
-			public const string map = @"Platformer/map";
+			public const string tiledMap = @"Platformer/tiledMap";
+			public const string tileset = @"Platformer/tileset";
 		}
 
 		public static class Shadows

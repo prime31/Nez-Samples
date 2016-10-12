@@ -143,7 +143,7 @@ namespace Nez.Samples
 			if( moveDir.X < 0 )
 			{
 				if( _collisionState.below )
-					animation = Animations.Walk;
+					animation = Animations.Run;
 				_animation.flipX = true;
 				_velocity.X = -moveSpeed;
 			}
