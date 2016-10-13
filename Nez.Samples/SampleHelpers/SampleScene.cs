@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Nez.UI;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Tweens;
 using System.Linq;
@@ -23,7 +22,7 @@ namespace Nez.Samples
 		ScreenSpaceRenderer _screenSpaceRenderer;
 
 
-		public SampleScene( bool addExcludeRenderer = true, bool needsFullRenderSizeForUI = false ) : base()
+		public SampleScene( bool addExcludeRenderer = true, bool needsFullRenderSizeForUI = false )
 		{
 			// setup one renderer in screen space for the UI and then (optionally) another renderer to render everything else
 			if( needsFullRenderSizeForUI )
@@ -54,7 +53,7 @@ namespace Nez.Samples
 			var assembly = typeof( SampleScene ).Assembly;
 			var scenes = assembly.GetTypes().Where( t => t.GetCustomAttributes( typeof( SampleSceneAttribute ), true ).Length > 0 )
 					.OrderBy( t => ( (SampleSceneAttribute)t.GetCustomAttributes( typeof( SampleSceneAttribute ), true )[0] ).order );
-			
+
 			foreach( var s in scenes )
 				yield return s;
 		}
@@ -72,7 +71,8 @@ namespace Nez.Samples
 			_table.add( new TextButton( "Toggle Scene List", topButtonStyle ) ).setFillX().setMinHeight( 30 ).getElement<Button>().onClicked += onToggleSceneListClicked;
 
 			_table.row().setPadTop( 10 );
-			var checkbox = _table.add( new CheckBox( "Debug Render", new CheckBoxStyle {
+			var checkbox = _table.add( new CheckBox( "Debug Render", new CheckBoxStyle
+			{
 				checkboxOn = new PrimitiveDrawable( 30, Color.Green ),
 				checkboxOff = new PrimitiveDrawable( 30, Color.MonoGameOrange )
 			} ) ).getElement<CheckBox>();
@@ -80,7 +80,8 @@ namespace Nez.Samples
 			checkbox.isChecked = Core.debugRenderEnabled;
 			_table.row().setPadTop( 30 );
 
-			var buttonStyle = new TextButtonStyle( new PrimitiveDrawable( new Color( 78, 91, 98 ), 10f ), new PrimitiveDrawable( new Color( 244, 23, 135 ) ), new PrimitiveDrawable( new Color( 168, 207, 115 ) ) ) {
+			var buttonStyle = new TextButtonStyle( new PrimitiveDrawable( new Color( 78, 91, 98 ), 10f ), new PrimitiveDrawable( new Color( 244, 23, 135 ) ), new PrimitiveDrawable( new Color( 168, 207, 115 ) ) )
+			{
 				downFontColor = Color.Black
 			};
 
@@ -132,7 +133,7 @@ namespace Nez.Samples
 		public Scene scene { get; set; }
 
 		public void onAddedToScene()
-		{}
+		{ }
 
 
 		public void onSceneBackBufferSizeChanged( int newWidth, int newHeight )
