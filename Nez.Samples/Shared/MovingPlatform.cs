@@ -35,8 +35,8 @@ namespace Nez.Samples
 			var xToTheSpeedFactor = Mathf.pow( x, _speedFactor );
 			var alpha = 1f - xToTheSpeedFactor / xToTheSpeedFactor + Mathf.pow( 1 - x, _speedFactor );
 
-			var deltaY = Nez.Tweens.Lerps.unclampedLerp( _minY, _maxY, alpha ) - entity.transform.position.Y;
-			var deltaX = Nez.Tweens.Lerps.unclampedLerp( _minX, _maxX, alpha ) - entity.transform.position.X;
+			var deltaY = Nez.Tweens.Lerps.lerp( _minY, _maxY, alpha ) - entity.transform.position.Y;
+			var deltaX = Nez.Tweens.Lerps.lerp( _minX, _maxX, alpha ) - entity.transform.position.X;
 
 			// TODO: probably query Physics to fetch the actors that we will intersect instead of blindly grabbing them all
 			var ridingActors = getAllRidingActors();
@@ -147,8 +147,10 @@ namespace Nez.Samples
 		}
 
 
-		// this should probably be a method (isRidingCollider( Collider )) on the Entity so that it can decide if it is riding the collider or not.
-		// The entity could then be riding for other situations such as ledge hanging on a moving platform.
+		/// <summary>
+		/// brute force search for Entities on top of this Collider. Not a great approach.
+		/// </summary>
+		/// <returns>The all riding actors.</returns>
 		List<Entity> getAllRidingActors()
 		{
 			var list = new List<Entity>();
