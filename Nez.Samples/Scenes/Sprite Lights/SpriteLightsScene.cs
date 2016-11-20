@@ -39,14 +39,14 @@ namespace Nez.Samples
 
 			var bg = content.Load<Texture2D>( Content.SpriteLights.bg );
 			var bgEntity = createEntity( "bg" );
-			bgEntity.transform.position = Screen.center;
+			bgEntity.position = Screen.center;
 			bgEntity.addComponent( new Sprite( bg ) );
-			bgEntity.transform.scale = new Vector2( 9.4f );
+			bgEntity.scale = new Vector2( 9.4f );
 
 			var moonTex = content.Load<Texture2D>( Content.Shared.moon );
 			var entity = createEntity( "moon" );
 			entity.addComponent( new Sprite( moonTex ) );
-			entity.transform.position = new Vector2( Screen.width / 4, Screen.height / 8 );
+			entity.position = new Vector2( Screen.width / 4, Screen.height / 8 );
 
 
 			var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
@@ -126,8 +126,8 @@ namespace Nez.Samples
 
 			var entity = createEntity( "light" );
 			var sprite = entity.addComponent( new Sprite( texture ) );
-			entity.transform.position = position;
-			entity.transform.scale = new Vector2( scale );
+			entity.position = position;
+			entity.scale = new Vector2( scale );
 			sprite.renderLayer = SPRITE_LIGHT_RENDER_LAYER;
 
 			if( Random.chance( 50 ) )
@@ -141,7 +141,7 @@ namespace Nez.Samples
 			}
 			else
 			{
-				entity.transform.tweenPositionTo( target, 2 )
+				entity.tweenPositionTo( target, 2 )
 					  .setCompletionHandler( lightTweenCompleted )
 					  .setRecycleTween( false )
 					  .start();
@@ -180,6 +180,7 @@ namespace Nez.Samples
 					.start();
 			}
 		}
+	
 	}
 }
 

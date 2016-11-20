@@ -20,7 +20,7 @@ namespace Nez.Samples
 
 			// add the ParticleSystemSelector which handles input for the scene and a SimpleMover to move it around with the keyboard
 			var particlesEntity = createEntity( "particles" );
-			particlesEntity.transform.setPosition( Screen.center - new Vector2( 0, 200 ) );
+			particlesEntity.setPosition( Screen.center - new Vector2( 0, 200 ) );
 			particlesEntity.addComponent( new ParticleSystemSelector() );
 			particlesEntity.addComponent( new SimpleMover() );
 
@@ -29,7 +29,7 @@ namespace Nez.Samples
 			var moonTex = content.Load<Texture2D>( "Shared/moon" );
 
 			var moonEntity = createEntity( "moon" );
-			moonEntity.transform.position = new Vector2( Screen.backBufferWidth / 2, Screen.backBufferHeight / 2 + 100 );
+			moonEntity.position = new Vector2( Screen.backBufferWidth / 2, Screen.backBufferHeight / 2 + 100 );
 			moonEntity.addComponent( new Sprite( moonTex ) );
 			moonEntity.colliders.add( new CircleCollider() );
 

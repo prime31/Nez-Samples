@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.AI.BehaviorTrees;
+﻿using Nez.AI.BehaviorTrees;
 
 
 namespace Nez.Samples

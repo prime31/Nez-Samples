@@ -1,5 +1,5 @@
-﻿using System;
-using Nez.UI;
+﻿using Nez.UI;
+
 
 namespace Nez.Samples
 {

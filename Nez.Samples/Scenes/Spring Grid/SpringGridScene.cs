@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
 
@@ -26,7 +25,7 @@ namespace Nez.Samples
 
 
 			var playerEntity = createEntity( "player", new Vector2( Screen.width / 2, Screen.height / 2 ) );
-			playerEntity.transform.scale *= 0.5f;
+			playerEntity.scale *= 0.5f;
 			playerEntity.addComponent( new SimpleMover() );
 			playerEntity.addComponent( new GridModifier() );
 			playerEntity.addComponent( new Sprite( moonTex ) );

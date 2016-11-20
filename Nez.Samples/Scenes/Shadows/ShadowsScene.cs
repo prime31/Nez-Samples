@@ -41,11 +41,11 @@ namespace Nez.Samples
 			var blockTexture = content.Load<Texture2D>( Content.Shadows.block );
 			var blockGlowTexture = content.Load<Texture2D>( Content.Shadows.blockGlow );
 
-			// create some moons
+			// create some boxes
 			Action<Vector2,string,bool> boxMaker = ( Vector2 pos, string name, bool isTrigger ) =>
 			{
 				var ent = createEntity( name );
-				ent.transform.position = pos;
+				ent.position = pos;
 				ent.addComponent( new Sprite( blockTexture ) );
 				var collider = ent.colliders.add( new BoxCollider() );
 
@@ -61,37 +61,37 @@ namespace Nez.Samples
 				}
 			};
 
-			boxMaker( new Vector2( 0, 100 ), "moon1", false );
-			boxMaker( new Vector2( 150, 100 ), "moon11", false );
-			boxMaker( new Vector2( 300, 100 ), "moon12", false );
-			boxMaker( new Vector2( 450, 100 ), "moon13", false );
-			boxMaker( new Vector2( 600, 100 ), "moon14", false );
+			boxMaker( new Vector2( 0, 100 ), "box0", false );
+			boxMaker( new Vector2( 150, 100 ), "box1", false );
+			boxMaker( new Vector2( 300, 100 ), "box2", false );
+			boxMaker( new Vector2( 450, 100 ), "box3", false );
+			boxMaker( new Vector2( 600, 100 ), "box4", false );
 
-			boxMaker( new Vector2( 50, 500 ), "moon3", true );
-			boxMaker( new Vector2( 500, 250 ), "moon4", false );
+			boxMaker( new Vector2( 50, 500 ), "box5", true );
+			boxMaker( new Vector2( 500, 250 ), "box6", false );
 
 			var moonEnt = createEntity( "moon" );
 			moonEnt.addComponent( new Sprite( moonTexture ) );
-			moonEnt.transform.position = new Vector2( 100, 0 );
+			moonEnt.position = new Vector2( 100, 0 );
 
 			moonEnt = createEntity( "moon2" );
 			moonEnt.addComponent( new Sprite( moonTexture ) );
-			moonEnt.transform.position = new Vector2( -500, 0 );
+			moonEnt.position = new Vector2( -500, 0 );
 
 
 			var lightEnt = createEntity( "sprite-light" );
 			lightEnt.addComponent( new Sprite( lightTexture ) );
-			lightEnt.transform.position = new Vector2( -700, 0 );
-			lightEnt.transform.scale = new Vector2( 4 );
+			lightEnt.position = new Vector2( -700, 0 );
+			lightEnt.scale = new Vector2( 4 );
 			lightEnt.getComponent<Sprite>().renderLayer = LIGHT_RENDER_LAYER;
 
 
-			// add an animation to "moon4"
-			findEntity( "moon4" ).addComponent( new MovingPlatform( 250, 400 ) );
+			// add an animation to "box4"
+			findEntity( "box4" ).addComponent( new MovingPlatform( 250, 400 ) );
 
-			// create a player moon
+			// create a player block
 			var entity = createEntity( "player-block" );
-			entity.transform.position = new Vector2( 220, 220 );
+			entity.position = new Vector2( 220, 220 );
 			var sprite = new Sprite( blockTexture );
 			sprite.renderLayer = LIGHT_RENDER_LAYER;
 			entity.addComponent( sprite );
@@ -109,7 +109,7 @@ namespace Nez.Samples
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			pointLight.power = 1f;
 			var light = createEntity( "light" );
-			light.transform.position = new Vector2( 650f, 300f );
+			light.position = new Vector2( 650f, 300f );
 			light.addComponent( pointLight );
 
 			PropertyTweens.colorPropertyTo( pointLight, "color", new Color( 0, 0, 255, 255 ), 1f )
@@ -126,7 +126,7 @@ namespace Nez.Samples
 			pointLight = new Nez.Shadows.PointLight( 500, Color.Yellow );
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			light = createEntity( "light-two" );
-			light.transform.position = new Vector2( -50f );
+			light.position = new Vector2( -50f );
 			light.addComponent( pointLight );
 
 			PropertyTweens.colorPropertyTo( pointLight, "color", new Color( 0, 255, 0, 255 ), 1f )
@@ -138,7 +138,7 @@ namespace Nez.Samples
 			pointLight = new Nez.Shadows.PointLight( 500, Color.AliceBlue );
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			light = createEntity( "light-three" );
-			light.transform.position = new Vector2( 100f );
+			light.position = new Vector2( 100f );
 			light.addComponent( pointLight );
 		}
 

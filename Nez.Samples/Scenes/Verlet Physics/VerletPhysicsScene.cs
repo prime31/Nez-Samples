@@ -51,13 +51,13 @@ namespace Nez.Samples
 		{
 			var trianglePoints = new Vector2[] { new Vector2( 0, 0 ), new Vector2( 100, -100 ), new Vector2( -100, -150 ) };
 			var triangleEntity = createEntity( "triangle" );
-			triangleEntity.transform.setPosition( 100, 300 );
+			triangleEntity.setPosition( 100, 300 );
 			triangleEntity.addComponent( new PolygonMesh( trianglePoints, false ).setColor( Color.LightGreen ) );
 			triangleEntity.addCollider( new PolygonCollider( trianglePoints ) );
 
 
 			var circleEntity = createEntity( "circle" );
-			circleEntity.transform.setPosition( 1000, 250 );
+			circleEntity.setPosition( 1000, 250 );
 			circleEntity.addComponent( new Sprite( content.Load<Texture2D>( Content.Shared.moon ) ) )
 			            .setColor( Color.LightGreen );
 			circleEntity.addCollider( new CircleCollider( 64 ) );
@@ -65,18 +65,18 @@ namespace Nez.Samples
 
 			var polyPoints = Polygon.buildSymmetricalPolygon( 5, 140 );
 			var polygonEntity = createEntity( "boxCollider" );
-			polygonEntity.transform.setPosition( 460, 450 );
+			polygonEntity.setPosition( 460, 450 );
 			polygonEntity.addComponent( new PolygonMesh( polyPoints ) ).setColor( Color.LightGreen );
 			polygonEntity.addCollider( new PolygonCollider( polyPoints ) );
 
-			polygonEntity.transform.tweenRotationDegreesTo( 180, 3f )
+			polygonEntity.tweenRotationDegreesTo( 180, 3f )
 				 .setLoops( Nez.Tweens.LoopType.PingPong, 50 )
 				 .setEaseType( Nez.Tweens.EaseType.Linear )
 				 .start();
 		}
 
 
-		void createRope( World world )
+		void createRope( VerletWorld world )
 		{
 			// create an array of points for our rope
 			var linePoints = new Vector2[10];
@@ -87,5 +87,6 @@ namespace Nez.Samples
 				.pinParticleAtIndex( 0 );
 			world.addComposite( line );
 		}
+
 	}
 }

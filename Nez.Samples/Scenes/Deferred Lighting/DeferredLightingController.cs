@@ -114,9 +114,9 @@ namespace Nez.Samples
 					light.setConeAngle( Mathf.repeat( light.coneAngle + 3, 360 ) );
 
 				if( Input.isKeyDown( Keys.Z ) )
-					light.entity.transform.setLocalRotationDegrees( Mathf.repeat( light.entity.transform.rotationDegrees - 3, 360 ) );
+					light.entity.setLocalRotationDegrees( Mathf.repeat( light.entity.rotationDegrees - 3, 360 ) );
 				else if( Input.isKeyDown( Keys.X ) )
-					light.entity.transform.setLocalRotationDegrees( Mathf.repeat( light.entity.transform.rotationDegrees + 3, 360 ) );
+					light.entity.setLocalRotationDegrees( Mathf.repeat( light.entity.rotationDegrees + 3, 360 ) );
 			}
 
 			// color controls

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 
@@ -22,13 +21,13 @@ namespace Nez.Samples
 
 		void IUpdatable.update()
 		{
-			var velocity = entity.transform.position - _lastPosition;
-			_grid.applyExplosiveForce( 0.5f * velocity.Length(), entity.transform.position, 80 );
+			var velocity = entity.position - _lastPosition;
+			_grid.applyExplosiveForce( 0.5f * velocity.Length(), entity.position, 80 );
 
-			_lastPosition = entity.transform.position;
+			_lastPosition = entity.position;
 
 			if( Input.isKeyPressed( Keys.Space ) )
-				_grid.applyDirectedForce( new Vector3( 0, 0, 1000 ), new Vector3( entity.transform.position.X, entity.transform.position.Y, 0 ), 50 );
+				_grid.applyDirectedForce( new Vector3( 0, 0, 1000 ), new Vector3( entity.position.X, entity.position.Y, 0 ), 50 );
 		}
 	}
 }

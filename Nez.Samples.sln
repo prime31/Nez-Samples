@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.Samples", "Nez.Samples\Nez.Samples.csproj", "{38A7BEED-51B0-4A6D-9522-2D9DF501B6D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "Nez\Nez-PCL\Nez.csproj", "{60B7197D-D0D5-405C-90A2-A56903E9B039}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.PipelineImporter", "Nez\Nez.PipelineImporter\Nez.PipelineImporter.csproj", "{63E831F4-B847-4150-B5AF-CBE059EE27B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate", "ProjectTemplate\ProjectTemplate.csproj", "{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "Nez\Nez.Portable\Nez.csproj", "{60B7197D-D0D5-405C-90A2-A56903E9B039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj", "{CB893B1D-CE04-4492-B957-31CE0DCA6C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +19,17 @@ Global
 		{38A7BEED-51B0-4A6D-9522-2D9DF501B6D3}.Debug|x86.Build.0 = Debug|x86
 		{38A7BEED-51B0-4A6D-9522-2D9DF501B6D3}.Release|x86.ActiveCfg = Release|x86
 		{38A7BEED-51B0-4A6D-9522-2D9DF501B6D3}.Release|x86.Build.0 = Release|x86
-		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|x86.Build.0 = Debug|Any CPU
-		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|x86.ActiveCfg = Release|Any CPU
-		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|x86.Build.0 = Release|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Debug|x86.Build.0 = Debug|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|x86.Build.0 = Release|Any CPU
-		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Debug|x86.ActiveCfg = Debug|x86
-		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Debug|x86.Build.0 = Debug|x86
-		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Release|x86.ActiveCfg = Release|x86
-		{DF2F7ABF-ACCB-4A42-82CD-D4BDFF9EBC0A}.Release|x86.Build.0 = Release|x86
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|x86.Build.0 = Debug|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|x86.ActiveCfg = Release|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|x86.Build.0 = Release|Any CPU
+		{CB893B1D-CE04-4492-B957-31CE0DCA6C15}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CB893B1D-CE04-4492-B957-31CE0DCA6C15}.Debug|x86.Build.0 = Debug|Any CPU
+		{CB893B1D-CE04-4492-B957-31CE0DCA6C15}.Release|x86.ActiveCfg = Release|Any CPU
+		{CB893B1D-CE04-4492-B957-31CE0DCA6C15}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

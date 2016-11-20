@@ -280,15 +280,19 @@
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Nez\Nez-PCL\Nez.csproj">
-      <Project>{60B7197D-D0D5-405C-90A2-A56903E9B039}</Project>
-      <Name>Nez</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Scenes\Particles\" />
     <Folder Include="Content\nez\textures\textureWipeTransition\" />
     <Folder Include="Scenes\Pathfinding\" />
     <Folder Include="Scenes\Verlet Physics\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj">
+      <Project>{60B7197D-D0D5-405C-90A2-A56903E9B039}</Project>
+      <Name>Nez</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj">
+      <Project>{CB893B1D-CE04-4492-B957-31CE0DCA6C15}</Project>
+      <Name>Nez.FarseerPhysics</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

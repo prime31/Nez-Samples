@@ -40,7 +40,7 @@ namespace Nez.Samples
 						return;
 					}
 					_sprite.flipY = false;
-					entity.transform.rotationDegrees = 90f;
+					entity.rotationDegrees = 90f;
 				}
 				else if( Input.isKeyPressed( Keys.Right ) )
 				{
@@ -51,7 +51,7 @@ namespace Nez.Samples
 						return;
 					}
 					_sprite.flipY = false;
-					entity.transform.rotationDegrees = -90f;
+					entity.rotationDegrees = -90f;
 				}
 				else if( Input.isKeyPressed( Keys.Up ) )
 				{
@@ -62,7 +62,7 @@ namespace Nez.Samples
 						return;
 					}
 					_sprite.flipY = true;
-					entity.transform.rotationDegrees = 0f;
+					entity.rotationDegrees = 0f;
 				}
 				else if( Input.isKeyPressed( Keys.Down ) )
 				{
@@ -73,7 +73,7 @@ namespace Nez.Samples
 						return;
 					}
 					_sprite.flipY = false;
-					entity.transform.rotationDegrees = 0f;
+					entity.rotationDegrees = 0f;
 				}
 			}
 
@@ -84,7 +84,7 @@ namespace Nez.Samples
 				CollisionResult res;
 				if( _mover.move( movement, out res ) )
 				{
-					var pos = entity.transform.position + new Vector2( -16 ) * res.normal;
+					var pos = entity.position + new Vector2( -16 ) * res.normal;
 					var tile = _tiledMapComponent.getTileAtWorldPosition( pos );
 
 					// the presence of a tilesetTile means we have a tile with custom properties. The only tiles with custom properties are our
@@ -114,7 +114,7 @@ namespace Nez.Samples
 
 		bool canMove()
 		{
-			var pos = entity.transform.position + new Vector2( 16 ) * _moveDir;
+			var pos = entity.position + new Vector2( 16 ) * _moveDir;
 			var tile = _tiledMapComponent.getTileAtWorldPosition( pos );
 
 			return tile == null;

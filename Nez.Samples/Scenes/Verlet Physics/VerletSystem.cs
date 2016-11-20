@@ -13,12 +13,12 @@ namespace Nez.Samples
 		public override float width { get { return 1280; } }
 		public override float height { get { return 720; } }
 
-		public World world;
+		public VerletWorld world;
 
 
 		public VerletSystem()
 		{
-			world = new World( new Rectangle( 0, 0, (int)width, (int)height ) );
+			world = new VerletWorld( new Rectangle( 0, 0, (int)width, (int)height ) );
 		}
 
 
@@ -64,5 +64,6 @@ namespace Nez.Samples
 		{
 			world.debugRender( graphics.batcher );
 		}
+	
 	}
 }

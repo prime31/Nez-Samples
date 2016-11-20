@@ -47,17 +47,17 @@ namespace Nez.Samples
 
 			// create some Entities. When we add the Renderable (Sprite in this case) we need to be sure to set the renderLayer and Material
 			var bgEntity = createEntity( "bg" );
-			bgEntity.transform.setPosition( Screen.center ).setScale( 9 );
+			bgEntity.setPosition( Screen.center ).setScale( 9 );
 			bgEntity.addComponent( new Sprite( bgTexture ) ).setRenderLayer( RENDERABLES_LAYER ).setMaterial( bgMaterial ).setLayerDepth( 1 );
 			bgEntity.addComponent( new DeferredLightingController() );
 
 			var orangeEntity = createEntity( "orange" );
-			orangeEntity.transform.setPosition( Screen.center ).setScale( 0.5f );
+			orangeEntity.setPosition( Screen.center ).setScale( 0.5f );
 			orangeEntity.addComponent( new Sprite( orangeTexture ) ).setRenderLayer( RENDERABLES_LAYER ).setMaterial( orangeMaterial );
 			orangeEntity.addComponent( new SpotLight() ).setRenderLayer( LIGHT_LAYER );
 
 			var moonEntity = createEntity( "moon" );
-			moonEntity.transform.setPosition( new Vector2( 100, 400 ) );
+			moonEntity.setPosition( new Vector2( 100, 400 ) );
 			moonEntity.addComponent( new Sprite( moonTex ) ).setRenderLayer( RENDERABLES_LAYER ).setMaterial( moonMaterial );
 			moonEntity.addComponent( new DirLight( Color.Red ) ).setRenderLayer( LIGHT_LAYER ).setEnabled( true );
 

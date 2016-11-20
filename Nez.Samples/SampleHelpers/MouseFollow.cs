@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 
 namespace Nez.Samples
 {
@@ -7,7 +6,7 @@ namespace Nez.Samples
 	{
 		public void update()
 		{
-			entity.transform.position = Input.scaledMousePosition;
+			entity.setPosition( Input.scaledMousePosition );
 		}
 	}
 }

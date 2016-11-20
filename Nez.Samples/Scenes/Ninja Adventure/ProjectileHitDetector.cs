@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.Sprites;
+﻿using Nez.Sprites;
 using Microsoft.Xna.Framework;
 
 

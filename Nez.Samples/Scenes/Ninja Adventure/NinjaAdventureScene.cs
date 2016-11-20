@@ -47,7 +47,7 @@ namespace Nez.Samples
 			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
 			playerEntity.addComponent( new Ninja() );
 			var collider = playerEntity.colliders.add( new CircleCollider() );
-			// we only want to collider with the tilemap, which is on the default layer 0
+			// we only want to collide with the tilemap, which is on the default layer 0
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 			// move ourself to layer 1 so that we dont get hit by the projectiles that we fire
 			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
@@ -74,7 +74,7 @@ namespace Nez.Samples
 		{
 			// create an Entity to house the projectile and its logic
 			var entity = createEntity( "projectile" );
-			entity.transform.position = position;
+			entity.position = position;
 			entity.addComponent( new ProjectileMover() );
 			entity.addComponent( new FireballProjectileController( velocity ) );
 
@@ -103,7 +103,7 @@ namespace Nez.Samples
 
 
 			// clone the projectile and fire it off in the opposite direction
-			var newEntity = entity.clone( entity.transform.position );
+			var newEntity = entity.clone( entity.position );
 			newEntity.getComponent<FireballProjectileController>().velocity *= -1;
 			addEntity( newEntity );
 

@@ -116,6 +116,7 @@ namespace Nez.Samples
 		{
 			// deregister virtual input
 			_fireInput.deregister();
+			_xAxisInput.deregister();
 		}
 
 

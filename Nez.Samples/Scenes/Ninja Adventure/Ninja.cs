@@ -166,7 +166,7 @@ namespace Nez.Samples
 				}
 
 				var ninjaScene = entity.scene as NinjaAdventureScene;
-				ninjaScene.createProjectiles( entity.transform.position, _projectileVelocity * dir );
+				ninjaScene.createProjectiles( entity.position, _projectileVelocity * dir );
 			}
 		}
 

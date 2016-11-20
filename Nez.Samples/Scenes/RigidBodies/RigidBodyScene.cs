@@ -59,7 +59,7 @@ namespace Nez.Samples
 				.setVelocity( velocity );
 
 			var entity = createEntity( Utils.randomString( 3 ) );
-			entity.transform.position = position;
+			entity.position = position;
 			entity.addComponent( new Sprite( texture ) );
 			entity.addComponent( rigidbody );
 			entity.addCollider( new CircleCollider() );
