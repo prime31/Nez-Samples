@@ -46,7 +46,7 @@ namespace Nez.Samples
 
 			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
 			playerEntity.addComponent( new Ninja() );
-			var collider = playerEntity.colliders.add( new CircleCollider() );
+			var collider = playerEntity.addComponent<CircleCollider>();
 			// we only want to collide with the tilemap, which is on the default layer 0
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 			// move ourself to layer 1 so that we dont get hit by the projectiles that we fire
@@ -60,7 +60,7 @@ namespace Nez.Samples
 			var moonEntity = createEntity( "moon", new Vector2( 412, 460 ) );
 			moonEntity.addComponent( new Sprite( moonTexture ) );
 			moonEntity.addComponent( new ProjectileHitDetector() );
-			moonEntity.colliders.add( new CircleCollider() );
+			moonEntity.addComponent<CircleCollider>();
 		}
 
 
@@ -79,7 +79,7 @@ namespace Nez.Samples
 			entity.addComponent( new FireballProjectileController( velocity ) );
 
 			// add a collider so we can detect intersections
-			var collider = entity.colliders.add( new CircleCollider() );
+			var collider = entity.addComponent<CircleCollider>();
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
 

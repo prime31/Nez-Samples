@@ -62,7 +62,7 @@ namespace Nez.Samples
 			entity.position = position;
 			entity.addComponent( new Sprite( texture ) );
 			entity.addComponent( rigidbody );
-			entity.addCollider( new CircleCollider() );
+			entity.addComponent<CircleCollider>();
 
 			return rigidbody;
 		}

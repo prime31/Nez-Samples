@@ -50,12 +50,8 @@ namespace Nez.Samples
 			if( motion.X == 0 && motion.Y == 0 )
 				return;
 
-			entity.colliders.unregisterAllCollidersWithPhysicsSystem();
-
 			moveSolidX( motion.X, ridingActors );
 			moveSolidY( motion.Y, ridingActors );
-
-			entity.colliders.registerAllCollidersWithPhysicsSystem();
 		}
 
 
@@ -64,18 +60,15 @@ namespace Nez.Samples
 			var moved = false;
 			entity.transform.position += new Vector2( amount, 0 );
 
-			var colliders = new HashSet<Collider>( Physics.boxcastBroadphase( entity.colliders.mainCollider.bounds ) );
+			var platformCollider = entity.getComponent<Collider>();
+			var colliders = new HashSet<Collider>( Physics.boxcastBroadphaseExcludingSelf( platformCollider ) );
 			foreach( var collider in colliders )
 			{
 				float pushAmount;
 				if( amount > 0 )
-					pushAmount = entity.colliders.mainCollider.bounds.right - collider.bounds.left;
+					pushAmount = platformCollider.bounds.right - collider.bounds.left;
 				else
-					pushAmount = entity.colliders.mainCollider.bounds.left - collider.bounds.right;
-
-				// grinding/shearing will have odd results so watch out for them and correct
-				if( Math.Abs( pushAmount ) > Math.Abs( amount ) )
-					pushAmount = amount;
+					pushAmount = platformCollider.bounds.left - collider.bounds.right;
 
 				var mover = collider.entity.getComponent<Mover>();
 				if( mover != null )
@@ -90,7 +83,7 @@ namespace Nez.Samples
 				}
 				else
 				{
-					collider.entity.move( new Vector2( pushAmount, 0 ) );
+					collider.entity.position += new Vector2( pushAmount, 0 );
 				}
 			}
 
@@ -98,7 +91,7 @@ namespace Nez.Samples
 			foreach( var ent in ridingActors )
 			{
 				if( !moved )
-					ent.move( new Vector2( amount, 0 ) );
+					ent.position += new Vector2( amount, 0 );
 			}
 		}
 
@@ -108,18 +101,15 @@ namespace Nez.Samples
 			var moved = false;
 			entity.transform.position += new Vector2( 0, amount );
 
-			var colliders = new HashSet<Collider>( Physics.boxcastBroadphase( entity.colliders.mainCollider.bounds ) );
+			var platformCollider = entity.getComponent<Collider>();
+			var colliders = new HashSet<Collider>( Physics.boxcastBroadphaseExcludingSelf( platformCollider ) );
 			foreach( var collider in colliders )
 			{
 				float pushAmount;
 				if( amount > 0 )
-					pushAmount = entity.colliders.mainCollider.bounds.bottom - collider.bounds.top;
+					pushAmount = platformCollider.bounds.bottom - collider.bounds.top;
 				else
-					pushAmount = entity.colliders.mainCollider.bounds.top - collider.bounds.bottom;
-
-				// grinding/shearing will have odd results so watch out for them and correct
-				if( Math.Abs( pushAmount ) > Math.Abs( amount ) )
-					pushAmount = amount;
+					pushAmount = platformCollider.bounds.top - collider.bounds.bottom;
 
 				var mover = collider.entity.getComponent<Mover>();
 				if( mover != null )
@@ -134,7 +124,7 @@ namespace Nez.Samples
 				}
 				else
 				{
-					collider.entity.move( new Vector2( 0, pushAmount ) );
+					collider.entity.position += new Vector2( 0, pushAmount );
 				}
 			}
 
@@ -142,7 +132,7 @@ namespace Nez.Samples
 			foreach( var ent in ridingActors )
 			{
 				if( !moved )
-					ent.move( new Vector2( 0, amount ) );
+					ent.position += new Vector2( 0, amount );
 			}
 		}
 
@@ -154,15 +144,17 @@ namespace Nez.Samples
 		List<Entity> getAllRidingActors()
 		{
 			var list = new List<Entity>();
+			var platformCollider = entity.getComponent<Collider>();
 
 			var entities = entity.scene.findEntitiesWithTag( 0 );
 			for( var i = 0; i < entities.Count; i++ )
 			{
-				if( entities[i].colliders.mainCollider == entity.colliders.mainCollider || entities[i].colliders.mainCollider == null )
+				var collider = entities[i].getComponent<Collider>();
+				if( collider == platformCollider || collider == null )
 					continue;
 
 				CollisionResult collisionResult;
-				if( entities[i].colliders.mainCollider.collidesWith( entity.colliders.mainCollider, new Vector2( 0f, 1f ), out collisionResult ) )
+				if( collider.collidesWith( platformCollider, new Vector2( 0f, 1f ), out collisionResult ) )
 					list.Add( entities[i] );
 			}
 

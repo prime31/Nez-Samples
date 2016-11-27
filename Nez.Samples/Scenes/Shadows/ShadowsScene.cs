@@ -47,7 +47,7 @@ namespace Nez.Samples
 				var ent = createEntity( name );
 				ent.position = pos;
 				ent.addComponent( new Sprite( blockTexture ) );
-				var collider = ent.colliders.add( new BoxCollider() );
+				var collider = ent.addComponent<BoxCollider>();
 
 				// add a glow sprite on the light render layer
 				var glowSprite = new Sprite( blockGlowTexture );
@@ -96,7 +96,7 @@ namespace Nez.Samples
 			sprite.renderLayer = LIGHT_RENDER_LAYER;
 			entity.addComponent( sprite );
 			entity.addComponent( new SimpleMover() );
-			entity.colliders.add( new BoxCollider() );
+			entity.addComponent<BoxCollider>();
 
 
 			// add a follow camera

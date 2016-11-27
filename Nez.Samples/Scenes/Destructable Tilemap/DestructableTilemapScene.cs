@@ -51,7 +51,7 @@ namespace Nez.Samples
 			trail.initialColor = Color.White * 0.5f;
 
 			// add a collider and put it on layer 2 but make it only collide with layer 0. This will make the player only collide with the tilemap
-			var collider = playerEntity.colliders.add( new BoxCollider() );
+			var collider = playerEntity.addComponent<BoxCollider>();
 			Flags.setFlagExclusive( ref collider.physicsLayer, 2 );
 			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
 
@@ -64,7 +64,7 @@ namespace Nez.Samples
 			ballEntity.addComponent( new ArcadeRigidbody() );
 
 			// add a collider and put it on layer 1. Make it only collide with layer 0 (the tilemap) so it doesnt interact with the player.
-			var circleCollider = ballEntity.colliders.add( new CircleCollider() );
+			var circleCollider = ballEntity.addComponent<CircleCollider>();
 			Flags.setFlagExclusive( ref circleCollider.physicsLayer, 1 );
 			Flags.setFlagExclusive( ref circleCollider.collidesWithLayers, 0 );
 		}

@@ -53,21 +53,21 @@ namespace Nez.Samples
 			var triangleEntity = createEntity( "triangle" );
 			triangleEntity.setPosition( 100, 300 );
 			triangleEntity.addComponent( new PolygonMesh( trianglePoints, false ).setColor( Color.LightGreen ) );
-			triangleEntity.addCollider( new PolygonCollider( trianglePoints ) );
+			triangleEntity.addComponent( new PolygonCollider( trianglePoints ) );
 
 
 			var circleEntity = createEntity( "circle" );
 			circleEntity.setPosition( 1000, 250 );
 			circleEntity.addComponent( new Sprite( content.Load<Texture2D>( Content.Shared.moon ) ) )
 			            .setColor( Color.LightGreen );
-			circleEntity.addCollider( new CircleCollider( 64 ) );
+			circleEntity.addComponent( new CircleCollider( 64 ) );
 
 
 			var polyPoints = Polygon.buildSymmetricalPolygon( 5, 140 );
 			var polygonEntity = createEntity( "boxCollider" );
 			polygonEntity.setPosition( 460, 450 );
 			polygonEntity.addComponent( new PolygonMesh( polyPoints ) ).setColor( Color.LightGreen );
-			polygonEntity.addCollider( new PolygonCollider( polyPoints ) );
+			polygonEntity.addComponent( new PolygonCollider( polyPoints ) );
 
 			polygonEntity.tweenRotationDegreesTo( 180, 3f )
 				 .setLoops( Nez.Tweens.LoopType.PingPong, 50 )

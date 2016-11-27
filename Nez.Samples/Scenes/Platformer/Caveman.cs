@@ -42,7 +42,7 @@ namespace Nez.Samples
 			var texture = entity.scene.content.Load<Texture2D>( Content.Platformer.caveman );
 			var subtextures = Subtexture.subtexturesFromAtlas( texture, 32, 32 );
 
-			_boxCollider = entity.getCollider<BoxCollider>();
+			_boxCollider = entity.getComponent<BoxCollider>();
 			_mover = entity.getComponent<TiledMapMover>();
 			_animation = entity.addComponent( new Sprite<Animations>( subtextures[0] ) );
 

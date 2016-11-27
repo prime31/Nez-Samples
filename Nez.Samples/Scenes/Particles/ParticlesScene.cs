@@ -29,12 +29,12 @@ namespace Nez.Samples
 			var moonTex = content.Load<Texture2D>( "Shared/moon" );
 
 			var moonEntity = createEntity( "moon" );
-			moonEntity.position = new Vector2( Screen.backBufferWidth / 2, Screen.backBufferHeight / 2 + 100 );
+			moonEntity.position = new Vector2( Screen.width / 2, Screen.height / 2 + 100 );
 			moonEntity.addComponent( new Sprite( moonTex ) );
-			moonEntity.colliders.add( new CircleCollider() );
+			moonEntity.addComponent<CircleCollider>();
 
 			// clone the first moonEntity to create the second
-			var moonEntityTwo = moonEntity.clone( new Vector2( Screen.backBufferWidth / 2 - 100, Screen.backBufferHeight / 2 + 100 ) );
+			var moonEntityTwo = moonEntity.clone( new Vector2( Screen.width / 2 - 100, Screen.height / 2 + 100 ) );
 			addEntity( moonEntityTwo );
 		}
 	}
