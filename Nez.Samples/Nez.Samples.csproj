@@ -57,10 +57,6 @@
     <Compile Include="Scenes\Empty Scene\BasicScene.cs" />
     <Compile Include="Scenes\RigidBodies\RigidBodyScene.cs" />
     <Compile Include="Scenes\Shadows\ShadowsScene.cs" />
-    <Compile Include="Scenes\Shadows\Visibility\EndPoint.cs" />
-    <Compile Include="Scenes\Shadows\Visibility\PointLight.cs" />
-    <Compile Include="Scenes\Shadows\Visibility\Segment.cs" />
-    <Compile Include="Scenes\Shadows\Visibility\VisibilityComputer.cs" />
     <Compile Include="Shared\TriggerListener.cs" />
     <Compile Include="Shared\MovingPlatform.cs" />
     <Compile Include="Scenes\Destructable Tilemap\DestructableTilemapScene.cs" />
@@ -263,6 +259,10 @@
     <None Include="Shared\ContentPathGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContentPathGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\PolygonLight.mgfxo">
+      <Link>Content\nez\effects\PolygonLight.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

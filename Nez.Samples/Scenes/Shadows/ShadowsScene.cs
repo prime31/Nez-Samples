@@ -4,6 +4,7 @@ using Nez.Textures;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
 using Nez.Tweens;
+using Nez.Shadows;
 
 
 namespace Nez.Samples
@@ -23,7 +24,7 @@ namespace Nez.Samples
 
 			// render layer for all lights and any emissive Sprites
 			var LIGHT_RENDER_LAYER = 5;
-			clearColor = Color.MonoGameOrange;
+			clearColor = Color.White;
 
 			// create a Renderer that renders all but the light layer and screen space layer
 			addRenderer( new RenderLayerExcludeRenderer( 0, LIGHT_RENDER_LAYER, SCREEN_SPACE_RENDER_LAYER ) );
@@ -33,8 +34,10 @@ namespace Nez.Samples
 			lightRenderer.renderTargetClearColor = new Color( 10, 10, 10, 255 );
 			lightRenderer.renderTexture = new RenderTexture();
 
-			// add a PostProcessor that renders the light render target
-			addPostProcessor( new SpriteLightPostProcessor( 0, lightRenderer.renderTexture ) );
+			// add a PostProcessor that renders the light render target and blurs it
+			addPostProcessor( new PolyLightPostProcessor( 0, lightRenderer.renderTexture ) )
+				.setEnableBlur( true )
+				.setBlurAmount( 0.5f );
 
 			var lightTexture = content.Load<Texture2D>( Content.Shadows.spritelight );
 			var moonTexture = content.Load<Texture2D>( Content.Shared.moon );
@@ -105,14 +108,14 @@ namespace Nez.Samples
 
 
 			// setup some lights and animate the colors
-			var pointLight = new Nez.Shadows.PointLight( 600, Color.Red );
+			var pointLight = new PolyLight( 600, Color.Red );
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			pointLight.power = 1f;
 			var light = createEntity( "light" );
-			light.position = new Vector2( 650f, 300f );
+			light.position = new Vector2( 700f, 300f );
 			light.addComponent( pointLight );
 
-			PropertyTweens.colorPropertyTo( pointLight, "color", new Color( 0, 0, 255, 255 ), 1f )
+			pointLight.tweenColorTo( new Color( 0, 0, 255, 255 ), 1f )
 				.setEaseType( EaseType.Linear )
 				.setLoops( LoopType.PingPong, 100 )
 				.start();
@@ -123,23 +126,28 @@ namespace Nez.Samples
 				.start();
 
 
-			pointLight = new Nez.Shadows.PointLight( 500, Color.Yellow );
+			pointLight = new PolyLight( 500, Color.Yellow );
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			light = createEntity( "light-two" );
 			light.position = new Vector2( -50f );
 			light.addComponent( pointLight );
 
-			PropertyTweens.colorPropertyTo( pointLight, "color", new Color( 0, 255, 0, 255 ), 1f )
+			pointLight.tweenColorTo( new Color( 0, 255, 0, 255 ), 1f )
 				.setEaseType( EaseType.Linear )
 				.setLoops( LoopType.PingPong, 100 )
 				.start();
 
 
-			pointLight = new Nez.Shadows.PointLight( 500, Color.AliceBlue );
+			pointLight = new PolyLight( 500, Color.AliceBlue );
 			pointLight.renderLayer = LIGHT_RENDER_LAYER;
 			light = createEntity( "light-three" );
-			light.position = new Vector2( 100f );
+			light.position = new Vector2( 100, 250 );
 			light.addComponent( pointLight );
+
+			pointLight.tweenColorTo( new Color( 200, 100, 155, 255 ), 1f )
+			          .setEaseType( EaseType.QuadIn )
+			          .setLoops( LoopType.PingPong, 100 )
+			          .start();
 		}
 
 	}

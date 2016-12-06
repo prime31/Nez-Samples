@@ -3,6 +3,7 @@ using Nez.Tiled;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
 using Nez.Sprites;
+using Nez.Shadows;
 
 
 namespace Nez.Samples
@@ -38,7 +39,7 @@ namespace Nez.Samples
 			playerEntity.addComponent( new Sprite( playerSubtexture ) );
 			playerEntity.addComponent( new PlayerDashMover() );
 			playerEntity.addComponent( new CameraShake() );
-			playerEntity.addComponent( new Shadows.PointLight( 100 )
+			playerEntity.addComponent( new PolyLight( 100 )
 			{
 				collidesWithLayers = 1 << 0,
 				color = Color.Yellow * 0.5f
