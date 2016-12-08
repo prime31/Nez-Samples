@@ -44,6 +44,7 @@
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
       <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
@@ -89,6 +90,11 @@
     <Compile Include="Scenes\Pathfinding\Pathfinder.cs" />
     <Compile Include="Scenes\Verlet Physics\VerletPhysicsScene.cs" />
     <Compile Include="Scenes\Verlet Physics\VerletSystem.cs" />
+    <Compile Include="Scenes\Farseer SVG\FarseerSVGScene.cs" />
+    <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
+      <Link>Shared\SvgPathBuilder.cs</Link>
+    </Compile>
+    <Compile Include="Shared\PressKeyToPerformAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -264,6 +270,9 @@
       <Link>Content\nez\effects\PolygonLight.mgfxo</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\SVG\farseer-svg.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -284,6 +293,8 @@
     <Folder Include="Content\nez\textures\textureWipeTransition\" />
     <Folder Include="Scenes\Pathfinding\" />
     <Folder Include="Scenes\Verlet Physics\" />
+    <Folder Include="Scenes\Farseer SVG\" />
+    <Folder Include="Content\SVG\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj">
