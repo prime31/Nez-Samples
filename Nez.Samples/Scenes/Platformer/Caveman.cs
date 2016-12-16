@@ -33,7 +33,7 @@ namespace Nez.Samples
 		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
 		Vector2 _velocity;
 
-		VirtualButton _fireInput;
+		VirtualButton _jumpInput;
 		VirtualIntegerAxis _xAxisInput;
 
 
@@ -115,17 +115,17 @@ namespace Nez.Samples
 		public override void onRemovedFromEntity()
 		{
 			// deregister virtual input
-			_fireInput.deregister();
+			_jumpInput.deregister();
 			_xAxisInput.deregister();
 		}
 
 
 		void setupInput()
 		{
-			// setup input for shooting a fireball. we will allow z on the keyboard or a on the gamepad
-			_fireInput = new VirtualButton();
-			_fireInput.nodes.Add( new Nez.VirtualButton.KeyboardKey( Keys.Z ) );
-			_fireInput.nodes.Add( new Nez.VirtualButton.GamePadButton( 0, Buttons.A ) );
+			// setup input for jumping. we will allow z on the keyboard or a on the gamepad
+			_jumpInput = new VirtualButton();
+			_jumpInput.nodes.Add( new Nez.VirtualButton.KeyboardKey( Keys.Z ) );
+			_jumpInput.nodes.Add( new Nez.VirtualButton.GamePadButton( 0, Buttons.A ) );
 
 			// horizontal input from dpad, left stick or keyboard left/right
 			_xAxisInput = new VirtualIntegerAxis();
@@ -162,7 +162,7 @@ namespace Nez.Samples
 					animation = Animations.Idle;
 			}
 
-			if( _collisionState.below && _fireInput.isPressed )
+			if( _collisionState.below && _jumpInput.isPressed )
 			{
 				animation = Animations.Jumping;
 				_velocity.Y = -Mathf.sqrt( 2f * jumpHeight * gravity );
