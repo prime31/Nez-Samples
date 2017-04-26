@@ -51,9 +51,9 @@ namespace Nez.Samples
 				 .onClicked += onClickStopAllAi;
 
 			// fetch our different AI Components
-			_miner = entity.scene.findObjectOfType<BehaviorTreeMiner>();
-			_utilityMiner = entity.scene.findObjectOfType<UtilityMiner>();
-			_goapMiner = entity.scene.findObjectOfType<GOAPMiner>();
+			_miner = entity.scene.findComponentOfType<BehaviorTreeMiner>();
+			_utilityMiner = entity.scene.findComponentOfType<UtilityMiner>();
+			_goapMiner = entity.scene.findComponentOfType<GOAPMiner>();
 		}
 
 
