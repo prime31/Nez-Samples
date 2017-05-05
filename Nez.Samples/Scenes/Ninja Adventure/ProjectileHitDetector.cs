@@ -24,13 +24,13 @@ namespace Nez.Samples
 		
 		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
 		{
-			if( _hitCounter > hitsUntilDead )
+			_hitCounter++;
+			if ( _hitCounter >= hitsUntilDead )
 			{
 				entity.destroy();
 				return;
 			}
 
-			_hitCounter++;
 			_sprite.color = Color.Red;
 			Core.schedule( 0.1f, timer => _sprite.color = Color.White );
 		}
