@@ -75,7 +75,7 @@ namespace Nez.Samples
 			var checkbox = _table.add( new CheckBox( "Debug Render", new CheckBoxStyle
 			{
 				checkboxOn = new PrimitiveDrawable( 30, Color.Green ),
-				checkboxOff = new PrimitiveDrawable( 30, Color.MonoGameOrange )
+				checkboxOff = new PrimitiveDrawable( 30, new Color( 0x00, 0x3c, 0xe7, 0xff ) )
 			} ) ).getElement<CheckBox>();
 			checkbox.onChanged += enabled => Core.debugRenderEnabled = enabled;
 			checkbox.isChecked = Core.debugRenderEnabled;
