@@ -25,7 +25,7 @@ namespace Nez.Samples
 		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
 		{
 			_hitCounter++;
-			if (_hitCounter >= hitsUntilDead)
+			if ( _hitCounter >= hitsUntilDead )
 			{
 				entity.destroy();
 				return;
