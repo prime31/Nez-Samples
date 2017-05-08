@@ -14,7 +14,7 @@ namespace Nez.Samples
 
 		public override void onAddedToEntity()
 		{
-			_dirLight = entity.scene.findComponentOfType<DirLight>();
+			_dirLight = entity.scene.findObjectOfType<DirLight>();
 			_currentLight = _dirLight;
 		}
 
@@ -45,7 +45,7 @@ namespace Nez.Samples
 
 			if( lightIndex > -1 )
 			{
-				var lights = entity.scene.findComponentsOfType<DeferredLight>();
+				var lights = entity.scene.findObjectsOfType<DeferredLight>();
 				if( lights.Count > lightIndex )
 				{
 					_currentLight = lights[lightIndex];
