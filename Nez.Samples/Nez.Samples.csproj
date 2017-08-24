@@ -95,6 +95,8 @@
       <Link>Shared\SvgPathBuilder.cs</Link>
     </Compile>
     <Compile Include="Shared\PressKeyToPerformAction.cs" />
+    <Compile Include="Scenes\LineCasting\LineCastingScene.cs" />
+    <Compile Include="Scenes\LineCasting\LineCaster.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -295,6 +297,7 @@
     <Folder Include="Scenes\Verlet Physics\" />
     <Folder Include="Scenes\Farseer SVG\" />
     <Folder Include="Content\SVG\" />
+    <Folder Include="Scenes\LineCasting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj">
@@ -304,6 +307,10 @@
     <ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj">
       <Project>{CB893B1D-CE04-4492-B957-31CE0DCA6C15}</Project>
       <Name>Nez.FarseerPhysics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nez\Nez.PipelineImporter\Nez.PipelineImporter.csproj">
+      <Project>{63E831F4-B847-4150-B5AF-CBE059EE27B8}</Project>
+      <Name>Nez.PipelineImporter</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
