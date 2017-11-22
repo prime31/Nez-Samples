@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="40" height="23" tilewidth="16" tileheight="16" nextobjectid="4">
- <tileset firstgid="1" name="desert-palace-tiles2x" tilewidth="16" tileheight="16" tilecount="256">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="left-down" width="40" height="23" tilewidth="16" tileheight="16" nextobjectid="4">
+ <tileset firstgid="1" name="desert-palace-tiles2x" tilewidth="16" tileheight="16" tilecount="256" columns="16">
   <image source="desert-palace-tiles2x.png" width="256" height="256"/>
   <tile id="8">
    <properties>
