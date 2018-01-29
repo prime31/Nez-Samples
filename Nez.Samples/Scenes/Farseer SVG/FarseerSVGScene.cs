@@ -46,9 +46,9 @@ namespace Nez.Samples
 			if( svgGroup.lines != null )
 				addLines( svgGroup );
 
-			// paths
-			if( svgGroup.paths != null )
-				addPaths( svgGroup );
+			// paths: TODO: why is System.Drawing.Drawing2D.GraphicsPath never returning on macOS?!?!
+			//if( svgGroup.paths != null )
+			//	addPaths( svgGroup );
 
 			// ellipses
 			if( svgGroup.ellipses != null )

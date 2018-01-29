@@ -2,29 +2,31 @@
  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
  <g>
   <title>Layer 1</title>
-  <circle id="svg_1" r="20.59126" cy="71" cx="182" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <circle id="svg_2" r="34.205263" cy="131" cx="825" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <circle id="svg_3" r="22.671568" cy="159" cx="484" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <rect transform="rotate(-16.157339096069336 1067.5,206.50000000000045) " id="svg_4" height="49" width="117" y="182" x="1009" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <rect transform="rotate(27.96711540222168 255.0000000000001,290.5) " id="svg_5" height="55" width="134" y="263" x="188" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <ellipse ry="26" rx="55" id="svg_6" cy="250" cx="609" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#000000" fill="#ffffff"/>
-  <polygon id="svg_11" fill="#ffff00" points="512.2980623938263,334 485.14376912569935,371.3746783174221 441.20719967738745,357.0988215187606 441.20719967738745,310.90117848123947 485.14376912569935,296.6253216825779 512.2980623938263,334 " stroke="#000000" stroke-width="5"/>
-  <line id="svg_8" y2="509" x2="277" y1="359" x1="6" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <path fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m1272,269c0,0 -31,233 -100,305c-69,72 -174,94 -324,89c-150,-5 -266,-168 -305,-212" id="svg_7"/>
-  <path fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m622,562c0,0 -26,123 -101,122c-75,-1 -351,0 -409,-1c-58,-1 -95,-87 -94,-113" id="svg_9"/>
-  <line id="svg_10" y2="723.168036" x2="2" y1="3" x1="2" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <line id="svg_12" y2="715.044879" x2="1277" y1="2" x1="1277" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <line id="svg_13" y2="4" x2="1253.020349" y1="4" x1="49" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <rect id="svg_14" height="92" width="92" y="76" x="307" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <rect transform="rotate(30.963756561279297 970.0000000000002,90.00000000000001) " id="svg_15" height="28" width="28" y="76" x="956" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <rect transform="rotate(-108.8118896484375 659.5,110.49999999999997) " id="svg_16" height="33" width="33" y="94" x="643" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <rect transform="rotate(52.4314079284668 499.00000000000006,88.00000000000003) " id="svg_17" height="42" width="42" y="67" x="478" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_18" r="52.697249" cy="254" cx="851" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_19" r="18.601075" cy="346" cx="1036" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_20" r="20.615528" cy="447" cx="814" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_21" r="18.867962" cy="397" cx="611" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_22" r="21.931712" cy="409" cx="497" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_23" r="26.172505" cy="133" cx="101" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
-  <circle id="svg_24" r="18.439089" cy="216" cx="51" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#ffaa56" fill="none"/>
+  <circle fill="#ffffff" stroke="#000000" stroke-width="5" cx="182" cy="71" r="20.59126" id="svg_1"/>
+  <circle fill="#ffffff" stroke="#000000" stroke-width="5" cx="825" cy="131" r="34.205263" id="svg_2"/>
+  <circle fill="#ffffff" stroke="#000000" stroke-width="5" cx="484" cy="159" r="22.671568" id="svg_3"/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="5" x="1009" y="182" width="117" height="49" id="svg_4" transform="rotate(-16.157339096069336 1067.5,206.50000000000045) "/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="5" x="188" y="263" width="134" height="55" id="svg_5" transform="rotate(27.96711540222168 255.0000000000001,290.5) "/>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="609" cy="250" id="svg_6" rx="55" ry="26"/>
+  <polygon stroke-width="5" stroke="#000000" points="512.2980623938263,334 485.14376912569935,371.3746783174221 441.20719967738745,357.0988215187606 441.20719967738745,310.90117848123947 485.14376912569935,296.6253216825779 512.2980623938263,334 " fill="#ffff00" id="svg_11"/>
+  <line fill="none" stroke="#ffaa56" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="6" y1="359" x2="277" y2="509" id="svg_8"/>
+  <line fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="2" y1="3" x2="2" y2="723.168036" id="svg_10"/>
+  <line fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="1277" y1="2" x2="1277" y2="715.044879" id="svg_12"/>
+  <line fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="49" y1="4" x2="1253.020349" y2="4" id="svg_13"/>
+  <rect fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="307" y="76" width="92" height="92" id="svg_14"/>
+  <rect fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="956" y="76" width="28" height="28" id="svg_15" transform="rotate(30.963756561279297 970.0000000000002,90.00000000000001) "/>
+  <rect fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="643" y="94" width="33" height="33" id="svg_16" transform="rotate(-108.8118896484375 659.5,110.49999999999997) "/>
+  <rect fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="478" y="67" width="42" height="42" id="svg_17" transform="rotate(52.4314079284668 499.00000000000006,88.00000000000003) "/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="851" cy="254" r="52.697249" id="svg_18"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="1036" cy="346" r="18.601075" id="svg_19"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="814" cy="447" r="20.615528" id="svg_20"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="611" cy="397" r="18.867962" id="svg_21"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="497" cy="409" r="21.931712" id="svg_22"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="101" cy="133" r="26.172505" id="svg_23"/>
+  <circle fill="none" stroke="#ffaa56" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="51" cy="216" r="18.439089" id="svg_24"/>
+  <line stroke="#ffaa56" transform="rotate(-26.599964141845703 643.5000000000005,601) " fill="none" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="97.581672" y1="322.714899" x2="1189.418291" y2="879.2851" id="svg_25"/>
+  <line transform="rotate(-69.27593994140625 1149.5,503) " fill="none" stroke="#ffaa56" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1014" y1="428" x2="1285" y2="578" id="svg_26"/>
+  <line transform="rotate(-69.27593994140625 1149.5,503) " fill="none" stroke="#ffaa56" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1014" y1="428" x2="1285" y2="578" id="svg_27"/>
+  <line stroke="#ffaa56" transform="rotate(18.916812896728516 648.0000000000002,540.9999999999998) " fill="none" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="521.965617" y1="519.839132" x2="774.034386" y2="562.160868" id="svg_29"/>
  </g>
 </svg>
