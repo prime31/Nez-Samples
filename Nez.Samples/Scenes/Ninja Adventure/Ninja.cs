@@ -21,6 +21,7 @@ namespace Nez.Samples
 		}
 
 		Sprite<Animations> _animation;
+		SubpixelVector2 _subpixelV2 = new SubpixelVector2();
 		Mover _mover;
 		float _moveSpeed = 100f;
 		Vector2 _projectileVelocity = new Vector2( 175 );
@@ -133,11 +134,12 @@ namespace Nez.Samples
 			{
 				if( !_animation.isAnimationPlaying( animation ) )
 					_animation.play( animation );
-				
+					
 				var movement = moveDir * _moveSpeed * Time.deltaTime;
 
-				CollisionResult res;
-				_mover.move( movement, out res );
+				_mover.calculateMovement( ref movement, out var res );
+				_subpixelV2.update( ref movement );
+				_mover.applyMovement( movement );
 			}
 			else
 			{

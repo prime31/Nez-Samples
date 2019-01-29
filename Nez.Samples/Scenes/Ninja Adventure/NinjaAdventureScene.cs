@@ -11,7 +11,7 @@ namespace Nez.Samples
 	public class NinjaAdventureScene : SampleScene
 	{
 		public NinjaAdventureScene() : base( true, true )
-		{ }
+		{}
 
 
 		public override void initialize()
@@ -41,7 +41,9 @@ namespace Nez.Samples
 			tiledMapDetailsComp.material.effect = content.loadNezEffect<SpriteAlphaTestEffect>();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
-			tiledEntity.addComponent( new CameraBounds( new Vector2( tiledmap.tileWidth, tiledmap.tileWidth ), new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) ) ) );
+			var topLeft = new Vector2( tiledmap.tileWidth, tiledmap.tileWidth );
+			var bottomRight = new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) );
+			tiledEntity.addComponent( new CameraBounds( topLeft, bottomRight ) );
 
 
 			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
@@ -106,7 +108,6 @@ namespace Nez.Samples
 			var newEntity = entity.clone( entity.position );
 			newEntity.getComponent<FireballProjectileController>().velocity *= -1;
 			addEntity( newEntity );
-
 
 			return entity;
 		}
