@@ -8,7 +8,7 @@ using Nez.Svg;
 
 namespace Nez.Samples
 {
-	[SampleScene( "SVG to Farseer Physics", 85, "This demo shows how you can use turn an SVG image into Farseer physics objects\nPress Space to start the physics simulation\nClick and drag to interact with physics shapes" )]
+	[SampleScene( "SVG to Farseer Physics", 85, "This demo shows how you can turn an SVG image into Farseer physics objects\nPress Space to start the physics simulation\nClick and drag to interact with physics shapes" )]
 	public class FarseerSVGScene : SampleScene
 	{
 		public override void initialize()
