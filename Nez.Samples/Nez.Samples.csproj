@@ -88,6 +88,7 @@
     <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
       <Link>Shared\SvgPathBuilder.cs</Link>
     </Compile>
+    <Compile Include="Scenes\Particles\PexExporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
