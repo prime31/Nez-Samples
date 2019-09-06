@@ -81,7 +81,7 @@ namespace Nez.Samples
 				subtextures[15]
 			}));
 
-			setupInput();
+			SetupInput();
 		}
 
 
@@ -92,7 +92,7 @@ namespace Nez.Samples
 		}
 
 
-		void setupInput()
+		void SetupInput()
 		{
 			// setup input for shooting a fireball. we will allow z on the keyboard or a on the gamepad
 			_fireInput = new VirtualButton();
@@ -170,7 +170,7 @@ namespace Nez.Samples
 				}
 
 				var ninjaScene = Entity.Scene as NinjaAdventureScene;
-				ninjaScene.createProjectiles(Entity.Transform.Position, _projectileVelocity * dir);
+				ninjaScene.CreateProjectiles(Entity.Transform.Position, _projectileVelocity * dir);
 			}
 		}
 

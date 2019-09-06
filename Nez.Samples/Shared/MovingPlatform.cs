@@ -39,23 +39,23 @@ namespace Nez.Samples
 			var deltaX = Nez.Tweens.Lerps.Lerp(_minX, _maxX, alpha) - Entity.Position.X;
 
 			// TODO: probably query Physics to fetch the actors that we will intersect instead of blindly grabbing them all
-			var ridingActors = getAllRidingActors();
+			var ridingActors = GetAllRidingActors();
 
-			moveSolid(new Vector2(deltaX, deltaY), ridingActors);
+			MoveSolid(new Vector2(deltaX, deltaY), ridingActors);
 		}
 
 
-		void moveSolid(Vector2 motion, List<Entity> ridingActors)
+		void MoveSolid(Vector2 motion, List<Entity> ridingActors)
 		{
 			if (motion.X == 0 && motion.Y == 0)
 				return;
 
-			moveSolidX(motion.X, ridingActors);
-			moveSolidY(motion.Y, ridingActors);
+			MoveSolidX(motion.X, ridingActors);
+			MoveSolidY(motion.Y, ridingActors);
 		}
 
 
-		void moveSolidX(float amount, List<Entity> ridingActors)
+		void MoveSolidX(float amount, List<Entity> ridingActors)
 		{
 			var moved = false;
 			Entity.Position += new Vector2(amount, 0);
@@ -96,7 +96,7 @@ namespace Nez.Samples
 		}
 
 
-		void moveSolidY(float amount, List<Entity> ridingActors)
+		void MoveSolidY(float amount, List<Entity> ridingActors)
 		{
 			var moved = false;
 			Entity.Position += new Vector2(0, amount);
@@ -141,7 +141,7 @@ namespace Nez.Samples
 		/// brute force search for Entities on top of this Collider. Not a great approach.
 		/// </summary>
 		/// <returns>The all riding actors.</returns>
-		List<Entity> getAllRidingActors()
+		List<Entity> GetAllRidingActors()
 		{
 			var list = new List<Entity>();
 			var platformCollider = Entity.GetComponent<Collider>();
@@ -153,10 +153,9 @@ namespace Nez.Samples
 				if (collider == platformCollider || collider == null)
 					continue;
 
-				CollisionResult collisionResult;
-				if (collider.CollidesWith(platformCollider, new Vector2(0f, 1f), out collisionResult))
-					list.Add(entities[i]);
-			}
+                if (collider.CollidesWith(platformCollider, new Vector2(0f, 1f), out CollisionResult collisionResult))
+                    list.Add(entities[i]);
+            }
 
 			return list;
 		}

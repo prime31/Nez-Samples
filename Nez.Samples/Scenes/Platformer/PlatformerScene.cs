@@ -21,7 +21,7 @@ namespace Nez.Samples
 
 
 			// load up our TiledMap
-			var tiledMap = Content.Load<TiledMap>(Nez.Content.Platformer.tiledMap);
+			var tiledMap = Content.Load<TiledMap>(Nez.Content.Platformer.TiledMap);
 			var objectLayer = tiledMap.GetObjectGroup("objects");
 			var spawnObject = objectLayer.ObjectWithName("spawn");
 			var tiledEntity = CreateEntity("tiled-map-entity");

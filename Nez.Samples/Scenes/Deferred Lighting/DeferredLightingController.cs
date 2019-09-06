@@ -49,7 +49,7 @@ namespace Nez.Samples
 				if (lights.Count > lightIndex)
 				{
 					_currentLight = lights[lightIndex];
-					updateInstructions();
+					UpdateInstructions();
 				}
 				else
 				{
@@ -57,11 +57,11 @@ namespace Nez.Samples
 				}
 			}
 
-			checkInput();
+			CheckInput();
 		}
 
 
-		void checkInput()
+		void CheckInput()
 		{
 			if (_currentLight is DirLight)
 			{
@@ -136,7 +136,7 @@ namespace Nez.Samples
 		}
 
 
-		void updateInstructions()
+		void UpdateInstructions()
 		{
 			var textComp = Entity.Scene.FindEntity("instructions").GetComponent<TextField>();
 			var colorText = "\nr/g/b keys change color";

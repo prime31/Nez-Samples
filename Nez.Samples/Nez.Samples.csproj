@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
@@ -87,6 +87,13 @@
         </Compile>
         <Compile Include="Scenes\Particles\PexExporter.cs" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include = "Content\bin\DesktopGL\Content\**"
+                 CopyToOutputDirectory = "PreserveNewest"
+                 Link = "Content\%(RecursiveDir)\%(Filename)%(Extension)" />
+    </ItemGroup>
+    
     <ItemGroup>
         <None Include="app.manifest" />
         <None Include="Icon.png" />

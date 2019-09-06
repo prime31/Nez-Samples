@@ -6,16 +6,13 @@ namespace Nez.Samples
 	/// <summary>
 	/// component that displays a simple UI to enable/disable the different AI types
 	/// </summary>
-	public class AIUI : UICanvas
+	public class Aiui : UICanvas
 	{
-		public override RectangleF Bounds
-		{
-			get { return new RectangleF(0, 0, 200, 200); }
-		}
+        public override RectangleF Bounds => new RectangleF(0, 0, 200, 200);
 
-		BehaviorTreeMiner _miner;
+        BehaviorTreeMiner _miner;
 		UtilityMiner _utilityMiner;
-		GOAPMiner _goapMiner;
+		GoapMiner _goapMiner;
 
 
 		public override void OnAddedToEntity()
@@ -31,78 +28,78 @@ namespace Nez.Samples
 			// add a button for each of the actions/AI types we need
 			table.Add(new TextButton("BT: LowerPriority Abort Tree", skin))
 				.GetElement<TextButton>()
-				.OnClicked += onClickBtLowerPriority;
+				.OnClicked += OnClickBtLowerPriority;
 			table.Row();
 
 			table.Add(new TextButton("BT: Self Abort Tree", skin))
 				.GetElement<TextButton>()
-				.OnClicked += onClickBtSelfAbort;
+				.OnClicked += OnClickBtSelfAbort;
 			table.Row();
 
 			table.Add(new TextButton("Utility AI", skin))
 				.GetElement<TextButton>()
-				.OnClicked += onClickUtilityAI;
+				.OnClicked += OnClickUtilityAi;
 			table.Row();
 
 			table.Add(new TextButton("GOAP", skin))
 				.GetElement<TextButton>()
-				.OnClicked += onClickGoap;
+				.OnClicked += OnClickGoap;
 			table.Row().SetPadTop(40);
 
 			table.Add(new TextButton("Stop All Running AI", skin))
 				.GetElement<TextButton>()
-				.OnClicked += onClickStopAllAi;
+				.OnClicked += OnClickStopAllAi;
 
 			// fetch our different AI Components
 			_miner = Entity.Scene.FindComponentOfType<BehaviorTreeMiner>();
 			_utilityMiner = Entity.Scene.FindComponentOfType<UtilityMiner>();
-			_goapMiner = Entity.Scene.FindComponentOfType<GOAPMiner>();
+			_goapMiner = Entity.Scene.FindComponentOfType<GoapMiner>();
 		}
 
 
 		#region button click handlers
 
-		void onClickBtLowerPriority(Button button)
+		void OnClickBtLowerPriority(Button button)
 		{
 			Debug.Log("------ Enabled Behavior Tree LowerPriority Abort ------");
-			disableAllAI();
+			DisableAllAi();
 			_miner.BuildLowerPriorityAbortTree();
 			_miner.SetEnabled(true);
 		}
 
 
-		void onClickBtSelfAbort(Button button)
+		void OnClickBtSelfAbort(Button button)
 		{
 			Debug.Log("------ Enabled Behavior Tree Self Abort ------");
-			disableAllAI();
+			DisableAllAi();
 			_miner.BuildSelfAbortTree();
 			_miner.SetEnabled(true);
 		}
 
 
-		void onClickUtilityAI(Button button)
+		void OnClickUtilityAi(Button button)
 		{
 			Debug.Log("------ Enabled Utility AI ------");
-			disableAllAI();
+			DisableAllAi();
 			_utilityMiner.SetEnabled(true);
 		}
 
 
-		void onClickGoap(Button button)
+		void OnClickGoap(Button button)
 		{
 			Debug.Log("------ Enabled GOAP ------");
-			disableAllAI();
+			DisableAllAi();
 			_goapMiner.SetEnabled(true);
 		}
 
 
-		void onClickStopAllAi(Button button)
+		void OnClickStopAllAi(Button button)
 		{
-			disableAllAI();
+			DisableAllAi();
 		}
 
 
-		void disableAllAI()
+		void DisableAllAi()
 		{
 			_miner.SetEnabled(false);
 			_utilityMiner.SetEnabled(false);

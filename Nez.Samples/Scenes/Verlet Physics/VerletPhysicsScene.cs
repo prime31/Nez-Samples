@@ -27,10 +27,10 @@ namespace Nez.Samples
 				.AddComponent<VerletSystem>();
 
 			// first, we'll create some standard Nez Colliders for the Verlet objects to interact with
-			createPolygons();
+			CreatePolygons();
 
 			// add a rope, which is just a series of points connected by constraints
-			createRope(verletSystem.World);
+			CreateRope(verletSystem.World);
 
 			// add some of the included Composite objects
 			verletSystem.World.AddComposite(new Tire(new Vector2(350, 64), 64, 32, 0.3f, 0.5f));
@@ -49,7 +49,7 @@ namespace Nez.Samples
 		}
 
 
-		void createPolygons()
+		void CreatePolygons()
 		{
 			var trianglePoints = new Vector2[] {new Vector2(0, 0), new Vector2(100, -100), new Vector2(-100, -150)};
 			var triangleEntity = CreateEntity("triangle");
@@ -60,7 +60,7 @@ namespace Nez.Samples
 
 			var circleEntity = CreateEntity("circle");
 			circleEntity.SetPosition(1000, 250);
-			circleEntity.AddComponent(new Sprite(Content.Load<Texture2D>(Nez.Content.Shared.moon)))
+			circleEntity.AddComponent(new Sprite(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
 				.SetColor(Color.LightGreen);
 			circleEntity.AddComponent(new CircleCollider(64));
 
@@ -78,7 +78,7 @@ namespace Nez.Samples
 		}
 
 
-		void createRope(VerletWorld world)
+		void CreateRope(VerletWorld world)
 		{
 			// create an array of points for our rope
 			var linePoints = new Vector2[10];

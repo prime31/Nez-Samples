@@ -10,15 +10,9 @@ namespace Nez.Samples
 	/// </summary>
 	public class VerletSystem : RenderableComponent, IUpdatable
 	{
-		public override float Width
-		{
-			get { return 1280; }
-		}
+		public override float Width => 1280;
 
-		public override float Height
-		{
-			get { return 720; }
-		}
+		public override float Height => 720;
 
 		public VerletWorld World;
 
@@ -29,7 +23,7 @@ namespace Nez.Samples
 		}
 
 
-		void toggleGravity()
+		void ToggleGravity()
 		{
 			if (World.Gravity.Y > 0)
 				World.Gravity.Y = -980f;
@@ -40,7 +34,7 @@ namespace Nez.Samples
 		}
 
 
-		void toggleZeroGravity()
+		void ToggleZeroGravity()
 		{
 			if (World.Gravity.Y == 0)
 			{
@@ -58,10 +52,10 @@ namespace Nez.Samples
 		public void Update()
 		{
 			if (Input.IsKeyPressed(Keys.G))
-				toggleGravity();
+				ToggleGravity();
 
 			if (Input.IsKeyPressed(Keys.Z))
-				toggleZeroGravity();
+				ToggleZeroGravity();
 
 			World.Update();
 		}

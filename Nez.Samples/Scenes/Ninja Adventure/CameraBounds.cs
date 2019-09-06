@@ -6,7 +6,7 @@ namespace Nez.Samples
 {
 	public class CameraBounds : Component, IUpdatable
 	{
-		public Vector2 min, max;
+		public Vector2 Min, Max;
 
 
 		public CameraBounds()
@@ -18,8 +18,8 @@ namespace Nez.Samples
 
 		public CameraBounds(Vector2 min, Vector2 max) : this()
 		{
-			this.min = min;
-			this.max = max;
+			this.Min = min;
+			this.Max = max;
 		}
 
 
@@ -33,17 +33,17 @@ namespace Nez.Samples
 		{
 			var cameraBounds = Entity.Scene.Camera.Bounds;
 
-			if (cameraBounds.Top < min.Y)
-				Entity.Scene.Camera.Position += new Vector2(0, min.Y - cameraBounds.Top);
+			if (cameraBounds.Top < Min.Y)
+				Entity.Scene.Camera.Position += new Vector2(0, Min.Y - cameraBounds.Top);
 
-			if (cameraBounds.Left < min.X)
-				Entity.Scene.Camera.Position += new Vector2(min.X - cameraBounds.Left, 0);
+			if (cameraBounds.Left < Min.X)
+				Entity.Scene.Camera.Position += new Vector2(Min.X - cameraBounds.Left, 0);
 
-			if (cameraBounds.Bottom > max.Y)
-				Entity.Scene.Camera.Position += new Vector2(0, max.Y - cameraBounds.Bottom);
+			if (cameraBounds.Bottom > Max.Y)
+				Entity.Scene.Camera.Position += new Vector2(0, Max.Y - cameraBounds.Bottom);
 
-			if (cameraBounds.Right > max.X)
-				Entity.Scene.Camera.Position += new Vector2(max.X - cameraBounds.Right, 0);
+			if (cameraBounds.Right > Max.X)
+				Entity.Scene.Camera.Position += new Vector2(Max.X - cameraBounds.Right, 0);
 		}
 	}
 }

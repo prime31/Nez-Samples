@@ -25,14 +25,14 @@ namespace Nez.Samples
 	static class Program
 #endif
 	{
-		private static Game1 game;
+		private static Game1 _game;
 
 		internal static void RunGame()
 		{
-			game = new Game1();
-			game.Run();
+			_game = new Game1();
+			_game.Run();
 #if !__IOS__ && !__TVOS__
-			game.Dispose();
+			_game.Dispose();
 #endif
 		}
 

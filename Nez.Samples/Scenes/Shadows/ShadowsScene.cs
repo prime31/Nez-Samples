@@ -24,14 +24,14 @@ namespace Nez.Samples
 			Screen.SetSize(1280, 720);
 
 			// render layer for all lights and any emissive Sprites
-			var LIGHT_RENDER_LAYER = 5;
+			var lightRenderLayer = 5;
 			ClearColor = Color.White;
 
 			// create a Renderer that renders all but the light layer and screen space layer
-			AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_RENDER_LAYER, SCREEN_SPACE_RENDER_LAYER));
+			AddRenderer(new RenderLayerExcludeRenderer(0, lightRenderLayer, ScreenSpaceRenderLayer));
 
 			// create a Renderer that renders only the light layer into a render target
-			var lightRenderer = AddRenderer(new RenderLayerRenderer(-1, LIGHT_RENDER_LAYER));
+			var lightRenderer = AddRenderer(new RenderLayerRenderer(-1, lightRenderLayer));
 			lightRenderer.RenderTargetClearColor = new Color(10, 10, 10, 255);
 			lightRenderer.RenderTexture = new RenderTexture();
 
@@ -40,10 +40,10 @@ namespace Nez.Samples
 				.SetEnableBlur(true)
 				.SetBlurAmount(0.5f);
 
-			var lightTexture = Content.Load<Texture2D>(Nez.Content.Shadows.spritelight);
-			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.moon);
-			var blockTexture = Content.Load<Texture2D>(Nez.Content.Shadows.block);
-			var blockGlowTexture = Content.Load<Texture2D>(Nez.Content.Shadows.blockGlow);
+			var lightTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Spritelight);
+			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
+			var blockTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Block);
+			var blockGlowTexture = Content.Load<Texture2D>(Nez.Content.Shadows.BlockGlow);
 
 			// create some boxes
 			Action<Vector2, string, bool> boxMaker = (Vector2 pos, string name, bool isTrigger) =>
@@ -55,7 +55,7 @@ namespace Nez.Samples
 
 				// add a glow sprite on the light render layer
 				var glowSprite = new Sprite(blockGlowTexture);
-				glowSprite.RenderLayer = LIGHT_RENDER_LAYER;
+				glowSprite.RenderLayer = lightRenderLayer;
 				ent.AddComponent(glowSprite);
 
 				if (isTrigger)
@@ -87,7 +87,7 @@ namespace Nez.Samples
 			lightEnt.AddComponent(new Sprite(lightTexture));
 			lightEnt.Position = new Vector2(-700, 0);
 			lightEnt.Scale = new Vector2(4);
-			lightEnt.GetComponent<Sprite>().RenderLayer = LIGHT_RENDER_LAYER;
+			lightEnt.GetComponent<Sprite>().RenderLayer = lightRenderLayer;
 
 
 			// add an animation to "box4"
@@ -97,7 +97,7 @@ namespace Nez.Samples
 			var entity = CreateEntity("player-block");
 			entity.Position = new Vector2(220, 220);
 			var sprite = new Sprite(blockTexture);
-			sprite.RenderLayer = LIGHT_RENDER_LAYER;
+			sprite.RenderLayer = lightRenderLayer;
 			entity.AddComponent(sprite);
 			entity.AddComponent(new SimpleMover());
 			entity.AddComponent<BoxCollider>();
@@ -110,8 +110,9 @@ namespace Nez.Samples
 
 			// setup some lights and animate the colors
 			var pointLight = new PolyLight(600, Color.Red);
-			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			pointLight.RenderLayer = lightRenderLayer;
 			pointLight.Power = 1f;
+
 			var light = CreateEntity("light");
 			light.Position = new Vector2(700f, 300f);
 			light.AddComponent(pointLight);
@@ -121,14 +122,14 @@ namespace Nez.Samples
 				.SetLoops(LoopType.PingPong, 100)
 				.Start();
 
-			PropertyTweens.FloatPropertyTo(pointLight, "power", 0.1f, 1f)
+			PropertyTweens.FloatPropertyTo(pointLight, "Power", 0.1f, 1f)
 				.SetEaseType(EaseType.Linear)
 				.SetLoops(LoopType.PingPong, 100)
 				.Start();
 
 
 			pointLight = new PolyLight(500, Color.Yellow);
-			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			pointLight.RenderLayer = lightRenderLayer;
 			light = CreateEntity("light-two");
 			light.Position = new Vector2(-50f);
 			light.AddComponent(pointLight);
@@ -140,7 +141,7 @@ namespace Nez.Samples
 
 
 			pointLight = new PolyLight(500, Color.AliceBlue);
-			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			pointLight.RenderLayer = lightRenderLayer;
 			light = CreateEntity("light-three");
 			light.Position = new Vector2(100, 250);
 			light.AddComponent(pointLight);

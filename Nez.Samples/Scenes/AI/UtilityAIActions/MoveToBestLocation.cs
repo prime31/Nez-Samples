@@ -23,7 +23,7 @@ namespace Nez.Samples
 		public override void Execute(UtilityMiner context)
 		{
 			var location = GetBestOption(context, _locations);
-			context.goToLocation(location);
+			context.GoToLocation(location);
 		}
 	}
 }

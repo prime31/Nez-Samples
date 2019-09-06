@@ -12,7 +12,7 @@ namespace Nez.Samples
 		"Old-school 2D blended lighting\nPlay with the controls to change the effect and add lights")]
 	public class SpriteLightsScene : SampleScene
 	{
-		public const int SPRITE_LIGHT_RENDER_LAYER = 50;
+		public const int SpriteLightRenderLayer = 50;
 		SpriteLightPostProcessor _spriteLightPostProcessor;
 		RenderLayerRenderer _lightRenderer;
 
@@ -30,8 +30,8 @@ namespace Nez.Samples
 			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.ShowAll);
 			Screen.SetSize(1280, 720);
 
-			AddRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER, SPRITE_LIGHT_RENDER_LAYER));
-			_lightRenderer = AddRenderer(new RenderLayerRenderer(-1, SPRITE_LIGHT_RENDER_LAYER));
+			AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer, SpriteLightRenderLayer));
+			_lightRenderer = AddRenderer(new RenderLayerRenderer(-1, SpriteLightRenderLayer));
 			_lightRenderer.RenderTexture = new RenderTexture();
 			_lightRenderer.RenderTargetClearColor = new Color(10, 10, 10, 255);
 
@@ -39,38 +39,38 @@ namespace Nez.Samples
 			AddPostProcessor(new ScanlinesPostProcessor(0));
 
 
-			var bg = Content.Load<Texture2D>(Nez.Content.SpriteLights.bg);
+			var bg = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
 			var bgEntity = CreateEntity("bg");
 			bgEntity.Position = Screen.Center;
 			bgEntity.AddComponent(new Sprite(bg));
 			bgEntity.Scale = new Vector2(9.4f);
 
-			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.moon);
+			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var entity = CreateEntity("moon");
 			entity.AddComponent(new Sprite(moonTex));
 			entity.Position = new Vector2(Screen.Width / 4, Screen.Height / 8);
 
 
-			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.spritelight);
-			var pixelLightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.pixelspritelight);
+			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
+			var pixelLightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Pixelspritelight);
 
-			addSpriteLight(lightTex, new Vector2(50, 50), 2);
-			addSpriteLight(lightTex, Screen.Center, 3);
-			addSpriteLight(lightTex, new Vector2(Screen.Width - 100, 150), 2);
-			addSpriteLight(pixelLightTex, Screen.Center + new Vector2(200, 10), 10);
-			addSpriteLight(pixelLightTex, Screen.Center - new Vector2(200, 10), 13);
-			addSpriteLight(pixelLightTex, Screen.Center + new Vector2(10, 200), 8);
+			AddSpriteLight(lightTex, new Vector2(50, 50), 2);
+			AddSpriteLight(lightTex, Screen.Center, 3);
+			AddSpriteLight(lightTex, new Vector2(Screen.Width - 100, 150), 2);
+			AddSpriteLight(pixelLightTex, Screen.Center + new Vector2(200, 10), 10);
+			AddSpriteLight(pixelLightTex, Screen.Center - new Vector2(200, 10), 13);
+			AddSpriteLight(pixelLightTex, Screen.Center + new Vector2(10, 200), 8);
 
-			createUI();
+			CreateUi();
 		}
 
 
-		void createUI()
+		void CreateUi()
 		{
 			// stick a UI in so we can play with the sprite light effect
 			var uiCanvas = CreateEntity("sprite-light-ui").AddComponent(new UICanvas());
 			uiCanvas.IsFullScreen = true;
-			uiCanvas.RenderLayer = SCREEN_SPACE_RENDER_LAYER;
+			uiCanvas.RenderLayer = ScreenSpaceRenderLayer;
 			var skin = Skin.CreateDefaultSkin();
 
 			var table = uiCanvas.Stage.AddElement(new Table());
@@ -111,14 +111,14 @@ namespace Nez.Samples
 				.GetElement<TextButton>();
 			button.OnClicked += butt =>
 			{
-				var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.spritelight);
+				var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
 				var position = new Vector2(Random.Range(0, Screen.Width), Random.Range(0, Screen.Height));
-				addSpriteLight(lightTex, position, Random.Range(2f, 3f));
+				AddSpriteLight(lightTex, position, Random.Range(2f, 3f));
 			};
 		}
 
 
-		void addSpriteLight(Texture2D texture, Vector2 position, float scale)
+		void AddSpriteLight(Texture2D texture, Vector2 position, float scale)
 		{
 			// random target to tween towards that is on screen
 			var target = new Vector2(Random.Range(50, SceneRenderTargetSize.X - 100),
@@ -128,7 +128,7 @@ namespace Nez.Samples
 			var sprite = entity.AddComponent(new Sprite(texture));
 			entity.Position = position;
 			entity.Scale = new Vector2(scale);
-			sprite.RenderLayer = SPRITE_LIGHT_RENDER_LAYER;
+			sprite.RenderLayer = SpriteLightRenderLayer;
 
 			if (Random.Chance(50))
 			{
@@ -142,30 +142,30 @@ namespace Nez.Samples
 			else
 			{
 				entity.TweenPositionTo(target, 2)
-					.SetCompletionHandler(lightTweenCompleted)
+					.SetCompletionHandler(LightTweenCompleted)
 					.SetRecycleTween(false)
 					.Start();
 			}
 		}
 
 
-		void lightTweenCompleted(ITween<Vector2> tween)
+		void LightTweenCompleted(ITween<Vector2> tween)
 		{
 			// get a random point on screen and a random delay for the tweens
 			var target = new Vector2(Random.Range(50, SceneRenderTargetSize.X - 100),
 				Random.Range(50, SceneRenderTargetSize.Y - 100));
 			var delay = Nez.Random.Range(0f, 1f);
 
-			var Transform = tween.GetTargetObject() as Transform;
-			tween.PrepareForReuse(Transform.Position, target, 2f)
-				.SetCompletionHandler(lightTweenCompleted)
+			var transform = tween.GetTargetObject() as Transform;
+			tween.PrepareForReuse(transform.Position, target, 2f)
+				.SetCompletionHandler(LightTweenCompleted)
 				.SetDelay(delay)
 				.Start();
 
 			// every so often add a scale tween
 			if (Random.Chance(60))
 			{
-				Transform.TweenLocalScaleTo(Transform.LocalScale.X * 2f, 1f)
+				transform.TweenLocalScaleTo(transform.LocalScale.X * 2f, 1f)
 					.SetLoops(LoopType.PingPong)
 					.SetEaseType(EaseType.CubicIn)
 					.SetDelay(delay)
@@ -175,8 +175,8 @@ namespace Nez.Samples
 			// every so often change our color
 			if (Random.Chance(80))
 			{
-				var sprite = Transform.Entity.GetComponent<Sprite>();
-				PropertyTweens.ColorPropertyTo(sprite, "color", Random.NextColor(), 2f)
+				var sprite = transform.Entity.GetComponent<Sprite>();
+				PropertyTweens.ColorPropertyTo(sprite, "Color", Random.NextColor(), 2f)
 					.SetDelay(delay)
 					.Start();
 			}

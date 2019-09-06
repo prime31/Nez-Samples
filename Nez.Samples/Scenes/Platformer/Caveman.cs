@@ -11,9 +11,9 @@ namespace Nez.Samples
 {
 	public class Caveman : Component, ITriggerListener, IUpdatable
 	{
-		public float moveSpeed = 150;
-		public float gravity = 1000;
-		public float jumpHeight = 16 * 5;
+		public float MoveSpeed = 150;
+		public float Gravity = 1000;
+		public float JumpHeight = 16 * 5;
 
 		enum Animations
 		{
@@ -39,7 +39,7 @@ namespace Nez.Samples
 
 		public override void OnAddedToEntity()
 		{
-			var texture = Entity.Scene.Content.Load<Texture2D>(Content.Platformer.caveman);
+			var texture = Entity.Scene.Content.Load<Texture2D>(Content.Platformer.Caveman);
 			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 32, 32);
 
 			_boxCollider = Entity.GetComponent<BoxCollider>();
@@ -108,7 +108,7 @@ namespace Nez.Samples
 				subtextures[72 + 3]
 			}));
 
-			setupInput();
+			SetupInput();
 		}
 
 
@@ -120,7 +120,7 @@ namespace Nez.Samples
 		}
 
 
-		void setupInput()
+		void SetupInput()
 		{
 			// setup input for jumping. we will allow z on the keyboard or a on the gamepad
 			_jumpInput = new VirtualButton();
@@ -147,14 +147,14 @@ namespace Nez.Samples
 				if (_collisionState.Below)
 					animation = Animations.Run;
 				_animation.FlipX = true;
-				_velocity.X = -moveSpeed;
+				_velocity.X = -MoveSpeed;
 			}
 			else if (moveDir.X > 0)
 			{
 				if (_collisionState.Below)
 					animation = Animations.Run;
 				_animation.FlipX = false;
-				_velocity.X = moveSpeed;
+				_velocity.X = MoveSpeed;
 			}
 			else
 			{
@@ -166,14 +166,14 @@ namespace Nez.Samples
 			if (_collisionState.Below && _jumpInput.IsPressed)
 			{
 				animation = Animations.Jumping;
-				_velocity.Y = -Mathf.Sqrt(2f * jumpHeight * gravity);
+				_velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
 			}
 
 			if (!_collisionState.Below && _velocity.Y > 0)
 				animation = Animations.Falling;
 
 			// apply gravity
-			_velocity.Y += gravity * Time.DeltaTime;
+			_velocity.Y += Gravity * Time.DeltaTime;
 
 			// move
 			_mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collisionState);

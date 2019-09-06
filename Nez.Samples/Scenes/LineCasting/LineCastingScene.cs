@@ -17,7 +17,7 @@ namespace Nez.Samples
 			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.None);
 			Screen.SetSize(1280, 720);
 
-			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.moon);
+			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var playerEntity = CreateEntity("player", new Vector2(Screen.Width / 2, Screen.Height / 2));
 			playerEntity.AddComponent(new Sprite(moonTex));
 			var coll = new BoxCollider(moonTex.Width, moonTex.Height);

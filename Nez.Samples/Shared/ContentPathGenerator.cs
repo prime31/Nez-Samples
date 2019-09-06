@@ -4,25 +4,25 @@
 	{
 		public static class AnimatedTiles
 		{
-			public const string desertpalacelamp = @"AnimatedTiles/desert-palace-lamp";
-			public const string desertpalacetiles = @"AnimatedTiles/desert-palace-tiles";
-			public const string desertpalace = @"AnimatedTiles/desert-palace";
+			public const string Desertpalacelamp = @"AnimatedTiles/desert-palace-lamp";
+			public const string Desertpalacetiles = @"AnimatedTiles/desert-palace-tiles";
+			public const string Desertpalace = @"AnimatedTiles/desert-palace";
 		}
 
 		public static class DeferredLighting
 		{
-			public const string bg = @"DeferredLighting/bg";
-			public const string bgNorm = @"DeferredLighting/bgNorm";
-			public const string moon = @"DeferredLighting/moon";
-			public const string moonNorm = @"DeferredLighting/moonNorm";
-			public const string orange = @"DeferredLighting/orange";
-			public const string orangeNorm = @"DeferredLighting/orangeNorm";
+			public const string Bg = @"DeferredLighting/bg";
+			public const string BgNorm = @"DeferredLighting/bgNorm";
+			public const string Moon = @"DeferredLighting/moon";
+			public const string MoonNorm = @"DeferredLighting/moonNorm";
+			public const string Orange = @"DeferredLighting/orange";
+			public const string OrangeNorm = @"DeferredLighting/orangeNorm";
 		}
 
 		public static class DestructableMap
 		{
-			public const string desertpalacetiles2x = @"DestructableMap/desert-palace-tiles2x";
-			public const string destructablemap = @"DestructableMap/destructable-map";
+			public const string Desertpalacetiles2X = @"DestructableMap/desert-palace-tiles2x";
+			public const string Destructablemap = @"DestructableMap/destructable-map";
 		}
 
 		public static class NinjaAdventure
@@ -39,67 +39,67 @@
 
 			public static class Map
 			{
-				public const string tilemap = @"NinjaAdventure/map/tilemap";
-				public const string tileset = @"NinjaAdventure/map/tileset";
+				public const string Tilemap = @"NinjaAdventure/map/tilemap";
+				public const string Tileset = @"NinjaAdventure/map/tileset";
 			}
 
-			public const string plume = @"NinjaAdventure/plume";
+			public const string Plume = @"NinjaAdventure/plume";
 		}
 
 		public static class ParticleDesigner
 		{
-			public const string atomicBubble = @"ParticleDesigner/Atomic Bubble";
-			public const string blueFlame = @"ParticleDesigner/Blue Flame";
-			public const string blueGalaxy = @"ParticleDesigner/Blue Galaxy";
-			public const string comet = @"ParticleDesigner/Comet";
-			public const string crazyBlue = @"ParticleDesigner/Crazy Blue";
-			public const string electrons = @"ParticleDesigner/Electrons";
-			public const string fire = @"ParticleDesigner/Fire";
-			public const string foam = @"ParticleDesigner/Foam";
-			public const string girosGratis = @"ParticleDesigner/Giros Gratis";
-			public const string intoTheBlue = @"ParticleDesigner/Into The Blue";
-			public const string jasonChoi_Flash = @"ParticleDesigner/JasonChoi_Flash";
-			public const string jasonChoi_Swirl01 = @"ParticleDesigner/JasonChoi_Swirl01";
-			public const string jasonChoi_risingup = @"ParticleDesigner/JasonChoi_rising up";
-			public const string leaves = @"ParticleDesigner/Leaves";
-			public const string meksBloodSpill = @"ParticleDesigner/Meks Blood Spill";
-			public const string plasmaGlow = @"ParticleDesigner/Plasma Glow";
-			public const string realPopcorn = @"ParticleDesigner/Real Popcorn";
-			public const string shootingFireball = @"ParticleDesigner/Shooting Fireball";
-			public const string snow = @"ParticleDesigner/Snow";
-			public const string theSun = @"ParticleDesigner/The Sun";
-			public const string touchUp = @"ParticleDesigner/Touch Up";
-			public const string trippy = @"ParticleDesigner/Trippy";
-			public const string winnerStars = @"ParticleDesigner/Winner Stars";
-			public const string huo1 = @"ParticleDesigner/huo1";
-			public const string wu1 = @"ParticleDesigner/wu1";
+			public const string AtomicBubble = @"ParticleDesigner/Atomic Bubble";
+			public const string BlueFlame = @"ParticleDesigner/Blue Flame";
+			public const string BlueGalaxy = @"ParticleDesigner/Blue Galaxy";
+			public const string Comet = @"ParticleDesigner/Comet";
+			public const string CrazyBlue = @"ParticleDesigner/Crazy Blue";
+			public const string Electrons = @"ParticleDesigner/Electrons";
+			public const string Fire = @"ParticleDesigner/Fire";
+			public const string Foam = @"ParticleDesigner/Foam";
+			public const string GirosGratis = @"ParticleDesigner/Giros Gratis";
+			public const string IntoTheBlue = @"ParticleDesigner/Into The Blue";
+			public const string JasonChoiFlash = @"ParticleDesigner/JasonChoi_Flash";
+			public const string JasonChoiSwirl01 = @"ParticleDesigner/JasonChoi_Swirl01";
+			public const string JasonChoiRisingup = @"ParticleDesigner/JasonChoi_rising up";
+			public const string Leaves = @"ParticleDesigner/Leaves";
+			public const string MeksBloodSpill = @"ParticleDesigner/Meks Blood Spill";
+			public const string PlasmaGlow = @"ParticleDesigner/Plasma Glow";
+			public const string RealPopcorn = @"ParticleDesigner/Real Popcorn";
+			public const string ShootingFireball = @"ParticleDesigner/Shooting Fireball";
+			public const string Snow = @"ParticleDesigner/Snow";
+			public const string TheSun = @"ParticleDesigner/The Sun";
+			public const string TouchUp = @"ParticleDesigner/Touch Up";
+			public const string Trippy = @"ParticleDesigner/Trippy";
+			public const string WinnerStars = @"ParticleDesigner/Winner Stars";
+			public const string Huo1 = @"ParticleDesigner/huo1";
+			public const string Wu1 = @"ParticleDesigner/wu1";
 		}
 
 		public static class Platformer
 		{
-			public const string caveman = @"Platformer/caveman";
-			public const string tiledMap = @"Platformer/tiledMap";
-			public const string tileset = @"Platformer/tileset";
+			public const string Caveman = @"Platformer/caveman";
+			public const string TiledMap = @"Platformer/tiledMap";
+			public const string Tileset = @"Platformer/tileset";
 		}
 
 		public static class Shadows
 		{
-			public const string block = @"Shadows/Block";
-			public const string blockGlow = @"Shadows/BlockGlow";
-			public const string spritelight = @"Shadows/sprite-light";
+			public const string Block = @"Shadows/Block";
+			public const string BlockGlow = @"Shadows/BlockGlow";
+			public const string Spritelight = @"Shadows/sprite-light";
 		}
 
 		public static class Shared
 		{
-			public const string moon = @"Shared/moon";
+			public const string Moon = @"Shared/moon";
 		}
 
 		public static class SpriteLights
 		{
-			public const string bg = @"SpriteLights/bg";
-			public const string pixelspritelight = @"SpriteLights/pixel-sprite-light";
-			public const string spritelight = @"SpriteLights/sprite-light";
-			public const string tubelight = @"SpriteLights/tube-light";
+			public const string Bg = @"SpriteLights/bg";
+			public const string Pixelspritelight = @"SpriteLights/pixel-sprite-light";
+			public const string Spritelight = @"SpriteLights/sprite-light";
+			public const string Tubelight = @"SpriteLights/tube-light";
 		}
 	}
 }

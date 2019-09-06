@@ -13,15 +13,9 @@ namespace Nez.Samples
 	public class Pathfinder : RenderableComponent, IUpdatable
 	{
 		// make sure we arent culled
-		public override float Width
-		{
-			get { return 1000; }
-		}
+		public override float Width => 1000;
 
-		public override float Height
-		{
-			get { return 1000; }
-		}
+		public override float Height => 1000;
 
 		UnweightedGridGraph _gridGraph;
 		List<Point> _breadthSearchPath;

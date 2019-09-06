@@ -15,56 +15,56 @@ namespace Nez.Samples
 	/// </summary>
 	public abstract class SampleScene : Scene, IFinalRenderDelegate
 	{
-		public const int SCREEN_SPACE_RENDER_LAYER = 999;
-		public UICanvas canvas;
+		public const int ScreenSpaceRenderLayer = 999;
+		public UICanvas Canvas;
 
 		Table _table;
 		List<Button> _sceneButtons = new List<Button>();
 		ScreenSpaceRenderer _screenSpaceRenderer;
 
 
-		public SampleScene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUI = false)
+		public SampleScene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
 		{
 			// setup one renderer in screen space for the UI and then (optionally) another renderer to render everything else
-			if (needsFullRenderSizeForUI)
+			if (needsFullRenderSizeForUi)
 			{
 				// dont actually add the renderer since we will manually call it later
-				_screenSpaceRenderer = new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER);
+				_screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
 				_screenSpaceRenderer.ShouldDebugRender = false;
 				FinalRenderDelegate = this;
 			}
 			else
 			{
-				AddRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
+				AddRenderer(new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer));
 			}
 
 			if (addExcludeRenderer)
-				AddRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
+				AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
 			// create our canvas and put it on the screen space render layer
-			canvas = CreateEntity("ui").AddComponent(new UICanvas());
-			canvas.IsFullScreen = true;
-			canvas.RenderLayer = SCREEN_SPACE_RENDER_LAYER;
-			setupSceneSelector();
+			Canvas = CreateEntity("ui").AddComponent(new UICanvas());
+			Canvas.IsFullScreen = true;
+			Canvas.RenderLayer = ScreenSpaceRenderLayer;
+			SetupSceneSelector();
 		}
 
 
-		IEnumerable<Type> getTypesWithSampleSceneAttribute()
+		IEnumerable<Type> GetTypesWithSampleSceneAttribute()
 		{
 			var assembly = typeof(SampleScene).Assembly;
 			var scenes = assembly.GetTypes()
 				.Where(t => t.GetCustomAttributes(typeof(SampleSceneAttribute), true).Length > 0)
 				.OrderBy(t =>
-					((SampleSceneAttribute) t.GetCustomAttributes(typeof(SampleSceneAttribute), true)[0]).order);
+					((SampleSceneAttribute) t.GetCustomAttributes(typeof(SampleSceneAttribute), true)[0]).Order);
 
 			foreach (var s in scenes)
 				yield return s;
 		}
 
 
-		void setupSceneSelector()
+		void SetupSceneSelector()
 		{
-			_table = canvas.Stage.AddElement(new Table());
+			_table = Canvas.Stage.AddElement(new Table());
 			_table.SetFillParent(true).Right().Top();
 
 			var topButtonStyle = new TextButtonStyle(new PrimitiveDrawable(Color.Black, 10f),
@@ -73,7 +73,7 @@ namespace Nez.Samples
 				DownFontColor = Color.Black
 			};
 			_table.Add(new TextButton("Toggle Scene List", topButtonStyle)).SetFillX().SetMinHeight(30)
-				.GetElement<Button>().OnClicked += onToggleSceneListClicked;
+				.GetElement<Button>().OnClicked += OnToggleSceneListClicked;
 
 			_table.Row().SetPadTop(10);
 			var checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
@@ -92,14 +92,14 @@ namespace Nez.Samples
 			};
 
 			// find every Scene with the SampleSceneAttribute and create a button for each one
-			foreach (var type in getTypesWithSampleSceneAttribute())
+			foreach (var type in GetTypesWithSampleSceneAttribute())
 			{
 				foreach (var attr in type.GetCustomAttributes(true))
 				{
 					if (attr.GetType() == typeof(SampleSceneAttribute))
 					{
 						var sampleAttr = attr as SampleSceneAttribute;
-						var button = _table.Add(new TextButton(sampleAttr.buttonName, buttonStyle)).SetFillX()
+						var button = _table.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
 							.SetMinHeight(30).GetElement<TextButton>();
 						_sceneButtons.Add(button);
 						button.OnClicked += butt =>
@@ -113,37 +113,38 @@ namespace Nez.Samples
 						_table.Row().SetPadTop(10);
 
 						// optionally add instruction text for the current scene
-						if (sampleAttr.instructionText != null && type == GetType())
-							addInstructionText(sampleAttr.instructionText);
+						if (sampleAttr.InstructionText != null && type == GetType())
+							AddInstructionText(sampleAttr.InstructionText);
 					}
 				}
 			}
 		}
 
 
-		void addInstructionText(string text)
+		void AddInstructionText(string text)
 		{
 			var instructionsEntity = CreateEntity("instructions");
 			instructionsEntity
 				.AddComponent(new TextField(Graphics.Instance.BitmapFont, text, new Vector2(10, 10), Color.White))
-				.SetRenderLayer(SCREEN_SPACE_RENDER_LAYER);
+				.SetRenderLayer(ScreenSpaceRenderLayer);
 		}
 
 
-		void onToggleSceneListClicked(Button butt)
+		void OnToggleSceneListClicked(Button butt)
 		{
 			foreach (var button in _sceneButtons)
 				button.SetIsVisible(!button.IsVisible());
 		}
 
 
-		#region IFinalRenderDelegate
+        #region IFinalRenderDelegate
 
-		public Scene Scene { get; set; }
+        private Scene _scene;
 
 		public void OnAddedToScene(Scene scene)
 		{
-		}
+            _scene = scene;
+        }
 
 
 		public void OnSceneBackBufferSizeChanged(int newWidth, int newHeight)
@@ -162,7 +163,7 @@ namespace Nez.Samples
 			Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
 			Graphics.Instance.Batcher.End();
 
-			_screenSpaceRenderer.Render(Scene);
+			_screenSpaceRenderer.Render(_scene);
 		}
 
 		#endregion
@@ -172,16 +173,16 @@ namespace Nez.Samples
 	[AttributeUsage(AttributeTargets.Class)]
 	public class SampleSceneAttribute : Attribute
 	{
-		public string buttonName;
-		public int order;
-		public string instructionText;
+		public string ButtonName;
+		public int Order;
+		public string InstructionText;
 
 
 		public SampleSceneAttribute(string buttonName, int order, string instructionText = null)
 		{
-			this.buttonName = buttonName;
-			this.order = order;
-			this.instructionText = instructionText;
+			this.ButtonName = buttonName;
+			this.Order = order;
+			this.InstructionText = instructionText;
 		}
 	}
 }

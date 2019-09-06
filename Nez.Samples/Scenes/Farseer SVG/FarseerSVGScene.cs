@@ -10,7 +10,7 @@ namespace Nez.Samples
 {
 	[SampleScene("SVG to Farseer Physics", 85,
 		"This demo shows how you can turn an SVG image into Farseer physics objects\nPress Space to start the physics simulation\nClick and drag to interact with physics shapes")]
-	public class FarseerSVGScene : SampleScene
+	public class FarseerSvgScene : SampleScene
 	{
 		public override void Initialize()
 		{
@@ -37,15 +37,15 @@ namespace Nez.Samples
 
 			// rectangles
 			if (svgGroup.Rectangles != null)
-				addRectangles(svgGroup);
+				AddRectangles(svgGroup);
 
 			// circles
 			if (svgGroup.Circles != null)
-				addCircles(svgGroup);
+				AddCircles(svgGroup);
 
 			// lines
 			if (svgGroup.Lines != null)
-				addLines(svgGroup);
+				AddLines(svgGroup);
 
 			// paths: TODO: why is System.Drawing.Drawing2D.GraphicsPath never returning on macOS?!?!
 			//if( svgGroup.paths != null )
@@ -53,11 +53,11 @@ namespace Nez.Samples
 
 			// ellipses
 			if (svgGroup.Ellipses != null)
-				addEllipses(svgGroup);
+				AddEllipses(svgGroup);
 
 			// polygons
 			if (svgGroup.Polygons != null)
-				addPolygons(svgGroup);
+				AddPolygons(svgGroup);
 		}
 
 
@@ -65,7 +65,7 @@ namespace Nez.Samples
 		/// adds dynamic rectangle physics objects for each rect in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addRectangles(SvgGroup group)
+		void AddRectangles(SvgGroup group)
 		{
 			foreach (var rect in group.Rectangles)
 			{
@@ -83,7 +83,7 @@ namespace Nez.Samples
 		/// adds dynamic circle physics objects for each circle in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addCircles(SvgGroup group)
+		void AddCircles(SvgGroup group)
 		{
 			foreach (var circle in group.Circles)
 			{
@@ -100,7 +100,7 @@ namespace Nez.Samples
 		/// adds static edge physics objects for each line in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addLines(SvgGroup group)
+		void AddLines(SvgGroup group)
 		{
 			foreach (var line in group.Lines)
 			{
@@ -118,7 +118,7 @@ namespace Nez.Samples
 		/// adds static chain physics objects for each path in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addPaths(SvgGroup group)
+		void AddPaths(SvgGroup group)
 		{
 			var svgPathBuilder = new SvgPathBuilder();
 
@@ -138,7 +138,7 @@ namespace Nez.Samples
 		/// adds dynamic ellipse physics objects for each ellipse in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addEllipses(SvgGroup group)
+		void AddEllipses(SvgGroup group)
 		{
 			foreach (var ellipse in group.Ellipses)
 			{
@@ -155,7 +155,7 @@ namespace Nez.Samples
 		/// adds dynamic polygon physics objects for each polygon in the SVG
 		/// </summary>
 		/// <param name="group">Group.</param>
-		void addPolygons(SvgGroup group)
+		void AddPolygons(SvgGroup group)
 		{
 			foreach (var polygon in group.Polygons)
 			{

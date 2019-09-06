@@ -17,15 +17,15 @@ namespace Nez.Samples
 			Saloon
 		}
 
-		public const int MAX_FATIGUE = 10;
-		public const int MAX_GOLD = 8;
-		public const int MAX_THIRST = 5;
+		public const int MaxFatigue = 10;
+		public const int MaxGold = 8;
+		public const int MaxThirst = 5;
 
-		public int fatigue;
-		public int thirst;
-		public int gold;
-		public int goldInBank;
+		public int Fatigue;
+		public int Thirst;
+		public int Gold;
+		public int GoldInBank;
 
-		public Location currentLocation = Location.Home;
+		public Location CurrentLocation = Location.Home;
 	}
 }

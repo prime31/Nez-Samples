@@ -25,14 +25,14 @@ namespace Nez.Samples
 
 			// load a TiledMap and move it back so is drawn before other entities
 			var tiledEntity = CreateEntity("tiled-map");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.DestructableMap.destructablemap);
+			var tiledmap = Content.Load<TiledMap>(Nez.Content.DestructableMap.Destructablemap);
 			tiledEntity.AddComponent(new TiledMapComponent(tiledmap, "main"));
 
 			var objects = tiledmap.GetObjectGroup("objects");
 			var spawn = objects.ObjectWithName("spawn");
 			var ball = objects.ObjectWithName("ball");
 
-			var atlas = Content.Load<Texture2D>(Nez.Content.DestructableMap.desertpalacetiles2x);
+			var atlas = Content.Load<Texture2D>(Nez.Content.DestructableMap.Desertpalacetiles2X);
 			var atlasParts = Subtexture.SubtexturesFromAtlas(atlas, 16, 16);
 			var playerSubtexture = atlasParts[96];
 

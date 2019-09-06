@@ -10,7 +10,7 @@ namespace Nez.Samples
 	/// </summary>
 	public class UtilityMiner : Component, IUpdatable
 	{
-		public MinerState minerState = new MinerState();
+		public MinerState MinerState = new MinerState();
 
 		UtilityAI<UtilityMiner> _ai;
 		MinerState.Location _destinationLocation;
@@ -28,9 +28,9 @@ namespace Nez.Samples
 			//  - we have to have some fatigue
 			var fatigueConsideration = new AllOrNothingConsideration<UtilityMiner>(1)
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.currentLocation == MinerState.Location.Home ? 1 : 0))
-				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.minerState.fatigue > 0 ? 1 : 0));
-			fatigueConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.sleep());
+					c.MinerState.CurrentLocation == MinerState.Location.Home ? 1 : 0))
+				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.MinerState.Fatigue > 0 ? 1 : 0));
+			fatigueConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.Sleep());
 			reasoner.AddConsideration(fatigueConsideration);
 
 			// thirst is next
@@ -39,9 +39,9 @@ namespace Nez.Samples
 			//  - we have to be thirsty
 			var thirstConsideration = new AllOrNothingConsideration<UtilityMiner>(1)
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.currentLocation == MinerState.Location.Saloon ? 1 : 0))
-				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.minerState.thirst > 0 ? 1 : 0));
-			thirstConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.drink());
+					c.MinerState.CurrentLocation == MinerState.Location.Saloon ? 1 : 0))
+				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.MinerState.Thirst > 0 ? 1 : 0));
+			thirstConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.Drink());
 			reasoner.AddConsideration(thirstConsideration);
 
 			// depositing gold is next
@@ -50,9 +50,9 @@ namespace Nez.Samples
 			//  - we have to have gold to deposit
 			var goldConsideration = new AllOrNothingConsideration<UtilityMiner>(1)
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.currentLocation == MinerState.Location.Bank ? 1 : 0))
-				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.minerState.gold > 0 ? 1 : 0));
-			goldConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.depositGold());
+					c.MinerState.CurrentLocation == MinerState.Location.Bank ? 1 : 0))
+				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.MinerState.Gold > 0 ? 1 : 0));
+			goldConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.DepositGold());
 			reasoner.AddConsideration(goldConsideration);
 
 			// decide where to go. this will override mining and send us elsewhere if a scorer scores
@@ -64,12 +64,12 @@ namespace Nez.Samples
 			// Action has a scorer to score all the locations. It then moves to the location that scored highest.
 			var moveConsideration = new AllOrNothingConsideration<UtilityMiner>(0)
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.fatigue >= MinerState.MAX_FATIGUE ? 1 : 0))
+					c.MinerState.Fatigue >= MinerState.MaxFatigue ? 1 : 0))
 				.AddAppraisal(
-					new ActionAppraisal<UtilityMiner>(c => c.minerState.thirst >= MinerState.MAX_THIRST ? 1 : 0))
-				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.minerState.gold >= MinerState.MAX_GOLD ? 1 : 0))
+					new ActionAppraisal<UtilityMiner>(c => c.MinerState.Thirst >= MinerState.MaxThirst ? 1 : 0))
+				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.MinerState.Gold >= MinerState.MaxGold ? 1 : 0))
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.currentLocation != MinerState.Location.Mine ? 1 : 0));
+					c.MinerState.CurrentLocation != MinerState.Location.Mine ? 1 : 0));
 			var moveAction = new MoveToBestLocation();
 			moveAction.AddScorer(new ChooseBestLocation());
 			moveConsideration.Action = moveAction;
@@ -81,14 +81,14 @@ namespace Nez.Samples
 			//  - we have to not be at our max gold
 			var mineConsideration = new AllOrNothingConsideration<UtilityMiner>(1)
 				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c =>
-					c.minerState.currentLocation == MinerState.Location.Mine ? 1 : 0))
-				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.minerState.gold >= MinerState.MAX_GOLD ? 0 : 1));
-			mineConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.digForGold());
+					c.MinerState.CurrentLocation == MinerState.Location.Mine ? 1 : 0))
+				.AddAppraisal(new ActionAppraisal<UtilityMiner>(c => c.MinerState.Gold >= MinerState.MaxGold ? 0 : 1));
+			mineConsideration.Action = new ActionExecutor<UtilityMiner>(c => c.DigForGold());
 			reasoner.AddConsideration(mineConsideration);
 
 			// default, fall-through action is to head to the mine
 			reasoner.DefaultConsideration.Action =
-				new ActionExecutor<UtilityMiner>(c => c.goToLocation(MinerState.Location.Mine));
+				new ActionExecutor<UtilityMiner>(c => c.GoToLocation(MinerState.Location.Mine));
 
 			_ai = new UtilityAI<UtilityMiner>(this, reasoner);
 		}
@@ -100,57 +100,57 @@ namespace Nez.Samples
 		}
 
 
-		public void sleep()
+		public void Sleep()
 		{
-			Debug.Log("getting some sleep. current fatigue {0}", minerState.fatigue);
-			minerState.fatigue--;
+			Debug.Log("getting some sleep. current fatigue {0}", MinerState.Fatigue);
+			MinerState.Fatigue--;
 		}
 
 
-		public void drink()
+		public void Drink()
 		{
-			Debug.Log("getting my drink on. Thirst level {0}", minerState.thirst);
-			minerState.thirst--;
+			Debug.Log("getting my drink on. Thirst level {0}", MinerState.Thirst);
+			MinerState.Thirst--;
 		}
 
 
-		public void depositGold()
+		public void DepositGold()
 		{
-			minerState.goldInBank += minerState.gold;
-			minerState.gold = 0;
+			MinerState.GoldInBank += MinerState.Gold;
+			MinerState.Gold = 0;
 
-			Debug.Log("depositing gold at the bank. current wealth {0}", minerState.goldInBank);
+			Debug.Log("depositing gold at the bank. current wealth {0}", MinerState.GoldInBank);
 		}
 
 
-		public void digForGold()
+		public void DigForGold()
 		{
-			Debug.Log("digging for gold. nuggets found {0}", minerState.gold);
-			minerState.gold++;
-			minerState.fatigue++;
-			minerState.thirst++;
+			Debug.Log("digging for gold. nuggets found {0}", MinerState.Gold);
+			MinerState.Gold++;
+			MinerState.Fatigue++;
+			MinerState.Thirst++;
 		}
 
 
-		public void goToLocation(MinerState.Location location)
+		public void GoToLocation(MinerState.Location location)
 		{
-			if (location == minerState.currentLocation)
+			if (location == MinerState.CurrentLocation)
 				return;
 
-			if (minerState.currentLocation == MinerState.Location.InTransit && location == _destinationLocation)
+			if (MinerState.CurrentLocation == MinerState.Location.InTransit && location == _destinationLocation)
 			{
 				Debug.Log("heading to {0}. its {1} miles away", location, _distanceToNextLocation);
 				_distanceToNextLocation--;
 				if (_distanceToNextLocation == 0)
 				{
-					minerState.fatigue++;
-					minerState.currentLocation = _destinationLocation;
+					MinerState.Fatigue++;
+					MinerState.CurrentLocation = _destinationLocation;
 					_distanceToNextLocation = Nez.Random.Range(2, 8);
 				}
 			}
 			else
 			{
-				minerState.currentLocation = MinerState.Location.InTransit;
+				MinerState.CurrentLocation = MinerState.Location.InTransit;
 				_destinationLocation = location;
 				_distanceToNextLocation = Nez.Random.Range(2, 8);
 			}

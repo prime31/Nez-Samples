@@ -23,51 +23,51 @@ namespace Nez.Samples
 		/// </summary>
 		/// <param name="emitterConfig">Emitter config.</param>
 		/// <param name="filename">Output filename.</param>
-		public void export(ParticleEmitterConfig emitterConfig, string filename)
+		public void Export(ParticleEmitterConfig emitterConfig, string filename)
 		{
 			// We don't use XmlSerializer here because the output format needed by PEX is bizzare.
 			// I first tried to implement it using Serializer overrides, but that became much larger than
 			// constructing by hand.
 			XmlDocument doc = new XmlDocument();
 			XmlElement parent = doc.CreateElement("particleEmitterConfig");
-			addXmlChild(doc, parent, "yCoordFlipped", "1");
-			addXmlChild(doc, parent, "sourcePosition", emitterConfig.SourcePosition);
-			addXmlChild(doc, parent, "sourcePositionVariance", emitterConfig.SourcePositionVariance);
-			addXmlChild(doc, parent, "speed", emitterConfig.Speed);
-			addXmlChild(doc, parent, "speedVariance", emitterConfig.SpeedVariance);
-			addXmlChild(doc, parent, "particleLifeSpan", emitterConfig.ParticleLifespan, "F4");
-			addXmlChild(doc, parent, "particleLifespanVariance", emitterConfig.ParticleLifespanVariance, "F4");
-			addXmlChild(doc, parent, "angle", emitterConfig.Angle, "F0");
-			addXmlChild(doc, parent, "angleVariance", emitterConfig.AngleVariance, "F0");
-			addXmlChild(doc, parent, "gravity", emitterConfig.Gravity);
-			addXmlChild(doc, parent, "radialAcceleration", emitterConfig.RadialAcceleration);
-			addXmlChild(doc, parent, "radialAccelVariance", emitterConfig.RadialAccelVariance);
-			addXmlChild(doc, parent, "tangentialAcceleration", emitterConfig.TangentialAcceleration);
-			addXmlChild(doc, parent, "tangentialAccelVariance", emitterConfig.TangentialAccelVariance);
-			addXmlChild(doc, parent, "startColor", emitterConfig.StartColor);
-			addXmlChild(doc, parent, "startColorVariance", emitterConfig.StartColorVariance);
-			addXmlChild(doc, parent, "finishColor", emitterConfig.FinishColor);
-			addXmlChild(doc, parent, "finishColorVariance", emitterConfig.FinishColorVariance);
-			addXmlChild(doc, parent, "maxParticles", emitterConfig.MaxParticles, "F0");
-			addXmlChild(doc, parent, "startParticleSize", emitterConfig.StartParticleSize);
-			addXmlChild(doc, parent, "startParticleSizeVariance", emitterConfig.StartParticleSizeVariance);
-			addXmlChild(doc, parent, "finishParticleSize", emitterConfig.FinishParticleSize);
-			addXmlChild(doc, parent, "finishParticleSizeVariance", emitterConfig.FinishParticleSizeVariance);
-			addXmlChild(doc, parent, "duration", emitterConfig.Duration);
-			addXmlChild(doc, parent, "emitterType", emitterConfig.EmitterType);
-			addXmlChild(doc, parent, "maxRadius", emitterConfig.MaxRadius);
-			addXmlChild(doc, parent, "maxRadiusVariance", emitterConfig.MaxRadiusVariance);
-			addXmlChild(doc, parent, "minRadius", emitterConfig.MinRadius);
-			addXmlChild(doc, parent, "minRadiusVariance", emitterConfig.MinRadiusVariance);
-			addXmlChild(doc, parent, "rotatePerSecond", emitterConfig.RotatePerSecond);
-			addXmlChild(doc, parent, "rotatePerSecondVariance", emitterConfig.RotatePerSecondVariance);
-			addXmlChild(doc, parent, "blendFuncSource", emitterConfig.BlendFuncSource);
-			addXmlChild(doc, parent, "blendFuncDestination", emitterConfig.BlendFuncDestination);
-			addXmlChild(doc, parent, "rotationStart", emitterConfig.RotationStart);
-			addXmlChild(doc, parent, "rotationStartVariance", emitterConfig.RotationStartVariance);
-			addXmlChild(doc, parent, "rotationEnd", emitterConfig.RotationEnd);
-			addXmlChild(doc, parent, "rotationEndVariance", emitterConfig.RotationEndVariance);
-			addXmlChild(doc, parent, "texture", emitterConfig.Subtexture);
+			AddXmlChild(doc, parent, "yCoordFlipped", "1");
+			AddXmlChild(doc, parent, "sourcePosition", emitterConfig.SourcePosition);
+			AddXmlChild(doc, parent, "sourcePositionVariance", emitterConfig.SourcePositionVariance);
+			AddXmlChild(doc, parent, "speed", emitterConfig.Speed);
+			AddXmlChild(doc, parent, "speedVariance", emitterConfig.SpeedVariance);
+			AddXmlChild(doc, parent, "particleLifeSpan", emitterConfig.ParticleLifespan, "F4");
+			AddXmlChild(doc, parent, "particleLifespanVariance", emitterConfig.ParticleLifespanVariance, "F4");
+			AddXmlChild(doc, parent, "angle", emitterConfig.Angle, "F0");
+			AddXmlChild(doc, parent, "angleVariance", emitterConfig.AngleVariance, "F0");
+			AddXmlChild(doc, parent, "gravity", emitterConfig.Gravity);
+			AddXmlChild(doc, parent, "radialAcceleration", emitterConfig.RadialAcceleration);
+			AddXmlChild(doc, parent, "radialAccelVariance", emitterConfig.RadialAccelVariance);
+			AddXmlChild(doc, parent, "tangentialAcceleration", emitterConfig.TangentialAcceleration);
+			AddXmlChild(doc, parent, "tangentialAccelVariance", emitterConfig.TangentialAccelVariance);
+			AddXmlChild(doc, parent, "startColor", emitterConfig.StartColor);
+			AddXmlChild(doc, parent, "startColorVariance", emitterConfig.StartColorVariance);
+			AddXmlChild(doc, parent, "finishColor", emitterConfig.FinishColor);
+			AddXmlChild(doc, parent, "finishColorVariance", emitterConfig.FinishColorVariance);
+			AddXmlChild(doc, parent, "maxParticles", emitterConfig.MaxParticles, "F0");
+			AddXmlChild(doc, parent, "startParticleSize", emitterConfig.StartParticleSize);
+			AddXmlChild(doc, parent, "startParticleSizeVariance", emitterConfig.StartParticleSizeVariance);
+			AddXmlChild(doc, parent, "finishParticleSize", emitterConfig.FinishParticleSize);
+			AddXmlChild(doc, parent, "finishParticleSizeVariance", emitterConfig.FinishParticleSizeVariance);
+			AddXmlChild(doc, parent, "duration", emitterConfig.Duration);
+			AddXmlChild(doc, parent, "emitterType", emitterConfig.EmitterType);
+			AddXmlChild(doc, parent, "maxRadius", emitterConfig.MaxRadius);
+			AddXmlChild(doc, parent, "maxRadiusVariance", emitterConfig.MaxRadiusVariance);
+			AddXmlChild(doc, parent, "minRadius", emitterConfig.MinRadius);
+			AddXmlChild(doc, parent, "minRadiusVariance", emitterConfig.MinRadiusVariance);
+			AddXmlChild(doc, parent, "rotatePerSecond", emitterConfig.RotatePerSecond);
+			AddXmlChild(doc, parent, "rotatePerSecondVariance", emitterConfig.RotatePerSecondVariance);
+			AddXmlChild(doc, parent, "blendFuncSource", emitterConfig.BlendFuncSource);
+			AddXmlChild(doc, parent, "blendFuncDestination", emitterConfig.BlendFuncDestination);
+			AddXmlChild(doc, parent, "rotationStart", emitterConfig.RotationStart);
+			AddXmlChild(doc, parent, "rotationStartVariance", emitterConfig.RotationStartVariance);
+			AddXmlChild(doc, parent, "rotationEnd", emitterConfig.RotationEnd);
+			AddXmlChild(doc, parent, "rotationEndVariance", emitterConfig.RotationEndVariance);
+			AddXmlChild(doc, parent, "texture", emitterConfig.Subtexture);
 
 
 			doc.AppendChild(parent);
@@ -83,27 +83,27 @@ namespace Nez.Samples
 			}
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, float value, string formatString = "F")
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, float value, string formatString = "F")
 		{
-			addXmlChild(doc, parent, elementName, value.ToString(formatString));
+			AddXmlChild(doc, parent, elementName, value.ToString(formatString));
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, string value)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, string value)
 		{
 			var attrs = new Dictionary<string, string>();
 			attrs["value"] = value;
-			addXmlChild(doc, parent, elementName, attrs);
+			AddXmlChild(doc, parent, elementName, attrs);
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, Vector2 coordinate)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Vector2 coordinate)
 		{
 			var attrs = new Dictionary<string, string>();
 			attrs["x"] = coordinate.X.ToString();
 			attrs["y"] = coordinate.Y.ToString();
-			addXmlChild(doc, parent, elementName, attrs);
+			AddXmlChild(doc, parent, elementName, attrs);
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, Color color)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Color color)
 		{
 			var attrs = new Dictionary<string, string>();
 			float r = (float) color.R / 255f;
@@ -114,10 +114,10 @@ namespace Nez.Samples
 			attrs["green"] = g.ToString("F2");
 			attrs["blue"] = b.ToString("F2");
 			attrs["alpha"] = a.ToString("F2");
-			addXmlChild(doc, parent, elementName, attrs);
+			AddXmlChild(doc, parent, elementName, attrs);
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, Blend blendFunction)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Blend blendFunction)
 		{
 			int value = 0;
 			switch (blendFunction)
@@ -157,18 +157,18 @@ namespace Nez.Samples
 					break;
 			}
 
-			addXmlChild(doc, parent, elementName, value, "F0");
+			AddXmlChild(doc, parent, elementName, value, "F0");
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, ParticleEmitterType emitterType)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, ParticleEmitterType emitterType)
 		{
 			int value = 0;
 			if (emitterType == ParticleEmitterType.Radial)
 				value = 1;
-			addXmlChild(doc, parent, elementName, value, "F0");
+			AddXmlChild(doc, parent, elementName, value, "F0");
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, Subtexture texture)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Subtexture texture)
 		{
 			var rawStream = new MemoryStream();
 			texture.Texture2D.SaveAsPng(rawStream, texture.Texture2D.Width, texture.Texture2D.Height);
@@ -183,11 +183,11 @@ namespace Nez.Samples
 				var attrs = new Dictionary<string, string>();
 				attrs["name"] = "texture.png";
 				attrs["data"] = Convert.ToBase64String(bytes);
-				addXmlChild(doc, parent, elementName, attrs);
+				AddXmlChild(doc, parent, elementName, attrs);
 			}
 		}
 
-		void addXmlChild(XmlDocument doc, XmlElement parent, string elementName, Dictionary<string, string> attributes)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Dictionary<string, string> attributes)
 		{
 			XmlElement element = doc.CreateElement(elementName);
 			foreach (var key in attributes.Keys)

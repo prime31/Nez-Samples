@@ -35,7 +35,7 @@ namespace Nez.Samples
 				if (Input.IsKeyPressed(Keys.Left))
 				{
 					_moveDir.X = -1f;
-					if (!canMove())
+					if (!CanMove())
 					{
 						_moveDir.X = 0;
 						return;
@@ -47,7 +47,7 @@ namespace Nez.Samples
 				else if (Input.IsKeyPressed(Keys.Right))
 				{
 					_moveDir.X = 1f;
-					if (!canMove())
+					if (!CanMove())
 					{
 						_moveDir.X = 0;
 						return;
@@ -59,7 +59,7 @@ namespace Nez.Samples
 				else if (Input.IsKeyPressed(Keys.Up))
 				{
 					_moveDir.Y = -1f;
-					if (!canMove())
+					if (!CanMove())
 					{
 						_moveDir.Y = 0;
 						return;
@@ -71,7 +71,7 @@ namespace Nez.Samples
 				else if (Input.IsKeyPressed(Keys.Down))
 				{
 					_moveDir.Y = 1f;
-					if (!canMove())
+					if (!CanMove())
 					{
 						_moveDir.Y = 0;
 						return;
@@ -117,7 +117,7 @@ namespace Nez.Samples
 		}
 
 
-		bool canMove()
+		bool CanMove()
 		{
 			var pos = Entity.Position + new Vector2(16) * _moveDir;
 			var tile = _tiledMapComponent.GetTileAtWorldPosition(pos);

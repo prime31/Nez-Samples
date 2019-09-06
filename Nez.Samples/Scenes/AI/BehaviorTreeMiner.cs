@@ -9,7 +9,7 @@ namespace Nez.Samples
 	/// </summary>
 	public class BehaviorTreeMiner : Component, IUpdatable
 	{
-		public MinerState minerState = new MinerState();
+		public MinerState MinerState = new MinerState();
 
 		BehaviorTree<BehaviorTreeMiner> _tree;
 		int _distanceToNextLocation = 10;
@@ -22,37 +22,37 @@ namespace Nez.Samples
 			builder.Selector(AbortTypes.Self);
 
 			// sleep is most important
-			builder.ConditionalDecorator(m => m.minerState.fatigue >= MinerState.MAX_FATIGUE, false);
+			builder.ConditionalDecorator(m => m.MinerState.Fatigue >= MinerState.MaxFatigue, false);
 			builder.Sequence()
 				.LogAction("--- tired! gotta go home")
-				.Action(m => m.goToLocation(MinerState.Location.Home))
+				.Action(m => m.GoToLocation(MinerState.Location.Home))
 				.LogAction("--- prep me my bed!")
-				.Action(m => m.sleep())
+				.Action(m => m.Sleep())
 				.EndComposite();
 
 			// thirst is next most important
-			builder.ConditionalDecorator(m => m.minerState.thirst >= MinerState.MAX_THIRST, false);
+			builder.ConditionalDecorator(m => m.MinerState.Thirst >= MinerState.MaxThirst, false);
 			builder.Sequence()
 				.LogAction("--- thirsty! time for a drink")
-				.Action(m => m.goToLocation(MinerState.Location.Saloon))
+				.Action(m => m.GoToLocation(MinerState.Location.Saloon))
 				.LogAction("--- get me a drink!")
-				.Action(m => m.drink())
+				.Action(m => m.Drink())
 				.EndComposite();
 
 			// dropping off gold is next
-			builder.ConditionalDecorator(m => m.minerState.gold >= MinerState.MAX_GOLD, false);
+			builder.ConditionalDecorator(m => m.MinerState.Gold >= MinerState.MaxGold, false);
 			builder.Sequence()
 				.LogAction("--- bags are full! gotta drop this off at the bank.")
-				.Action(m => m.goToLocation(MinerState.Location.Bank))
+				.Action(m => m.GoToLocation(MinerState.Location.Bank))
 				.LogAction("--- take me gold!")
-				.Action(m => m.depositGold())
+				.Action(m => m.DepositGold())
 				.EndComposite();
 
 			// fetching gold is last
 			builder.Sequence()
-				.Action(m => m.goToLocation(MinerState.Location.Mine))
+				.Action(m => m.GoToLocation(MinerState.Location.Mine))
 				.LogAction("--- time to get me some gold!")
-				.Action(m => m.digForGold())
+				.Action(m => m.DigForGold())
 				.EndComposite();
 
 			builder.EndComposite();
@@ -70,36 +70,36 @@ namespace Nez.Samples
 
 			// sleep is most important
 			builder.Sequence(AbortTypes.LowerPriority)
-				.Conditional(m => m.minerState.fatigue >= MinerState.MAX_FATIGUE)
+				.Conditional(m => m.MinerState.Fatigue >= MinerState.MaxFatigue)
 				.LogAction("--- tired! gotta go home")
-				.Action(m => m.goToLocation(MinerState.Location.Home))
+				.Action(m => m.GoToLocation(MinerState.Location.Home))
 				.LogAction("--- prep me my bed!")
-				.Action(m => m.sleep())
+				.Action(m => m.Sleep())
 				.EndComposite();
 
 			// thirst is next most important
 			builder.Sequence(AbortTypes.LowerPriority)
-				.Conditional(m => m.minerState.thirst >= MinerState.MAX_THIRST)
+				.Conditional(m => m.MinerState.Thirst >= MinerState.MaxThirst)
 				.LogAction("--- thirsty! time for a drink")
-				.Action(m => m.goToLocation(MinerState.Location.Saloon))
+				.Action(m => m.GoToLocation(MinerState.Location.Saloon))
 				.LogAction("--- get me a drink!")
-				.Action(m => m.drink())
+				.Action(m => m.Drink())
 				.EndComposite();
 
 			// dropping off gold is next
 			builder.Sequence(AbortTypes.LowerPriority)
-				.Conditional(m => m.minerState.gold >= MinerState.MAX_GOLD)
+				.Conditional(m => m.MinerState.Gold >= MinerState.MaxGold)
 				.LogAction("--- bags are full! gotta drop this off at the bank.")
-				.Action(m => m.goToLocation(MinerState.Location.Bank))
+				.Action(m => m.GoToLocation(MinerState.Location.Bank))
 				.LogAction("--- take me gold!")
-				.Action(m => m.depositGold())
+				.Action(m => m.DepositGold())
 				.EndComposite();
 
 			// fetching gold is last
 			builder.Sequence()
-				.Action(m => m.goToLocation(MinerState.Location.Mine))
+				.Action(m => m.GoToLocation(MinerState.Location.Mine))
 				.LogAction("--- time to get me some gold!")
-				.Action(m => m.digForGold())
+				.Action(m => m.DigForGold())
 				.EndComposite();
 
 			builder.EndComposite();
@@ -115,17 +115,17 @@ namespace Nez.Samples
 		}
 
 
-		TaskStatus goToLocation(MinerState.Location location)
+		TaskStatus GoToLocation(MinerState.Location location)
 		{
 			Debug.Log("heading to {0}. its {1} miles away", location, _distanceToNextLocation);
 
-			if (location != minerState.currentLocation)
+			if (location != MinerState.CurrentLocation)
 			{
 				_distanceToNextLocation--;
 				if (_distanceToNextLocation == 0)
 				{
-					minerState.fatigue++;
-					minerState.currentLocation = location;
+					MinerState.Fatigue++;
+					MinerState.CurrentLocation = location;
 					_distanceToNextLocation = Nez.Random.Range(2, 8);
 
 					return TaskStatus.Success;
@@ -138,49 +138,49 @@ namespace Nez.Samples
 		}
 
 
-		TaskStatus sleep()
+		TaskStatus Sleep()
 		{
-			Debug.Log("getting some sleep. current fatigue {0}", minerState.fatigue);
+			Debug.Log("getting some sleep. current fatigue {0}", MinerState.Fatigue);
 
-			if (minerState.fatigue == 0)
+			if (MinerState.Fatigue == 0)
 				return TaskStatus.Success;
 
-			minerState.fatigue--;
+			MinerState.Fatigue--;
 			return TaskStatus.Running;
 		}
 
 
-		TaskStatus drink()
+		TaskStatus Drink()
 		{
-			Debug.Log("getting my drink on. Thirst level {0}", minerState.thirst);
+			Debug.Log("getting my drink on. Thirst level {0}", MinerState.Thirst);
 
-			if (minerState.thirst == 0)
+			if (MinerState.Thirst == 0)
 				return TaskStatus.Success;
 
-			minerState.thirst--;
+			MinerState.Thirst--;
 			return TaskStatus.Running;
 		}
 
 
-		TaskStatus depositGold()
+		TaskStatus DepositGold()
 		{
-			minerState.goldInBank += minerState.gold;
-			minerState.gold = 0;
+			MinerState.GoldInBank += MinerState.Gold;
+			MinerState.Gold = 0;
 
-			Debug.Log("depositing gold at the bank. current wealth {0}", minerState.goldInBank);
+			Debug.Log("depositing gold at the bank. current wealth {0}", MinerState.GoldInBank);
 
 			return TaskStatus.Success;
 		}
 
 
-		TaskStatus digForGold()
+		TaskStatus DigForGold()
 		{
-			Debug.Log("digging for gold. nuggets found {0}", minerState.gold);
-			minerState.gold++;
-			minerState.fatigue++;
-			minerState.thirst++;
+			Debug.Log("digging for gold. nuggets found {0}", MinerState.Gold);
+			MinerState.Gold++;
+			MinerState.Fatigue++;
+			MinerState.Thirst++;
 
-			if (minerState.gold >= MinerState.MAX_GOLD)
+			if (MinerState.Gold >= MinerState.MaxGold)
 				return TaskStatus.Failure;
 
 			return TaskStatus.Running;

@@ -21,7 +21,7 @@ namespace Nez.Samples
 
 			// load a TiledMap and a TiledMapComponent to display it
 			var tiledEntity = CreateEntity("tiled-map");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.DestructableMap.destructablemap);
+			var tiledmap = Content.Load<TiledMap>(Nez.Content.DestructableMap.Destructablemap);
 			tiledEntity.AddComponent(new TiledMapComponent(tiledmap));
 
 			// add a Pathfinder to handle pathfinding and debug display of the paths

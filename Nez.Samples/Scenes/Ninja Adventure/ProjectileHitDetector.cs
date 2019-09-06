@@ -10,7 +10,7 @@ namespace Nez.Samples
 	/// </summary>
 	public class ProjectileHitDetector : Component, ITriggerListener
 	{
-		public int hitsUntilDead = 10;
+		public int HitsUntilDead = 10;
 
 		int _hitCounter;
 		Sprite _sprite;
@@ -25,7 +25,7 @@ namespace Nez.Samples
 		void ITriggerListener.OnTriggerEnter(Collider other, Collider self)
 		{
 			_hitCounter++;
-			if (_hitCounter >= hitsUntilDead)
+			if (_hitCounter >= HitsUntilDead)
 			{
 				Entity.Destroy();
 				return;

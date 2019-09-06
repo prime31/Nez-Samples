@@ -8,7 +8,7 @@ using Nez.Tiled;
 namespace Nez.Samples
 {
 	[SampleScene("Ninja Adventure", 10,
-		"Tiled map with multiple layers, virtual input and stencil shadows\nArrows, d-pad or left stick to move, z key or a button to fire a projectile\nFind and kill the giant moon")]
+		"Tiled map with multiple layers, virtual input and stencil shadows\nArrows, d-pad or left stick to move, z key or controller a button to fire a projectile\nFind and kill the giant moon")]
 	public class NinjaAdventureScene : SampleScene
 	{
 		public NinjaAdventureScene() : base(true, true)
@@ -27,7 +27,7 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = CreateEntity("tiled-map-entity");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.NinjaAdventure.Map.tilemap);
+			var tiledmap = Content.Load<TiledMap>(Nez.Content.NinjaAdventure.Map.Tilemap);
 			var tiledMapComponent = tiledEntity.AddComponent(new TiledMapComponent(tiledmap, "collision"));
 			tiledMapComponent.SetLayersToRender(new string[] {"tiles", "terrain", "details"});
 
@@ -65,7 +65,7 @@ namespace Nez.Samples
 			Camera.Entity.AddComponent(new FollowCamera(playerEntity));
 
 			// stick something to shoot in the level
-			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.moon);
+			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var moonEntity = CreateEntity("moon", new Vector2(412, 460));
 			moonEntity.AddComponent(new Sprite(moonTexture));
 			moonEntity.AddComponent(new ProjectileHitDetector());
@@ -79,7 +79,7 @@ namespace Nez.Samples
 		/// <returns>The projectile.</returns>
 		/// <param name="position">Position.</param>
 		/// <param name="velocity">Velocity.</param>
-		public Entity createProjectiles(Vector2 position, Vector2 velocity)
+		public Entity CreateProjectiles(Vector2 position, Vector2 velocity)
 		{
 			// create an Entity to house the projectile and its logic
 			var entity = CreateEntity("projectile");
@@ -94,7 +94,7 @@ namespace Nez.Samples
 
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
-			var texture = Content.Load<Texture2D>(Nez.Content.NinjaAdventure.plume);
+			var texture = Content.Load<Texture2D>(Nez.Content.NinjaAdventure.Plume);
 			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 16, 16);
 
 			var spriteAnimation = new SpriteAnimation(subtextures)
@@ -114,7 +114,7 @@ namespace Nez.Samples
 
 			// clone the projectile and fire it off in the opposite direction
 			var newEntity = entity.Clone(entity.Position);
-			newEntity.GetComponent<FireballProjectileController>().velocity *= -1;
+			newEntity.GetComponent<FireballProjectileController>().Velocity *= -1;
 			AddEntity(newEntity);
 
 			return entity;
