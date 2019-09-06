@@ -14,7 +14,7 @@ namespace Nez.Samples
 		ProjectileMover _mover;
 
 
-		public FireballProjectileController( Vector2 velocity )
+		public FireballProjectileController(Vector2 velocity)
 		{
 			this.velocity = velocity;
 		}
@@ -28,9 +28,8 @@ namespace Nez.Samples
 
 		void IUpdatable.Update()
 		{
-			if( _mover.Move( velocity * Time.DeltaTime ) )
+			if (_mover.Move(velocity * Time.DeltaTime))
 				Entity.Destroy();
 		}
 	}
 }
-

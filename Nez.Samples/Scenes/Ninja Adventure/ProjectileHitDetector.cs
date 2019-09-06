@@ -21,23 +21,23 @@ namespace Nez.Samples
 			_sprite = Entity.GetComponent<Sprite>();
 		}
 
-		
-		void ITriggerListener.OnTriggerEnter( Collider other, Collider self )
+
+		void ITriggerListener.OnTriggerEnter(Collider other, Collider self)
 		{
 			_hitCounter++;
-			if ( _hitCounter >= hitsUntilDead )
+			if (_hitCounter >= hitsUntilDead)
 			{
 				Entity.Destroy();
 				return;
 			}
 
 			_sprite.Color = Color.Red;
-			Core.Schedule( 0.1f, timer => _sprite.Color = Color.White );
+			Core.Schedule(0.1f, timer => _sprite.Color = Color.White);
 		}
 
 
-		void ITriggerListener.OnTriggerExit( Collider other, Collider self )
-		{}
+		void ITriggerListener.OnTriggerExit(Collider other, Collider self)
+		{
+		}
 	}
 }
-

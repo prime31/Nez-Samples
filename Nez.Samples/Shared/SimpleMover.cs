@@ -20,7 +20,7 @@ namespace Nez.Samples
 		{
 			_sprite = this.GetComponent<Sprite>();
 			_mover = new Mover();
-			Entity.AddComponent( _mover );
+			Entity.AddComponent(_mover);
 		}
 
 
@@ -28,34 +28,33 @@ namespace Nez.Samples
 		{
 			var moveDir = Vector2.Zero;
 
-			if( Input.IsKeyDown( Keys.Left ) )
+			if (Input.IsKeyDown(Keys.Left))
 			{
 				moveDir.X = -1f;
-				if( _sprite != null )
+				if (_sprite != null)
 					_sprite.FlipX = true;
 			}
-			else if( Input.IsKeyDown( Keys.Right ) )
+			else if (Input.IsKeyDown(Keys.Right))
 			{
 				moveDir.X = 1f;
-				if( _sprite != null )
+				if (_sprite != null)
 					_sprite.FlipX = false;
 			}
 
-			if( Input.IsKeyDown( Keys.Up ) )
+			if (Input.IsKeyDown(Keys.Up))
 				moveDir.Y = -1f;
-			else if( Input.IsKeyDown( Keys.Down ) )
+			else if (Input.IsKeyDown(Keys.Down))
 				moveDir.Y = 1f;
 
 
-			if( moveDir != Vector2.Zero )
+			if (moveDir != Vector2.Zero)
 			{
 				var movement = moveDir * _speed * Time.DeltaTime;
 
 				CollisionResult res;
-				if( _mover.Move( movement, out res ) )
-					Debug.DrawLine( Entity.Position, Entity.Position + res.Normal * 100, Color.Black, 0.3f );
+				if (_mover.Move(movement, out res))
+					Debug.DrawLine(Entity.Position, Entity.Position + res.Normal * 100, Color.Black, 0.3f);
 			}
 		}
 	}
 }
-

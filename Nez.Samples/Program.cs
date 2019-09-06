@@ -1,7 +1,10 @@
 ﻿#region Using Statements
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+
 #if MONOMAC
 using MonoMac.AppKit;
 using MonoMac.Foundation;
@@ -9,7 +12,9 @@ using MonoMac.Foundation;
 using Foundation;
 using UIKit;
 #endif
+
 #endregion
+
 
 namespace Nez.Samples
 {
@@ -37,7 +42,7 @@ namespace Nez.Samples
 #if !MONOMAC && !__IOS__ && !__TVOS__
 		[STAThread]
 #endif
-		static void Main( string[] args )
+		static void Main(string[] args)
 		{
 #if MONOMAC
             NSApplication.Init ();
@@ -79,6 +84,6 @@ namespace Nez.Samples
         {
             return true;
         }
-    }  
+    }
 #endif
 }

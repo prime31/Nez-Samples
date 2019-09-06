@@ -15,20 +15,20 @@ namespace Nez.Samples
 
 		public override void OnAddedToEntity()
 		{
-			_grid = Entity.Scene.FindEntity( "grid" ).GetComponent<SpringGrid>();
+			_grid = Entity.Scene.FindEntity("grid").GetComponent<SpringGrid>();
 		}
 
 
 		void IUpdatable.Update()
 		{
 			var velocity = Entity.Position - _lastPosition;
-			_grid.ApplyExplosiveForce( 0.5f * velocity.Length(), Entity.Position, 80 );
+			_grid.ApplyExplosiveForce(0.5f * velocity.Length(), Entity.Position, 80);
 
 			_lastPosition = Entity.Position;
 
-			if( Input.IsKeyPressed( Keys.Space ) )
-				_grid.ApplyDirectedForce( new Vector3( 0, 0, 1000 ), new Vector3( Entity.Position.X, Entity.Position.Y, 0 ), 50 );
+			if (Input.IsKeyPressed(Keys.Space))
+				_grid.ApplyDirectedForce(new Vector3(0, 0, 1000), new Vector3(Entity.Position.X, Entity.Position.Y, 0),
+					50);
 		}
 	}
 }
-

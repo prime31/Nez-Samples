@@ -13,7 +13,7 @@ namespace Nez.Samples
 		Action _action;
 
 
-		public PressKeyToPerformAction( Keys key, Action action )
+		public PressKeyToPerformAction(Keys key, Action action)
 		{
 			_key = key;
 			_action = action;
@@ -22,7 +22,7 @@ namespace Nez.Samples
 
 		void IUpdatable.Update()
 		{
-			if( Input.IsKeyPressed( _key ) )
+			if (Input.IsKeyPressed(_key))
 				_action();
 		}
 	}

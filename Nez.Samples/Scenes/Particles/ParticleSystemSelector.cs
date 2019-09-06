@@ -13,32 +13,33 @@ namespace Nez.Samples
 	public class ParticleSystemSelector : Component, IUpdatable
 	{
 		// array of all the particle systems we have available
-		string[] _particleConfigs = new string[] {
-				Content.ParticleDesigner.comet,
-				Content.ParticleDesigner.atomicBubble,
-				Content.ParticleDesigner.blueFlame,
-				Content.ParticleDesigner.blueGalaxy,
-				Content.ParticleDesigner.crazyBlue,
-				Content.ParticleDesigner.electrons,
-				Content.ParticleDesigner.fire,
-				Content.ParticleDesigner.foam,
-				Content.ParticleDesigner.girosGratis,
-				Content.ParticleDesigner.intoTheBlue,
-				Content.ParticleDesigner.jasonChoi_Flash,
-				Content.ParticleDesigner.jasonChoi_Swirl01,
-				Content.ParticleDesigner.jasonChoi_risingup,
-				Content.ParticleDesigner.leaves,
-				Content.ParticleDesigner.plasmaGlow,
-				Content.ParticleDesigner.meksBloodSpill,
-				Content.ParticleDesigner.realPopcorn,
-				Content.ParticleDesigner.shootingFireball,
-				Content.ParticleDesigner.snow,
-				Content.ParticleDesigner.theSun,
-				Content.ParticleDesigner.touchUp,
-				Content.ParticleDesigner.trippy,
-				Content.ParticleDesigner.winnerStars,
-				Content.ParticleDesigner.huo1,
-				Content.ParticleDesigner.wu1
+		string[] _particleConfigs = new string[]
+		{
+			Content.ParticleDesigner.comet,
+			Content.ParticleDesigner.atomicBubble,
+			Content.ParticleDesigner.blueFlame,
+			Content.ParticleDesigner.blueGalaxy,
+			Content.ParticleDesigner.crazyBlue,
+			Content.ParticleDesigner.electrons,
+			Content.ParticleDesigner.fire,
+			Content.ParticleDesigner.foam,
+			Content.ParticleDesigner.girosGratis,
+			Content.ParticleDesigner.intoTheBlue,
+			Content.ParticleDesigner.jasonChoi_Flash,
+			Content.ParticleDesigner.jasonChoi_Swirl01,
+			Content.ParticleDesigner.jasonChoi_risingup,
+			Content.ParticleDesigner.leaves,
+			Content.ParticleDesigner.plasmaGlow,
+			Content.ParticleDesigner.meksBloodSpill,
+			Content.ParticleDesigner.realPopcorn,
+			Content.ParticleDesigner.shootingFireball,
+			Content.ParticleDesigner.snow,
+			Content.ParticleDesigner.theSun,
+			Content.ParticleDesigner.touchUp,
+			Content.ParticleDesigner.trippy,
+			Content.ParticleDesigner.winnerStars,
+			Content.ParticleDesigner.huo1,
+			Content.ParticleDesigner.wu1
 		};
 
 		// the ParticleEmitter component
@@ -65,16 +66,16 @@ namespace Nez.Samples
 		void IUpdatable.Update()
 		{
 			// toggle the emitter config used when Q/W are pressed
-			if( Input.IsKeyPressed( Keys.Q ) )
+			if (Input.IsKeyPressed(Keys.Q))
 			{
-				_currentParticleSystem = Mathf.DecrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
+				_currentParticleSystem = Mathf.DecrementWithWrap(_currentParticleSystem, _particleConfigs.Length);
 				loadParticleSystem();
 				resetUI();
 			}
 
-			if( Input.IsKeyPressed( Keys.W ) )
+			if (Input.IsKeyPressed(Keys.W))
 			{
-				_currentParticleSystem = Mathf.IncrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
+				_currentParticleSystem = Mathf.IncrementWithWrap(_currentParticleSystem, _particleConfigs.Length);
 				loadParticleSystem();
 				resetUI();
 			}
@@ -87,7 +88,8 @@ namespace Nez.Samples
 		void loadParticleSystem()
 		{
 			// load up the config then add a ParticleEmitter
-			_particleEmitterConfig = Entity.Scene.Content.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
+			_particleEmitterConfig =
+				Entity.Scene.Content.Load<ParticleEmitterConfig>(_particleConfigs[_currentParticleSystem]);
 			resetEmitter();
 		}
 
@@ -95,10 +97,10 @@ namespace Nez.Samples
 		void resetEmitter()
 		{
 			// kill the ParticleEmitter if we already have one
-			if( _particleEmitter != null )
-				Entity.RemoveComponent( _particleEmitter );
+			if (_particleEmitter != null)
+				Entity.RemoveComponent(_particleEmitter);
 
-			_particleEmitter = Entity.AddComponent( new ParticleEmitter( _particleEmitterConfig ) );
+			_particleEmitter = Entity.AddComponent(new ParticleEmitter(_particleEmitterConfig));
 
 			// set state based on the values of our CheckBoxes
 			_particleEmitter.CollisionConfig.Enabled = _isCollisionEnabled;
@@ -112,8 +114,8 @@ namespace Nez.Samples
 		/// </summary>
 		void resetUI()
 		{
-			var previousUI = Entity.Scene.FindEntity( "particles-ui" );
-			if(previousUI != null)
+			var previousUI = Entity.Scene.FindEntity("particles-ui");
+			if (previousUI != null)
 				previousUI.Destroy();
 
 			createUI();
@@ -121,28 +123,27 @@ namespace Nez.Samples
 
 		void createUI()
 		{
-
-			var uiCanvas = Entity.Scene.CreateEntity( "particles-ui" ).AddComponent( new UICanvas() );
+			var uiCanvas = Entity.Scene.CreateEntity("particles-ui").AddComponent(new UICanvas());
 			uiCanvas.IsFullScreen = true;
 			var skin = Skin.CreateDefaultSkin();
-			condenseSkin( skin );
+			condenseSkin(skin);
 
 			// Stolen from RuntimeInspector.cs
 			var table = new Table();
 			table.Top().Left();
-			table.Defaults().SetPadTop( 4 ).SetPadLeft( 4 ).SetPadRight( 0 ).SetAlign( Align.Left );
-			table.SetBackground( new PrimitiveDrawable( new Color( 40, 40, 40, 220 ) ) );
+			table.Defaults().SetPadTop(4).SetPadLeft(4).SetPadRight(0).SetAlign(Align.Left);
+			table.SetBackground(new PrimitiveDrawable(new Color(40, 40, 40, 220)));
 
 			// wrap up the table in a ScrollPane
-			var scrollPane = uiCanvas.Stage.AddElement( new ScrollPane( table, skin ) );
+			var scrollPane = uiCanvas.Stage.AddElement(new ScrollPane(table, skin));
 
 			// force a validate which will layout the ScrollPane and populate the proper scrollBarWidth
 			scrollPane.Validate();
-			scrollPane.SetSize( 340 + scrollPane.GetScrollBarWidth(), Screen.Height );
+			scrollPane.SetSize(340 + scrollPane.GetScrollBarWidth(), Screen.Height);
 
-			table.Row().SetPadTop( 40 ); // Leave room for the directions
+			table.Row().SetPadTop(40); // Leave room for the directions
 
-			var collisionCheckBox = table.Add( new CheckBox( "Toggle Collision", skin ) ).GetElement<CheckBox>();
+			var collisionCheckBox = table.Add(new CheckBox("Toggle Collision", skin)).GetElement<CheckBox>();
 			collisionCheckBox.IsChecked = _isCollisionEnabled;
 			collisionCheckBox.OnChanged += isChecked =>
 			{
@@ -152,7 +153,7 @@ namespace Nez.Samples
 
 			table.Row();
 
-			var worldSpaceCheckbox = table.Add( new CheckBox( "Simulate in World Space", skin ) ).GetElement<CheckBox>();
+			var worldSpaceCheckbox = table.Add(new CheckBox("Simulate in World Space", skin)).GetElement<CheckBox>();
 			worldSpaceCheckbox.IsChecked = _simulateInWorldSpace;
 			worldSpaceCheckbox.OnChanged += isChecked =>
 			{
@@ -162,151 +163,153 @@ namespace Nez.Samples
 
 			table.Row();
 
-			var button = table.Add( new TextButton( "Toggle Play/Pause", skin ) ).SetFillX().SetMinHeight( 30 ).GetElement<TextButton>();
+			var button = table.Add(new TextButton("Toggle Play/Pause", skin)).SetFillX().SetMinHeight(30)
+				.GetElement<TextButton>();
 			button.OnClicked += butt =>
 			{
-				if( _particleEmitter.IsPlaying )
+				if (_particleEmitter.IsPlaying)
 					_particleEmitter.Pause();
 				else
 					_particleEmitter.Play();
 			};
 
-			table.Add( "" );
-			var save = table.Add( new TextButton( "Save as .pex", skin ) ).SetFillX().SetMinHeight( 30 ).GetElement<TextButton>();
-			save.OnClicked += butt =>
-			{
-				exportPexClicked( skin );
-			};
+			table.Add("");
+			var save = table.Add(new TextButton("Save as .pex", skin)).SetFillX().SetMinHeight(30)
+				.GetElement<TextButton>();
+			save.OnClicked += butt => { exportPexClicked(skin); };
 
 			table.Row();
-			makeSection( table, skin, "General" );
+			makeSection(table, skin, "General");
 			table.Row();
-			makeEmitterDropdown( table, skin, "Emitter Type" );
+			makeEmitterDropdown(table, skin, "Emitter Type");
 			table.Row();
-			makeBlendDropdown( table, skin, "Source Blend Function", "blendFuncSource" );
+			makeBlendDropdown(table, skin, "Source Blend Function", "blendFuncSource");
 			table.Row();
-			makeBlendDropdown( table, skin, "Destination Blend Function", "blendFuncDestination" );
+			makeBlendDropdown(table, skin, "Destination Blend Function", "blendFuncDestination");
 
 			table.Row();
-			makeSection( table, skin, "Emitter Parameters" );
+			makeSection(table, skin, "Emitter Parameters");
 			table.Row();
-			makeVector2( table, skin, "Source Position Variance", "sourcePositionVariance" );
+			makeVector2(table, skin, "Source Position Variance", "sourcePositionVariance");
 			table.Row();
-			makeSlider( table, skin, "Particle Lifespan", 0, 30, 0.5f, "particleLifespan" );
+			makeSlider(table, skin, "Particle Lifespan", 0, 30, 0.5f, "particleLifespan");
 			table.Row();
-			makeSlider( table, skin, "Particle Lifespan Variance", 0, 30, 0.5f, "particleLifespanVariance" );
+			makeSlider(table, skin, "Particle Lifespan Variance", 0, 30, 0.5f, "particleLifespanVariance");
 			table.Row();
-			makeSlider( table, skin, "Emission rate", 0, 4000, 1, "emissionRate" );
+			makeSlider(table, skin, "Emission rate", 0, 4000, 1, "emissionRate");
 			table.Row();
-			makeSlider( table, skin, "Duration", -1, 2000, 1, "duration" );
+			makeSlider(table, skin, "Duration", -1, 2000, 1, "duration");
 			table.Row();
-			makeSlider( table, skin, "Angle", 0, 360, 1, "angle" );
+			makeSlider(table, skin, "Angle", 0, 360, 1, "angle");
 			table.Row();
-			makeSlider( table, skin, "Angle Variance", 0, 360, 1, "angleVariance" );
+			makeSlider(table, skin, "Angle Variance", 0, 360, 1, "angleVariance");
 			table.Row();
-			makeSlider( table, skin, "Maximum Particles", 0, 2000, 1, "maxParticles" );
+			makeSlider(table, skin, "Maximum Particles", 0, 2000, 1, "maxParticles");
 			table.Row();
-			makeSlider( table, skin, "Start Particle Size", 0, 2000, 1, "startParticleSize" );
+			makeSlider(table, skin, "Start Particle Size", 0, 2000, 1, "startParticleSize");
 			table.Row();
-			makeSlider( table, skin, "Start Size Variance", 0, 2000, 1, "startParticleSizeVariance" );
+			makeSlider(table, skin, "Start Size Variance", 0, 2000, 1, "startParticleSizeVariance");
 			table.Row();
-			makeSlider( table, skin, "Finish Particle Size", 0, 2000, 1, "finishParticleSize" );
+			makeSlider(table, skin, "Finish Particle Size", 0, 2000, 1, "finishParticleSize");
 			table.Row();
-			makeSlider( table, skin, "Finish Size Variance", 0, 2000, 1, "finishParticleSizeVariance" );
+			makeSlider(table, skin, "Finish Size Variance", 0, 2000, 1, "finishParticleSizeVariance");
 			table.Row();
-			makeSlider( table, skin, "Rotation Start", 0, 2000, 1, "rotationStart" );
+			makeSlider(table, skin, "Rotation Start", 0, 2000, 1, "rotationStart");
 			table.Row();
-			makeSlider( table, skin, "Rotation Start Variance", 0, 2000, 1, "rotationStartVariance" );
+			makeSlider(table, skin, "Rotation Start Variance", 0, 2000, 1, "rotationStartVariance");
 			table.Row();
-			makeSlider( table, skin, "Rotation End", 0, 2000, 1, "rotationEnd" );
+			makeSlider(table, skin, "Rotation End", 0, 2000, 1, "rotationEnd");
 			table.Row();
-			makeSlider( table, skin, "Rotation End Variance", 0, 2000, 1, "rotationEndVariance" );
+			makeSlider(table, skin, "Rotation End Variance", 0, 2000, 1, "rotationEndVariance");
 			table.Row();
-			makeColor( table, skin, "Start Color (R G B A)", "startColor" );
+			makeColor(table, skin, "Start Color (R G B A)", "startColor");
 			table.Row();
-			makeColor( table, skin, "Start Color Variance", "startColorVariance" );
+			makeColor(table, skin, "Start Color Variance", "startColorVariance");
 			table.Row();
-			makeColor( table, skin, "Finish Color (R G B A)", "finishColor" );
+			makeColor(table, skin, "Finish Color (R G B A)", "finishColor");
 			table.Row();
-			makeColor( table, skin, "Finish Color Variance", "finishColorVariance" );
+			makeColor(table, skin, "Finish Color Variance", "finishColorVariance");
 
 
-			if( _particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity )
+			if (_particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity)
 			{
 				table.Row();
-				makeSection( table, skin, "Gravity Emitter" );
+				makeSection(table, skin, "Gravity Emitter");
 				table.Row();
-				makeVector2( table, skin, "Gravity X/Y", "gravity" );
+				makeVector2(table, skin, "Gravity X/Y", "gravity");
 				table.Row();
-				makeSlider( table, skin, "Speed", 0, 2000, 1, "speed" );
+				makeSlider(table, skin, "Speed", 0, 2000, 1, "speed");
 				table.Row();
-				makeSlider( table, skin, "Speed Variance", 0, 2000, 1, "speedVariance" );
+				makeSlider(table, skin, "Speed Variance", 0, 2000, 1, "speedVariance");
 				table.Row();
-				makeSlider( table, skin, "Radial Acceleration", -2000, 2000, 1, "radialAcceleration" );
+				makeSlider(table, skin, "Radial Acceleration", -2000, 2000, 1, "radialAcceleration");
 				table.Row();
-				makeSlider( table, skin, "Radial Accel Variance", 0, 2000, 1, "radialAccelVariance" );
+				makeSlider(table, skin, "Radial Accel Variance", 0, 2000, 1, "radialAccelVariance");
 				table.Row();
-				makeSlider( table, skin, "Tangential Acceleration", -2000, 2000, 1, "tangentialAcceleration" );
+				makeSlider(table, skin, "Tangential Acceleration", -2000, 2000, 1, "tangentialAcceleration");
 				table.Row();
-				makeSlider( table, skin, "Tangential Accel Variance", 0, 2000, 1, "tangentialAccelVariance" );
-			} else
+				makeSlider(table, skin, "Tangential Accel Variance", 0, 2000, 1, "tangentialAccelVariance");
+			}
+			else
 			{
 				table.Row();
-				makeSection( table, skin, "Radial Emitter" );
+				makeSection(table, skin, "Radial Emitter");
 				table.Row();
-				makeSlider( table, skin, "Maximum Radius", 0, 1000, 1, "maxRadius" );
+				makeSlider(table, skin, "Maximum Radius", 0, 1000, 1, "maxRadius");
 				table.Row();
-				makeSlider( table, skin, "Maximum Radius Variance", 0, 1000, 1, "maxRadiusVariance" );
+				makeSlider(table, skin, "Maximum Radius Variance", 0, 1000, 1, "maxRadiusVariance");
 				table.Row();
-				makeSlider( table, skin, "Minimum Radius", 0, 1000, 1, "minRadius" );
+				makeSlider(table, skin, "Minimum Radius", 0, 1000, 1, "minRadius");
 				table.Row();
-				makeSlider( table, skin, "Minimum Radius Variance", 0, 1000, 1, "minRadiusVariance" );
+				makeSlider(table, skin, "Minimum Radius Variance", 0, 1000, 1, "minRadiusVariance");
 				table.Row();
-				makeSlider( table, skin, "Rotation/Sec", 0, 1000, 1, "rotatePerSecond" );
+				makeSlider(table, skin, "Rotation/Sec", 0, 1000, 1, "rotatePerSecond");
 				table.Row();
-				makeSlider( table, skin, "Rotation/Sec Variance", 0, 1000, 1, "rotatePerSecondVariance" );
+				makeSlider(table, skin, "Rotation/Sec Variance", 0, 1000, 1, "rotatePerSecondVariance");
 			}
 		}
 
 		void makeSlider(Table table, Skin skin, string label, float min, float max, float step, string propertyName)
 		{
-			FieldInfo fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
-			float value = Convert.ToSingle( fieldInfo.GetValue( _particleEmitterConfig ) );
+			FieldInfo fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
+			float value = Convert.ToSingle(fieldInfo.GetValue(_particleEmitterConfig));
 
-			var slider = new Slider( skin, null, min, max );
-			var textBox = new UI.TextField( value.ToString(), skin );
+			var slider = new Slider(skin, null, min, max);
+			var textBox = new UI.TextField(value.ToString(), skin);
 
-			slider.SetStepSize( step );
-			slider.SetValue( value );
-			slider.OnChanged += newValue => {
-				fieldInfo.SetValue( _particleEmitterConfig, typedConvert( fieldInfo, newValue ) );
-				textBox.SetText( newValue.ToString() );
+			slider.SetStepSize(step);
+			slider.SetValue(value);
+			slider.OnChanged += newValue =>
+			{
+				fieldInfo.SetValue(_particleEmitterConfig, typedConvert(fieldInfo, newValue));
+				textBox.SetText(newValue.ToString());
 				resetEmitter();
 			};
 
-			textBox.SetMaxLength( 5 );
-			textBox.OnTextChanged += (field, str) => {
-				if( float.TryParse( str, out float newValue ))
+			textBox.SetMaxLength(5);
+			textBox.OnTextChanged += (field, str) =>
+			{
+				if (float.TryParse(str, out float newValue))
 				{
-					fieldInfo.SetValue( _particleEmitterConfig, typedConvert( fieldInfo, newValue ) );
-					slider.SetValue( newValue );
+					fieldInfo.SetValue(_particleEmitterConfig, typedConvert(fieldInfo, newValue));
+					slider.SetValue(newValue);
 					resetEmitter();
 				}
-
 			};
 
-			table.Add( label ).Left().Width( 140 );
-			table.Add( textBox ).Left().Width( 30 );
-			table.Add( slider ).Left();
+			table.Add(label).Left().Width(140);
+			table.Add(textBox).Left().Width(30);
+			table.Add(slider).Left();
 		}
 
 		void makeBlendDropdown(Table table, Skin skin, string label, string propertyName)
 		{
-			FieldInfo fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
-			Blend value = (Blend)fieldInfo.GetValue( _particleEmitterConfig );
+			FieldInfo fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
+			Blend value = (Blend) fieldInfo.GetValue(_particleEmitterConfig);
 
-			var dropdown = new SelectBox<string>( skin );
-			var dropdownList = new List<string>() {
+			var dropdown = new SelectBox<string>(skin);
+			var dropdownList = new List<string>()
+			{
 				"Zero",
 				"One",
 				"SourceColor",
@@ -319,59 +322,65 @@ namespace Nez.Samples
 				"InverseDestinationColor",
 				"SourceAlphaSaturation"
 			};
-			dropdown.SetItems( dropdownList );
+			dropdown.SetItems(dropdownList);
 
 			// Make a lookup table from string to blend function
-			var nameLookup = new Dictionary<string, Blend>() {
-				{ "Zero", Blend.Zero },
-				{ "One", Blend.One },
-				{ "SourceColor", Blend.SourceColor },
-				{ "InverseSourceColor", Blend.InverseSourceColor },
-				{ "SourceAlpha", Blend.SourceAlpha },
-				{ "InverseSourceAlpha", Blend.InverseSourceAlpha },
-				{ "DestinationAlpha", Blend.DestinationAlpha },
-				{ "InverseDestinationAlpha", Blend.InverseDestinationAlpha },
-				{ "DestinationColor", Blend.DestinationColor },
-				{ "InverseDestinationColor", Blend.InverseDestinationColor },
-				{ "SourceAlphaSaturation", Blend.SourceAlphaSaturation }
+			var nameLookup = new Dictionary<string, Blend>()
+			{
+				{"Zero", Blend.Zero},
+				{"One", Blend.One},
+				{"SourceColor", Blend.SourceColor},
+				{"InverseSourceColor", Blend.InverseSourceColor},
+				{"SourceAlpha", Blend.SourceAlpha},
+				{"InverseSourceAlpha", Blend.InverseSourceAlpha},
+				{"DestinationAlpha", Blend.DestinationAlpha},
+				{"InverseDestinationAlpha", Blend.InverseDestinationAlpha},
+				{"DestinationColor", Blend.DestinationColor},
+				{"InverseDestinationColor", Blend.InverseDestinationColor},
+				{"SourceAlphaSaturation", Blend.SourceAlphaSaturation}
 			};
 
 			// Make a lookup table from blend function to string
 			var functionLookup = new Dictionary<Blend, string>();
-			foreach(var str in nameLookup.Keys)
+			foreach (var str in nameLookup.Keys)
 			{
-				functionLookup.Add( nameLookup[str], str );
-			};
+				functionLookup.Add(nameLookup[str], str);
+			}
 
-			dropdown.SetSelectedIndex( dropdownList.IndexOf( functionLookup[value] ) );
-			dropdown.OnChanged += (str) => {
+			;
+
+			dropdown.SetSelectedIndex(dropdownList.IndexOf(functionLookup[value]));
+			dropdown.OnChanged += (str) =>
+			{
 				Blend newValue = nameLookup[str];
-				fieldInfo.SetValue( _particleEmitterConfig, newValue );
+				fieldInfo.SetValue(_particleEmitterConfig, newValue);
 				resetEmitter();
 			};
 
-			table.Add( dropdown );
+			table.Add(dropdown);
 		}
 
 		void makeEmitterDropdown(Table table, Skin skin, string label)
 		{
 			ParticleEmitterType value = _particleEmitterConfig.EmitterType;
 
-			var dropdown = new SelectBox<string>( skin );
-			var dropdownList = new List<string>() {
+			var dropdown = new SelectBox<string>(skin);
+			var dropdownList = new List<string>()
+			{
 				"Gravity",
 				"Radial"
 			};
 
-			dropdown.SetItems( dropdownList );
+			dropdown.SetItems(dropdownList);
 
-			if( _particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity )
-				dropdown.SetSelectedIndex( 0 );
+			if (_particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity)
+				dropdown.SetSelectedIndex(0);
 			else
-				dropdown.SetSelectedIndex( 1 );
+				dropdown.SetSelectedIndex(1);
 
-			dropdown.OnChanged += (str) => {
-				if( str == "Gravity" )
+			dropdown.OnChanged += (str) =>
+			{
+				if (str == "Gravity")
 					_particleEmitterConfig.EmitterType = ParticleEmitterType.Gravity;
 				else
 					_particleEmitterConfig.EmitterType = ParticleEmitterType.Radial;
@@ -379,64 +388,66 @@ namespace Nez.Samples
 				resetUI();
 			};
 
-			table.Add( label ).Left().Width( 140 );
-			table.Add( "" ).Width( 1 ); // This is a 3 column table
-			table.Add( dropdown );
+			table.Add(label).Left().Width(140);
+			table.Add("").Width(1); // This is a 3 column table
+			table.Add(dropdown);
 		}
 
 		void makeVector2(Table table, Skin skin, string label, string propertyName)
 		{
-			var fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
-			var value = (Vector2)fieldInfo.GetValue( _particleEmitterConfig );
-			var x = new UI.TextField( value.X.ToString(), skin );
-			var y = new UI.TextField( value.Y.ToString(), skin );
+			var fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
+			var value = (Vector2) fieldInfo.GetValue(_particleEmitterConfig);
+			var x = new UI.TextField(value.X.ToString(), skin);
+			var y = new UI.TextField(value.Y.ToString(), skin);
 
-			x.OnTextChanged += (textbox, str) => {
-				if( float.TryParse( str, out float newValue ))
+			x.OnTextChanged += (textbox, str) =>
+			{
+				if (float.TryParse(str, out float newValue))
 				{
 					value.X = newValue;
-					fieldInfo.SetValue( _particleEmitterConfig, value );
+					fieldInfo.SetValue(_particleEmitterConfig, value);
 					resetEmitter();
 				}
 			};
 
-			y.OnTextChanged += (textbox, str) => {
-				if( float.TryParse( str, out float newValue ))
+			y.OnTextChanged += (textbox, str) =>
+			{
+				if (float.TryParse(str, out float newValue))
 				{
 					value.Y = newValue;
-					fieldInfo.SetValue( _particleEmitterConfig, value );
+					fieldInfo.SetValue(_particleEmitterConfig, value);
 					resetEmitter();
 				}
 			};
 
-			table.Add( label ).Width( 140 );
-			table.Add( x ).Width( 30 );
-			table.Add( y ).Width( 30 );
+			table.Add(label).Width(140);
+			table.Add(x).Width(30);
+			table.Add(y).Width(30);
 		}
 
 		void makeColor(Table table, Skin skin, string label, string propertyName)
 		{
-			FieldInfo fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
-			Color value = (Color)fieldInfo.GetValue( _particleEmitterConfig );
+			FieldInfo fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
+			Color value = (Color) fieldInfo.GetValue(_particleEmitterConfig);
 
-			var r = new UI.TextField( value.R.ToString(), skin ).SetMaxLength( 4 );
-			var g = new UI.TextField( value.G.ToString(), skin ).SetMaxLength( 4 );
-			var b = new UI.TextField( value.B.ToString(), skin ).SetMaxLength( 4 );
-			var a = new UI.TextField( value.A.ToString(), skin ).SetMaxLength( 4 );
+			var r = new UI.TextField(value.R.ToString(), skin).SetMaxLength(4);
+			var g = new UI.TextField(value.G.ToString(), skin).SetMaxLength(4);
+			var b = new UI.TextField(value.B.ToString(), skin).SetMaxLength(4);
+			var a = new UI.TextField(value.A.ToString(), skin).SetMaxLength(4);
 
 			void OnChanged(UI.TextField box, string str)
 			{
-				if( int.TryParse( r.GetText(), out int newR )
-					&& int.TryParse( g.GetText(), out int newG )
-					&& int.TryParse( b.GetText(), out int newB )
-					&& int.TryParse( a.GetText(), out int newA )
-					&& newR >= 0 && newR <= 255
-					&& newB >= 0 && newB <= 255
-					&& newG >= 0 && newG <= 255
-					&& newR >= 0 && newA <= 255)
+				if (int.TryParse(r.GetText(), out int newR)
+				    && int.TryParse(g.GetText(), out int newG)
+				    && int.TryParse(b.GetText(), out int newB)
+				    && int.TryParse(a.GetText(), out int newA)
+				    && newR >= 0 && newR <= 255
+				    && newB >= 0 && newB <= 255
+				    && newG >= 0 && newG <= 255
+				    && newR >= 0 && newA <= 255)
 				{
-					var newColor = new Color( newR, newG, newB, newA );
-					fieldInfo.SetValue( _particleEmitterConfig, newColor );
+					var newColor = new Color(newR, newG, newB, newA);
+					fieldInfo.SetValue(_particleEmitterConfig, newColor);
 				}
 			}
 
@@ -445,25 +456,26 @@ namespace Nez.Samples
 			g.OnTextChanged += OnChanged;
 			a.OnTextChanged += OnChanged;
 
-			table.Add( label ).Width( 140 );
-			table.Add( r ).Width( 30 );
+			table.Add(label).Width(140);
+			table.Add(r).Width(30);
+
 			// Everything else is dealing with 3 columns.  Wrap the last ones up in
 			// an hbox to avoid creating new columns in the table. (hack)
-			g.SetPreferredWidth( 30 );
-			b.SetPreferredWidth( 30 );
-			a.SetPreferredWidth( 30 );
-			var hbox = new HorizontalGroup().SetSpacing( 10 );
-			hbox.AddElement( g );
-			hbox.AddElement( b );
-			hbox.AddElement( a );
-			table.Add( hbox ).Left().Top().Width( 30 );
+			g.SetPreferredWidth(30);
+			b.SetPreferredWidth(30);
+			a.SetPreferredWidth(30);
+			var hbox = new HorizontalGroup().SetSpacing(10);
+			hbox.AddElement(g);
+			hbox.AddElement(b);
+			hbox.AddElement(a);
+			table.Add(hbox).Left().Top().Width(30);
 		}
 
 		void makeSection(Table table, Skin skin, string sectionName)
 		{
-			var label = new Label( sectionName, skin );
-			label.SetFontColor( new Color( 241, 156, 0 ) );
-			table.Add( label ).SetPadTop( 20 );
+			var label = new Label(sectionName, skin);
+			label.SetFontColor(new Color(241, 156, 0));
+			table.Add(label).SetPadTop(20);
 		}
 
 
@@ -473,16 +485,16 @@ namespace Nez.Samples
 		/// <returns>A converted object in the propert type</returns>
 		object typedConvert(FieldInfo fieldInfo, object value)
 		{
-			if( fieldInfo.FieldType == typeof( float ))
-				return (float)value;
+			if (fieldInfo.FieldType == typeof(float))
+				return (float) value;
 
-			if( fieldInfo.FieldType == typeof( int ))
-				return (int)Convert.ToSingle( value );
+			if (fieldInfo.FieldType == typeof(int))
+				return (int) Convert.ToSingle(value);
 
-			if( fieldInfo.FieldType == typeof( uint ))
-				return (uint)Convert.ToSingle( value );
+			if (fieldInfo.FieldType == typeof(uint))
+				return (uint) Convert.ToSingle(value);
 
-			return Convert.ToString( value );
+			return Convert.ToString(value);
 		}
 
 		void condenseSkin(Skin skin)
@@ -508,44 +520,41 @@ namespace Nez.Samples
 		/// <param name="skin">UI Skin.</param>
 		void exportPexClicked(Skin skin)
 		{
-			var canvas = Entity.Scene.CreateEntity( "save-dialog" ).AddComponent( new UICanvas() );
-			var dialog = canvas.Stage.AddElement( new Dialog( "Output Filename", skin ) );
+			var canvas = Entity.Scene.CreateEntity("save-dialog").AddComponent(new UICanvas());
+			var dialog = canvas.Stage.AddElement(new Dialog("Output Filename", skin));
 
 			var contentTable = dialog.GetContentTable();
-			contentTable.Add( "Filename: " ).Left();
+			contentTable.Add("Filename: ").Left();
 			contentTable.Row();
-			var outField = new UI.TextField( "output.pex", skin );
-			contentTable.Add( outField ).Center();
+			var outField = new UI.TextField("output.pex", skin);
+			contentTable.Add(outField).Center();
 
 			var buttonTable = dialog.GetButtonTable();
-			var cancelButton = new TextButton( "Cancel", skin );
-			var okButton = new TextButton( "OK", skin );
+			var cancelButton = new TextButton("Cancel", skin);
+			var okButton = new TextButton("OK", skin);
 
-			cancelButton.OnClicked += butt =>
-			{
-				Entity.Scene.FindEntity( "save-dialog" ).Destroy();
-			};
+			cancelButton.OnClicked += butt => { Entity.Scene.FindEntity("save-dialog").Destroy(); };
 
 			okButton.OnClicked += butt =>
 			{
 				var outFilename = outField.GetText();
-				if ( outFilename.Length > 0 )
+				if (outFilename.Length > 0)
 				{
 					var exporter = new PexExporter();
-					exporter.export( _particleEmitterConfig, outFilename );
+					exporter.export(_particleEmitterConfig, outFilename);
 				}
-				Entity.Scene.FindEntity( "save-dialog" ).Destroy();
+
+				Entity.Scene.FindEntity("save-dialog").Destroy();
 			};
 
-			dialog.AddButton( okButton );
-			dialog.AddButton( cancelButton );
+			dialog.AddButton(okButton);
+			dialog.AddButton(cancelButton);
 
-			dialog.SetMovable( true );
-			dialog.SetResizable( true );
-			dialog.SetPosition( ( Screen.Width - dialog.GetWidth() ) / 2f, ( Screen.Height - dialog.GetHeight() ) / 2f );
+			dialog.SetMovable(true);
+			dialog.SetResizable(true);
+			dialog.SetPosition((Screen.Width - dialog.GetWidth()) / 2f, (Screen.Height - dialog.GetHeight()) / 2f);
 
-			var uiCanvas = Entity.Scene.CreateEntity( "particles-ui" ).AddComponent( new UICanvas() );
+			var uiCanvas = Entity.Scene.CreateEntity("particles-ui").AddComponent(new UICanvas());
 		}
 	}
 }
-

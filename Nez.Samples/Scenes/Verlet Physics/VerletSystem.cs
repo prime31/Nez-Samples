@@ -10,60 +10,66 @@ namespace Nez.Samples
 	/// </summary>
 	public class VerletSystem : RenderableComponent, IUpdatable
 	{
-		public override float Width { get { return 1280; } }
-		public override float Height { get { return 720; } }
+		public override float Width
+		{
+			get { return 1280; }
+		}
+
+		public override float Height
+		{
+			get { return 720; }
+		}
 
 		public VerletWorld World;
 
 
 		public VerletSystem()
 		{
-			World = new VerletWorld( new Rectangle( 0, 0, (int)Width, (int)Height ) );
+			World = new VerletWorld(new Rectangle(0, 0, (int) Width, (int) Height));
 		}
 
 
 		void toggleGravity()
 		{
-			if( World.Gravity.Y > 0 )
+			if (World.Gravity.Y > 0)
 				World.Gravity.Y = -980f;
 			else
 				World.Gravity.Y = 980f;
 
-			Debug.DrawText( string.Format( "Gravity {0}", World.Gravity.Y > 0 ? "Down" : "Up" ), Color.Red, 2, 2 );
+			Debug.DrawText(string.Format("Gravity {0}", World.Gravity.Y > 0 ? "Down" : "Up"), Color.Red, 2, 2);
 		}
 
 
 		void toggleZeroGravity()
 		{
-			if( World.Gravity.Y == 0 )
+			if (World.Gravity.Y == 0)
 			{
 				World.Gravity.Y = 980f;
-				Debug.DrawText( "Gravity Restored", Color.Red, 2, 2 );
+				Debug.DrawText("Gravity Restored", Color.Red, 2, 2);
 			}
 			else
 			{
 				World.Gravity.Y = 0;
-				Debug.DrawText( "Zero Gravity", Color.Red, 2, 2 );
+				Debug.DrawText("Zero Gravity", Color.Red, 2, 2);
 			}
 		}
 
 
 		public void Update()
 		{
-			if( Input.IsKeyPressed( Keys.G ) )
+			if (Input.IsKeyPressed(Keys.G))
 				toggleGravity();
 
-			if( Input.IsKeyPressed( Keys.Z ) )
+			if (Input.IsKeyPressed(Keys.Z))
 				toggleZeroGravity();
-			
+
 			World.Update();
 		}
 
 
-		public override void Render( Graphics graphics, Camera camera )
+		public override void Render(Graphics graphics, Camera camera)
 		{
-			World.DebugRender( graphics.Batcher );
+			World.DebugRender(graphics.Batcher);
 		}
-	
 	}
 }

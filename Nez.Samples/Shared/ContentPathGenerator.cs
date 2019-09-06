@@ -1,10 +1,7 @@
-﻿
-
-
-namespace Nez
+﻿namespace Nez
 {
-    class Content
-    {
+	class Content
+	{
 		public static class AnimatedTiles
 		{
 			public const string desertpalacelamp = @"AnimatedTiles/desert-palace-lamp";
@@ -104,10 +101,5 @@ namespace Nez
 			public const string spritelight = @"SpriteLights/sprite-light";
 			public const string tubelight = @"SpriteLights/tube-light";
 		}
-
-
-    }
+	}
 }
-
-
-

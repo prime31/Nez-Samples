@@ -14,7 +14,7 @@ namespace Nez.Samples
 		float _speedFactor;
 
 
-		public MovingPlatform( float minY, float maxY, float speedFactor = 2f )
+		public MovingPlatform(float minY, float maxY, float speedFactor = 2f)
 		{
 			_minY = minY;
 			_maxY = maxY;
@@ -31,51 +31,51 @@ namespace Nez.Samples
 
 		void IUpdatable.Update()
 		{
-			var x = Mathf.PingPong( Time.TotalTime, 1f );
-			var xToTheSpeedFactor = Mathf.Pow( x, _speedFactor );
-			var alpha = 1f - xToTheSpeedFactor / xToTheSpeedFactor + Mathf.Pow( 1 - x, _speedFactor );
+			var x = Mathf.PingPong(Time.TotalTime, 1f);
+			var xToTheSpeedFactor = Mathf.Pow(x, _speedFactor);
+			var alpha = 1f - xToTheSpeedFactor / xToTheSpeedFactor + Mathf.Pow(1 - x, _speedFactor);
 
-			var deltaY = Nez.Tweens.Lerps.Lerp( _minY, _maxY, alpha ) - Entity.Position.Y;
-			var deltaX = Nez.Tweens.Lerps.Lerp( _minX, _maxX, alpha ) - Entity.Position.X;
+			var deltaY = Nez.Tweens.Lerps.Lerp(_minY, _maxY, alpha) - Entity.Position.Y;
+			var deltaX = Nez.Tweens.Lerps.Lerp(_minX, _maxX, alpha) - Entity.Position.X;
 
 			// TODO: probably query Physics to fetch the actors that we will intersect instead of blindly grabbing them all
 			var ridingActors = getAllRidingActors();
 
-			moveSolid( new Vector2( deltaX, deltaY ), ridingActors );
+			moveSolid(new Vector2(deltaX, deltaY), ridingActors);
 		}
 
 
-		void moveSolid( Vector2 motion, List<Entity> ridingActors )
+		void moveSolid(Vector2 motion, List<Entity> ridingActors)
 		{
-			if( motion.X == 0 && motion.Y == 0 )
+			if (motion.X == 0 && motion.Y == 0)
 				return;
 
-			moveSolidX( motion.X, ridingActors );
-			moveSolidY( motion.Y, ridingActors );
+			moveSolidX(motion.X, ridingActors);
+			moveSolidY(motion.Y, ridingActors);
 		}
 
 
-		void moveSolidX( float amount, List<Entity> ridingActors )
+		void moveSolidX(float amount, List<Entity> ridingActors)
 		{
 			var moved = false;
-			Entity.Position += new Vector2( amount, 0 );
+			Entity.Position += new Vector2(amount, 0);
 
 			var platformCollider = Entity.GetComponent<Collider>();
-			var colliders = new HashSet<Collider>( Physics.BoxcastBroadphaseExcludingSelf( platformCollider ) );
-			foreach( var collider in colliders )
+			var colliders = new HashSet<Collider>(Physics.BoxcastBroadphaseExcludingSelf(platformCollider));
+			foreach (var collider in colliders)
 			{
 				float pushAmount;
-				if( amount > 0 )
+				if (amount > 0)
 					pushAmount = platformCollider.Bounds.Right - collider.Bounds.Left;
 				else
 					pushAmount = platformCollider.Bounds.Left - collider.Bounds.Right;
 
 				var mover = collider.Entity.GetComponent<Mover>();
-				if( mover != null )
+				if (mover != null)
 				{
 					moved = true;
 					CollisionResult collisionResult;
-					if( mover.Move( new Vector2( pushAmount, 0 ), out collisionResult ) )
+					if (mover.Move(new Vector2(pushAmount, 0), out collisionResult))
 					{
 						collider.Entity.Destroy();
 						return;
@@ -83,40 +83,40 @@ namespace Nez.Samples
 				}
 				else
 				{
-					collider.Entity.Position += new Vector2( pushAmount, 0 );
+					collider.Entity.Position += new Vector2(pushAmount, 0);
 				}
 			}
 
 
-			foreach( var ent in ridingActors )
+			foreach (var ent in ridingActors)
 			{
-				if( !moved )
-					ent.Position += new Vector2( amount, 0 );
+				if (!moved)
+					ent.Position += new Vector2(amount, 0);
 			}
 		}
 
 
-		void moveSolidY( float amount, List<Entity> ridingActors )
+		void moveSolidY(float amount, List<Entity> ridingActors)
 		{
 			var moved = false;
-			Entity.Position += new Vector2( 0, amount );
+			Entity.Position += new Vector2(0, amount);
 
 			var platformCollider = Entity.GetComponent<Collider>();
-			var colliders = new HashSet<Collider>( Physics.BoxcastBroadphaseExcludingSelf( platformCollider ) );
-			foreach( var collider in colliders )
+			var colliders = new HashSet<Collider>(Physics.BoxcastBroadphaseExcludingSelf(platformCollider));
+			foreach (var collider in colliders)
 			{
 				float pushAmount;
-				if( amount > 0 )
+				if (amount > 0)
 					pushAmount = platformCollider.Bounds.Bottom - collider.Bounds.Top;
 				else
 					pushAmount = platformCollider.Bounds.Top - collider.Bounds.Bottom;
 
 				var mover = collider.Entity.GetComponent<Mover>();
-				if( mover != null )
+				if (mover != null)
 				{
 					moved = true;
 					CollisionResult collisionResult;
-					if( mover.Move( new Vector2( 0, pushAmount ), out collisionResult ) )
+					if (mover.Move(new Vector2(0, pushAmount), out collisionResult))
 					{
 						collider.Entity.Destroy();
 						return;
@@ -124,15 +124,15 @@ namespace Nez.Samples
 				}
 				else
 				{
-					collider.Entity.Position += new Vector2( 0, pushAmount );
+					collider.Entity.Position += new Vector2(0, pushAmount);
 				}
 			}
 
 
-			foreach( var ent in ridingActors )
+			foreach (var ent in ridingActors)
 			{
-				if( !moved )
-					ent.Position += new Vector2( 0, amount );
+				if (!moved)
+					ent.Position += new Vector2(0, amount);
 			}
 		}
 
@@ -146,21 +146,19 @@ namespace Nez.Samples
 			var list = new List<Entity>();
 			var platformCollider = Entity.GetComponent<Collider>();
 
-			var entities = Entity.Scene.FindEntitiesWithTag( 0 );
-			for( var i = 0; i < entities.Count; i++ )
+			var entities = Entity.Scene.FindEntitiesWithTag(0);
+			for (var i = 0; i < entities.Count; i++)
 			{
 				var collider = entities[i].GetComponent<Collider>();
-				if( collider == platformCollider || collider == null )
+				if (collider == platformCollider || collider == null)
 					continue;
 
 				CollisionResult collisionResult;
-				if( collider.CollidesWith( platformCollider, new Vector2( 0f, 1f ), out collisionResult ) )
-					list.Add( entities[i] );
+				if (collider.CollidesWith(platformCollider, new Vector2(0f, 1f), out collisionResult))
+					list.Add(entities[i]);
 			}
 
 			return list;
 		}
-
 	}
 }
-

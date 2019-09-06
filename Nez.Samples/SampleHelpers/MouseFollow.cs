@@ -1,13 +1,10 @@
-﻿
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	public class MouseFollow : Component, IUpdatable
 	{
 		public void Update()
 		{
-			Entity.SetPosition( Input.ScaledMousePosition );
+			Entity.SetPosition(Input.ScaledMousePosition);
 		}
 	}
 }
-

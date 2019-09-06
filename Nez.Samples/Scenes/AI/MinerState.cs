@@ -29,4 +29,3 @@ namespace Nez.Samples
 		public Location currentLocation = Location.Home;
 	}
 }
-
