@@ -20,44 +20,44 @@ namespace Nez.Samples
 		{ }
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			base.initialize();
+			base.Initialize();
 
 			// setup screen that fits our map
-			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.ShowAll );
-			Screen.setSize( 1280, 720 );
+			SetDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.ShowAll );
+			Screen.SetSize( 1280, 720 );
 
-			addRenderer( new RenderLayerExcludeRenderer( 0, SCREEN_SPACE_RENDER_LAYER, SPRITE_LIGHT_RENDER_LAYER ) );
-			_lightRenderer = addRenderer( new RenderLayerRenderer( -1, SPRITE_LIGHT_RENDER_LAYER ) );
-			_lightRenderer.renderTexture = new RenderTexture();
-			_lightRenderer.renderTargetClearColor = new Color( 10, 10, 10, 255 );
+			AddRenderer( new RenderLayerExcludeRenderer( 0, SCREEN_SPACE_RENDER_LAYER, SPRITE_LIGHT_RENDER_LAYER ) );
+			_lightRenderer = AddRenderer( new RenderLayerRenderer( -1, SPRITE_LIGHT_RENDER_LAYER ) );
+			_lightRenderer.RenderTexture = new RenderTexture();
+			_lightRenderer.RenderTargetClearColor = new Color( 10, 10, 10, 255 );
 
-			_spriteLightPostProcessor = addPostProcessor( new SpriteLightPostProcessor( 0, _lightRenderer.renderTexture ) );
-			addPostProcessor( new ScanlinesPostProcessor( 0 ) );
-
-
-			var bg = content.Load<Texture2D>( Content.SpriteLights.bg );
-			var bgEntity = createEntity( "bg" );
-			bgEntity.position = Screen.center;
-			bgEntity.addComponent( new Sprite( bg ) );
-			bgEntity.scale = new Vector2( 9.4f );
-
-			var moonTex = content.Load<Texture2D>( Content.Shared.moon );
-			var entity = createEntity( "moon" );
-			entity.addComponent( new Sprite( moonTex ) );
-			entity.position = new Vector2( Screen.width / 4, Screen.height / 8 );
+			_spriteLightPostProcessor = AddPostProcessor( new SpriteLightPostProcessor( 0, _lightRenderer.RenderTexture ) );
+			AddPostProcessor( new ScanlinesPostProcessor( 0 ) );
 
 
-			var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
-			var pixelLightTex = content.Load<Texture2D>( Content.SpriteLights.pixelspritelight );
+			var bg = Content.Load<Texture2D>( Nez.Content.SpriteLights.bg );
+			var bgEntity = CreateEntity( "bg" );
+			bgEntity.Position = Screen.Center;
+			bgEntity.AddComponent( new Sprite( bg ) );
+			bgEntity.Scale = new Vector2( 9.4f );
+
+			var moonTex = Content.Load<Texture2D>( Nez.Content.Shared.moon );
+			var entity = CreateEntity( "moon" );
+			entity.AddComponent( new Sprite( moonTex ) );
+			entity.Position = new Vector2( Screen.Width / 4, Screen.Height / 8 );
+
+
+			var lightTex = Content.Load<Texture2D>( Nez.Content.SpriteLights.spritelight );
+			var pixelLightTex = Content.Load<Texture2D>( Nez.Content.SpriteLights.pixelspritelight );
 
 			addSpriteLight( lightTex, new Vector2( 50, 50 ), 2 );
-			addSpriteLight( lightTex, Screen.center, 3 );
-			addSpriteLight( lightTex, new Vector2( Screen.width - 100, 150 ), 2 );
-			addSpriteLight( pixelLightTex, Screen.center + new Vector2( 200, 10 ), 10 );
-			addSpriteLight( pixelLightTex, Screen.center - new Vector2( 200, 10 ), 13 );
-			addSpriteLight( pixelLightTex, Screen.center + new Vector2( 10, 200 ), 8 );
+			addSpriteLight( lightTex, Screen.Center, 3 );
+			addSpriteLight( lightTex, new Vector2( Screen.Width - 100, 150 ), 2 );
+			addSpriteLight( pixelLightTex, Screen.Center + new Vector2( 200, 10 ), 10 );
+			addSpriteLight( pixelLightTex, Screen.Center - new Vector2( 200, 10 ), 13 );
+			addSpriteLight( pixelLightTex, Screen.Center + new Vector2( 10, 200 ), 8 );
 
 			createUI();
 		}
@@ -66,55 +66,55 @@ namespace Nez.Samples
 		void createUI()
 		{
 			// stick a UI in so we can play with the sprite light effect
-			var uiCanvas = createEntity( "sprite-light-ui" ).addComponent( new UICanvas() );
-			uiCanvas.isFullScreen = true;
-			uiCanvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
-			var skin = Skin.createDefaultSkin();
+			var uiCanvas = CreateEntity( "sprite-light-ui" ).AddComponent( new UICanvas() );
+			uiCanvas.IsFullScreen = true;
+			uiCanvas.RenderLayer = SCREEN_SPACE_RENDER_LAYER;
+			var skin = Skin.CreateDefaultSkin();
 
-			var table = uiCanvas.stage.addElement( new Table() );
-			table.setFillParent( true ).left().top().padLeft( 10 ).padTop( 50 );
+			var table = uiCanvas.Stage.AddElement( new Table() );
+			table.SetFillParent( true ).Left().Top().PadLeft( 10 ).PadTop( 50 );
 
 
-			var checkbox = table.add( new CheckBox( "Toggle PostProcessor", skin ) ).getElement<CheckBox>();
-			checkbox.isChecked = true;
-			checkbox.onChanged += isChecked =>
+			var checkbox = table.Add( new CheckBox( "Toggle PostProcessor", skin ) ).GetElement<CheckBox>();
+			checkbox.IsChecked = true;
+			checkbox.OnChanged += isChecked =>
 			{
-				_spriteLightPostProcessor.enabled = isChecked;
+				_spriteLightPostProcessor.Enabled = isChecked;
 			};
 
-			table.row().setPadTop( 20 ).setAlign( Align.left );
+			table.Row().SetPadTop( 20 ).SetAlign( Align.Left );
 
-			table.add( "Blend Multiplicative Factor" );
-			table.row().setPadTop( 0 ).setAlign( Align.left );
+			table.Add( "Blend Multiplicative Factor" );
+			table.Row().SetPadTop( 0 ).SetAlign( Align.Left );
 
-			var slider = table.add( new Slider( 0.5f, 3f, 0.1f, false, skin.get<SliderStyle>() ) ).setFillX().getElement<Slider>();
-			slider.setValue( 1f );
-			slider.onChanged += value =>
+			var slider = table.Add( new Slider( 0.5f, 3f, 0.1f, false, skin.Get<SliderStyle>() ) ).SetFillX().GetElement<Slider>();
+			slider.SetValue( 1f );
+			slider.OnChanged += value =>
 			{
-				_spriteLightPostProcessor.multiplicativeFactor = value;
+				_spriteLightPostProcessor.MultiplicativeFactor = value;
 			};
 
-			table.row().setPadTop( 20 ).setAlign( Align.left );
+			table.Row().SetPadTop( 20 ).SetAlign( Align.Left );
 
-			table.add( "Ambient Light Intensity" );
-			table.row().setPadTop( 0 ).setAlign( Align.left );
+			table.Add( "Ambient Light Intensity" );
+			table.Row().SetPadTop( 0 ).SetAlign( Align.Left );
 
-			var ambientColorStyle = table.add( new Slider( 10, 75, 1f, false, skin.get<SliderStyle>() ) ).setFillX().getElement<Slider>();
-			ambientColorStyle.setValue( 10f );
-			ambientColorStyle.onChanged += value =>
+			var ambientColorStyle = table.Add( new Slider( 10, 75, 1f, false, skin.Get<SliderStyle>() ) ).SetFillX().GetElement<Slider>();
+			ambientColorStyle.SetValue( 10f );
+			ambientColorStyle.OnChanged += value =>
 			{
-				var valueInt = Mathf.roundToInt( value );
-				_lightRenderer.renderTargetClearColor = new Color( valueInt, valueInt, valueInt * 2, 255 );
+				var valueInt = Mathf.RoundToInt( value );
+				_lightRenderer.RenderTargetClearColor = new Color( valueInt, valueInt, valueInt * 2, 255 );
 			};
 
-			table.row().setPadTop( 20 ).setAlign( Align.left ).setFillX();
+			table.Row().SetPadTop( 20 ).SetAlign( Align.Left ).SetFillX();
 
-			var button = table.add( new TextButton( "Add Light", skin ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
-			button.onClicked += butt =>
+			var button = table.Add( new TextButton( "Add Light", skin ) ).SetFillX().SetMinHeight( 30 ).GetElement<TextButton>();
+			button.OnClicked += butt =>
 			{
-				var lightTex = content.Load<Texture2D>( Content.SpriteLights.spritelight );
-				var position = new Vector2( Random.range( 0, Screen.width ), Random.range( 0, Screen.height ) );
-				addSpriteLight( lightTex, position, Random.range( 2f, 3f ) );
+				var lightTex = Content.Load<Texture2D>( Nez.Content.SpriteLights.spritelight );
+				var position = new Vector2( Random.Range( 0, Screen.Width ), Random.Range( 0, Screen.Height ) );
+				addSpriteLight( lightTex, position, Random.Range( 2f, 3f ) );
 			};
 		}
 
@@ -122,29 +122,29 @@ namespace Nez.Samples
 		void addSpriteLight( Texture2D texture, Vector2 position, float scale )
 		{
 			// random target to tween towards that is on screen
-			var target = new Vector2( Random.range( 50, sceneRenderTargetSize.X - 100 ), Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
+			var target = new Vector2( Random.Range( 50, SceneRenderTargetSize.X - 100 ), Random.Range( 50, SceneRenderTargetSize.Y - 100 ) );
 
-			var entity = createEntity( "light" );
-			var sprite = entity.addComponent( new Sprite( texture ) );
-			entity.position = position;
-			entity.scale = new Vector2( scale );
-			sprite.renderLayer = SPRITE_LIGHT_RENDER_LAYER;
+			var entity = CreateEntity( "light" );
+			var sprite = entity.AddComponent( new Sprite( texture ) );
+			entity.Position = position;
+			entity.Scale = new Vector2( scale );
+			sprite.RenderLayer = SPRITE_LIGHT_RENDER_LAYER;
 
-			if( Random.chance( 50 ) )
+			if( Random.Chance( 50 ) )
 			{
-				sprite.setColor( Random.nextColor() );
-				var cyler = entity.addComponent( new ColorCycler() );
-				cyler.waveFunction = (WaveFunctions)Random.range( 0, 5 );
-				cyler.offset = Random.nextFloat();
-				cyler.frequency = Random.range( 0.6f, 1.5f );
-				cyler.phase = Random.nextFloat();
+				sprite.SetColor( Random.NextColor() );
+				var cyler = entity.AddComponent( new ColorCycler() );
+				cyler.WaveFunction = (WaveFunctions)Random.Range( 0, 5 );
+				cyler.Offset = Random.NextFloat();
+				cyler.Frequency = Random.Range( 0.6f, 1.5f );
+				cyler.Phase = Random.NextFloat();
 			}
 			else
 			{
-				entity.tweenPositionTo( target, 2 )
-					  .setCompletionHandler( lightTweenCompleted )
-					  .setRecycleTween( false )
-					  .start();
+				entity.TweenPositionTo( target, 2 )
+					  .SetCompletionHandler( lightTweenCompleted )
+					  .SetRecycleTween( false )
+					  .Start();
 			}
 		}
 
@@ -152,32 +152,32 @@ namespace Nez.Samples
 		void lightTweenCompleted( ITween<Vector2> tween )
 		{
 			// get a random point on screen and a random delay for the tweens
-			var target = new Vector2( Random.range( 50, sceneRenderTargetSize.X - 100 ), Random.range( 50, sceneRenderTargetSize.Y - 100 ) );
-			var delay = Nez.Random.range( 0f, 1f );
+			var target = new Vector2( Random.Range( 50, SceneRenderTargetSize.X - 100 ), Random.Range( 50, SceneRenderTargetSize.Y - 100 ) );
+			var delay = Nez.Random.Range( 0f, 1f );
 
-			var transform = tween.getTargetObject() as Transform;
-			tween.prepareForReuse( transform.position, target, 2f )
-				.setCompletionHandler( lightTweenCompleted )
-				.setDelay( delay )
-				.start();
+			var Transform = tween.GetTargetObject() as Transform;
+			tween.PrepareForReuse( Transform.Position, target, 2f )
+				.SetCompletionHandler( lightTweenCompleted )
+				.SetDelay( delay )
+				.Start();
 
 			// every so often add a scale tween
-			if( Random.chance( 60 ) )
+			if( Random.Chance( 60 ) )
 			{
-				transform.tweenLocalScaleTo( transform.localScale.X * 2f, 1f )
-					.setLoops( LoopType.PingPong )
-					.setEaseType( EaseType.CubicIn )
-					.setDelay( delay )
-					.start();
+				Transform.TweenLocalScaleTo( Transform.LocalScale.X * 2f, 1f )
+					.SetLoops( LoopType.PingPong )
+					.SetEaseType( EaseType.CubicIn )
+					.SetDelay( delay )
+					.Start();
 			}
 
 			// every so often change our color
-			if( Random.chance( 80 ) )
+			if( Random.Chance( 80 ) )
 			{
-				var sprite = transform.entity.getComponent<Sprite>();
-				PropertyTweens.colorPropertyTo( sprite, "color", Random.nextColor(), 2f )
-					.setDelay( delay )
-					.start();
+				var sprite = Transform.Entity.GetComponent<Sprite>();
+				PropertyTweens.ColorPropertyTo( sprite, "color", Random.NextColor(), 2f )
+					.SetDelay( delay )
+					.Start();
 			}
 		}
 	

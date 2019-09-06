@@ -15,109 +15,109 @@ namespace Nez.Samples
 		int _distanceToNextLocation = 10;
 
 
-		public void buildSelfAbortTree()
+		public void BuildSelfAbortTree()
 		{
-			var builder = BehaviorTreeBuilder<BehaviorTreeMiner>.begin( this );
+			var builder = BehaviorTreeBuilder<BehaviorTreeMiner>.Begin( this );
 
-			builder.selector( AbortTypes.Self );
+			builder.Selector( AbortTypes.Self );
 
 			// sleep is most important
-			builder.conditionalDecorator( m => m.minerState.fatigue >= MinerState.MAX_FATIGUE, false );
-			builder.sequence()
-				.logAction( "--- tired! gotta go home" )
-				.action( m => m.goToLocation( MinerState.Location.Home ) )
-				.logAction( "--- prep me my bed!" )
-				.action( m => m.sleep() )
-				.endComposite();
+			builder.ConditionalDecorator( m => m.minerState.fatigue >= MinerState.MAX_FATIGUE, false );
+			builder.Sequence()
+				.LogAction( "--- tired! gotta go home" )
+				.Action( m => m.goToLocation( MinerState.Location.Home ) )
+				.LogAction( "--- prep me my bed!" )
+				.Action( m => m.sleep() )
+				.EndComposite();
 
 			// thirst is next most important
-			builder.conditionalDecorator( m => m.minerState.thirst >= MinerState.MAX_THIRST, false );
-			builder.sequence()
-				.logAction( "--- thirsty! time for a drink" )
-				.action( m => m.goToLocation( MinerState.Location.Saloon ) )
-				.logAction( "--- get me a drink!" )
-				.action( m => m.drink() )
-				.endComposite();
+			builder.ConditionalDecorator( m => m.minerState.thirst >= MinerState.MAX_THIRST, false );
+			builder.Sequence()
+				.LogAction( "--- thirsty! time for a drink" )
+				.Action( m => m.goToLocation( MinerState.Location.Saloon ) )
+				.LogAction( "--- get me a drink!" )
+				.Action( m => m.drink() )
+				.EndComposite();
 
 			// dropping off gold is next
-			builder.conditionalDecorator( m => m.minerState.gold >= MinerState.MAX_GOLD, false );
-			builder.sequence()
-				.logAction( "--- bags are full! gotta drop this off at the bank." )
-				.action( m => m.goToLocation( MinerState.Location.Bank ) )
-				.logAction( "--- take me gold!" )
-				.action( m => m.depositGold() )
-				.endComposite();
+			builder.ConditionalDecorator( m => m.minerState.gold >= MinerState.MAX_GOLD, false );
+			builder.Sequence()
+				.LogAction( "--- bags are full! gotta drop this off at the bank." )
+				.Action( m => m.goToLocation( MinerState.Location.Bank ) )
+				.LogAction( "--- take me gold!" )
+				.Action( m => m.depositGold() )
+				.EndComposite();
 
 			// fetching gold is last
-			builder.sequence()
-				.action( m => m.goToLocation( MinerState.Location.Mine ) )
-				.logAction( "--- time to get me some gold!" )
-				.action( m => m.digForGold() )
-				.endComposite();
+			builder.Sequence()
+				.Action( m => m.goToLocation( MinerState.Location.Mine ) )
+				.LogAction( "--- time to get me some gold!" )
+				.Action( m => m.digForGold() )
+				.EndComposite();
 
-			builder.endComposite();
+			builder.EndComposite();
 
-			_tree = builder.build();
+			_tree = builder.Build();
 		}
 
 
 		// the same tree is here, once with LowerPriority aborts and once with Self aborts and ConditionalDecorators
-		public void buildLowerPriorityAbortTree()
+		public void BuildLowerPriorityAbortTree()
 		{
-			var builder = BehaviorTreeBuilder<BehaviorTreeMiner>.begin( this );
+			var builder = BehaviorTreeBuilder<BehaviorTreeMiner>.Begin( this );
 
-			builder.selector();
+			builder.Selector();
 
 			// sleep is most important
-			builder.sequence( AbortTypes.LowerPriority )
-				.conditional( m => m.minerState.fatigue >= MinerState.MAX_FATIGUE )
-				.logAction( "--- tired! gotta go home" )
-				.action( m => m.goToLocation( MinerState.Location.Home ) )
-				.logAction( "--- prep me my bed!" )
-				.action( m => m.sleep() )
-				.endComposite();
+			builder.Sequence( AbortTypes.LowerPriority )
+				.Conditional( m => m.minerState.fatigue >= MinerState.MAX_FATIGUE )
+				.LogAction( "--- tired! gotta go home" )
+				.Action( m => m.goToLocation( MinerState.Location.Home ) )
+				.LogAction( "--- prep me my bed!" )
+				.Action( m => m.sleep() )
+				.EndComposite();
 
 			// thirst is next most important
-			builder.sequence( AbortTypes.LowerPriority )
-				.conditional( m => m.minerState.thirst >= MinerState.MAX_THIRST )
-				.logAction( "--- thirsty! time for a drink" )
-				.action( m => m.goToLocation( MinerState.Location.Saloon ) )
-				.logAction( "--- get me a drink!" )
-				.action( m => m.drink() )
-				.endComposite();
+			builder.Sequence( AbortTypes.LowerPriority )
+				.Conditional( m => m.minerState.thirst >= MinerState.MAX_THIRST )
+				.LogAction( "--- thirsty! time for a drink" )
+				.Action( m => m.goToLocation( MinerState.Location.Saloon ) )
+				.LogAction( "--- get me a drink!" )
+				.Action( m => m.drink() )
+				.EndComposite();
 
 			// dropping off gold is next
-			builder.sequence( AbortTypes.LowerPriority )
-				.conditional( m => m.minerState.gold >= MinerState.MAX_GOLD )
-				.logAction( "--- bags are full! gotta drop this off at the bank." )
-				.action( m => m.goToLocation( MinerState.Location.Bank ) )
-				.logAction( "--- take me gold!" )
-				.action( m => m.depositGold() )
-				.endComposite();
+			builder.Sequence( AbortTypes.LowerPriority )
+				.Conditional( m => m.minerState.gold >= MinerState.MAX_GOLD )
+				.LogAction( "--- bags are full! gotta drop this off at the bank." )
+				.Action( m => m.goToLocation( MinerState.Location.Bank ) )
+				.LogAction( "--- take me gold!" )
+				.Action( m => m.depositGold() )
+				.EndComposite();
 
 			// fetching gold is last
-			builder.sequence()
-				.action( m => m.goToLocation( MinerState.Location.Mine ) )
-				.logAction( "--- time to get me some gold!" )
-				.action( m => m.digForGold() )
-				.endComposite();
+			builder.Sequence()
+				.Action( m => m.goToLocation( MinerState.Location.Mine ) )
+				.LogAction( "--- time to get me some gold!" )
+				.Action( m => m.digForGold() )
+				.EndComposite();
 
-			builder.endComposite();
+			builder.EndComposite();
 
-			_tree = builder.build();
+			_tree = builder.Build();
 		}
 
 
-		public void update()
+		public void Update()
 		{
 			if( _tree != null )
-				_tree.tick();
+				_tree.Tick();
 		}
 
 
 		TaskStatus goToLocation( MinerState.Location location )
 		{
-			Debug.log( "heading to {0}. its {1} miles away", location, _distanceToNextLocation );
+			Debug.Log( "heading to {0}. its {1} miles away", location, _distanceToNextLocation );
 
 			if( location != minerState.currentLocation )
 			{
@@ -126,7 +126,7 @@ namespace Nez.Samples
 				{
 					minerState.fatigue++;
 					minerState.currentLocation = location;
-					_distanceToNextLocation = Nez.Random.range( 2, 8 );
+					_distanceToNextLocation = Nez.Random.Range( 2, 8 );
 
 					return TaskStatus.Success;
 				}
@@ -139,7 +139,7 @@ namespace Nez.Samples
 
 		TaskStatus sleep()
 		{
-			Debug.log( "getting some sleep. current fatigue {0}", minerState.fatigue );
+			Debug.Log( "getting some sleep. current fatigue {0}", minerState.fatigue );
 
 			if( minerState.fatigue == 0 )
 				return TaskStatus.Success;
@@ -151,7 +151,7 @@ namespace Nez.Samples
 
 		TaskStatus drink()
 		{
-			Debug.log( "getting my drink on. Thirst level {0}", minerState.thirst );
+			Debug.Log( "getting my drink on. Thirst level {0}", minerState.thirst );
 
 			if( minerState.thirst == 0 )
 				return TaskStatus.Success;
@@ -166,7 +166,7 @@ namespace Nez.Samples
 			minerState.goldInBank += minerState.gold;
 			minerState.gold = 0;
 
-			Debug.log( "depositing gold at the bank. current wealth {0}", minerState.goldInBank );
+			Debug.Log( "depositing gold at the bank. current wealth {0}", minerState.goldInBank );
 
 			return TaskStatus.Success;
 		}
@@ -174,7 +174,7 @@ namespace Nez.Samples
 
 		TaskStatus digForGold()
 		{
-			Debug.log( "digging for gold. nuggets found {0}", minerState.gold );
+			Debug.Log( "digging for gold. nuggets found {0}", minerState.gold );
 			minerState.gold++;
 			minerState.fatigue++;
 			minerState.thirst++;

@@ -20,9 +20,9 @@ namespace Nez.Samples
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
-			if( Input.isKeyPressed( _key ) )
+			if( Input.IsKeyPressed( _key ) )
 				_action();
 		}
 	}

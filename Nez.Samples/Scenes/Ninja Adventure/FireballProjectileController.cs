@@ -20,16 +20,16 @@ namespace Nez.Samples
 		}
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_mover = entity.getComponent<ProjectileMover>();
+			_mover = Entity.GetComponent<ProjectileMover>();
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
-			if( _mover.move( velocity * Time.deltaTime ) )
-				entity.destroy();
+			if( _mover.Move( velocity * Time.DeltaTime ) )
+				Entity.Destroy();
 		}
 	}
 }

@@ -10,59 +10,59 @@ namespace Nez.Samples
 	/// </summary>
 	public class VerletSystem : RenderableComponent, IUpdatable
 	{
-		public override float width { get { return 1280; } }
-		public override float height { get { return 720; } }
+		public override float Width { get { return 1280; } }
+		public override float Height { get { return 720; } }
 
-		public VerletWorld world;
+		public VerletWorld World;
 
 
 		public VerletSystem()
 		{
-			world = new VerletWorld( new Rectangle( 0, 0, (int)width, (int)height ) );
+			World = new VerletWorld( new Rectangle( 0, 0, (int)Width, (int)Height ) );
 		}
 
 
 		void toggleGravity()
 		{
-			if( world.gravity.Y > 0 )
-				world.gravity.Y = -980f;
+			if( World.Gravity.Y > 0 )
+				World.Gravity.Y = -980f;
 			else
-				world.gravity.Y = 980f;
+				World.Gravity.Y = 980f;
 
-			Debug.drawText( string.Format( "Gravity {0}", world.gravity.Y > 0 ? "Down" : "Up" ), Color.Red, 2, 2 );
+			Debug.DrawText( string.Format( "Gravity {0}", World.Gravity.Y > 0 ? "Down" : "Up" ), Color.Red, 2, 2 );
 		}
 
 
 		void toggleZeroGravity()
 		{
-			if( world.gravity.Y == 0 )
+			if( World.Gravity.Y == 0 )
 			{
-				world.gravity.Y = 980f;
-				Debug.drawText( "Gravity Restored", Color.Red, 2, 2 );
+				World.Gravity.Y = 980f;
+				Debug.DrawText( "Gravity Restored", Color.Red, 2, 2 );
 			}
 			else
 			{
-				world.gravity.Y = 0;
-				Debug.drawText( "Zero Gravity", Color.Red, 2, 2 );
+				World.Gravity.Y = 0;
+				Debug.DrawText( "Zero Gravity", Color.Red, 2, 2 );
 			}
 		}
 
 
-		public void update()
+		public void Update()
 		{
-			if( Input.isKeyPressed( Keys.G ) )
+			if( Input.IsKeyPressed( Keys.G ) )
 				toggleGravity();
 
-			if( Input.isKeyPressed( Keys.Z ) )
+			if( Input.IsKeyPressed( Keys.Z ) )
 				toggleZeroGravity();
 			
-			world.update();
+			World.Update();
 		}
 
 
-		public override void render( Graphics graphics, Camera camera )
+		public override void Render( Graphics graphics, Camera camera )
 		{
-			world.debugRender( graphics.batcher );
+			World.DebugRender( graphics.Batcher );
 		}
 	
 	}

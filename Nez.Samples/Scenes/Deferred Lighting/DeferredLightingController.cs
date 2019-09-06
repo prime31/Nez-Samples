@@ -12,40 +12,40 @@ namespace Nez.Samples
 		DirLight _dirLight;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_dirLight = entity.scene.findComponentOfType<DirLight>();
+			_dirLight = Entity.Scene.FindComponentOfType<DirLight>();
 			_currentLight = _dirLight;
 		}
 
 
-		public void update()
+		public void Update()
 		{
 			// check for debug toggle
-			if( Input.isKeyPressed( Keys.F ) )
+			if( Input.IsKeyPressed( Keys.F ) )
 			{
-				var renderer = entity.scene.getRenderer<DeferredLightingRenderer>();
-				renderer.enableDebugBufferRender = !renderer.enableDebugBufferRender;
+				var renderer = Entity.Scene.GetRenderer<DeferredLightingRenderer>();
+				renderer.EnableDebugBufferRender = !renderer.EnableDebugBufferRender;
 			}
 			
 			// check for light changes
 			var lightIndex = -1;
-			if( Input.isKeyPressed( Keys.D1 ) )
+			if( Input.IsKeyPressed( Keys.D1 ) )
 				lightIndex = 0;
-			if( Input.isKeyPressed( Keys.D2 ) )
+			if( Input.IsKeyPressed( Keys.D2 ) )
 				lightIndex = 1;
-			if( Input.isKeyPressed( Keys.D3 ) )
+			if( Input.IsKeyPressed( Keys.D3 ) )
 				lightIndex = 2;
-			if( Input.isKeyPressed( Keys.D4 ) )
+			if( Input.IsKeyPressed( Keys.D4 ) )
 				lightIndex = 3;
-			if( Input.isKeyPressed( Keys.D5 ) )
+			if( Input.IsKeyPressed( Keys.D5 ) )
 				lightIndex = 4;
-			if( Input.isKeyPressed( Keys.D6 ) )
+			if( Input.IsKeyPressed( Keys.D6 ) )
 				lightIndex = 5;
 
 			if( lightIndex > -1 )
 			{
-				var lights = entity.scene.findComponentsOfType<DeferredLight>();
+				var lights = Entity.Scene.FindComponentsOfType<DeferredLight>();
 				if( lights.Count > lightIndex )
 				{
 					_currentLight = lights[lightIndex];
@@ -53,7 +53,7 @@ namespace Nez.Samples
 				}
 				else
 				{
-					Debug.log( "no light at index: {0}", lightIndex );
+					Debug.Log( "no light at index: {0}", lightIndex );
 				}
 			}
 			
@@ -66,87 +66,87 @@ namespace Nez.Samples
 			if( _currentLight is DirLight )
 			{
 				var light = _currentLight as DirLight;
-				var zDir = light.direction.Z;
-				var rotation = (float)Math.Atan2( light.direction.Y, light.direction.X );
-				var magnitude = new Vector2( light.direction.X, light.direction.Y ).Length();
+				var zDir = light.Direction.Z;
+				var rotation = (float)Math.Atan2( light.Direction.Y, light.Direction.X );
+				var magnitude = new Vector2( light.Direction.X, light.Direction.Y ).Length();
 
-				if( Input.isKeyDown( Keys.Left ) )
+				if( Input.IsKeyDown( Keys.Left ) )
 					rotation -= 0.1f;
-				else if( Input.isKeyDown( Keys.Right ) )
+				else if( Input.IsKeyDown( Keys.Right ) )
 					rotation += 0.1f;
 
-				if( Input.isKeyDown( Keys.Up ) )
-					zDir = Mathf.clamp( zDir + 2, 0, 400 );
-				else if( Input.isKeyDown( Keys.Down ) )
-					zDir = Mathf.clamp( zDir - 2, 0, 400 );
+				if( Input.IsKeyDown( Keys.Up ) )
+					zDir = Mathf.Clamp( zDir + 2, 0, 400 );
+				else if( Input.IsKeyDown( Keys.Down ) )
+					zDir = Mathf.Clamp( zDir - 2, 0, 400 );
 
-				var newDir = new Vector3( Mathf.cos( rotation ) * magnitude, Mathf.sin( rotation ) * magnitude, zDir );
-				light.setDirection( newDir );
+				var newDir = new Vector3( Mathf.Cos( rotation ) * magnitude, Mathf.Sin( rotation ) * magnitude, zDir );
+				light.SetDirection( newDir );
 			}
 
 			if( _currentLight is PointLight || _currentLight is SpotLight )
 			{
 				var light = _currentLight as PointLight;
 
-				if( Input.isKeyDown( Keys.Up ) )
-					light.setRadius( Mathf.clamp( light.radius + 5, 10, 800 ) );
-				else if( Input.isKeyDown( Keys.Down ) )
-					light.setRadius(  Mathf.clamp( light.radius - 5, 10, 800 ) );
+				if( Input.IsKeyDown( Keys.Up ) )
+					light.SetRadius( Mathf.Clamp( light.Radius + 5, 10, 800 ) );
+				else if( Input.IsKeyDown( Keys.Down ) )
+					light.SetRadius(  Mathf.Clamp( light.Radius - 5, 10, 800 ) );
 
-				if( Input.isKeyDown( Keys.Left ) )
-					light.setIntensity( Mathf.clamp( light.intensity - 0.1f, 0, 20 ) );
-				else if( Input.isKeyDown( Keys.Right ) )
-					light.setIntensity( Mathf.clamp( light.intensity + 0.1f, 0, 20 ) );
+				if( Input.IsKeyDown( Keys.Left ) )
+					light.SetIntensity( Mathf.Clamp( light.Intensity - 0.1f, 0, 20 ) );
+				else if( Input.IsKeyDown( Keys.Right ) )
+					light.SetIntensity( Mathf.Clamp( light.Intensity + 0.1f, 0, 20 ) );
 
-				if( Input.isKeyDown( Keys.W ) )
-					light.setZPosition( Mathf.clamp( light.zPosition + 1, 0, 300 ) );
-				else if( Input.isKeyDown( Keys.S ) )
-					light.setZPosition( Mathf.clamp( light.zPosition - 1, 0, 300 ) );
+				if( Input.IsKeyDown( Keys.W ) )
+					light.SetZPosition( Mathf.Clamp( light.ZPosition + 1, 0, 300 ) );
+				else if( Input.IsKeyDown( Keys.S ) )
+					light.SetZPosition( Mathf.Clamp( light.ZPosition - 1, 0, 300 ) );
 			}
 
 			if( _currentLight is SpotLight )
 			{
 				var light = _currentLight as SpotLight;
 
-				if( Input.isKeyDown( Keys.A ) )
-					light.setConeAngle( Mathf.repeat( light.coneAngle - 3, 360 ) );
-				else if( Input.isKeyDown( Keys.D ) )
-					light.setConeAngle( Mathf.repeat( light.coneAngle + 3, 360 ) );
+				if( Input.IsKeyDown( Keys.A ) )
+					light.SetConeAngle( Mathf.Repeat( light.ConeAngle - 3, 360 ) );
+				else if( Input.IsKeyDown( Keys.D ) )
+					light.SetConeAngle( Mathf.Repeat( light.ConeAngle + 3, 360 ) );
 
-				if( Input.isKeyDown( Keys.Z ) )
-					light.entity.setLocalRotationDegrees( Mathf.repeat( light.entity.rotationDegrees - 3, 360 ) );
-				else if( Input.isKeyDown( Keys.X ) )
-					light.entity.setLocalRotationDegrees( Mathf.repeat( light.entity.rotationDegrees + 3, 360 ) );
+				if( Input.IsKeyDown( Keys.Z ) )
+					light.Entity.SetLocalRotationDegrees( Mathf.Repeat( light.Entity.RotationDegrees - 3, 360 ) );
+				else if( Input.IsKeyDown( Keys.X ) )
+					light.Entity.SetLocalRotationDegrees( Mathf.Repeat( light.Entity.RotationDegrees + 3, 360 ) );
 			}
 
 			// color controls
-			var color = _currentLight.color;
-			if( Input.isKeyDown( Keys.R ) )
+			var color = _currentLight.Color;
+			if( Input.IsKeyDown( Keys.R ) )
 				color.R += (byte)2;
-			if( Input.isKeyDown( Keys.G ) )
+			if( Input.IsKeyDown( Keys.G ) )
 				color.G += (byte)2;
-			if( Input.isKeyDown( Keys.B ) )
+			if( Input.IsKeyDown( Keys.B ) )
 				color.B += (byte)2;
 
-			if( color != _currentLight.color )
+			if( color != _currentLight.Color )
 			{
-				_currentLight.color = color;
-				Debug.log( "new light color: {0}", _currentLight.color );
+				_currentLight.Color = color;
+				Debug.Log( "new light color: {0}", _currentLight.Color );
 			}
 		}
 
 
 		void updateInstructions()
 		{
-			var textComp = entity.scene.findEntity( "instructions" ).getComponent<Text>();
+			var textComp = Entity.Scene.FindEntity( "instructions" ).GetComponent<TextField>();
 			var colorText = "\nr/g/b keys change color";
 
 			if( _currentLight is DirLight )
-				textComp.text = "Controlling DirLight\nleft/right changes rotation\nup/down changes z-component of direction" + colorText;
+				textComp.Text = "Controlling DirLight\nleft/right changes rotation\nup/down changes z-component of direction" + colorText;
 			else if( _currentLight is SpotLight )
-				textComp.text = "Controlling SpotLight\nup/down changes radius\nleft/right changes intensity\nw/s changes zPosition\na/d changes cone angle\nz/x changes rotation" + colorText;
+				textComp.Text = "Controlling SpotLight\nup/down changes radius\nleft/right changes intensity\nw/s changes zPosition\na/d changes cone angle\nz/x changes rotation" + colorText;
 			else if( _currentLight is PointLight )
-				textComp.text = "Controlling PointLight\nup/down changes radius\nleft/right changes intensity\nw/s changes zPosition" + colorText;
+				textComp.Text = "Controlling PointLight\nup/down changes radius\nleft/right changes intensity\nw/s changes zPosition" + colorText;
 		}
 	}
 }

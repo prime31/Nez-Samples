@@ -12,30 +12,30 @@ namespace Nez.Samples
 		{ }
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			clearColor = Color.Black;
-			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.None );
-			Screen.setSize( 1280, 720 );
+			ClearColor = Color.Black;
+			SetDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.None );
+			Screen.SetSize( 1280, 720 );
 
 			// add the ParticleSystemSelector which handles input for the scene and a SimpleMover to move it around with the keyboard
-			var particlesEntity = createEntity( "particles" );
-			particlesEntity.setPosition( Screen.center - new Vector2( 0, 200 ) );
-			particlesEntity.addComponent( new ParticleSystemSelector() );
-			particlesEntity.addComponent( new SimpleMover() );
+			var particlesEntity = CreateEntity( "particles" );
+			particlesEntity.SetPosition( Screen.Center - new Vector2( 0, 200 ) );
+			particlesEntity.AddComponent( new ParticleSystemSelector() );
+			particlesEntity.AddComponent( new SimpleMover() );
 
 
 			// create a couple moons for playing with particle collisions
-			var moonTex = content.Load<Texture2D>( "Shared/moon" );
+			var moonTex = Content.Load<Texture2D>( "Shared/moon" );
 
-			var moonEntity = createEntity( "moon" );
-			moonEntity.position = new Vector2( Screen.width / 2, Screen.height / 2 + 100 );
-			moonEntity.addComponent( new Sprite( moonTex ) );
-			moonEntity.addComponent<CircleCollider>();
+			var moonEntity = CreateEntity( "moon" );
+			moonEntity.Position = new Vector2( Screen.Width / 2, Screen.Height / 2 + 100 );
+			moonEntity.AddComponent( new Sprite( moonTex ) );
+			moonEntity.AddComponent<CircleCollider>();
 
 			// clone the first moonEntity to create the second
-			var moonEntityTwo = moonEntity.clone( new Vector2( Screen.width / 2 - 100, Screen.height / 2 + 100 ) );
-			addEntity( moonEntityTwo );
+			var moonEntityTwo = moonEntity.Clone( new Vector2( Screen.Width / 2 - 100, Screen.Height / 2 + 100 ) );
+			AddEntity( moonEntityTwo );
 		}
 	}
 }

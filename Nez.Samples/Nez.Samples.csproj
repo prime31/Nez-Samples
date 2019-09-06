@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Nez.Samples2</RootNamespace>
     <AssemblyName>Nez.Samples2</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\AI\AIScene.cs" />
     <Compile Include="Scenes\AI\AIUI.cs" />
     <Compile Include="Scenes\AI\BehaviorTreeMiner.cs" />

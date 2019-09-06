@@ -13,21 +13,21 @@ namespace Nez.Samples
 		Vector2 _lastPosition;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_grid = entity.scene.findEntity( "grid" ).getComponent<SpringGrid>();
+			_grid = Entity.Scene.FindEntity( "grid" ).GetComponent<SpringGrid>();
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
-			var velocity = entity.position - _lastPosition;
-			_grid.applyExplosiveForce( 0.5f * velocity.Length(), entity.position, 80 );
+			var velocity = Entity.Position - _lastPosition;
+			_grid.ApplyExplosiveForce( 0.5f * velocity.Length(), Entity.Position, 80 );
 
-			_lastPosition = entity.position;
+			_lastPosition = Entity.Position;
 
-			if( Input.isKeyPressed( Keys.Space ) )
-				_grid.applyDirectedForce( new Vector3( 0, 0, 1000 ), new Vector3( entity.position.X, entity.position.Y, 0 ), 50 );
+			if( Input.IsKeyPressed( Keys.Space ) )
+				_grid.ApplyDirectedForce( new Vector3( 0, 0, 1000 ), new Vector3( Entity.Position.X, Entity.Position.Y, 0 ), 50 );
 		}
 	}
 }

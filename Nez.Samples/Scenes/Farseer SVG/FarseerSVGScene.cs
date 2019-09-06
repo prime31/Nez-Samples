@@ -11,39 +11,39 @@ namespace Nez.Samples
 	[SampleScene( "SVG to Farseer Physics", 85, "This demo shows how you can turn an SVG image into Farseer physics objects\nPress Space to start the physics simulation\nClick and drag to interact with physics shapes" )]
 	public class FarseerSVGScene : SampleScene
 	{
-		public override void initialize()
+		public override void Initialize()
 		{
-			clearColor = Color.Black;
-			addRenderer( new DefaultRenderer() );
-			Screen.setSize( 1280, 720 );
+			ClearColor = Color.Black;
+			AddRenderer( new DefaultRenderer() );
+			Screen.SetSize( 1280, 720 );
 
-			Settings.maxPolygonVertices = 12;
+			Settings.MaxPolygonVertices = 12;
 
 			// create a physics world to manage the physics simulation
-			var world = getOrCreateSceneComponent<FSWorld>()
-				.setEnableMousePicking( true );
-			world.setEnabled( false );
+			var world = GetOrCreateSceneComponent<FSWorld>()
+				.SetEnableMousePicking( true );
+			world.SetEnabled( false );
 
 			// add a FSDebugView so that we can see the physics objects
-			createEntity( "debug-view" )
-				.addComponent( new PressKeyToPerformAction( Keys.Space, () => world.setEnabled( true ) ) )
-				.addComponent( new FSDebugView( world ) )
-				.appendFlags( FSDebugView.DebugViewFlags.ContactPoints );
+			CreateEntity( "debug-view" )
+				.AddComponent( new PressKeyToPerformAction( Keys.Space, () => world.SetEnabled( true ) ) )
+				.AddComponent( new FSDebugView( world ) )
+				.AppendFlags( FSDebugView.DebugViewFlags.ContactPoints );
 
 			// load up the SVG document. This particular SVG only has one group so we can fetch it straight away
-			var svgDoc = SvgDocument.open( TitleContainer.OpenStream( "Content/SVG/farseer-svg.svg" ) );
-			var svgGroup = svgDoc.groups[0];
+			var svgDoc = SvgDocument.Open( TitleContainer.OpenStream( "Content/SVG/farseer-svg.svg" ) );
+			var svgGroup = svgDoc.Groups[0];
 
 			// rectangles
-			if( svgGroup.rectangles != null )
+			if( svgGroup.Rectangles != null )
 				addRectangles( svgGroup );
 
 			// circles
-			if( svgGroup.circles != null )
+			if( svgGroup.Circles != null )
 				addCircles( svgGroup );
 
 			// lines
-			if( svgGroup.lines != null )
+			if( svgGroup.Lines != null )
 				addLines( svgGroup );
 
 			// paths: TODO: why is System.Drawing.Drawing2D.GraphicsPath never returning on macOS?!?!
@@ -51,11 +51,11 @@ namespace Nez.Samples
 			//	addPaths( svgGroup );
 
 			// ellipses
-			if( svgGroup.ellipses != null )
+			if( svgGroup.Ellipses != null )
 				addEllipses( svgGroup );
 
 			// polygons
-			if( svgGroup.polygons != null )
+			if( svgGroup.Polygons != null )
 				addPolygons( svgGroup );
 		}
 
@@ -66,14 +66,14 @@ namespace Nez.Samples
 		/// <param name="group">Group.</param>
 		void addRectangles( SvgGroup group )
 		{
-			foreach( var rect in group.rectangles )
+			foreach( var rect in group.Rectangles )
 			{
-				var boxEntity = createEntity( rect.id );
-				boxEntity.setPosition( rect.center )
-						 .setRotationDegrees( rect.rotationDegrees )
-						 .addComponent( new FSRigidBody() )
-						 .setBodyType( BodyType.Dynamic )
-						 .addComponent( new FSCollisionBox( rect.width, rect.height ) );
+				var boxEntity = CreateEntity( rect.Id );
+				boxEntity.SetPosition( rect.Center )
+						 .SetRotationDegrees( rect.RotationDegrees )
+						 .AddComponent( new FSRigidBody() )
+						 .SetBodyType( BodyType.Dynamic )
+						 .AddComponent( new FSCollisionBox( rect.Width, rect.Height ) );
 			}
 		}
 
@@ -84,13 +84,13 @@ namespace Nez.Samples
 		/// <param name="group">Group.</param>
 		void addCircles( SvgGroup group )
 		{
-			foreach( var circle in group.circles )
+			foreach( var circle in group.Circles )
 			{
-				createEntity( circle.id )
-					.setPosition( circle.centerX, circle.centerY )
-					.addComponent( new FSRigidBody() )
-					.setBodyType( BodyType.Dynamic )
-					.addComponent( new FSCollisionCircle( circle.radius ) );
+				CreateEntity( circle.Id )
+					.SetPosition( circle.CenterX, circle.CenterY )
+					.AddComponent( new FSRigidBody() )
+					.SetBodyType( BodyType.Dynamic )
+					.AddComponent( new FSCollisionCircle( circle.Radius ) );
 			}
 		}
 
@@ -101,14 +101,14 @@ namespace Nez.Samples
 		/// <param name="group">Group.</param>
 		void addLines( SvgGroup group )
 		{
-			foreach( var line in group.lines )
+			foreach( var line in group.Lines )
 			{
-				var pts = line.getTransformedPoints();
+				var pts = line.GetTransformedPoints();
 
-				createEntity( line.id )
-					.addComponent<FSRigidBody>()
-					.addComponent( new FSCollisionEdge() )
-					.setVertices( pts[0], pts[1] );
+				CreateEntity( line.Id )
+					.AddComponent<FSRigidBody>()
+					.AddComponent( new FSCollisionEdge() )
+					.SetVertices( pts[0], pts[1] );
 			}
 		}
 
@@ -121,14 +121,14 @@ namespace Nez.Samples
 		{
 			var svgPathBuilder = new SvgPathBuilder();
 
-			foreach( var path in group.paths )
+			foreach( var path in group.Paths )
 			{
-				var pts = path.getTransformedDrawingPoints( svgPathBuilder );
+				var pts = path.GetTransformedDrawingPoints( svgPathBuilder );
 
-				createEntity( path.id )
-					.addComponent<FSRigidBody>()
-					.addComponent( new FSCollisionChain() )
-					.setVertices( pts );
+				CreateEntity( path.Id )
+					.AddComponent<FSRigidBody>()
+					.AddComponent( new FSCollisionChain() )
+					.SetVertices( pts );
 			}
 		}
 
@@ -139,13 +139,13 @@ namespace Nez.Samples
 		/// <param name="group">Group.</param>
 		void addEllipses( SvgGroup group )
 		{
-			foreach( var ellipse in group.ellipses )
+			foreach( var ellipse in group.Ellipses )
 			{
-				createEntity( ellipse.id )
-					.setPosition( ellipse.centerX, ellipse.centerY )
-					.addComponent<FSRigidBody>()
-					.setBodyType( BodyType.Dynamic )
-					.addComponent( new FSCollisionEllipse( ellipse.radiusX, ellipse.radiusY ) );
+				CreateEntity( ellipse.Id )
+					.SetPosition( ellipse.CenterX, ellipse.CenterY )
+					.AddComponent<FSRigidBody>()
+					.SetBodyType( BodyType.Dynamic )
+					.AddComponent( new FSCollisionEllipse( ellipse.RadiusX, ellipse.RadiusY ) );
 			}
 		}
 
@@ -156,13 +156,13 @@ namespace Nez.Samples
 		/// <param name="group">Group.</param>
 		void addPolygons( SvgGroup group )
 		{
-			foreach( var polygon in group.polygons )
+			foreach( var polygon in group.Polygons )
 			{
-				createEntity( polygon.id )
-					.setPosition( polygon.centerX, polygon.centerY )
-					.addComponent<FSRigidBody>()
-					.setBodyType( BodyType.Dynamic )
-					.addComponent( new FSCollisionPolygon( polygon.getRelativePoints() ) );
+				CreateEntity( polygon.Id )
+					.SetPosition( polygon.CenterX, polygon.CenterY )
+					.AddComponent<FSRigidBody>()
+					.SetBodyType( BodyType.Dynamic )
+					.AddComponent( new FSCollisionPolygon( polygon.GetRelativePoints() ) );
 			}
 		}
 

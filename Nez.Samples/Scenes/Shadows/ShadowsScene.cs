@@ -16,51 +16,51 @@ namespace Nez.Samples
 		{}
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			base.initialize();
+			base.Initialize();
 
-			Screen.setSize( 1280, 720 );
+			Screen.SetSize( 1280, 720 );
 
 			// render layer for all lights and any emissive Sprites
 			var LIGHT_RENDER_LAYER = 5;
-			clearColor = Color.White;
+			ClearColor = Color.White;
 
 			// create a Renderer that renders all but the light layer and screen space layer
-			addRenderer( new RenderLayerExcludeRenderer( 0, LIGHT_RENDER_LAYER, SCREEN_SPACE_RENDER_LAYER ) );
+			AddRenderer( new RenderLayerExcludeRenderer( 0, LIGHT_RENDER_LAYER, SCREEN_SPACE_RENDER_LAYER ) );
 
 			// create a Renderer that renders only the light layer into a render target
-			var lightRenderer = addRenderer( new RenderLayerRenderer( -1, LIGHT_RENDER_LAYER ) );
-			lightRenderer.renderTargetClearColor = new Color( 10, 10, 10, 255 );
-			lightRenderer.renderTexture = new RenderTexture();
+			var lightRenderer = AddRenderer( new RenderLayerRenderer( -1, LIGHT_RENDER_LAYER ) );
+			lightRenderer.RenderTargetClearColor = new Color( 10, 10, 10, 255 );
+			lightRenderer.RenderTexture = new RenderTexture();
 
 			// add a PostProcessor that renders the light render target and blurs it
-			addPostProcessor( new PolyLightPostProcessor( 0, lightRenderer.renderTexture ) )
-				.setEnableBlur( true )
-				.setBlurAmount( 0.5f );
+			AddPostProcessor( new PolyLightPostProcessor( 0, lightRenderer.RenderTexture ) )
+				.SetEnableBlur( true )
+				.SetBlurAmount( 0.5f );
 
-			var lightTexture = content.Load<Texture2D>( Content.Shadows.spritelight );
-			var moonTexture = content.Load<Texture2D>( Content.Shared.moon );
-			var blockTexture = content.Load<Texture2D>( Content.Shadows.block );
-			var blockGlowTexture = content.Load<Texture2D>( Content.Shadows.blockGlow );
+			var lightTexture = Content.Load<Texture2D>( Nez.Content.Shadows.spritelight );
+			var moonTexture = Content.Load<Texture2D>( Nez.Content.Shared.moon );
+			var blockTexture = Content.Load<Texture2D>( Nez.Content.Shadows.block );
+			var blockGlowTexture = Content.Load<Texture2D>( Nez.Content.Shadows.blockGlow );
 
 			// create some boxes
 			Action<Vector2,string,bool> boxMaker = ( Vector2 pos, string name, bool isTrigger ) =>
 			{
-				var ent = createEntity( name );
-				ent.position = pos;
-				ent.addComponent( new Sprite( blockTexture ) );
-				var collider = ent.addComponent<BoxCollider>();
+				var ent = CreateEntity( name );
+				ent.Position = pos;
+				ent.AddComponent( new Sprite( blockTexture ) );
+				var collider = ent.AddComponent<BoxCollider>();
 
 				// add a glow sprite on the light render layer
 				var glowSprite = new Sprite( blockGlowTexture );
-				glowSprite.renderLayer = LIGHT_RENDER_LAYER;
-				ent.addComponent( glowSprite );
+				glowSprite.RenderLayer = LIGHT_RENDER_LAYER;
+				ent.AddComponent( glowSprite );
 
 				if( isTrigger )
 				{
-					collider.isTrigger = true;
-					ent.addComponent( new TriggerListener() );
+					collider.IsTrigger = true;
+					ent.AddComponent( new TriggerListener() );
 				}
 			};
 
@@ -73,81 +73,81 @@ namespace Nez.Samples
 			boxMaker( new Vector2( 50, 500 ), "box5", true );
 			boxMaker( new Vector2( 500, 250 ), "box6", false );
 
-			var moonEnt = createEntity( "moon" );
-			moonEnt.addComponent( new Sprite( moonTexture ) );
-			moonEnt.position = new Vector2( 100, 0 );
+			var moonEnt = CreateEntity( "moon" );
+			moonEnt.AddComponent( new Sprite( moonTexture ) );
+			moonEnt.Position = new Vector2( 100, 0 );
 
-			moonEnt = createEntity( "moon2" );
-			moonEnt.addComponent( new Sprite( moonTexture ) );
-			moonEnt.position = new Vector2( -500, 0 );
+			moonEnt = CreateEntity( "moon2" );
+			moonEnt.AddComponent( new Sprite( moonTexture ) );
+			moonEnt.Position = new Vector2( -500, 0 );
 
 
-			var lightEnt = createEntity( "sprite-light" );
-			lightEnt.addComponent( new Sprite( lightTexture ) );
-			lightEnt.position = new Vector2( -700, 0 );
-			lightEnt.scale = new Vector2( 4 );
-			lightEnt.getComponent<Sprite>().renderLayer = LIGHT_RENDER_LAYER;
+			var lightEnt = CreateEntity( "sprite-light" );
+			lightEnt.AddComponent( new Sprite( lightTexture ) );
+			lightEnt.Position = new Vector2( -700, 0 );
+			lightEnt.Scale = new Vector2( 4 );
+			lightEnt.GetComponent<Sprite>().RenderLayer = LIGHT_RENDER_LAYER;
 
 
 			// add an animation to "box4"
-			findEntity( "box4" ).addComponent( new MovingPlatform( 250, 400 ) );
+			FindEntity( "box4" ).AddComponent( new MovingPlatform( 250, 400 ) );
 
 			// create a player block
-			var entity = createEntity( "player-block" );
-			entity.position = new Vector2( 220, 220 );
+			var entity = CreateEntity( "player-block" );
+			entity.Position = new Vector2( 220, 220 );
 			var sprite = new Sprite( blockTexture );
-			sprite.renderLayer = LIGHT_RENDER_LAYER;
-			entity.addComponent( sprite );
-			entity.addComponent( new SimpleMover() );
-			entity.addComponent<BoxCollider>();
+			sprite.RenderLayer = LIGHT_RENDER_LAYER;
+			entity.AddComponent( sprite );
+			entity.AddComponent( new SimpleMover() );
+			entity.AddComponent<BoxCollider>();
 
 
 			// add a follow camera
-			camera.entity.addComponent( new FollowCamera( entity ) );
-			camera.entity.addComponent( new CameraShake() );
+			Camera.Entity.AddComponent( new FollowCamera( entity ) );
+			Camera.Entity.AddComponent( new CameraShake() );
 
 
 			// setup some lights and animate the colors
 			var pointLight = new PolyLight( 600, Color.Red );
-			pointLight.renderLayer = LIGHT_RENDER_LAYER;
-			pointLight.power = 1f;
-			var light = createEntity( "light" );
-			light.position = new Vector2( 700f, 300f );
-			light.addComponent( pointLight );
+			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			pointLight.Power = 1f;
+			var light = CreateEntity( "light" );
+			light.Position = new Vector2( 700f, 300f );
+			light.AddComponent( pointLight );
 
-			pointLight.tweenColorTo( new Color( 0, 0, 255, 255 ), 1f )
-				.setEaseType( EaseType.Linear )
-				.setLoops( LoopType.PingPong, 100 )
-				.start();
+			pointLight.TweenColorTo( new Color( 0, 0, 255, 255 ), 1f )
+				.SetEaseType( EaseType.Linear )
+				.SetLoops( LoopType.PingPong, 100 )
+				.Start();
 
-			PropertyTweens.floatPropertyTo( pointLight, "power", 0.1f, 1f )
-				.setEaseType( EaseType.Linear )
-				.setLoops( LoopType.PingPong, 100 )
-				.start();
+			PropertyTweens.FloatPropertyTo( pointLight, "power", 0.1f, 1f )
+				.SetEaseType( EaseType.Linear )
+				.SetLoops( LoopType.PingPong, 100 )
+				.Start();
 
 
 			pointLight = new PolyLight( 500, Color.Yellow );
-			pointLight.renderLayer = LIGHT_RENDER_LAYER;
-			light = createEntity( "light-two" );
-			light.position = new Vector2( -50f );
-			light.addComponent( pointLight );
+			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			light = CreateEntity( "light-two" );
+			light.Position = new Vector2( -50f );
+			light.AddComponent( pointLight );
 
-			pointLight.tweenColorTo( new Color( 0, 255, 0, 255 ), 1f )
-				.setEaseType( EaseType.Linear )
-				.setLoops( LoopType.PingPong, 100 )
-				.start();
+			pointLight.TweenColorTo( new Color( 0, 255, 0, 255 ), 1f )
+				.SetEaseType( EaseType.Linear )
+				.SetLoops( LoopType.PingPong, 100 )
+				.Start();
 
 
 			pointLight = new PolyLight( 500, Color.AliceBlue );
-			pointLight.renderLayer = LIGHT_RENDER_LAYER;
-			light = createEntity( "light-three" );
-			light.position = new Vector2( 100, 250 );
-			light.addComponent( pointLight );
+			pointLight.RenderLayer = LIGHT_RENDER_LAYER;
+			light = CreateEntity( "light-three" );
+			light.Position = new Vector2( 100, 250 );
+			light.AddComponent( pointLight );
 
-			pointLight.tweenColorTo( new Color( 200, 100, 155, 255 ), 1f )
-			          .setEaseType( EaseType.QuadIn )
-			          .setLoops( LoopType.PingPong, 100 )
-			          .start();
+			pointLight.TweenColorTo( new Color( 200, 100, 155, 255 ), 1f )
+			          .SetEaseType( EaseType.QuadIn )
+			          .SetLoops( LoopType.PingPong, 100 )
+			          .Start();
 		}
 
 	}

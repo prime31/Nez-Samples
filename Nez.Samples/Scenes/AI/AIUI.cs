@@ -8,52 +8,52 @@ namespace Nez.Samples
 	/// </summary>
 	public class AIUI : UICanvas
 	{
-		public override RectangleF bounds { get { return new RectangleF( 0, 0, 200, 200 ); } }
+		public override RectangleF Bounds { get { return new RectangleF( 0, 0, 200, 200 ); } }
 
 		BehaviorTreeMiner _miner;
 		UtilityMiner _utilityMiner;
 		GOAPMiner _goapMiner;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			base.onAddedToEntity();
+			base.OnAddedToEntity();
 
 			// setup a Skin and a Table for our UI
-			var skin = Skin.createDefaultSkin();
-			var table = stage.addElement( new Table() );
-			table.defaults().setPadTop( 10 ).setMinWidth( 170 ).setMinHeight( 30 );
-			table.setFillParent( true ).center();
+			var skin = Skin.CreateDefaultSkin();
+			var table = Stage.AddElement( new Table() );
+			table.Defaults().SetPadTop( 10 ).SetMinWidth( 170 ).SetMinHeight( 30 );
+			table.SetFillParent( true ).Center();
 
 			// add a button for each of the actions/AI types we need
-			table.add( new TextButton( "BT: LowerPriority Abort Tree", skin ) )
-				 .getElement<TextButton>()
-				 .onClicked += onClickBtLowerPriority;
-			table.row();
+			table.Add( new TextButton( "BT: LowerPriority Abort Tree", skin ) )
+				 .GetElement<TextButton>()
+				 .OnClicked += onClickBtLowerPriority;
+			table.Row();
 
-			table.add( new TextButton( "BT: Self Abort Tree", skin ) )
-				 .getElement<TextButton>()
-				 .onClicked += onClickBtSelfAbort;
-			table.row();
+			table.Add( new TextButton( "BT: Self Abort Tree", skin ) )
+				 .GetElement<TextButton>()
+				 .OnClicked += onClickBtSelfAbort;
+			table.Row();
 
-			table.add( new TextButton( "Utility AI", skin ) )
-				 .getElement<TextButton>()
-				 .onClicked += onClickUtilityAI;
-			table.row();
+			table.Add( new TextButton( "Utility AI", skin ) )
+				 .GetElement<TextButton>()
+				 .OnClicked += onClickUtilityAI;
+			table.Row();
 
-			table.add( new TextButton( "GOAP", skin ) )
-				 .getElement<TextButton>()
-				 .onClicked += onClickGoap;
-			table.row().setPadTop( 40 );
+			table.Add( new TextButton( "GOAP", skin ) )
+				 .GetElement<TextButton>()
+				 .OnClicked += onClickGoap;
+			table.Row().SetPadTop( 40 );
 
-			table.add( new TextButton( "Stop All Running AI", skin ) )
-				 .getElement<TextButton>()
-				 .onClicked += onClickStopAllAi;
+			table.Add( new TextButton( "Stop All Running AI", skin ) )
+				 .GetElement<TextButton>()
+				 .OnClicked += onClickStopAllAi;
 
 			// fetch our different AI Components
-			_miner = entity.scene.findComponentOfType<BehaviorTreeMiner>();
-			_utilityMiner = entity.scene.findComponentOfType<UtilityMiner>();
-			_goapMiner = entity.scene.findComponentOfType<GOAPMiner>();
+			_miner = Entity.Scene.FindComponentOfType<BehaviorTreeMiner>();
+			_utilityMiner = Entity.Scene.FindComponentOfType<UtilityMiner>();
+			_goapMiner = Entity.Scene.FindComponentOfType<GOAPMiner>();
 		}
 
 
@@ -61,35 +61,35 @@ namespace Nez.Samples
 
 		void onClickBtLowerPriority( Button button )
 		{
-			Debug.log( "------ Enabled Behavior Tree LowerPriority Abort ------" );
+			Debug.Log( "------ Enabled Behavior Tree LowerPriority Abort ------" );
 			disableAllAI();
-			_miner.buildLowerPriorityAbortTree();
-			_miner.setEnabled( true );
+			_miner.BuildLowerPriorityAbortTree();
+			_miner.SetEnabled( true );
 		}
 
 
 		void onClickBtSelfAbort( Button button )
 		{
-			Debug.log( "------ Enabled Behavior Tree Self Abort ------" );
+			Debug.Log( "------ Enabled Behavior Tree Self Abort ------" );
 			disableAllAI();
-			_miner.buildSelfAbortTree();
-			_miner.setEnabled( true );
+			_miner.BuildSelfAbortTree();
+			_miner.SetEnabled( true );
 		}
 
 
 		void onClickUtilityAI( Button button )
 		{
-			Debug.log( "------ Enabled Utility AI ------" );
+			Debug.Log( "------ Enabled Utility AI ------" );
 			disableAllAI();
-			_utilityMiner.setEnabled( true );
+			_utilityMiner.SetEnabled( true );
 		}
 
 
 		void onClickGoap( Button button )
 		{
-			Debug.log( "------ Enabled GOAP ------" );
+			Debug.Log( "------ Enabled GOAP ------" );
 			disableAllAI();
-			_goapMiner.setEnabled( true );
+			_goapMiner.SetEnabled( true );
 		}
 
 
@@ -101,9 +101,9 @@ namespace Nez.Samples
 
 		void disableAllAI()
 		{
-			_miner.setEnabled( false );
-			_utilityMiner.setEnabled( false );
-			_goapMiner.setEnabled( false );			
+			_miner.SetEnabled( false );
+			_utilityMiner.SetEnabled( false );
+			_goapMiner.SetEnabled( false );			
 		}
 
 		#endregion

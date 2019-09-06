@@ -14,18 +14,18 @@ namespace Nez.Samples
 		{}
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			base.initialize();
+			base.Initialize();
 
 			// setup a pixel perfect screen that fits our map
-			setDesignResolution( 256, 224, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
-			Screen.setSize( 256 * 4, 224 * 4 );
+			SetDesignResolution( 256, 224, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
+			Screen.SetSize( 256 * 4, 224 * 4 );
 
 			// load the TiledMap and display it with a TiledMapComponent
-			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledmap = content.Load<TiledMap>( Content.AnimatedTiles.desertpalace );
-			tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
+			var tiledEntity = CreateEntity( "tiled-map-entity" );
+			var tiledmap = Content.Load<TiledMap>( Nez.Content.AnimatedTiles.desertpalace );
+			tiledEntity.AddComponent( new TiledMapComponent( tiledmap ) );
 		}
 	}
 }

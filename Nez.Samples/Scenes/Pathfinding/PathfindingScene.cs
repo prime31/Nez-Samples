@@ -11,20 +11,20 @@ namespace Nez.Samples
 		{ }
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			clearColor = Color.Black;
-			setDesignResolution( 640, 368, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
-			Screen.setSize( 1280, 736 );
+			ClearColor = Color.Black;
+			SetDesignResolution( 640, 368, SceneResolutionPolicy.ShowAllPixelPerfect );
+			Screen.SetSize( 1280, 736 );
 
 			// load a TiledMap and a TiledMapComponent to display it
-			var tiledEntity = createEntity( "tiled-map" );
-			var tiledmap = content.Load<TiledMap>( Content.DestructableMap.destructablemap );
-			tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
+			var tiledEntity = CreateEntity( "tiled-map" );
+			var tiledmap = Content.Load<TiledMap>( Nez.Content.DestructableMap.destructablemap );
+			tiledEntity.AddComponent( new TiledMapComponent( tiledmap ) );
 
 			// add a Pathfinder to handle pathfinding and debug display of the paths
-			createEntity( "pathfinder" )
-				.addComponent( new Pathfinder( tiledmap ) );
+			CreateEntity( "pathfinder" )
+				.AddComponent( new Pathfinder( tiledmap ) );
 		}
 	}
 }

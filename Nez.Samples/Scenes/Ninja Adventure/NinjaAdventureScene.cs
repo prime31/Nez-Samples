@@ -14,55 +14,55 @@ namespace Nez.Samples
 		{}
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			base.initialize();
+			base.Initialize();
 
 			// setup a pixel perfect screen that fits our map
-			setDesignResolution( 512, 256, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
-			Screen.setSize( 512 * 3, 256 * 3 );
+			SetDesignResolution( 512, 256, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
+			Screen.SetSize( 512 * 3, 256 * 3 );
 
 
 			// load the TiledMap and display it with a TiledMapComponent
-			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledmap = content.Load<TiledMap>( Content.NinjaAdventure.Map.tilemap );
-			var tiledMapComponent = tiledEntity.addComponent( new TiledMapComponent( tiledmap, "collision" ) );
-			tiledMapComponent.setLayersToRender( new string[] { "tiles", "terrain", "details" } );
+			var tiledEntity = CreateEntity( "tiled-map-entity" );
+			var tiledmap = Content.Load<TiledMap>( Nez.Content.NinjaAdventure.Map.tilemap );
+			var tiledMapComponent = tiledEntity.AddComponent( new TiledMapComponent( tiledmap, "collision" ) );
+			tiledMapComponent.SetLayersToRender( new string[] { "tiles", "terrain", "details" } );
 			// render below/behind everything else. our player is at 0 and projectile is at 1.
-			tiledMapComponent.renderLayer = 10;
+			tiledMapComponent.RenderLayer = 10;
 
 			// render our above-details layer after the player so the player is occluded by it when walking behind things
-			var tiledMapDetailsComp = tiledEntity.addComponent( new TiledMapComponent( tiledmap ) );
-			tiledMapDetailsComp.setLayerToRender( "above-details" );
-			tiledMapDetailsComp.renderLayer = -1;
+			var tiledMapDetailsComp = tiledEntity.AddComponent( new TiledMapComponent( tiledmap ) );
+			tiledMapDetailsComp.SetLayerToRender( "above-details" );
+			tiledMapDetailsComp.RenderLayer = -1;
 			// the details layer will write to the stencil buffer so we can draw a shadow when the player is behind it. we need an AlphaTestEffect
 			// here as well
-			tiledMapDetailsComp.material = Material.stencilWrite();
-			tiledMapDetailsComp.material.effect = content.loadNezEffect<SpriteAlphaTestEffect>();
+			tiledMapDetailsComp.Material = Material.StencilWrite();
+			tiledMapDetailsComp.Material.Effect = Content.LoadNezEffect<SpriteAlphaTestEffect>();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
-			var topLeft = new Vector2( tiledmap.tileWidth, tiledmap.tileWidth );
-			var bottomRight = new Vector2( tiledmap.tileWidth * ( tiledmap.width - 1 ), tiledmap.tileWidth * ( tiledmap.height - 1 ) );
-			tiledEntity.addComponent( new CameraBounds( topLeft, bottomRight ) );
+			var topLeft = new Vector2( tiledmap.TileWidth, tiledmap.TileWidth );
+			var bottomRight = new Vector2( tiledmap.TileWidth * ( tiledmap.Width - 1 ), tiledmap.TileWidth * ( tiledmap.Height - 1 ) );
+			tiledEntity.AddComponent( new CameraBounds( topLeft, bottomRight ) );
 
 
-			var playerEntity = createEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
-			playerEntity.addComponent( new Ninja() );
-			var collider = playerEntity.addComponent<CircleCollider>();
+			var playerEntity = CreateEntity( "player", new Vector2( 256 / 2, 224 / 2 ) );
+			playerEntity.AddComponent( new Ninja() );
+			var collider = playerEntity.AddComponent<CircleCollider>();
 			// we only want to collide with the tilemap, which is on the default layer 0
-			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
+			Flags.SetFlagExclusive( ref collider.CollidesWithLayers, 0 );
 			// move ourself to layer 1 so that we dont get hit by the projectiles that we fire
-			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
+			Flags.SetFlagExclusive( ref collider.PhysicsLayer, 1 );
 
 			// add a component to have the Camera follow the player
-			camera.entity.addComponent( new FollowCamera( playerEntity ) );
+			Camera.Entity.AddComponent( new FollowCamera( playerEntity ) );
 
 			// stick something to shoot in the level
-			var moonTexture = content.Load<Texture2D>( Content.Shared.moon );
-			var moonEntity = createEntity( "moon", new Vector2( 412, 460 ) );
-			moonEntity.addComponent( new Sprite( moonTexture ) );
-			moonEntity.addComponent( new ProjectileHitDetector() );
-			moonEntity.addComponent<CircleCollider>();
+			var moonTexture = Content.Load<Texture2D>( Nez.Content.Shared.moon );
+			var moonEntity = CreateEntity( "moon", new Vector2( 412, 460 ) );
+			moonEntity.AddComponent( new Sprite( moonTexture ) );
+			moonEntity.AddComponent( new ProjectileHitDetector() );
+			moonEntity.AddComponent<CircleCollider>();
 		}
 
 
@@ -75,39 +75,39 @@ namespace Nez.Samples
 		public Entity createProjectiles( Vector2 position, Vector2 velocity )
 		{
 			// create an Entity to house the projectile and its logic
-			var entity = createEntity( "projectile" );
-			entity.position = position;
-			entity.addComponent( new ProjectileMover() );
-			entity.addComponent( new FireballProjectileController( velocity ) );
+			var entity = CreateEntity( "projectile" );
+			entity.Position = position;
+			entity.AddComponent( new ProjectileMover() );
+			entity.AddComponent( new FireballProjectileController( velocity ) );
 
 			// add a collider so we can detect intersections
-			var collider = entity.addComponent<CircleCollider>();
-			Flags.setFlagExclusive( ref collider.collidesWithLayers, 0 );
-			Flags.setFlagExclusive( ref collider.physicsLayer, 1 );
+			var collider = entity.AddComponent<CircleCollider>();
+			Flags.SetFlagExclusive( ref collider.CollidesWithLayers, 0 );
+			Flags.SetFlagExclusive( ref collider.PhysicsLayer, 1 );
 
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
-			var texture = content.Load<Texture2D>( Content.NinjaAdventure.plume );
-			var subtextures = Subtexture.subtexturesFromAtlas( texture, 16, 16 );
+			var texture = Content.Load<Texture2D>( Nez.Content.NinjaAdventure.plume );
+			var subtextures = Subtexture.SubtexturesFromAtlas( texture, 16, 16 );
 
 			var spriteAnimation = new SpriteAnimation( subtextures )
 			{
-				loop = true,
-				fps = 10
+				Loop = true,
+				Fps = 10
 			};
 
 			// add the Sprite to the Entity and play the animation after creating it
-			var sprite = entity.addComponent( new Sprite<int>( subtextures[0] ) );
+			var sprite = entity.AddComponent( new Sprite<int>( subtextures[0] ) );
 			// render after (under) our player who is on renderLayer 0, the default
-			sprite.renderLayer = 1;
-			sprite.addAnimation( 0, spriteAnimation );
-			sprite.play( 0 );
+			sprite.RenderLayer = 1;
+			sprite.AddAnimation( 0, spriteAnimation );
+			sprite.Play( 0 );
 
 
 			// clone the projectile and fire it off in the opposite direction
-			var newEntity = entity.clone( entity.position );
-			newEntity.getComponent<FireballProjectileController>().velocity *= -1;
-			addEntity( newEntity );
+			var newEntity = entity.Clone( entity.Position );
+			newEntity.GetComponent<FireballProjectileController>().velocity *= -1;
+			AddEntity( newEntity );
 
 			return entity;
 		}

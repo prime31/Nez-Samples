@@ -31,25 +31,25 @@ namespace Nez.Samples
 		VirtualIntegerAxis _yAxisInput;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
 			// load up our character texture atlas. we have different characters in 1 - 6.png for variety
-			var characterPng = Nez.Random.range( 1, 7 );
-			var texture = entity.scene.content.Load<Texture2D>( "NinjaAdventure/characters/" + characterPng );
-			var subtextures = Subtexture.subtexturesFromAtlas( texture, 16, 16 );
+			var characterPng = Nez.Random.Range( 1, 7 );
+			var texture = Entity.Scene.Content.Load<Texture2D>( "NinjaAdventure/characters/" + characterPng );
+			var subtextures = Subtexture.SubtexturesFromAtlas( texture, 16, 16 );
 
-			_mover = entity.addComponent( new Mover() );
-			_animation = entity.addComponent( new Sprite<Animations>( subtextures[0] ) );
+			_mover = Entity.AddComponent( new Mover() );
+			_animation = Entity.AddComponent( new Sprite<Animations>( subtextures[0] ) );
 
 			// add a shadow that will only be rendered when our player is behind the detailss layer of the tilemap (renderLayer -1). The shadow
 			// must be in a renderLayer ABOVE the details layer to be visible.
-			var shadow = entity.addComponent( new SpriteMime( _animation ) );
-			shadow.color = new Color( 10, 10, 10, 80 );
-			shadow.material = Material.stencilRead();
-			shadow.renderLayer = -2; // ABOVE our tiledmap layer so it is visible
+			var shadow = Entity.AddComponent( new SpriteMime( _animation ) );
+			shadow.Color = new Color( 10, 10, 10, 80 );
+			shadow.Material = Material.StencilRead();
+			shadow.RenderLayer = -2; // ABOVE our tiledmap layer so it is visible
 
 			// extract the animations from the atlas
-			_animation.addAnimation( Animations.WalkDown, new SpriteAnimation( new List<Subtexture>()
+			_animation.AddAnimation( Animations.WalkDown, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[0],
 				subtextures[4],
@@ -57,7 +57,7 @@ namespace Nez.Samples
 				subtextures[12]
 			}) );
 
-			_animation.addAnimation( Animations.WalkUp, new SpriteAnimation( new List<Subtexture>()
+			_animation.AddAnimation( Animations.WalkUp, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[1],
 				subtextures[5],
@@ -65,7 +65,7 @@ namespace Nez.Samples
 				subtextures[13]
 			}) );
 
-			_animation.addAnimation( Animations.WalkLeft, new SpriteAnimation( new List<Subtexture>()
+			_animation.AddAnimation( Animations.WalkLeft, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[2],
 				subtextures[6],
@@ -73,7 +73,7 @@ namespace Nez.Samples
 				subtextures[14]
 			}) );
 
-			_animation.addAnimation( Animations.WalkRight, new SpriteAnimation( new List<Subtexture>()
+			_animation.AddAnimation( Animations.WalkRight, new SpriteAnimation( new List<Subtexture>()
 			{
 				subtextures[3],
 				subtextures[7],
@@ -85,10 +85,10 @@ namespace Nez.Samples
 		}
 
 
-		public override void onRemovedFromEntity()
+		public override void OnRemovedFromEntity()
 		{
 			// deregister virtual input
-			_fireInput.deregister();
+			_fireInput.Deregister();
 		}
 
 
@@ -96,27 +96,27 @@ namespace Nez.Samples
 		{
 			// setup input for shooting a fireball. we will allow z on the keyboard or a on the gamepad
 			_fireInput = new VirtualButton();
-			_fireInput.nodes.Add( new Nez.VirtualButton.KeyboardKey( Keys.Z ) );
-			_fireInput.nodes.Add( new Nez.VirtualButton.GamePadButton( 0, Buttons.A ) );
+			_fireInput.Nodes.Add( new Nez.VirtualButton.KeyboardKey( Keys.Z ) );
+			_fireInput.Nodes.Add( new Nez.VirtualButton.GamePadButton( 0, Buttons.A ) );
 
 			// horizontal input from dpad, left stick or keyboard left/right
 			_xAxisInput = new VirtualIntegerAxis();
-			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadLeftRight() );
-			_xAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickX() );
-			_xAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Left, Keys.Right ) );
+			_xAxisInput.Nodes.Add( new Nez.VirtualAxis.GamePadDpadLeftRight() );
+			_xAxisInput.Nodes.Add( new Nez.VirtualAxis.GamePadLeftStickX() );
+			_xAxisInput.Nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Left, Keys.Right ) );
 
 			// vertical input from dpad, left stick or keyboard up/down
 			_yAxisInput = new VirtualIntegerAxis();
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadDpadUpDown() );
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.GamePadLeftStickY() );
-			_yAxisInput.nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down ) );
+			_yAxisInput.Nodes.Add( new Nez.VirtualAxis.GamePadDpadUpDown() );
+			_yAxisInput.Nodes.Add( new Nez.VirtualAxis.GamePadLeftStickY() );
+			_yAxisInput.Nodes.Add( new Nez.VirtualAxis.KeyboardKeys( VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down ) );
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
 			// handle movement and animations
-			var moveDir = new Vector2( _xAxisInput.value, _yAxisInput.value );
+			var moveDir = new Vector2( _xAxisInput.Value, _yAxisInput.Value );
 			var animation = Animations.WalkDown;
 
 			if( moveDir.X < 0 )
@@ -132,26 +132,26 @@ namespace Nez.Samples
 
 			if( moveDir != Vector2.Zero )
 			{
-				if( !_animation.isAnimationPlaying( animation ) )
-					_animation.play( animation );
+				if( !_animation.IsAnimationPlaying( animation ) )
+					_animation.Play( animation );
 					
-				var movement = moveDir * _moveSpeed * Time.deltaTime;
+				var movement = moveDir * _moveSpeed * Time.DeltaTime;
 
-				_mover.calculateMovement( ref movement, out var res );
-				_subpixelV2.update( ref movement );
-				_mover.applyMovement( movement );
+				_mover.CalculateMovement( ref movement, out var res );
+				_subpixelV2.Update( ref movement );
+				_mover.ApplyMovement( movement );
 			}
 			else
 			{
-				_animation.stop();
+				_animation.Stop();
 			}
 
 			// handle firing a projectile
-			if( _fireInput.isPressed )
+			if( _fireInput.IsPressed )
 			{
 				// fire a projectile in the direction we are facing
 				var dir = Vector2.Zero;
-				switch( _animation.currentAnimation )
+				switch( _animation.CurrentAnimation )
 				{
 					case Animations.WalkUp:
 						dir.Y = -1;
@@ -167,23 +167,23 @@ namespace Nez.Samples
 						break;
 				}
 
-				var ninjaScene = entity.scene as NinjaAdventureScene;
-				ninjaScene.createProjectiles( entity.position, _projectileVelocity * dir );
+				var ninjaScene = Entity.Scene as NinjaAdventureScene;
+				ninjaScene.createProjectiles( Entity.Transform.Position, _projectileVelocity * dir );
 			}
 		}
 
 
 		#region ITriggerListener implementation
 
-		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
+		void ITriggerListener.OnTriggerEnter( Collider other, Collider self )
 		{
-			Debug.log( "triggerEnter: {0}", other.entity.name );
+			Debug.Log( "triggerEnter: {0}", other.Entity.Name );
 		}
 
 
-		void ITriggerListener.onTriggerExit( Collider other, Collider self )
+		void ITriggerListener.OnTriggerExit( Collider other, Collider self )
 		{
-			Debug.log( "triggerExit: {0}", other.entity.name );
+			Debug.Log( "triggerExit: {0}", other.Entity.Name );
 		}
 
 		#endregion

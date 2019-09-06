@@ -6,21 +6,21 @@ namespace Nez.Samples
 	[SampleScene( "AI", 120, "No visuals for this demo, everything is in the logs\nThe class 'miner bob' scenario is implemented with each AI type" )]
 	public class AIScene : SampleScene
 	{
-		public override void initialize()
+		public override void Initialize()
 		{
-			addRenderer( new DefaultRenderer() );
+			AddRenderer( new DefaultRenderer() );
 
-			createEntity( "ai-ui" )
-				.addComponent<AIUI>();
+			CreateEntity( "ai-ui" )
+				.AddComponent<AIUI>();
 
-			createEntity( "miner" )
-				.addComponent<BehaviorTreeMiner>();
+			CreateEntity( "miner" )
+				.AddComponent<BehaviorTreeMiner>();
 
-			createEntity( "utility-miner" )
-				.addComponent<UtilityMiner>();
+			CreateEntity( "utility-miner" )
+				.AddComponent<UtilityMiner>();
 
-			createEntity( "goap-miner" )
-				.addComponent<GOAPMiner>();
+			CreateEntity( "goap-miner" )
+				.AddComponent<GOAPMiner>();
 		}
 	}
 }

@@ -14,65 +14,65 @@ namespace Nez.Samples
 		{}
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
-			clearColor = Color.Black;
-			setDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.ShowAll );
-			Screen.setSize( 1280, 720 );
+			ClearColor = Color.Black;
+			SetDesignResolution( 1280, 720, Scene.SceneResolutionPolicy.ShowAll );
+			Screen.SetSize( 1280, 720 );
 
 			// create an Entity and Component to manage the Verlet World and tick its update method
-			var verletSystem = createEntity( "verlet-system" )
-				.addComponent<VerletSystem>();
+			var verletSystem = CreateEntity( "verlet-system" )
+				.AddComponent<VerletSystem>();
 
 			// first, we'll create some standard Nez Colliders for the Verlet objects to interact with
 			createPolygons();
 
 			// add a rope, which is just a series of points connected by constraints
-			createRope( verletSystem.world );
+			createRope( verletSystem.World );
 
 			// add some of the included Composite objects
-			verletSystem.world.addComposite( new Tire( new Vector2( 350, 64 ), 64, 32, 0.3f, 0.5f ) );
-			verletSystem.world.addComposite( new Tire( new Vector2( 600, 32 ), 50, 4, 0.2f, 0.7f ) );
-			verletSystem.world.addComposite( new Tire( new Vector2( 900, 128 ), 64, 7, 0.1f, 0.3f ) );
+			verletSystem.World.AddComposite( new Tire( new Vector2( 350, 64 ), 64, 32, 0.3f, 0.5f ) );
+			verletSystem.World.AddComposite( new Tire( new Vector2( 600, 32 ), 50, 4, 0.2f, 0.7f ) );
+			verletSystem.World.AddComposite( new Tire( new Vector2( 900, 128 ), 64, 7, 0.1f, 0.3f ) );
 
-			verletSystem.world.addComposite( new Cloth( new Vector2( 900, 10 ), 200, 200, 20, 0.25f, 50 ) );
+			verletSystem.World.AddComposite( new Cloth( new Vector2( 900, 10 ), 200, 200, 20, 0.25f, 50 ) );
 
-			verletSystem.world.addComposite( new Ragdoll( 400, 20, Random.range( 140, 240 ) ) );
-			verletSystem.world.addComposite( new Ragdoll( 500, 20, Random.range( 140, 240 ) ) );
-			verletSystem.world.addComposite( new Ragdoll( 600, 20, Random.range( 140, 240 ) ) );
+			verletSystem.World.AddComposite( new Ragdoll( 400, 20, Random.Range( 140, 240 ) ) );
+			verletSystem.World.AddComposite( new Ragdoll( 500, 20, Random.Range( 140, 240 ) ) );
+			verletSystem.World.AddComposite( new Ragdoll( 600, 20, Random.Range( 140, 240 ) ) );
 
-			verletSystem.world.addComposite( new Ball( new Vector2( 100, 60 ), Random.range( 10, 50 ) ) );
-			verletSystem.world.addComposite( new Ball( new Vector2( 150, 60 ), Random.range( 10, 50 ) ) );
-			verletSystem.world.addComposite( new Ball( new Vector2( 200, 60 ), Random.range( 10, 50 ) ) );
+			verletSystem.World.AddComposite( new Ball( new Vector2( 100, 60 ), Random.Range( 10, 50 ) ) );
+			verletSystem.World.AddComposite( new Ball( new Vector2( 150, 60 ), Random.Range( 10, 50 ) ) );
+			verletSystem.World.AddComposite( new Ball( new Vector2( 200, 60 ), Random.Range( 10, 50 ) ) );
 		}
 
 
 		void createPolygons()
 		{
 			var trianglePoints = new Vector2[] { new Vector2( 0, 0 ), new Vector2( 100, -100 ), new Vector2( -100, -150 ) };
-			var triangleEntity = createEntity( "triangle" );
-			triangleEntity.setPosition( 100, 300 );
-			triangleEntity.addComponent( new PolygonMesh( trianglePoints, false ).setColor( Color.LightGreen ) );
-			triangleEntity.addComponent( new PolygonCollider( trianglePoints ) );
+			var triangleEntity = CreateEntity( "triangle" );
+			triangleEntity.SetPosition( 100, 300 );
+			triangleEntity.AddComponent( new PolygonMesh( trianglePoints, false ).SetColor( Color.LightGreen ) );
+			triangleEntity.AddComponent( new PolygonCollider( trianglePoints ) );
 
 
-			var circleEntity = createEntity( "circle" );
-			circleEntity.setPosition( 1000, 250 );
-			circleEntity.addComponent( new Sprite( content.Load<Texture2D>( Content.Shared.moon ) ) )
-			            .setColor( Color.LightGreen );
-			circleEntity.addComponent( new CircleCollider( 64 ) );
+			var circleEntity = CreateEntity( "circle" );
+			circleEntity.SetPosition( 1000, 250 );
+			circleEntity.AddComponent( new Sprite( Content.Load<Texture2D>( Nez.Content.Shared.moon ) ) )
+			            .SetColor( Color.LightGreen );
+			circleEntity.AddComponent( new CircleCollider( 64 ) );
 
 
-			var polyPoints = Polygon.buildSymmetricalPolygon( 5, 140 );
-			var polygonEntity = createEntity( "boxCollider" );
-			polygonEntity.setPosition( 460, 450 );
-			polygonEntity.addComponent( new PolygonMesh( polyPoints ) ).setColor( Color.LightGreen );
-			polygonEntity.addComponent( new PolygonCollider( polyPoints ) );
+			var polyPoints = Polygon.BuildSymmetricalPolygon( 5, 140 );
+			var polygonEntity = CreateEntity( "boxCollider" );
+			polygonEntity.SetPosition( 460, 450 );
+			polygonEntity.AddComponent( new PolygonMesh( polyPoints ) ).SetColor( Color.LightGreen );
+			polygonEntity.AddComponent( new PolygonCollider( polyPoints ) );
 
-			polygonEntity.tweenRotationDegreesTo( 180, 3f )
-				 .setLoops( Nez.Tweens.LoopType.PingPong, 50 )
-				 .setEaseType( Nez.Tweens.EaseType.Linear )
-				 .start();
+			polygonEntity.TweenRotationDegreesTo( 180, 3f )
+				 .SetLoops( Nez.Tweens.LoopType.PingPong, 50 )
+				 .SetEaseType( Nez.Tweens.EaseType.Linear )
+				 .Start();
 		}
 
 
@@ -84,8 +84,8 @@ namespace Nez.Samples
 				linePoints[i] = new Vector2( 30 * i + 50, 10 );
 
 			var line = new LineSegments( linePoints, 0.3f )
-				.pinParticleAtIndex( 0 );
-			world.addComposite( line );
+				.PinParticleAtIndex( 0 );
+			world.AddComposite( line );
 		}
 
 	}

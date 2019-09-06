@@ -4,9 +4,9 @@ namespace Nez.Samples
 {
 	public class MouseFollow : Component, IUpdatable
 	{
-		public void update()
+		public void Update()
 		{
-			entity.setPosition( Input.scaledMousePosition );
+			Entity.SetPosition( Input.ScaledMousePosition );
 		}
 	}
 }

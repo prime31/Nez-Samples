@@ -12,7 +12,7 @@ namespace Nez.Samples
 		public CameraBounds()
 		{
 			// make sure we run last so the camera is already moved before we evaluate its position
-			setUpdateOrder( int.MaxValue );
+			SetUpdateOrder( int.MaxValue );
 		}
 
 
@@ -23,27 +23,27 @@ namespace Nez.Samples
 		}
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			entity.updateOrder = int.MaxValue;
+			Entity.UpdateOrder = int.MaxValue;
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
-			var cameraBounds = entity.scene.camera.bounds;
+			var cameraBounds = Entity.Scene.Camera.Bounds;
 
-			if( cameraBounds.top < min.Y )
-				entity.scene.camera.position += new Vector2( 0, min.Y - cameraBounds.top );
+			if( cameraBounds.Top < min.Y )
+				Entity.Scene.Camera.Position += new Vector2( 0, min.Y - cameraBounds.Top );
 
-			if( cameraBounds.left < min.X )
-				entity.scene.camera.position += new Vector2( min.X - cameraBounds.left, 0 );
+			if( cameraBounds.Left < min.X )
+				Entity.Scene.Camera.Position += new Vector2( min.X - cameraBounds.Left, 0 );
 
-			if( cameraBounds.bottom > max.Y )
-				entity.scene.camera.position += new Vector2( 0, max.Y - cameraBounds.bottom );
+			if( cameraBounds.Bottom > max.Y )
+				Entity.Scene.Camera.Position += new Vector2( 0, max.Y - cameraBounds.Bottom );
 
-			if( cameraBounds.right > max.X )
-				entity.scene.camera.position += new Vector2( max.X - cameraBounds.right, 0 );
+			if( cameraBounds.Right > max.X )
+				Entity.Scene.Camera.Position += new Vector2( max.X - cameraBounds.Right, 0 );
 		}
 	}
 }

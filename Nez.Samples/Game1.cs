@@ -7,7 +7,7 @@
 			base.Initialize();
 
 			Window.AllowUserResizing = true;
-			scene = new BasicScene();
+			Scene = new BasicScene();
 		}
 	}
 }

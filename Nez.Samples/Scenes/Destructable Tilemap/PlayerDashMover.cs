@@ -17,21 +17,21 @@ namespace Nez.Samples
 		Sprite _sprite;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_sprite = this.getComponent<Sprite>();
-			_tiledMapComponent = entity.scene.findEntity( "tiled-map" ).getComponent<TiledMapComponent>();
+			_sprite = this.GetComponent<Sprite>();
+			_tiledMapComponent = Entity.Scene.FindEntity( "tiled-map" ).GetComponent<TiledMapComponent>();
 			_mover = new Mover();
-			entity.addComponent( _mover );
+			Entity.AddComponent( _mover );
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
-			entity.scene.camera.position = new Vector2( entity.scene.sceneRenderTargetSize.X / 2, entity.scene.sceneRenderTargetSize.Y / 2 );
+			Entity.Scene.Camera.Position = new Vector2( Entity.Scene.SceneRenderTargetSize.X / 2, Entity.Scene.SceneRenderTargetSize.Y / 2 );
 			if( _isGrounded )
 			{
-				if( Input.isKeyPressed( Keys.Left ) )
+				if( Input.IsKeyPressed( Keys.Left ) )
 				{
 					_moveDir.X = -1f;
 					if( !canMove() )
@@ -39,10 +39,10 @@ namespace Nez.Samples
 						_moveDir.X = 0;
 						return;
 					}
-					_sprite.flipY = false;
-					entity.rotationDegrees = 90f;
+					_sprite.FlipY = false;
+					Entity.RotationDegrees = 90f;
 				}
-				else if( Input.isKeyPressed( Keys.Right ) )
+				else if( Input.IsKeyPressed( Keys.Right ) )
 				{
 					_moveDir.X = 1f;
 					if( !canMove() )
@@ -50,10 +50,10 @@ namespace Nez.Samples
 						_moveDir.X = 0;
 						return;
 					}
-					_sprite.flipY = false;
-					entity.rotationDegrees = -90f;
+					_sprite.FlipY = false;
+					Entity.RotationDegrees = -90f;
 				}
-				else if( Input.isKeyPressed( Keys.Up ) )
+				else if( Input.IsKeyPressed( Keys.Up ) )
 				{
 					_moveDir.Y = -1f;
 					if( !canMove() )
@@ -61,10 +61,10 @@ namespace Nez.Samples
 						_moveDir.Y = 0;
 						return;
 					}
-					_sprite.flipY = true;
-					entity.rotationDegrees = 0f;
+					_sprite.FlipY = true;
+					Entity.RotationDegrees = 0f;
 				}
-				else if( Input.isKeyPressed( Keys.Down ) )
+				else if( Input.IsKeyPressed( Keys.Down ) )
 				{
 					_moveDir.Y = 1f;
 					if( !canMove() )
@@ -72,36 +72,36 @@ namespace Nez.Samples
 						_moveDir.Y = 0;
 						return;
 					}
-					_sprite.flipY = false;
-					entity.rotationDegrees = 0f;
+					_sprite.FlipY = false;
+					Entity.RotationDegrees = 0f;
 				}
 			}
 
 
 			if( _moveDir != Vector2.Zero )
 			{
-				var movement = _moveDir * _speed * Time.deltaTime;
+				var movement = _moveDir * _speed * Time.DeltaTime;
 				CollisionResult res;
-				if( _mover.move( movement, out res ) )
+				if( _mover.Move( movement, out res ) )
 				{
-					var pos = entity.position + new Vector2( -16 ) * res.normal;
-					var tile = _tiledMapComponent.getTileAtWorldPosition( pos );
+					var pos = Entity.Position + new Vector2( -16 ) * res.Normal;
+					var tile = _tiledMapComponent.GetTileAtWorldPosition( pos );
 
 					// the presence of a tilesetTile means we have a tile with custom properties. The only tiles with custom properties are our
 					// wall tiles which cannot be destroyed
-					if( !_destroyedTile && tile != null && tile.tilesetTile == null )
+					if( !_destroyedTile && tile != null && tile.TilesetTile == null )
 					{
 						_destroyedTile = true;
-						_tiledMapComponent.collisionLayer.removeTile( tile.x, tile.y );
-						_tiledMapComponent.removeColliders();
-						_tiledMapComponent.addColliders();
+						_tiledMapComponent.CollisionLayer.RemoveTile( tile.X, tile.Y );
+						_tiledMapComponent.RemoveColliders();
+						_tiledMapComponent.AddColliders();
 					}
 					else
 					{
 						_moveDir = Vector2.Zero;
 						_isGrounded = true;
 						_destroyedTile = false;
-						entity.getComponent<CameraShake>().shake( 8, 0.8f );
+						Entity.GetComponent<CameraShake>().Shake( 8, 0.8f );
 					}
 				}
 				else
@@ -114,8 +114,8 @@ namespace Nez.Samples
 
 		bool canMove()
 		{
-			var pos = entity.position + new Vector2( 16 ) * _moveDir;
-			var tile = _tiledMapComponent.getTileAtWorldPosition( pos );
+			var pos = Entity.Position + new Vector2( 16 ) * _moveDir;
+			var tile = _tiledMapComponent.GetTileAtWorldPosition( pos );
 
 			return tile == null;
 		}

@@ -12,7 +12,7 @@ namespace Nez.Samples
 		/// <returns>The score.</returns>
 		/// <param name="context">Context.</param>
 		/// <param name="option">Option.</param>
-		float IActionOptionAppraisal<UtilityMiner,MinerState.Location>.getScore( UtilityMiner context, MinerState.Location option )
+		float IActionOptionAppraisal<UtilityMiner,MinerState.Location>.GetScore( UtilityMiner context, MinerState.Location option )
 		{
 			if( option == MinerState.Location.Home )
 				return context.minerState.fatigue >= MinerState.MAX_FATIGUE ? 20 : 0;
@@ -30,8 +30,8 @@ namespace Nez.Samples
 				if( context.minerState.currentLocation != MinerState.Location.Mine )
 				{
 					// normalize our current gold value to 0-1
-					var gold = Mathf.map01( context.minerState.gold, 0, MinerState.MAX_GOLD );
-					var score = Mathf.pow( gold, 2 );
+					var gold = Mathf.Map01( context.minerState.gold, 0, MinerState.MAX_GOLD );
+					var score = Mathf.Pow( gold, 2 );
 					return score * 10;
 				}
 

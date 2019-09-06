@@ -16,44 +16,44 @@ namespace Nez.Samples
 		Sprite _sprite;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_sprite = this.getComponent<Sprite>();
+			_sprite = this.GetComponent<Sprite>();
 			_mover = new Mover();
-			entity.addComponent( _mover );
+			Entity.AddComponent( _mover );
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
 			var moveDir = Vector2.Zero;
 
-			if( Input.isKeyDown( Keys.Left ) )
+			if( Input.IsKeyDown( Keys.Left ) )
 			{
 				moveDir.X = -1f;
 				if( _sprite != null )
-					_sprite.flipX = true;
+					_sprite.FlipX = true;
 			}
-			else if( Input.isKeyDown( Keys.Right ) )
+			else if( Input.IsKeyDown( Keys.Right ) )
 			{
 				moveDir.X = 1f;
 				if( _sprite != null )
-					_sprite.flipX = false;
+					_sprite.FlipX = false;
 			}
 
-			if( Input.isKeyDown( Keys.Up ) )
+			if( Input.IsKeyDown( Keys.Up ) )
 				moveDir.Y = -1f;
-			else if( Input.isKeyDown( Keys.Down ) )
+			else if( Input.IsKeyDown( Keys.Down ) )
 				moveDir.Y = 1f;
 
 
 			if( moveDir != Vector2.Zero )
 			{
-				var movement = moveDir * _speed * Time.deltaTime;
+				var movement = moveDir * _speed * Time.DeltaTime;
 
 				CollisionResult res;
-				if( _mover.move( movement, out res ) )
-					Debug.drawLine( entity.transform.position, entity.transform.position + res.normal * 100, Color.Black, 0.3f );
+				if( _mover.Move( movement, out res ) )
+					Debug.DrawLine( Entity.Position, Entity.Position + res.Normal * 100, Color.Black, 0.3f );
 			}
 		}
 	}

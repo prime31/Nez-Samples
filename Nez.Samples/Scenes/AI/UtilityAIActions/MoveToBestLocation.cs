@@ -20,10 +20,9 @@ namespace Nez.Samples
 		};
 
 
-		public override void execute( UtilityMiner context )
+		public override void Execute( UtilityMiner context )
 		{
-			var location = getBestOption( context, _locations );
-
+			var location = GetBestOption( context, _locations );
 			context.goToLocation( location );
 		}
 

@@ -11,27 +11,27 @@ namespace Nez.Samples
 		{ }
 
 
-		public override void initialize()
+		public override void Initialize()
 		{
 			// setup a pixel perfect screen that fits our map
-			setDesignResolution( 640, 480, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
-			Screen.setSize( 640 * 2, 480 * 2 );
+			SetDesignResolution( 640, 480, Scene.SceneResolutionPolicy.ShowAllPixelPerfect );
+			Screen.SetSize( 640 * 2, 480 * 2 );
 
 
 			// load up our TiledMap
-			var tiledMap = content.Load<TiledMap>( Content.Platformer.tiledMap );
-			var objectLayer = tiledMap.getObjectGroup( "objects" );
-			var spawnObject = objectLayer.objectWithName( "spawn" );
-			var tiledEntity = createEntity( "tiled-map-entity" );
-			var tiledMapComponent = tiledEntity.addComponent( new TiledMapComponent( tiledMap, "main" ) );
+			var tiledMap = Content.Load<TiledMap>( Nez.Content.Platformer.tiledMap );
+			var objectLayer = tiledMap.GetObjectGroup( "objects" );
+			var spawnObject = objectLayer.ObjectWithName( "spawn" );
+			var tiledEntity = CreateEntity( "tiled-map-entity" );
+			var tiledMapComponent = tiledEntity.AddComponent( new TiledMapComponent( tiledMap, "main" ) );
 
 
-			var playerEntity = createEntity( "player", new Vector2( spawnObject.x, spawnObject.y ) );
-			playerEntity.addComponent( new Caveman() );
-			playerEntity.addComponent( new BoxCollider( -8, -16, 16, 32 ) );
-			playerEntity.addComponent( new TiledMapMover( tiledMapComponent.collisionLayer, true ) );
+			var playerEntity = CreateEntity( "player", new Vector2( spawnObject.X, spawnObject.Y ) );
+			playerEntity.AddComponent( new Caveman() );
+			playerEntity.AddComponent( new BoxCollider( -8, -16, 16, 32 ) );
+			playerEntity.AddComponent( new TiledMapMover( tiledMapComponent.CollisionLayer ) );
 
-			addPostProcessor( new VignettePostProcessor( 1 ) );
+			AddPostProcessor( new VignettePostProcessor( 1 ) );
 		}
 	}
 }

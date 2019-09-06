@@ -16,27 +16,27 @@ namespace Nez.Samples
 		Sprite _sprite;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
-			_sprite = entity.getComponent<Sprite>();
+			_sprite = Entity.GetComponent<Sprite>();
 		}
 
 		
-		void ITriggerListener.onTriggerEnter( Collider other, Collider self )
+		void ITriggerListener.OnTriggerEnter( Collider other, Collider self )
 		{
 			_hitCounter++;
 			if ( _hitCounter >= hitsUntilDead )
 			{
-				entity.destroy();
+				Entity.Destroy();
 				return;
 			}
 
-			_sprite.color = Color.Red;
-			Core.schedule( 0.1f, timer => _sprite.color = Color.White );
+			_sprite.Color = Color.Red;
+			Core.Schedule( 0.1f, timer => _sprite.Color = Color.White );
 		}
 
 
-		void ITriggerListener.onTriggerExit( Collider other, Collider self )
+		void ITriggerListener.OnTriggerExit( Collider other, Collider self )
 		{}
 	}
 }

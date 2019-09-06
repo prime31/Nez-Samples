@@ -55,26 +55,26 @@ namespace Nez.Samples
 		bool _simulateInWorldSpace = true;
 
 
-		public override void onAddedToEntity()
+		public override void OnAddedToEntity()
 		{
 			loadParticleSystem();
 			createUI();
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
 			// toggle the emitter config used when Q/W are pressed
-			if( Input.isKeyPressed( Keys.Q ) )
+			if( Input.IsKeyPressed( Keys.Q ) )
 			{
-				_currentParticleSystem = Mathf.decrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
+				_currentParticleSystem = Mathf.DecrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
 				loadParticleSystem();
 				resetUI();
 			}
 
-			if( Input.isKeyPressed( Keys.W ) )
+			if( Input.IsKeyPressed( Keys.W ) )
 			{
-				_currentParticleSystem = Mathf.incrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
+				_currentParticleSystem = Mathf.IncrementWithWrap( _currentParticleSystem, _particleConfigs.Length );
 				loadParticleSystem();
 				resetUI();
 			}
@@ -87,7 +87,7 @@ namespace Nez.Samples
 		void loadParticleSystem()
 		{
 			// load up the config then add a ParticleEmitter
-			_particleEmitterConfig = entity.scene.content.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
+			_particleEmitterConfig = Entity.Scene.Content.Load<ParticleEmitterConfig>( _particleConfigs[_currentParticleSystem] );
 			resetEmitter();
 		}
 
@@ -96,13 +96,13 @@ namespace Nez.Samples
 		{
 			// kill the ParticleEmitter if we already have one
 			if( _particleEmitter != null )
-				entity.removeComponent( _particleEmitter );
+				Entity.RemoveComponent( _particleEmitter );
 
-			_particleEmitter = entity.addComponent( new ParticleEmitter( _particleEmitterConfig ) );
+			_particleEmitter = Entity.AddComponent( new ParticleEmitter( _particleEmitterConfig ) );
 
 			// set state based on the values of our CheckBoxes
-			_particleEmitter.collisionConfig.enabled = _isCollisionEnabled;
-			_particleEmitter.simulateInWorldSpace = _simulateInWorldSpace;
+			_particleEmitter.CollisionConfig.Enabled = _isCollisionEnabled;
+			_particleEmitter.SimulateInWorldSpace = _simulateInWorldSpace;
 		}
 
 		/// <summary>
@@ -112,9 +112,9 @@ namespace Nez.Samples
 		/// </summary>
 		void resetUI()
 		{
-			var previousUI = entity.scene.findEntity( "particles-ui" );
+			var previousUI = Entity.Scene.FindEntity( "particles-ui" );
 			if(previousUI != null)
-				previousUI.destroy();
+				previousUI.Destroy();
 
 			createUI();
 		}
@@ -122,148 +122,148 @@ namespace Nez.Samples
 		void createUI()
 		{
 
-			var uiCanvas = entity.scene.createEntity( "particles-ui" ).addComponent( new UICanvas() );
-			uiCanvas.isFullScreen = true;
-			var skin = Skin.createDefaultSkin();
+			var uiCanvas = Entity.Scene.CreateEntity( "particles-ui" ).AddComponent( new UICanvas() );
+			uiCanvas.IsFullScreen = true;
+			var skin = Skin.CreateDefaultSkin();
 			condenseSkin( skin );
 
 			// Stolen from RuntimeInspector.cs
 			var table = new Table();
-			table.top().left();
-			table.defaults().setPadTop( 4 ).setPadLeft( 4 ).setPadRight( 0 ).setAlign( Align.left );
-			table.setBackground( new PrimitiveDrawable( new Color( 40, 40, 40, 220 ) ) );
+			table.Top().Left();
+			table.Defaults().SetPadTop( 4 ).SetPadLeft( 4 ).SetPadRight( 0 ).SetAlign( Align.Left );
+			table.SetBackground( new PrimitiveDrawable( new Color( 40, 40, 40, 220 ) ) );
 
 			// wrap up the table in a ScrollPane
-			var scrollPane = uiCanvas.stage.addElement( new ScrollPane( table, skin ) );
+			var scrollPane = uiCanvas.Stage.AddElement( new ScrollPane( table, skin ) );
 
 			// force a validate which will layout the ScrollPane and populate the proper scrollBarWidth
-			scrollPane.validate();
-			scrollPane.setSize( 340 + scrollPane.getScrollBarWidth(), Screen.height );
+			scrollPane.Validate();
+			scrollPane.SetSize( 340 + scrollPane.GetScrollBarWidth(), Screen.Height );
 
-			table.row().setPadTop( 40 ); // Leave room for the directions
+			table.Row().SetPadTop( 40 ); // Leave room for the directions
 
-			var collisionCheckBox = table.add( new CheckBox( "Toggle Collision", skin ) ).getElement<CheckBox>();
-			collisionCheckBox.isChecked = _isCollisionEnabled;
-			collisionCheckBox.onChanged += isChecked =>
+			var collisionCheckBox = table.Add( new CheckBox( "Toggle Collision", skin ) ).GetElement<CheckBox>();
+			collisionCheckBox.IsChecked = _isCollisionEnabled;
+			collisionCheckBox.OnChanged += isChecked =>
 			{
-				_particleEmitter.collisionConfig.enabled = isChecked;
+				_particleEmitter.CollisionConfig.Enabled = isChecked;
 				_isCollisionEnabled = isChecked;
 			};
 
-			table.row();
+			table.Row();
 
-			var worldSpaceCheckbox = table.add( new CheckBox( "Simulate in World Space", skin ) ).getElement<CheckBox>();
-			worldSpaceCheckbox.isChecked = _simulateInWorldSpace;
-			worldSpaceCheckbox.onChanged += isChecked =>
+			var worldSpaceCheckbox = table.Add( new CheckBox( "Simulate in World Space", skin ) ).GetElement<CheckBox>();
+			worldSpaceCheckbox.IsChecked = _simulateInWorldSpace;
+			worldSpaceCheckbox.OnChanged += isChecked =>
 			{
-				_particleEmitter.simulateInWorldSpace = isChecked;
+				_particleEmitter.SimulateInWorldSpace = isChecked;
 				_simulateInWorldSpace = isChecked;
 			};
 
-			table.row();
+			table.Row();
 
-			var button = table.add( new TextButton( "Toggle Play/Pause", skin ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
-			button.onClicked += butt =>
+			var button = table.Add( new TextButton( "Toggle Play/Pause", skin ) ).SetFillX().SetMinHeight( 30 ).GetElement<TextButton>();
+			button.OnClicked += butt =>
 			{
-				if( _particleEmitter.isPlaying )
-					_particleEmitter.pause();
+				if( _particleEmitter.IsPlaying )
+					_particleEmitter.Pause();
 				else
-					_particleEmitter.play();
+					_particleEmitter.Play();
 			};
 
-			table.add( "" );
-			var save = table.add( new TextButton( "Save as .pex", skin ) ).setFillX().setMinHeight( 30 ).getElement<TextButton>();
-			save.onClicked += butt =>
+			table.Add( "" );
+			var save = table.Add( new TextButton( "Save as .pex", skin ) ).SetFillX().SetMinHeight( 30 ).GetElement<TextButton>();
+			save.OnClicked += butt =>
 			{
 				exportPexClicked( skin );
 			};
 
-			table.row();
+			table.Row();
 			makeSection( table, skin, "General" );
-			table.row();
+			table.Row();
 			makeEmitterDropdown( table, skin, "Emitter Type" );
-			table.row();
+			table.Row();
 			makeBlendDropdown( table, skin, "Source Blend Function", "blendFuncSource" );
-			table.row();
+			table.Row();
 			makeBlendDropdown( table, skin, "Destination Blend Function", "blendFuncDestination" );
 
-			table.row();
+			table.Row();
 			makeSection( table, skin, "Emitter Parameters" );
-			table.row();
+			table.Row();
 			makeVector2( table, skin, "Source Position Variance", "sourcePositionVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Particle Lifespan", 0, 30, 0.5f, "particleLifespan" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Particle Lifespan Variance", 0, 30, 0.5f, "particleLifespanVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Emission rate", 0, 4000, 1, "emissionRate" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Duration", -1, 2000, 1, "duration" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Angle", 0, 360, 1, "angle" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Angle Variance", 0, 360, 1, "angleVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Maximum Particles", 0, 2000, 1, "maxParticles" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Start Particle Size", 0, 2000, 1, "startParticleSize" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Start Size Variance", 0, 2000, 1, "startParticleSizeVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Finish Particle Size", 0, 2000, 1, "finishParticleSize" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Finish Size Variance", 0, 2000, 1, "finishParticleSizeVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Rotation Start", 0, 2000, 1, "rotationStart" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Rotation Start Variance", 0, 2000, 1, "rotationStartVariance" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Rotation End", 0, 2000, 1, "rotationEnd" );
-			table.row();
+			table.Row();
 			makeSlider( table, skin, "Rotation End Variance", 0, 2000, 1, "rotationEndVariance" );
-			table.row();
+			table.Row();
 			makeColor( table, skin, "Start Color (R G B A)", "startColor" );
-			table.row();
+			table.Row();
 			makeColor( table, skin, "Start Color Variance", "startColorVariance" );
-			table.row();
+			table.Row();
 			makeColor( table, skin, "Finish Color (R G B A)", "finishColor" );
-			table.row();
+			table.Row();
 			makeColor( table, skin, "Finish Color Variance", "finishColorVariance" );
 
 
-			if( _particleEmitterConfig.emitterType == ParticleEmitterType.Gravity )
+			if( _particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity )
 			{
-				table.row();
+				table.Row();
 				makeSection( table, skin, "Gravity Emitter" );
-				table.row();
+				table.Row();
 				makeVector2( table, skin, "Gravity X/Y", "gravity" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Speed", 0, 2000, 1, "speed" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Speed Variance", 0, 2000, 1, "speedVariance" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Radial Acceleration", -2000, 2000, 1, "radialAcceleration" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Radial Accel Variance", 0, 2000, 1, "radialAccelVariance" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Tangential Acceleration", -2000, 2000, 1, "tangentialAcceleration" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Tangential Accel Variance", 0, 2000, 1, "tangentialAccelVariance" );
 			} else
 			{
-				table.row();
+				table.Row();
 				makeSection( table, skin, "Radial Emitter" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Maximum Radius", 0, 1000, 1, "maxRadius" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Maximum Radius Variance", 0, 1000, 1, "maxRadiusVariance" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Minimum Radius", 0, 1000, 1, "minRadius" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Minimum Radius Variance", 0, 1000, 1, "minRadiusVariance" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Rotation/Sec", 0, 1000, 1, "rotatePerSecond" );
-				table.row();
+				table.Row();
 				makeSlider( table, skin, "Rotation/Sec Variance", 0, 1000, 1, "rotatePerSecondVariance" );
 			}
 		}
@@ -274,30 +274,30 @@ namespace Nez.Samples
 			float value = Convert.ToSingle( fieldInfo.GetValue( _particleEmitterConfig ) );
 
 			var slider = new Slider( skin, null, min, max );
-			var textBox = new TextField( value.ToString(), skin );
+			var textBox = new UI.TextField( value.ToString(), skin );
 
-			slider.setStepSize( step );
-			slider.setValue( value );
-			slider.onChanged += newValue => {
+			slider.SetStepSize( step );
+			slider.SetValue( value );
+			slider.OnChanged += newValue => {
 				fieldInfo.SetValue( _particleEmitterConfig, typedConvert( fieldInfo, newValue ) );
-				textBox.setText( newValue.ToString() );
+				textBox.SetText( newValue.ToString() );
 				resetEmitter();
 			};
 
-			textBox.setMaxLength( 5 );
-			textBox.onTextChanged += (field, str) => {
+			textBox.SetMaxLength( 5 );
+			textBox.OnTextChanged += (field, str) => {
 				if( float.TryParse( str, out float newValue ))
 				{
 					fieldInfo.SetValue( _particleEmitterConfig, typedConvert( fieldInfo, newValue ) );
-					slider.setValue( newValue );
+					slider.SetValue( newValue );
 					resetEmitter();
 				}
 
 			};
 
-			table.add( label ).left().width( 140 );
-			table.add( textBox ).left().width( 30 );
-			table.add( slider ).left();
+			table.Add( label ).Left().Width( 140 );
+			table.Add( textBox ).Left().Width( 30 );
+			table.Add( slider ).Left();
 		}
 
 		void makeBlendDropdown(Table table, Skin skin, string label, string propertyName)
@@ -319,7 +319,7 @@ namespace Nez.Samples
 				"InverseDestinationColor",
 				"SourceAlphaSaturation"
 			};
-			dropdown.setItems( dropdownList );
+			dropdown.SetItems( dropdownList );
 
 			// Make a lookup table from string to blend function
 			var nameLookup = new Dictionary<string, Blend>() {
@@ -343,21 +343,19 @@ namespace Nez.Samples
 				functionLookup.Add( nameLookup[str], str );
 			};
 
-			dropdown.setSelectedIndex( dropdownList.IndexOf( functionLookup[value] ) );
-			dropdown.onChanged += (str) => {
+			dropdown.SetSelectedIndex( dropdownList.IndexOf( functionLookup[value] ) );
+			dropdown.OnChanged += (str) => {
 				Blend newValue = nameLookup[str];
 				fieldInfo.SetValue( _particleEmitterConfig, newValue );
 				resetEmitter();
 			};
 
-			table.add( label ).left().width( 140 );
-			table.add( "" ).width( 1 ); // This table has 3 columns
-			table.add( dropdown );
+			table.Add( dropdown );
 		}
 
 		void makeEmitterDropdown(Table table, Skin skin, string label)
 		{
-			ParticleEmitterType value = _particleEmitterConfig.emitterType;
+			ParticleEmitterType value = _particleEmitterConfig.EmitterType;
 
 			var dropdown = new SelectBox<string>( skin );
 			var dropdownList = new List<string>() {
@@ -365,35 +363,35 @@ namespace Nez.Samples
 				"Radial"
 			};
 
-			dropdown.setItems( dropdownList );
+			dropdown.SetItems( dropdownList );
 
-			if( _particleEmitterConfig.emitterType == ParticleEmitterType.Gravity )
-				dropdown.setSelectedIndex( 0 );
+			if( _particleEmitterConfig.EmitterType == ParticleEmitterType.Gravity )
+				dropdown.SetSelectedIndex( 0 );
 			else
-				dropdown.setSelectedIndex( 1 );
+				dropdown.SetSelectedIndex( 1 );
 
-			dropdown.onChanged += (str) => {
+			dropdown.OnChanged += (str) => {
 				if( str == "Gravity" )
-					_particleEmitterConfig.emitterType = ParticleEmitterType.Gravity;
+					_particleEmitterConfig.EmitterType = ParticleEmitterType.Gravity;
 				else
-					_particleEmitterConfig.emitterType = ParticleEmitterType.Radial;
+					_particleEmitterConfig.EmitterType = ParticleEmitterType.Radial;
 				resetEmitter();
 				resetUI();
 			};
 
-			table.add( label ).left().width( 140 );
-			table.add( "" ).width( 1 ); // This is a 3 column table
-			table.add( dropdown );
+			table.Add( label ).Left().Width( 140 );
+			table.Add( "" ).Width( 1 ); // This is a 3 column table
+			table.Add( dropdown );
 		}
 
 		void makeVector2(Table table, Skin skin, string label, string propertyName)
 		{
-			FieldInfo fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
-			Vector2 value = (Vector2)fieldInfo.GetValue( _particleEmitterConfig );
-			var x = new TextField( value.X.ToString(), skin );
-			var y = new TextField( value.Y.ToString(), skin );
+			var fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
+			var value = (Vector2)fieldInfo.GetValue( _particleEmitterConfig );
+			var x = new UI.TextField( value.X.ToString(), skin );
+			var y = new UI.TextField( value.Y.ToString(), skin );
 
-			x.onTextChanged += (textbox, str) => {
+			x.OnTextChanged += (textbox, str) => {
 				if( float.TryParse( str, out float newValue ))
 				{
 					value.X = newValue;
@@ -402,7 +400,7 @@ namespace Nez.Samples
 				}
 			};
 
-			y.onTextChanged += (textbox, str) => {
+			y.OnTextChanged += (textbox, str) => {
 				if( float.TryParse( str, out float newValue ))
 				{
 					value.Y = newValue;
@@ -411,9 +409,9 @@ namespace Nez.Samples
 				}
 			};
 
-			table.add( label ).width( 140 );
-			table.add( x ).width( 30 );
-			table.add( y ).width( 30 );
+			table.Add( label ).Width( 140 );
+			table.Add( x ).Width( 30 );
+			table.Add( y ).Width( 30 );
 		}
 
 		void makeColor(Table table, Skin skin, string label, string propertyName)
@@ -421,17 +419,17 @@ namespace Nez.Samples
 			FieldInfo fieldInfo = typeof( ParticleEmitterConfig ).GetField( propertyName );
 			Color value = (Color)fieldInfo.GetValue( _particleEmitterConfig );
 
-			var r = new TextField( value.R.ToString(), skin ).setMaxLength( 4 );
-			var g = new TextField( value.G.ToString(), skin ).setMaxLength( 4 );
-			var b = new TextField( value.B.ToString(), skin ).setMaxLength( 4 );
-			var a = new TextField( value.A.ToString(), skin ).setMaxLength( 4 );
+			var r = new UI.TextField( value.R.ToString(), skin ).SetMaxLength( 4 );
+			var g = new UI.TextField( value.G.ToString(), skin ).SetMaxLength( 4 );
+			var b = new UI.TextField( value.B.ToString(), skin ).SetMaxLength( 4 );
+			var a = new UI.TextField( value.A.ToString(), skin ).SetMaxLength( 4 );
 
-			void onChanged(TextField box, string str)
+			void OnChanged(UI.TextField box, string str)
 			{
-				if( int.TryParse( r.getText(), out int newR )
-					&& int.TryParse( g.getText(), out int newG )
-					&& int.TryParse( b.getText(), out int newB )
-					&& int.TryParse( a.getText(), out int newA )
+				if( int.TryParse( r.GetText(), out int newR )
+					&& int.TryParse( g.GetText(), out int newG )
+					&& int.TryParse( b.GetText(), out int newB )
+					&& int.TryParse( a.GetText(), out int newA )
 					&& newR >= 0 && newR <= 255
 					&& newB >= 0 && newB <= 255
 					&& newG >= 0 && newG <= 255
@@ -442,30 +440,30 @@ namespace Nez.Samples
 				}
 			}
 
-			r.onTextChanged += onChanged;
-			b.onTextChanged += onChanged;
-			g.onTextChanged += onChanged;
-			a.onTextChanged += onChanged;
+			r.OnTextChanged += OnChanged;
+			b.OnTextChanged += OnChanged;
+			g.OnTextChanged += OnChanged;
+			a.OnTextChanged += OnChanged;
 
-			table.add( label ).width( 140 );
-			table.add( r ).width( 30 );
+			table.Add( label ).Width( 140 );
+			table.Add( r ).Width( 30 );
 			// Everything else is dealing with 3 columns.  Wrap the last ones up in
 			// an hbox to avoid creating new columns in the table. (hack)
-			g.setPreferredWidth( 30 );
-			b.setPreferredWidth( 30 );
-			a.setPreferredWidth( 30 );
-			var hbox = new HorizontalGroup().setSpacing( 10 );
-			hbox.addElement( g );
-			hbox.addElement( b );
-			hbox.addElement( a );
-			table.add( hbox ).left().top().width( 30 );
+			g.SetPreferredWidth( 30 );
+			b.SetPreferredWidth( 30 );
+			a.SetPreferredWidth( 30 );
+			var hbox = new HorizontalGroup().SetSpacing( 10 );
+			hbox.AddElement( g );
+			hbox.AddElement( b );
+			hbox.AddElement( a );
+			table.Add( hbox ).Left().Top().Width( 30 );
 		}
 
 		void makeSection(Table table, Skin skin, string sectionName)
 		{
 			var label = new Label( sectionName, skin );
-			label.setFontColor( new Color( 241, 156, 0 ) );
-			table.add( label ).setPadTop( 20 );
+			label.SetFontColor( new Color( 241, 156, 0 ) );
+			table.Add( label ).SetPadTop( 20 );
 		}
 
 
@@ -492,15 +490,15 @@ namespace Nez.Samples
 			// This is ripped from the inspector
 
 			// modify some of the default styles to better suit our needs
-			var tfs = skin.get<TextFieldStyle>();
-			tfs.background.leftWidth = tfs.background.rightWidth = 4;
-			tfs.background.bottomHeight = 0;
-			tfs.background.topHeight = 3;
+			var tfs = skin.Get<TextFieldStyle>();
+			tfs.Background.LeftWidth = tfs.Background.RightWidth = 4;
+			tfs.Background.BottomHeight = 0;
+			tfs.Background.TopHeight = 3;
 
-			var checkbox = skin.get<CheckBoxStyle>();
-			checkbox.checkboxOn.minWidth = checkbox.checkboxOn.minHeight = 15;
-			checkbox.checkboxOff.minWidth = checkbox.checkboxOff.minHeight = 15;
-			checkbox.checkboxOver.minWidth = checkbox.checkboxOver.minHeight = 15;
+			var checkbox = skin.Get<CheckBoxStyle>();
+			checkbox.CheckboxOn.MinWidth = checkbox.CheckboxOn.MinHeight = 15;
+			checkbox.CheckboxOff.MinWidth = checkbox.CheckboxOff.MinHeight = 15;
+			checkbox.CheckboxOver.MinWidth = checkbox.CheckboxOver.MinHeight = 15;
 		}
 
 		/// <summary>
@@ -510,43 +508,43 @@ namespace Nez.Samples
 		/// <param name="skin">UI Skin.</param>
 		void exportPexClicked(Skin skin)
 		{
-			var canvas = entity.scene.createEntity( "save-dialog" ).addComponent( new UICanvas() );
-			var dialog = canvas.stage.addElement( new Dialog( "Output Filename", skin ) );
+			var canvas = Entity.Scene.CreateEntity( "save-dialog" ).AddComponent( new UICanvas() );
+			var dialog = canvas.Stage.AddElement( new Dialog( "Output Filename", skin ) );
 
-			var contentTable = dialog.getContentTable();
-			contentTable.add( "Filename: " ).left();
-			contentTable.row();
-			var outField = new TextField( "output.pex", skin );
-			contentTable.add( outField ).center();
+			var contentTable = dialog.GetContentTable();
+			contentTable.Add( "Filename: " ).Left();
+			contentTable.Row();
+			var outField = new UI.TextField( "output.pex", skin );
+			contentTable.Add( outField ).Center();
 
-			var buttonTable = dialog.getButtonTable();
+			var buttonTable = dialog.GetButtonTable();
 			var cancelButton = new TextButton( "Cancel", skin );
 			var okButton = new TextButton( "OK", skin );
 
-			cancelButton.onClicked += butt =>
+			cancelButton.OnClicked += butt =>
 			{
-				entity.scene.findEntity( "save-dialog" ).destroy();
+				Entity.Scene.FindEntity( "save-dialog" ).Destroy();
 			};
 
-			okButton.onClicked += butt =>
+			okButton.OnClicked += butt =>
 			{
-				var outFilename = outField.getText();
+				var outFilename = outField.GetText();
 				if ( outFilename.Length > 0 )
 				{
 					var exporter = new PexExporter();
 					exporter.export( _particleEmitterConfig, outFilename );
 				}
-				entity.scene.findEntity( "save-dialog" ).destroy();
+				Entity.Scene.FindEntity( "save-dialog" ).Destroy();
 			};
 
-			dialog.addButton( okButton );
-			dialog.addButton( cancelButton );
+			dialog.AddButton( okButton );
+			dialog.AddButton( cancelButton );
 
-			dialog.setMovable( true );
-			dialog.setResizable( true );
-			dialog.setPosition( ( Screen.width - dialog.getWidth() ) / 2f, ( Screen.height - dialog.getHeight() ) / 2f );
+			dialog.SetMovable( true );
+			dialog.SetResizable( true );
+			dialog.SetPosition( ( Screen.Width - dialog.GetWidth() ) / 2f, ( Screen.Height - dialog.GetHeight() ) / 2f );
 
-			var uiCanvas = entity.scene.createEntity( "particles-ui" ).addComponent( new UICanvas() );
+			var uiCanvas = Entity.Scene.CreateEntity( "particles-ui" ).AddComponent( new UICanvas() );
 		}
 	}
 }

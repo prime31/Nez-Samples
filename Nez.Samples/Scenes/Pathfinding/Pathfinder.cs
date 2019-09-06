@@ -13,8 +13,8 @@ namespace Nez.Samples
 	public class Pathfinder : RenderableComponent, IUpdatable
 	{
 		// make sure we arent culled
-		public override float width { get { return 1000; } }
-		public override float height { get { return 1000; } }
+		public override float Width { get { return 1000; } }
+		public override float Height { get { return 1000; } }
 
 		UnweightedGridGraph _gridGraph;
 		List<Point> _breadthSearchPath;
@@ -32,71 +32,71 @@ namespace Nez.Samples
 		public Pathfinder( TiledMap tilemap )
 		{
 			_tilemap = tilemap;
-			var layer = tilemap.getLayer<TiledTileLayer>( "main" );
+			var layer = tilemap.GetLayer<TiledTileLayer>( "main" );
 
 			_start = new Point( 1, 1 );
 			_end = new Point( 10, 10 );
 
 			_gridGraph = new UnweightedGridGraph( layer );
-			_breadthSearchPath = _gridGraph.search( _start, _end );
+			_breadthSearchPath = _gridGraph.Search( _start, _end );
 
 			_weightedGraph = new WeightedGridGraph( layer );
-			_weightedSearchPath = _weightedGraph.search( _start, _end );
+			_weightedSearchPath = _weightedGraph.Search( _start, _end );
 
 			_astarGraph = new AstarGridGraph( layer );
-			_astarSearchPath = _astarGraph.search( _start, _end );
+			_astarSearchPath = _astarGraph.Search( _start, _end );
 
-			Debug.drawTextFromBottom = true;
+			Debug.DrawTextFromBottom = true;
 		}
 
 
-		void IUpdatable.update()
+		void IUpdatable.Update()
 		{
 			// on left click set our path end time
-			if( Input.leftMouseButtonPressed )
-				_end = _tilemap.worldToTilePosition( Input.mousePosition );
+			if( Input.LeftMouseButtonPressed )
+				_end = _tilemap.WorldToTilePosition( Input.MousePosition );
 
 			// on right click set our path start time
-			if( Input.rightMouseButtonPressed )
-				_start = _tilemap.worldToTilePosition( Input.mousePosition );
+			if( Input.RightMouseButtonPressed )
+				_start = _tilemap.WorldToTilePosition( Input.MousePosition );
 
 			// regenerate the path on either click
-			if( Input.leftMouseButtonPressed || Input.rightMouseButtonPressed )
+			if( Input.LeftMouseButtonPressed || Input.RightMouseButtonPressed )
 			{
 				// time both path generations
-				var first = Debug.timeAction( () =>
+				var first = Debug.TimeAction( () =>
 				{
-					_breadthSearchPath = _gridGraph.search( _start, _end );
+					_breadthSearchPath = _gridGraph.Search( _start, _end );
 				} );
 
-				var second = Debug.timeAction( () =>
+				var second = Debug.TimeAction( () =>
 				{
-					_weightedSearchPath = _weightedGraph.search( _start, _end );
+					_weightedSearchPath = _weightedGraph.Search( _start, _end );
 				} );
 
-				var third = Debug.timeAction( () =>
+				var third = Debug.TimeAction( () =>
 				{
-					_astarSearchPath = _astarGraph.search( _start, _end );
+					_astarSearchPath = _astarGraph.Search( _start, _end );
 				} );
 
 				// debug draw the times
-				Debug.drawText( "Breadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
-				Debug.log( "\nBreadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
+				Debug.DrawText( "Breadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
+				Debug.Log( "\nBreadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third );
 			}
 		}
 
 
-		public override void render( Graphics graphics, Camera camera )
+		public override void Render( Graphics graphics, Camera camera )
 		{
 			// if we have a path render all the nodes
 			if( _breadthSearchPath != null )
 			{
 				foreach( var node in _breadthSearchPath )
 				{
-					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
-					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
+					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
+					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.batcher.drawPixel( x + 2, y + 2, Color.Yellow, 4 );
+					graphics.Batcher.DrawPixel( x + 2, y + 2, Color.Yellow, 4 );
 				}
 			}
 
@@ -104,10 +104,10 @@ namespace Nez.Samples
 			{
 				foreach( var node in _weightedSearchPath )
 				{
-					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
-					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
+					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
+					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.batcher.drawPixel( x - 2, y - 2, Color.Blue, 4 );
+					graphics.Batcher.DrawPixel( x - 2, y - 2, Color.Blue, 4 );
 				}
 			}
 
@@ -115,10 +115,10 @@ namespace Nez.Samples
 			{
 				foreach( var node in _astarSearchPath )
 				{
-					var x = node.X * _tilemap.tileWidth + _tilemap.tileWidth * 0.5f;
-					var y = node.Y * _tilemap.tileHeight + _tilemap.tileHeight * 0.5f;
+					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
+					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.batcher.drawPixel( x, y, Color.Orange, 4 );
+					graphics.Batcher.DrawPixel( x, y, Color.Orange, 4 );
 				}
 			}
 		}
