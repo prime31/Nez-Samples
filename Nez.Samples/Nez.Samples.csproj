@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -343,10 +342,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189" />
         <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL">
+          <Version>3.7.1.189</Version>
+        </PackageReference>
     </ItemGroup>
 
     <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-
+	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
