@@ -101,41 +101,6 @@
         <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Update="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
-        <Link>Content\Nez\Textures\.\heatDistortionNoise.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\gooCursor.xnb">
-        <Link>Content\Nez\Textures\.\gooCursor.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\angular.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\pokemon.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\horizontal.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\wink.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\sawTooth.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\diagonalDistort.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\noise.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\crissCross.xnb</Link>
-      </Content>
-      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
-        <Link>Content\Nez\Textures\textureWipeTransition\spiral.xnb</Link>
-      </Content>
-    </ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
 </Project>
