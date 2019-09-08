@@ -31,15 +31,22 @@
 	
     <!-- Content copy rules -->
     <ItemGroup>
+		<!-- Includes Nez default effects and textures -->
         <Content Include="../Nez/DefaultContent/textures/**/*.xnb">
-            <Link>Content/Nez/Textures/%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <Link>Content/nez/textures/%(RecursiveDir)%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="../Nez/DefaultContent/effects/**/*.xnb">
-            <Link>Content/Nez/Effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
+        <Content Include="../Nez/DefaultContent/FNAEffects/**/*.fxb">
+            <Link>Content/nez/effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 
+	    <!-- Include the Content directory svg files -->
+        <Content Include="Content/**/*.svg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+		
+		<!-- Include the Content bin (MGCB output). Copy it to the Content folder in the build. -->
         <Content Include="Content/bin/DesktopGL/Content/**">
 			<Link>Content\%(RecursiveDir)\%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
