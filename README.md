@@ -14,6 +14,12 @@ Setup
 
 
 
+Setup FNA
+----
+- download the latest release of FNA from [here](https://github.com/FNA-XNA/FNA/releases/tag/19.09) and put it into a folder named `FNA` in the Nez-Samples folder
+- download the native libs FNA requires from [here](http://fna.flibitijibibo.com/archive/fnalibs.tar.bz2) into the `fnalibs` folder in the Nez-Samples folder
+- open the `Nez.FNA.Samples.sln`
+
 
 Assets License
 ----

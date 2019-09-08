@@ -1,0 +1,134 @@
+﻿<Project>
+    <PropertyGroup>
+        <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    </PropertyGroup>
+    <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net471</TargetFramework>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<RootNamespace>Nez.Samples</RootNamespace>
+		<AssemblyName>Nez.Samples</AssemblyName>
+		<MonoGamePlatform>DesktopGL</MonoGamePlatform>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DefineConstants>TRACE;DEBUG;</DefineConstants>
+		<PlatformTarget>anycpu</PlatformTarget>
+		<OutputPath>bin/FNA/Debug</OutputPath>
+	</PropertyGroup>
+	
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Drawing" />
+    </ItemGroup>
+
+	
+    <!-- Content copy rules -->
+    <ItemGroup>
+        <Content Include="../Nez/DefaultContent/textures/**/*.xnb">
+            <Link>Content/Nez/Textures/%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="../Nez/DefaultContent/effects/**/*.xnb">
+            <Link>Content/Nez/Effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+
+        <Content Include="Content/bin/DesktopGL/Content/**">
+			<Link>Content\%(RecursiveDir)\%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+	
+    <ItemGroup>
+        <MonoGameContentReference Include="Content\Content.mgcb" />
+    </ItemGroup>
+	
+	
+	<!-- FNA native libs -->
+	<PropertyGroup>
+		<IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+		<IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+	</PropertyGroup>
+  
+  
+	<ItemGroup>
+		<Content Include="..\fnalibs\x86\**\*.*" Condition="'$(OS)' == 'Windows_NT' AND '$(Platform)' != 'x64'">
+			<Link>x86\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\x64\**\*.*" Condition="'$(OS)' == 'Windows_NT' AND '$(Platform)' != 'x86'">
+			<Link>x64\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\osx\**\*.*" Condition="'$(OS)' != 'Windows_NT' AND $(IsOSX) == 'true'">
+			<Link>osx\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\lib\**\*.*" Condition="'$(OS)' != 'Windows_NT' AND $(IsLinux) == 'true'">
+			<Link>lib\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\lib64\**\*.*" Condition="'$(OS)' != 'Windows_NT' AND $(IsLinux) == 'true'">
+			<Link>lib64\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+
+	<!-- project references -->
+    <ItemGroup>
+		<ProjectReference Include="..\FNA\FNA.csproj" />
+		<ProjectReference Include="..\Nez\Nez.Portable\Nez.FNA.csproj" />
+		<ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FNA.FarseerPhysics.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
+        <Link>Content\Nez\Textures\.\heatDistortionNoise.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\gooCursor.xnb">
+        <Link>Content\Nez\Textures\.\gooCursor.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\angular.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\pokemon.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\horizontal.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\wink.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\sawTooth.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\diagonalDistort.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\noise.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\crissCross.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
+        <Link>Content\Nez\Textures\textureWipeTransition\spiral.xnb</Link>
+      </Content>
+    </ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+</Project>
