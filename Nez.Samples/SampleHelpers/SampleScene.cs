@@ -125,7 +125,7 @@ namespace Nez.Samples
 		{
 			var instructionsEntity = CreateEntity("instructions");
 			instructionsEntity
-				.AddComponent(new TextField(Graphics.Instance.BitmapFont, text, new Vector2(10, 10), Color.White))
+				.AddComponent(new TextComponent(Graphics.Instance.BitmapFont, text, new Vector2(10, 10), Color.White))
 				.SetRenderLayer(ScreenSpaceRenderLayer);
 		}
 

@@ -7,8 +7,8 @@
         <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
         <ProjectGuid>{C680D0AE-9861-4000-AFFC-952D62A01E5C}</ProjectGuid>
         <OutputType>Exe</OutputType>
-        <RootNamespace>Nez.Samples2</RootNamespace>
-        <AssemblyName>Nez.Samples2</AssemblyName>
+        <RootNamespace>Nez.Samples</RootNamespace>
+        <AssemblyName>Nez.Samples</AssemblyName>
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     </PropertyGroup>
@@ -89,9 +89,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Content Include = "Content\bin\DesktopGL\Content\**"
-                 CopyToOutputDirectory = "PreserveNewest"
-                 Link = "Content\%(RecursiveDir)\%(Filename)%(Extension)" />
+        <Content Include="Content\bin\DesktopGL\Content\**" CopyToOutputDirectory="PreserveNewest" Link="Content\%(RecursiveDir)\%(Filename)%(Extension)" />
     </ItemGroup>
     
     <ItemGroup>

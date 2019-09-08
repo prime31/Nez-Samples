@@ -138,7 +138,7 @@ namespace Nez.Samples
 
 		void UpdateInstructions()
 		{
-			var textComp = Entity.Scene.FindEntity("instructions").GetComponent<TextField>();
+			var textComp = Entity.Scene.FindEntity("instructions").GetComponent<TextComponent>();
 			var colorText = "\nr/g/b keys change color";
 
 			if (_currentLight is DirLight)
