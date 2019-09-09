@@ -227,10 +227,6 @@
             <Link>Content\nez\effects\transitions\Wind.mgfxo</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="..\Nez\DefaultContent\textures\gooCursor.xnb">
-            <Link>Content\nez\textures\gooCursor.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
         <None Include="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
             <Link>Content\nez\textures\heatDistortionNoise.xnb</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
