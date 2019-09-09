@@ -9,6 +9,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net471</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<RootNamespace>Nez.Samples</RootNamespace>
 		<AssemblyName>Nez.Samples</AssemblyName>
@@ -28,7 +29,7 @@
             <Link>Content/nez/textures/%(RecursiveDir)%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="../Nez/DefaultContent/FNAEffects/**/*.fxb">
+        <Content Include="../Nez/DefaultContent/effects/**/*.mgfxo">
             <Link>Content/nez/effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
