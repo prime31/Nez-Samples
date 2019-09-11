@@ -32,7 +32,7 @@ namespace Nez.Samples
 			var spawn = objects.ObjectWithName("spawn");
 			var ball = objects.ObjectWithName("ball");
 
-			var atlas = Content.Load<Texture2D>(Nez.Content.DestructableMap.Desertpalacetiles2X);
+			var atlas = Content.Load<Texture2D>(Nez.Content.DestructableMap.Desertpalacetiles2x);
 			var atlasParts = Subtexture.SubtexturesFromAtlas(atlas, 16, 16);
 			var playerSubtexture = atlasParts[96];
 

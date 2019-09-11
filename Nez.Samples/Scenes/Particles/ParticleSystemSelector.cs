@@ -13,8 +13,7 @@ namespace Nez.Samples
 	public class ParticleSystemSelector : Component, IUpdatable
 	{
 		// array of all the particle systems we have available
-		string[] _particleConfigs = new string[]
-		{
+		string[] _particleConfigs = {
 			Content.ParticleDesigner.Comet,
 			Content.ParticleDesigner.AtomicBubble,
 			Content.ParticleDesigner.BlueFlame,
@@ -25,9 +24,9 @@ namespace Nez.Samples
 			Content.ParticleDesigner.Foam,
 			Content.ParticleDesigner.GirosGratis,
 			Content.ParticleDesigner.IntoTheBlue,
-			Content.ParticleDesigner.JasonChoiFlash,
-			Content.ParticleDesigner.JasonChoiSwirl01,
-			Content.ParticleDesigner.JasonChoiRisingup,
+			Content.ParticleDesigner.JasonChoi_Flash,
+			Content.ParticleDesigner.JasonChoi_Swirl01,
+			Content.ParticleDesigner.JasonChoi_risingup,
 			Content.ParticleDesigner.Leaves,
 			Content.ParticleDesigner.PlasmaGlow,
 			Content.ParticleDesigner.MeksBloodSpill,
