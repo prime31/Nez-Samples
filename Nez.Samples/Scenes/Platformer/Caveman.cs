@@ -28,9 +28,9 @@ namespace Nez.Samples
 		}
 
 		Sprite<Animations> _animation;
-		TiledMapMover _mover;
+		TmxMapMover _mover;
 		BoxCollider _boxCollider;
-		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
+		TmxMapMover.CollisionState _collisionState = new TmxMapMover.CollisionState();
 		Vector2 _velocity;
 
 		VirtualButton _jumpInput;
@@ -43,7 +43,7 @@ namespace Nez.Samples
 			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 32, 32);
 
 			_boxCollider = Entity.GetComponent<BoxCollider>();
-			_mover = Entity.GetComponent<TiledMapMover>();
+			_mover = Entity.GetComponent<TmxMapMover>();
 			_animation = Entity.AddComponent(new Sprite<Animations>(subtextures[0]));
 
 			// extract the animations from the atlas. they are setup in rows with 8 columns

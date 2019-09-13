@@ -27,15 +27,15 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = CreateEntity("tiled-map-entity");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.NinjaAdventure.Map.Tilemap);
-			var tiledMapComponent = tiledEntity.AddComponent(new TiledMapComponent(tiledmap, "collision"));
-			tiledMapComponent.SetLayersToRender(new string[] {"tiles", "terrain", "details"});
+			var map = Content.LoadTiledMap("Content/NinjaAdventure/map/tilemap.tmx");
+			var tiledMapRenderer = tiledEntity.AddComponent(new TiledMapRenderer(map, "collision"));
+			tiledMapRenderer.SetLayersToRender(new string[] { "tiles", "terrain", "details" });
 
 			// render below/behind everything else. our player is at 0 and projectile is at 1.
-			tiledMapComponent.RenderLayer = 10;
+			tiledMapRenderer.RenderLayer = 10;
 
 			// render our above-details layer after the player so the player is occluded by it when walking behind things
-			var tiledMapDetailsComp = tiledEntity.AddComponent(new TiledMapComponent(tiledmap));
+			var tiledMapDetailsComp = tiledEntity.AddComponent(new TiledMapRenderer(map));
 			tiledMapDetailsComp.SetLayerToRender("above-details");
 			tiledMapDetailsComp.RenderLayer = -1;
 
@@ -45,9 +45,9 @@ namespace Nez.Samples
 			tiledMapDetailsComp.Material.Effect = Content.LoadNezEffect<SpriteAlphaTestEffect>();
 
 			// setup our camera bounds with a 1 tile border around the edges (for the outside collision tiles)
-			var topLeft = new Vector2(tiledmap.TileWidth, tiledmap.TileWidth);
-			var bottomRight = new Vector2(tiledmap.TileWidth * (tiledmap.Width - 1),
-				tiledmap.TileWidth * (tiledmap.Height - 1));
+			var topLeft = new Vector2(map.TileWidth, map.TileWidth);
+			var bottomRight = new Vector2(map.TileWidth * (map.Width - 1),
+				map.TileWidth * (map.Height - 1));
 			tiledEntity.AddComponent(new CameraBounds(topLeft, bottomRight));
 
 
@@ -76,9 +76,6 @@ namespace Nez.Samples
 		/// <summary>
 		/// creates a projectile and sets it in motion
 		/// </summary>
-		/// <returns>The projectile.</returns>
-		/// <param name="position">Position.</param>
-		/// <param name="velocity">Velocity.</param>
 		public Entity CreateProjectiles(Vector2 position, Vector2 velocity)
 		{
 			// create an Entity to house the projectile and its logic
