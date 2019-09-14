@@ -20,6 +20,7 @@ namespace Nez
 	foreach( var sourceFolder in sourceFolders )
 	{
 		var directories = Directory.GetDirectories( Host.ResolvePath( sourceFolder ) );
+		
 		// loop through all the directories in our sourceFolder
 		foreach( var dir in directories )
 		{
@@ -33,11 +34,11 @@ namespace Nez
 				continue;
 
 			// start off the recursive directory printing
-			printDirectoryClass( dir, 2, sourceFolder );
+			PrintDirectoryClass( dir, 2, sourceFolder );
 		}
 
 		// handle any files in the root sourceFolder
-		printContentFiles( Host.ResolvePath( sourceFolder ), 2, Host.ResolvePath( sourceFolder ) );
+		PrintContentFiles( Host.ResolvePath( sourceFolder ), 2, Host.ResolvePath( sourceFolder ) );
 	}
 
 #>

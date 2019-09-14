@@ -1,8 +1,4 @@
-﻿using System;
-using Nez.Tiled;
-
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	/// <summary>
 	/// Tiled map import that includes animated tiles from multiple different tileset images
@@ -11,8 +7,7 @@ namespace Nez.Samples
 	public class AnimatedTilesScene : SampleScene
 	{
 		public AnimatedTilesScene() : base(true, true)
-		{
-		}
+		{}
 
 
 		public override void Initialize()
@@ -25,8 +20,8 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = CreateEntity("tiled-map-entity");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.AnimatedTiles.Desertpalace);
-			tiledEntity.AddComponent(new TiledMapComponent(tiledmap));
+			var map = Content.LoadTiledMap("Content/AnimatedTiles/desert-palace.tmx");
+			tiledEntity.AddComponent(new TiledMapRenderer(map));
 		}
 	}
 }

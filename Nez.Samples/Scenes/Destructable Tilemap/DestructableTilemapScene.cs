@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Nez.Tiled;
-using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
 using Nez.Sprites;
 using Nez.Shadows;

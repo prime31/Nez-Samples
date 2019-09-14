@@ -205,18 +205,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\ParticleDesigner\\Giros Gratis.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\AnimatedTiles\desert-palace-tiles.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\AnimatedTiles\\desert-palace-tiles.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\AnimatedTiles\desert-palace-lamp.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\AnimatedTiles\\desert-palace-lamp.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\AnimatedTiles\desert-palace.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\AnimatedTiles\\desert-palace.xnb</Link>
-        </Content>
         <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orangeNorm.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\orangeNorm.xnb</Link>
@@ -494,6 +482,15 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="Content\DestructableMap\destructable-map.tmx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\AnimatedTiles\desert-palace-lamp.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\AnimatedTiles\desert-palace-tiles.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\AnimatedTiles\desert-palace.tmx">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

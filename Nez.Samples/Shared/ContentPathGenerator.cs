@@ -7,15 +7,7 @@ namespace Nez
     {
 		public static class Platformer
 		{
-			public const string TiledMap = @"Platformer/tiledMap";
 			public const string Caveman = @"Platformer/caveman";
-			public const string Tileset = @"Platformer/tileset";
-		}
-
-		public static class DestructableMap
-		{
-			public const string Desertpalacetiles2x = @"DestructableMap/desert-palace-tiles2x";
-			public const string Destructablemap = @"DestructableMap/destructable-map";
 		}
 
 		public static class Shadows
@@ -54,13 +46,6 @@ namespace Nez
 			public const string GirosGratis = @"ParticleDesigner/Giros Gratis";
 		}
 
-		public static class AnimatedTiles
-		{
-			public const string Desertpalacetiles = @"AnimatedTiles/desert-palace-tiles";
-			public const string Desertpalacelamp = @"AnimatedTiles/desert-palace-lamp";
-			public const string Desertpalace = @"AnimatedTiles/desert-palace";
-		}
-
 		public static class DeferredLighting
 		{
 			public const string OrangeNorm = @"DeferredLighting/orangeNorm";
@@ -78,12 +63,6 @@ namespace Nez
 
 		public static class NinjaAdventure
 		{
-			public static class Map
-			{
-				public const string Tilemap = @"NinjaAdventure/map/tilemap";
-				public const string Tileset = @"NinjaAdventure/map/tileset";
-			}
-
 			public static class Characters
 			{
 				public const string _6 = @"NinjaAdventure/characters/6";
@@ -105,7 +84,6 @@ namespace Nez
 			public const string Bg = @"SpriteLights/bg";
 		}
 
-		public const string G = @"G";
 
     }
 }

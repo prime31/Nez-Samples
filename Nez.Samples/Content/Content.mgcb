@@ -17,35 +17,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin AnimatedTiles/desert-palace.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:AnimatedTiles/desert-palace.tmx
-
-#begin AnimatedTiles/desert-palace-lamp.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:AnimatedTiles/desert-palace-lamp.png
-
-#begin AnimatedTiles/desert-palace-tiles.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:AnimatedTiles/desert-palace-tiles.png
-
 #begin DeferredLighting/bg.png
 /importer:TextureImporter
 /processor:TextureProcessor
