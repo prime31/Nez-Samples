@@ -26,14 +26,14 @@ namespace Nez.Samples
 		AstarGridGraph _astarGraph;
 		List<Point> _astarSearchPath;
 
-		TiledMap _tilemap;
+		TmxMap _tilemap;
 		Point _start, _end;
 
 
-		public Pathfinder(TiledMap tilemap)
+		public Pathfinder(TmxMap tilemap)
 		{
 			_tilemap = tilemap;
-			var layer = tilemap.GetLayer<TiledTileLayer>("main");
+			var layer = tilemap.GetLayer<TmxLayer>("main");
 
 			_start = new Point(1, 1);
 			_end = new Point(10, 10);
@@ -49,7 +49,6 @@ namespace Nez.Samples
 
 			Debug.DrawTextFromBottom = true;
 		}
-
 
 		void IUpdatable.Update()
 		{
@@ -76,7 +75,6 @@ namespace Nez.Samples
 				Debug.Log("\nBreadth First: {0}\nDijkstra: {1}\nAstar: {2}", first, second, third);
 			}
 		}
-
 
 		public override void Render(Graphics graphics, Camera camera)
 		{

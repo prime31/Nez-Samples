@@ -9,9 +9,7 @@ namespace Nez.Samples
 	public class PathfindingScene : SampleScene
 	{
 		public PathfindingScene() : base(true, true)
-		{
-		}
-
+		{}
 
 		public override void Initialize()
 		{
@@ -20,13 +18,12 @@ namespace Nez.Samples
 			Screen.SetSize(1280, 736);
 
 			// load a TiledMap and a TiledMapComponent to display it
+			var map = Content.LoadTiledMap("Content/DestructableMap/destructable-map.tmx");
 			var tiledEntity = CreateEntity("tiled-map");
-			var tiledmap = Content.Load<TiledMap>(Nez.Content.DestructableMap.Destructablemap);
-			tiledEntity.AddComponent(new TiledMapComponent(tiledmap));
+			tiledEntity.AddComponent(new TiledMapRenderer(map));
 
 			// add a Pathfinder to handle pathfinding and debug display of the paths
-			CreateEntity("pathfinder")
-				.AddComponent(new Pathfinder(tiledmap));
+			CreateEntity("pathfinder").AddComponent(new Pathfinder(map));
 		}
 	}
 }
