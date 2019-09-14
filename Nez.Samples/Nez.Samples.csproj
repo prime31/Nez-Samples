@@ -93,14 +93,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Platformer\\caveman.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DestructableMap\desert-palace-tiles2x.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DestructableMap\\desert-palace-tiles2x.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DestructableMap\destructable-map.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DestructableMap\\destructable-map.xnb</Link>
-        </Content>
         <Content Include="Content\bin\DesktopGL\Content\Shadows\sprite-light.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shadows\\sprite-light.xnb</Link>
@@ -496,6 +488,12 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="Content\NinjaAdventure\map\tileset.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\DestructableMap\desert-palace-tiles2x.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\DestructableMap\destructable-map.tmx">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

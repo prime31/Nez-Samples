@@ -13,14 +13,14 @@ namespace Nez.Samples
 		Vector2 _moveDir;
 
 		Mover _mover;
-		TiledMapComponent _tiledMapComponent;
+		TiledMapRenderer _tiledMapRenderer;
 		Sprite _sprite;
 
 
 		public override void OnAddedToEntity()
 		{
 			_sprite = this.GetComponent<Sprite>();
-			_tiledMapComponent = Entity.Scene.FindEntity("tiled-map").GetComponent<TiledMapComponent>();
+			_tiledMapRenderer = Entity.Scene.FindEntity("tiled-map").GetComponent<TiledMapRenderer>();
 			_mover = new Mover();
 			Entity.AddComponent(_mover);
 		}
@@ -90,16 +90,16 @@ namespace Nez.Samples
 				if (_mover.Move(movement, out res))
 				{
 					var pos = Entity.Position + new Vector2(-16) * res.Normal;
-					var tile = _tiledMapComponent.GetTileAtWorldPosition(pos);
+					var tile = _tiledMapRenderer.GetTileAtWorldPosition(pos);
 
 					// the presence of a tilesetTile means we have a tile with custom properties. The only tiles with custom properties are our
 					// wall tiles which cannot be destroyed
 					if (!_destroyedTile && tile != null && tile.TilesetTile == null)
 					{
 						_destroyedTile = true;
-						_tiledMapComponent.CollisionLayer.RemoveTile(tile.X, tile.Y);
-						_tiledMapComponent.RemoveColliders();
-						_tiledMapComponent.AddColliders();
+						_tiledMapRenderer.CollisionLayer.RemoveTile(tile.X, tile.Y);
+						_tiledMapRenderer.RemoveColliders();
+						_tiledMapRenderer.AddColliders();
 					}
 					else
 					{
@@ -120,7 +120,7 @@ namespace Nez.Samples
 		bool CanMove()
 		{
 			var pos = Entity.Position + new Vector2(16) * _moveDir;
-			var tile = _tiledMapComponent.GetTileAtWorldPosition(pos);
+			var tile = _tiledMapRenderer.GetTileAtWorldPosition(pos);
 
 			return tile == null;
 		}
