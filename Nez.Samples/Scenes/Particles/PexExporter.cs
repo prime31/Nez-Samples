@@ -14,10 +14,6 @@ namespace Nez.Samples
 {
 	public class PexExporter
 	{
-		public PexExporter()
-		{
-		}
-
 		/// <summary>
 		/// Export the specified ParticleEmitterConfig to the specified filename in PEX format.
 		/// </summary>
@@ -28,8 +24,8 @@ namespace Nez.Samples
 			// We don't use XmlSerializer here because the output format needed by PEX is bizzare.
 			// I first tried to implement it using Serializer overrides, but that became much larger than
 			// constructing by hand.
-			XmlDocument doc = new XmlDocument();
-			XmlElement parent = doc.CreateElement("particleEmitterConfig");
+			var doc = new XmlDocument();
+			var parent = doc.CreateElement("particleEmitterConfig");
 			AddXmlChild(doc, parent, "yCoordFlipped", "1");
 			AddXmlChild(doc, parent, "sourcePosition", emitterConfig.SourcePosition);
 			AddXmlChild(doc, parent, "sourcePositionVariance", emitterConfig.SourcePositionVariance);
@@ -106,10 +102,10 @@ namespace Nez.Samples
 		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Color color)
 		{
 			var attrs = new Dictionary<string, string>();
-			float r = (float) color.R / 255f;
-			float g = (float) color.G / 255f;
-			float b = (float) color.B / 255f;
-			float a = (float) color.A / 255f;
+			var r = color.R / 255f;
+			var g = color.G / 255f;
+			var b = color.B / 255f;
+			var a = color.A / 255f;
 			attrs["red"] = r.ToString("F2");
 			attrs["green"] = g.ToString("F2");
 			attrs["blue"] = b.ToString("F2");
@@ -170,26 +166,28 @@ namespace Nez.Samples
 
 		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Subtexture texture)
 		{
-			var rawStream = new MemoryStream();
-			texture.Texture2D.SaveAsPng(rawStream, texture.Texture2D.Width, texture.Texture2D.Height);
-			rawStream.Position = 0;
-
-			using (var outStream = new MemoryStream())
+			using (var rawStream = new MemoryStream())
 			{
-				using (var compressedStream = new GZipStream(outStream, CompressionLevel.Optimal))
-					rawStream.CopyTo(compressedStream);
-				var bytes = outStream.ToArray();
+				texture.Texture2D.SaveAsPng(rawStream, texture.Texture2D.Width, texture.Texture2D.Height);
+				rawStream.Position = 0;
 
-				var attrs = new Dictionary<string, string>();
-				attrs["name"] = "texture.png";
-				attrs["data"] = Convert.ToBase64String(bytes);
-				AddXmlChild(doc, parent, elementName, attrs);
+				using (var outStream = new MemoryStream())
+				{
+					using (var compressedStream = new GZipStream(outStream, CompressionLevel.Optimal))
+						rawStream.CopyTo(compressedStream);
+					var bytes = outStream.ToArray();
+
+					var attrs = new Dictionary<string, string>();
+					attrs["name"] = "texture.png";
+					attrs["data"] = Convert.ToBase64String(bytes);
+					AddXmlChild(doc, parent, elementName, attrs);
+				}
 			}
 		}
 
 		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Dictionary<string, string> attributes)
 		{
-			XmlElement element = doc.CreateElement(elementName);
+			var element = doc.CreateElement(elementName);
 			foreach (var key in attributes.Keys)
 			{
 				var attribute = doc.CreateAttribute(key);

@@ -105,106 +105,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shadows\\Block.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Plasma Glow.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Plasma Glow.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Real Popcorn.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Real Popcorn.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Winner Stars.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Winner Stars.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Shooting Fireball.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Shooting Fireball.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\The Sun.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\The Sun.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Fire.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Fire.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\wu1.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\wu1.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Meks Blood Spill.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Meks Blood Spill.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\JasonChoi_Flash.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\JasonChoi_Flash.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Trippy.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Trippy.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Touch Up.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Touch Up.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Snow.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Snow.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Crazy Blue.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Crazy Blue.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Atomic Bubble.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Atomic Bubble.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Comet.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Comet.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Electrons.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Electrons.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Blue Flame.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Blue Flame.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Foam.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Foam.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Blue Galaxy.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Blue Galaxy.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\JasonChoi_Swirl01.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\JasonChoi_Swirl01.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\JasonChoi_rising up.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\JasonChoi_rising up.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Into The Blue.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Into The Blue.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Leaves.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Leaves.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\huo1.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\huo1.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\ParticleDesigner\Giros Gratis.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\ParticleDesigner\\Giros Gratis.xnb</Link>
-        </Content>
         <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orangeNorm.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\orangeNorm.xnb</Link>
@@ -491,6 +391,87 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="Content\AnimatedTiles\desert-palace.tmx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Atomic Bubble.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Thingy.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\thingy.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Blue Flame.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Blue Galaxy.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Comet.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Crazy Blue.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Electrons.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Fire.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Foam.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Giros Gratis.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\huo1.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Into The Blue.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\JasonChoi_Flash.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\JasonChoi_rising up.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\JasonChoi_Swirl01.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Leaves.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Meks Blood Spill.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Plasma Glow.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Real Popcorn.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Shooting Fireball.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Snow.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\The Sun.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Touch Up.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Trippy.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\Winner Stars.pex">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Content\ParticleDesigner\wu1.pex">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

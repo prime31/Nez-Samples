@@ -46,6 +46,11 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 		
+	    <!-- Include Particle Designer files -->
+        <Content Include="Content/ParticleDesigner/*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+		
 		<!-- Include the Content bin (MGCB output). Copy it to the Content folder in the build. -->
         <Content Include="Content/bin/DesktopGL/Content/**">
 			<Link>Content\%(RecursiveDir)\%(Filename)%(Extension)</Link>

@@ -1,5 +1,6 @@
-﻿using System; // For introspection
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,33 +14,7 @@ namespace Nez.Samples
 	public class ParticleSystemSelector : Component, IUpdatable
 	{
 		// array of all the particle systems we have available
-		string[] _particleConfigs = {
-			Content.ParticleDesigner.Comet,
-			Content.ParticleDesigner.AtomicBubble,
-			Content.ParticleDesigner.BlueFlame,
-			Content.ParticleDesigner.BlueGalaxy,
-			Content.ParticleDesigner.CrazyBlue,
-			Content.ParticleDesigner.Electrons,
-			Content.ParticleDesigner.Fire,
-			Content.ParticleDesigner.Foam,
-			Content.ParticleDesigner.GirosGratis,
-			Content.ParticleDesigner.IntoTheBlue,
-			Content.ParticleDesigner.JasonChoi_Flash,
-			Content.ParticleDesigner.JasonChoi_Swirl01,
-			Content.ParticleDesigner.JasonChoi_risingup,
-			Content.ParticleDesigner.Leaves,
-			Content.ParticleDesigner.PlasmaGlow,
-			Content.ParticleDesigner.MeksBloodSpill,
-			Content.ParticleDesigner.RealPopcorn,
-			Content.ParticleDesigner.ShootingFireball,
-			Content.ParticleDesigner.Snow,
-			Content.ParticleDesigner.TheSun,
-			Content.ParticleDesigner.TouchUp,
-			Content.ParticleDesigner.Trippy,
-			Content.ParticleDesigner.WinnerStars,
-			Content.ParticleDesigner.Huo1,
-			Content.ParticleDesigner.Wu1
-		};
+		string[] _particleConfigs;
 
 		// the ParticleEmitter component
 		ParticleEmitter _particleEmitter;
@@ -48,7 +23,7 @@ namespace Nez.Samples
 		ParticleEmitterConfig _particleEmitterConfig;
 
 		// the current emitter config index that we are playing
-		int _currentParticleSystem = 0;
+		int _currentParticleSystem;
 
 		// we keep around a reference to the CheckBoxes so that we can reset its state when we change particle systems
 		bool _isCollisionEnabled;
@@ -57,10 +32,12 @@ namespace Nez.Samples
 
 		public override void OnAddedToEntity()
 		{
+			_particleConfigs = Directory.GetFiles("Content/ParticleDesigner", "*.pex");
+			if (_particleConfigs.Length > 20)
+				_currentParticleSystem = 20;
 			LoadParticleSystem();
 			CreateUi();
 		}
-
 
 		void IUpdatable.Update()
 		{
@@ -80,18 +57,15 @@ namespace Nez.Samples
 			}
 		}
 
-
 		/// <summary>
 		/// loads a ParticleEmitterConfig and creates a ParticleEmitter to display it
 		/// </summary>
 		void LoadParticleSystem()
 		{
 			// load up the config then add a ParticleEmitter
-			_particleEmitterConfig =
-				Entity.Scene.Content.Load<ParticleEmitterConfig>(_particleConfigs[_currentParticleSystem]);
+			_particleEmitterConfig = Entity.Scene.Content.LoadParticleEmitterConfig(_particleConfigs[_currentParticleSystem]);
 			ResetEmitter();
 		}
-
 
 		void ResetEmitter()
 		{
