@@ -180,8 +180,6 @@
     </ItemGroup>
     
     <ItemGroup>
-        <None Include="app.manifest" />
-        <None Include="Icon.png" />
         <None Include="..\Nez\DefaultContent\effects\Bevels.mgfxo">
             <Link>Content\nez\effects\Bevels.mgfxo</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -393,90 +391,14 @@
         <None Include="Content\AnimatedTiles\desert-palace.tmx">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="Content\ParticleDesigner\Atomic Bubble.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Thingy.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\thingy.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Blue Flame.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Blue Galaxy.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Comet.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Crazy Blue.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Electrons.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Fire.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Foam.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Giros Gratis.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\huo1.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Into The Blue.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\JasonChoi_Flash.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\JasonChoi_rising up.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\JasonChoi_Swirl01.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Leaves.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Meks Blood Spill.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Plasma Glow.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Real Popcorn.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Shooting Fireball.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Snow.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\The Sun.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Touch Up.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Trippy.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\Winner Stars.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\ParticleDesigner\wu1.pex">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+
+		<!-- Include Particle Designer files -->
+        <Content Include="Content/ParticleDesigner/*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Icon.ico" />
+        <EmbeddedResource Visible="false" Include="Icon.ico" />
     </ItemGroup>
     <ItemGroup>
         <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -514,11 +436,11 @@
             <Link>x64\libopenal.so.1</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+        <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
             <Link>libSDL2-2.0.0.dylib</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+        <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
             <Link>libopenal.1.dylib</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
