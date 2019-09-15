@@ -42,12 +42,12 @@ namespace Nez.Samples
 			var bg = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
 			var bgEntity = CreateEntity("bg");
 			bgEntity.Position = Screen.Center;
-			bgEntity.AddComponent(new Sprite(bg));
+			bgEntity.AddComponent(new SpriteRenderer(bg));
 			bgEntity.Scale = new Vector2(9.4f);
 
 			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var entity = CreateEntity("moon");
-			entity.AddComponent(new Sprite(moonTex));
+			entity.AddComponent(new SpriteRenderer(moonTex));
 			entity.Position = new Vector2(Screen.Width / 4, Screen.Height / 8);
 
 
@@ -125,7 +125,7 @@ namespace Nez.Samples
 				Random.Range(50, SceneRenderTargetSize.Y - 100));
 
 			var entity = CreateEntity("light");
-			var sprite = entity.AddComponent(new Sprite(texture));
+			var sprite = entity.AddComponent(new SpriteRenderer(texture));
 			entity.Position = position;
 			entity.Scale = new Vector2(scale);
 			sprite.RenderLayer = SpriteLightRenderLayer;
@@ -134,7 +134,7 @@ namespace Nez.Samples
 			{
 				sprite.SetColor(Random.NextColor());
 				var cyler = entity.AddComponent(new ColorCycler());
-				cyler.WaveFunction = (WaveFunctions) Random.Range(0, 5);
+				cyler.WaveFunction = (WaveFunctions)Random.Range(0, 5);
 				cyler.Offset = Random.NextFloat();
 				cyler.Frequency = Random.Range(0.6f, 1.5f);
 				cyler.Phase = Random.NextFloat();
@@ -175,7 +175,7 @@ namespace Nez.Samples
 			// every so often change our color
 			if (Random.Chance(80))
 			{
-				var sprite = transform.Entity.GetComponent<Sprite>();
+				var sprite = transform.Entity.GetComponent<SpriteRenderer>();
 				PropertyTweens.ColorPropertyTo(sprite, "Color", Random.NextColor(), 2f)
 					.SetDelay(delay)
 					.Start();

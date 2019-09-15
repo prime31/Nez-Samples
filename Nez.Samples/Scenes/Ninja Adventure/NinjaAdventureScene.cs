@@ -67,7 +67,7 @@ namespace Nez.Samples
 			// stick something to shoot in the level
 			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var moonEntity = CreateEntity("moon", new Vector2(412, 460));
-			moonEntity.AddComponent(new Sprite(moonTexture));
+			moonEntity.AddComponent(new SpriteRenderer(moonTexture));
 			moonEntity.AddComponent(new ProjectileHitDetector());
 			moonEntity.AddComponent<CircleCollider>();
 		}
@@ -92,7 +92,7 @@ namespace Nez.Samples
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
 			var texture = Content.Load<Texture2D>(Nez.Content.NinjaAdventure.Plume);
-			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 16, 16);
+			var subtextures = Sprite.SpritesFromAtlas(texture, 16, 16);
 
 			var spriteAnimation = new SpriteAnimation(subtextures)
 			{
@@ -101,7 +101,7 @@ namespace Nez.Samples
 			};
 
 			// add the Sprite to the Entity and play the animation after creating it
-			var sprite = entity.AddComponent(new Sprite<int>(subtextures[0]));
+			var sprite = entity.AddComponent(new SpriteAnimationRenderer<int>(subtextures[0]));
 
 			// render after (under) our player who is on renderLayer 0, the default
 			sprite.RenderLayer = 1;

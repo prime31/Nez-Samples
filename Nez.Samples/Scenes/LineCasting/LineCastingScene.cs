@@ -19,7 +19,7 @@ namespace Nez.Samples
 
 			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var playerEntity = CreateEntity("player", new Vector2(Screen.Width / 2, Screen.Height / 2));
-			playerEntity.AddComponent(new Sprite(moonTex));
+			playerEntity.AddComponent(new SpriteRenderer(moonTex));
 			var coll = new BoxCollider(moonTex.Width, moonTex.Height);
 			playerEntity.AddComponent(coll);
 			playerEntity.Position = new Vector2(200, 100);

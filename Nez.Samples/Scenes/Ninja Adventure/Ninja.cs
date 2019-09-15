@@ -20,7 +20,7 @@ namespace Nez.Samples
 			WalkLeft
 		}
 
-		Sprite<Animations> _animation;
+		SpriteAnimationRenderer<Animations> _animation;
 		SubpixelVector2 _subpixelV2 = new SubpixelVector2();
 		Mover _mover;
 		float _moveSpeed = 100f;
@@ -36,10 +36,10 @@ namespace Nez.Samples
 			// load up our character texture atlas. we have different characters in 1 - 6.png for variety
 			var characterPng = Nez.Random.Range(1, 7);
 			var texture = Entity.Scene.Content.Load<Texture2D>("NinjaAdventure/characters/" + characterPng);
-			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 16, 16);
+			var subtextures = Sprite.SpritesFromAtlas(texture, 16, 16);
 
 			_mover = Entity.AddComponent(new Mover());
-			_animation = Entity.AddComponent(new Sprite<Animations>(subtextures[0]));
+			_animation = Entity.AddComponent(new SpriteAnimationRenderer<Animations>(subtextures[0]));
 
 			// add a shadow that will only be rendered when our player is behind the detailss layer of the tilemap (renderLayer -1). The shadow
 			// must be in a renderLayer ABOVE the details layer to be visible.
@@ -49,7 +49,7 @@ namespace Nez.Samples
 			shadow.RenderLayer = -2; // ABOVE our tiledmap layer so it is visible
 
 			// extract the animations from the atlas
-			_animation.AddAnimation(Animations.WalkDown, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.WalkDown, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[0],
 				subtextures[4],
@@ -57,7 +57,7 @@ namespace Nez.Samples
 				subtextures[12]
 			}));
 
-			_animation.AddAnimation(Animations.WalkUp, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.WalkUp, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[1],
 				subtextures[5],
@@ -65,7 +65,7 @@ namespace Nez.Samples
 				subtextures[13]
 			}));
 
-			_animation.AddAnimation(Animations.WalkLeft, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.WalkLeft, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[2],
 				subtextures[6],
@@ -73,7 +73,7 @@ namespace Nez.Samples
 				subtextures[14]
 			}));
 
-			_animation.AddAnimation(Animations.WalkRight, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.WalkRight, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[3],
 				subtextures[7],

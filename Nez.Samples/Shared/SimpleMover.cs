@@ -13,12 +13,12 @@ namespace Nez.Samples
 	{
 		float _speed = 600f;
 		Mover _mover;
-		Sprite _sprite;
+		SpriteRenderer _sprite;
 
 
 		public override void OnAddedToEntity()
 		{
-			_sprite = this.GetComponent<Sprite>();
+			_sprite = this.GetComponent<SpriteRenderer>();
 			_mover = new Mover();
 			Entity.AddComponent(_mover);
 		}

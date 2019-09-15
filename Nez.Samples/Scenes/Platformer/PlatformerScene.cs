@@ -25,11 +25,11 @@ namespace Nez.Samples
 			tiledEntity.AddComponent(new TiledMapRenderer(map, "main"));
 
 
-			// create our Player and add a TmxMapMover to handle collisions with the tilemap
+			// create our Player and add a TiledMapMover to handle collisions with the tilemap
 			var playerEntity = CreateEntity("player", new Vector2(spawnObject.X, spawnObject.Y));
 			playerEntity.AddComponent(new Caveman());
 			playerEntity.AddComponent(new BoxCollider(-8, -16, 16, 32));
-			playerEntity.AddComponent(new TmxMapMover(map.GetLayer<TmxLayer>("main")));
+			playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("main")));
 
 			AddPostProcessor(new VignettePostProcessor(1));
 		}

@@ -13,12 +13,12 @@ namespace Nez.Samples
 		public int HitsUntilDead = 10;
 
 		int _hitCounter;
-		Sprite _sprite;
+		SpriteRenderer _sprite;
 
 
 		public override void OnAddedToEntity()
 		{
-			_sprite = Entity.GetComponent<Sprite>();
+			_sprite = Entity.GetComponent<SpriteRenderer>();
 		}
 
 

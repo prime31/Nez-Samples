@@ -60,7 +60,7 @@ namespace Nez.Samples
 
 			var circleEntity = CreateEntity("circle");
 			circleEntity.SetPosition(1000, 250);
-			circleEntity.AddComponent(new Sprite(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
+			circleEntity.AddComponent(new SpriteRenderer(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
 				.SetColor(Color.LightGreen);
 			circleEntity.AddComponent(new CircleCollider(64));
 

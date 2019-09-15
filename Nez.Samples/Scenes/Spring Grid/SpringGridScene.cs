@@ -29,7 +29,7 @@ namespace Nez.Samples
 			playerEntity.Scale *= 0.5f;
 			playerEntity.AddComponent(new SimpleMover());
 			playerEntity.AddComponent(new GridModifier());
-			playerEntity.AddComponent(new Sprite(moonTex));
+			playerEntity.AddComponent(new SpriteRenderer(moonTex));
 
 
 			AddPostProcessor(new VignettePostProcessor(1));

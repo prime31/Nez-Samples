@@ -31,12 +31,12 @@ namespace Nez.Samples
 			var ball = objectGroup.Objects["ball"];
 
 			var atlas = Content.LoadTexture("Content/DestructableMap/desert-palace-tiles2x.png");
-			var atlasParts = Subtexture.SubtexturesFromAtlas(atlas, 16, 16);
+			var atlasParts = Sprite.SpritesFromAtlas(atlas, 16, 16);
 			var playerSubtexture = atlasParts[96];
 
 			var playerEntity = CreateEntity("player");
 			playerEntity.Position = new Vector2(spawn.X + 8, spawn.Y + 8);
-			playerEntity.AddComponent(new Sprite(playerSubtexture));
+			playerEntity.AddComponent(new SpriteRenderer(playerSubtexture));
 			playerEntity.AddComponent(new PlayerDashMover());
 			playerEntity.AddComponent(new CameraShake());
 			playerEntity.AddComponent(new PolyLight(100)
@@ -45,7 +45,7 @@ namespace Nez.Samples
 				Color = Color.Yellow * 0.5f
 			});
 
-			var trail = playerEntity.AddComponent(new SpriteTrail(playerEntity.GetComponent<Sprite>()));
+			var trail = playerEntity.AddComponent(new SpriteTrail(playerEntity.GetComponent<SpriteRenderer>()));
 			trail.FadeDelay = 0;
 			trail.FadeDuration = 0.2f;
 			trail.MinDistanceBetweenInstances = 10f;
@@ -61,7 +61,7 @@ namespace Nez.Samples
 			var ballSubtexture = atlasParts[96];
 			var ballEntity = CreateEntity("ball");
 			ballEntity.Position = new Vector2(ball.X + 8, ball.Y + 8);
-			ballEntity.AddComponent(new Sprite(ballSubtexture));
+			ballEntity.AddComponent(new SpriteRenderer(ballSubtexture));
 			ballEntity.AddComponent(new ArcadeRigidbody());
 
 			// add a collider and put it on layer 1. Make it only collide with layer 0 (the tilemap) so it doesnt interact with the player.

@@ -50,11 +50,11 @@ namespace Nez.Samples
 			{
 				var ent = CreateEntity(name);
 				ent.Position = pos;
-				ent.AddComponent(new Sprite(blockTexture));
+				ent.AddComponent(new SpriteRenderer(blockTexture));
 				var collider = ent.AddComponent<BoxCollider>();
 
 				// add a glow sprite on the light render layer
-				var glowSprite = new Sprite(blockGlowTexture);
+				var glowSprite = new SpriteRenderer(blockGlowTexture);
 				glowSprite.RenderLayer = lightRenderLayer;
 				ent.AddComponent(glowSprite);
 
@@ -75,19 +75,19 @@ namespace Nez.Samples
 			boxMaker(new Vector2(500, 250), "box6", false);
 
 			var moonEnt = CreateEntity("moon");
-			moonEnt.AddComponent(new Sprite(moonTexture));
+			moonEnt.AddComponent(new SpriteRenderer(moonTexture));
 			moonEnt.Position = new Vector2(100, 0);
 
 			moonEnt = CreateEntity("moon2");
-			moonEnt.AddComponent(new Sprite(moonTexture));
+			moonEnt.AddComponent(new SpriteRenderer(moonTexture));
 			moonEnt.Position = new Vector2(-500, 0);
 
 
 			var lightEnt = CreateEntity("sprite-light");
-			lightEnt.AddComponent(new Sprite(lightTexture));
+			lightEnt.AddComponent(new SpriteRenderer(lightTexture));
 			lightEnt.Position = new Vector2(-700, 0);
 			lightEnt.Scale = new Vector2(4);
-			lightEnt.GetComponent<Sprite>().RenderLayer = lightRenderLayer;
+			lightEnt.GetComponent<SpriteRenderer>().RenderLayer = lightRenderLayer;
 
 
 			// add an animation to "box4"
@@ -96,7 +96,7 @@ namespace Nez.Samples
 			// create a player block
 			var entity = CreateEntity("player-block");
 			entity.Position = new Vector2(220, 220);
-			var sprite = new Sprite(blockTexture);
+			var sprite = new SpriteRenderer(blockTexture);
 			sprite.RenderLayer = lightRenderLayer;
 			entity.AddComponent(sprite);
 			entity.AddComponent(new SimpleMover());

@@ -14,12 +14,12 @@ namespace Nez.Samples
 
 		Mover _mover;
 		TiledMapRenderer _tiledMapRenderer;
-		Sprite _sprite;
+		SpriteRenderer _sprite;
 
 
 		public override void OnAddedToEntity()
 		{
-			_sprite = this.GetComponent<Sprite>();
+			_sprite = this.GetComponent<SpriteRenderer>();
 			_tiledMapRenderer = Entity.Scene.FindEntity("tiled-map").GetComponent<TiledMapRenderer>();
 			_mover = new Mover();
 			Entity.AddComponent(_mover);

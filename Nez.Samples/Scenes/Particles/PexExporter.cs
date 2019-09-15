@@ -63,7 +63,7 @@ namespace Nez.Samples
 			AddXmlChild(doc, parent, "rotationStartVariance", emitterConfig.RotationStartVariance);
 			AddXmlChild(doc, parent, "rotationEnd", emitterConfig.RotationEnd);
 			AddXmlChild(doc, parent, "rotationEndVariance", emitterConfig.RotationEndVariance);
-			AddXmlChild(doc, parent, "texture", emitterConfig.Subtexture);
+			AddXmlChild(doc, parent, "texture", emitterConfig.Sprite);
 
 
 			doc.AppendChild(parent);
@@ -164,7 +164,7 @@ namespace Nez.Samples
 			AddXmlChild(doc, parent, elementName, value, "F0");
 		}
 
-		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Subtexture texture)
+		void AddXmlChild(XmlDocument doc, XmlElement parent, string elementName, Sprite texture)
 		{
 			using (var rawStream = new MemoryStream())
 			{

@@ -27,10 +27,10 @@ namespace Nez.Samples
 			Jumping
 		}
 
-		Sprite<Animations> _animation;
-		TmxMapMover _mover;
+		SpriteAnimationRenderer<Animations> _animation;
+		TiledMapMover _mover;
 		BoxCollider _boxCollider;
-		TmxMapMover.CollisionState _collisionState = new TmxMapMover.CollisionState();
+		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
 		Vector2 _velocity;
 
 		VirtualButton _jumpInput;
@@ -40,14 +40,14 @@ namespace Nez.Samples
 		public override void OnAddedToEntity()
 		{
 			var texture = Entity.Scene.Content.Load<Texture2D>(Content.Platformer.Caveman);
-			var subtextures = Subtexture.SubtexturesFromAtlas(texture, 32, 32);
+			var subtextures = Sprite.SpritesFromAtlas(texture, 32, 32);
 
 			_boxCollider = Entity.GetComponent<BoxCollider>();
-			_mover = Entity.GetComponent<TmxMapMover>();
-			_animation = Entity.AddComponent(new Sprite<Animations>(subtextures[0]));
+			_mover = Entity.GetComponent<TiledMapMover>();
+			_animation = Entity.AddComponent(new SpriteAnimationRenderer<Animations>(subtextures[0]));
 
 			// extract the animations from the atlas. they are setup in rows with 8 columns
-			_animation.AddAnimation(Animations.Walk, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Walk, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[0],
 				subtextures[1],
@@ -57,7 +57,7 @@ namespace Nez.Samples
 				subtextures[5]
 			}));
 
-			_animation.AddAnimation(Animations.Run, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Run, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[8 + 0],
 				subtextures[8 + 1],
@@ -68,12 +68,12 @@ namespace Nez.Samples
 				subtextures[8 + 6]
 			}));
 
-			_animation.AddAnimation(Animations.Idle, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Idle, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[16]
 			}));
 
-			_animation.AddAnimation(Animations.Attack, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Attack, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[24 + 0],
 				subtextures[24 + 1],
@@ -81,7 +81,7 @@ namespace Nez.Samples
 				subtextures[24 + 3]
 			}));
 
-			_animation.AddAnimation(Animations.Death, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Death, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[40 + 0],
 				subtextures[40 + 1],
@@ -89,18 +89,18 @@ namespace Nez.Samples
 				subtextures[40 + 3]
 			}));
 
-			_animation.AddAnimation(Animations.Falling, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Falling, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[48]
 			}));
 
-			_animation.AddAnimation(Animations.Hurt, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Hurt, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[64],
 				subtextures[64 + 1]
 			}));
 
-			_animation.AddAnimation(Animations.Jumping, new SpriteAnimation(new List<Subtexture>()
+			_animation.AddAnimation(Animations.Jumping, new SpriteAnimation(new List<Sprite>()
 			{
 				subtextures[72 + 0],
 				subtextures[72 + 1],

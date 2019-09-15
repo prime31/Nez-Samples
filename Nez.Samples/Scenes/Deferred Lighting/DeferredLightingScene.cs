@@ -50,19 +50,19 @@ namespace Nez.Samples
 			// create some Entities. When we add the Renderable (Sprite in this case) we need to be sure to set the renderLayer and Material
 			var bgEntity = CreateEntity("bg");
 			bgEntity.SetPosition(Screen.Center).SetScale(9);
-			bgEntity.AddComponent(new Sprite(bgTexture)).SetRenderLayer(RenderablesLayer).SetMaterial(bgMaterial)
+			bgEntity.AddComponent(new SpriteRenderer(bgTexture)).SetRenderLayer(RenderablesLayer).SetMaterial(bgMaterial)
 				.SetLayerDepth(1);
 			bgEntity.AddComponent(new DeferredLightingController());
 
 			var orangeEntity = CreateEntity("orange");
 			orangeEntity.SetPosition(Screen.Center).SetScale(0.5f);
-			orangeEntity.AddComponent(new Sprite(orangeTexture)).SetRenderLayer(RenderablesLayer)
+			orangeEntity.AddComponent(new SpriteRenderer(orangeTexture)).SetRenderLayer(RenderablesLayer)
 				.SetMaterial(orangeMaterial);
 			orangeEntity.AddComponent(new SpotLight()).SetRenderLayer(LightLayer);
 
 			var moonEntity = CreateEntity("moon");
 			moonEntity.SetPosition(new Vector2(100, 400));
-			moonEntity.AddComponent(new Sprite(moonTex)).SetRenderLayer(RenderablesLayer).SetMaterial(moonMaterial);
+			moonEntity.AddComponent(new SpriteRenderer(moonTex)).SetRenderLayer(RenderablesLayer).SetMaterial(moonMaterial);
 			moonEntity.AddComponent(new DirLight(Color.Red)).SetRenderLayer(LightLayer).SetEnabled(true);
 
 			var clone = orangeEntity.Clone(new Vector2(200, 200));

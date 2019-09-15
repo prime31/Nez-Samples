@@ -32,7 +32,7 @@ namespace Nez.Samples
 
 			var moonEntity = CreateEntity("moon");
 			moonEntity.Position = new Vector2(Screen.Width / 2, Screen.Height / 2 + 100);
-			moonEntity.AddComponent(new Sprite(moonTex));
+			moonEntity.AddComponent(new SpriteRenderer(moonTex));
 			moonEntity.AddComponent<CircleCollider>();
 
 			// clone the first moonEntity to create the second

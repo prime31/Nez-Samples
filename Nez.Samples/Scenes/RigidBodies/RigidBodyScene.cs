@@ -33,11 +33,11 @@ namespace Nez.Samples
 
 			var rb = CreateEntity(new Vector2(Screen.Width / 2, Screen.Height / 2 + 250), 0, friction, elasticity,
 				new Vector2(0, -270), moonTexture);
-			rb.Entity.GetComponent<Sprite>().Color = Color.DarkMagenta;
+			rb.Entity.GetComponent<SpriteRenderer>().Color = Color.DarkMagenta;
 
 			rb = CreateEntity(new Vector2(Screen.Width / 2 - 200, Screen.Height / 2 + 250), 0, friction, elasticity,
 				new Vector2(0, -270), moonTexture);
-			rb.Entity.GetComponent<Sprite>().Color = Color.DarkMagenta;
+			rb.Entity.GetComponent<SpriteRenderer>().Color = Color.DarkMagenta;
 
 
 			// bottom fellas
@@ -64,7 +64,7 @@ namespace Nez.Samples
 
 			var entity = CreateEntity(Utils.RandomString(3));
 			entity.Position = position;
-			entity.AddComponent(new Sprite(texture));
+			entity.AddComponent(new SpriteRenderer(texture));
 			entity.AddComponent(rigidbody);
 			entity.AddComponent<CircleCollider>();
 
