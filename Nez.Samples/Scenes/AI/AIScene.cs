@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	[SampleScene("AI", 120,
 		"No visuals for this demo, everything is in the logs\nThe class 'miner bob' scenario is implemented with each AI type")]

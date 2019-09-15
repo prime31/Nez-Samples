@@ -1,5 +1,4 @@
-﻿using Nez.Tiled;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 
 namespace Nez.Samples

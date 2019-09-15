@@ -1,6 +1,4 @@
-﻿using System;
-using Nez;
-using Nez.Sprites;
+﻿using Nez.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
 using Microsoft.Xna.Framework;

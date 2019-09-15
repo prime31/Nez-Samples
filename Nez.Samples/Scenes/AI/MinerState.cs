@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	/// <summary>
 	/// common state for each of the AI types

@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.AI.UtilityAI;
+﻿using Nez.AI.UtilityAI;
 
 
 namespace Nez.Samples

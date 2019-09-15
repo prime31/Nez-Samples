@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.AI.Pathfinding;
+﻿using Nez.AI.Pathfinding;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Nez.Tiled;

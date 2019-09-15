@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Nez.Sprites;
 using Nez.Textures;
-using Nez.Tiled;
 
 
 namespace Nez.Samples

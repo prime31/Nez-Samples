@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Nez.Samples
+﻿namespace Nez.Samples
 {
 	/// <summary>
 	/// simple trigger listener that just logs enter/exit events
