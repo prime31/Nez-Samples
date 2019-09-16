@@ -13,7 +13,7 @@ namespace Nez.Samples
 			base.Initialize();
 
 			// default to 1280x720 with no SceneResolutionPolicy
-			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.None);
+			SetDesignResolution(1280, 720, SceneResolutionPolicy.None);
 			Screen.SetSize(1280, 720);
 
 			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);

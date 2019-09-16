@@ -15,7 +15,7 @@
 			base.Initialize();
 
 			// setup a pixel perfect screen that fits our map
-			SetDesignResolution(256, 224, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
+			SetDesignResolution(256, 224, SceneResolutionPolicy.ShowAllPixelPerfect);
 			Screen.SetSize(256 * 4, 224 * 4);
 
 			// load the TiledMap and display it with a TiledMapComponent

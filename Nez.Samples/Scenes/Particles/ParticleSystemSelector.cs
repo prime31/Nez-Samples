@@ -248,7 +248,7 @@ namespace Nez.Samples
 			float value = Convert.ToSingle(fieldInfo.GetValue(_particleEmitterConfig));
 
 			var slider = new Slider(skin, null, min, max);
-			var textBox = new UI.TextField(value.ToString(), skin);
+			var textBox = new TextField(value.ToString(), skin);
 
 			slider.SetStepSize(step);
 			slider.SetValue(value);
@@ -370,8 +370,8 @@ namespace Nez.Samples
 		{
 			var fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
 			var value = (Vector2) fieldInfo.GetValue(_particleEmitterConfig);
-			var x = new UI.TextField(value.X.ToString(), skin);
-			var y = new UI.TextField(value.Y.ToString(), skin);
+			var x = new TextField(value.X.ToString(), skin);
+			var y = new TextField(value.Y.ToString(), skin);
 
 			x.OnTextChanged += (textbox, str) =>
 			{
@@ -403,12 +403,12 @@ namespace Nez.Samples
 			FieldInfo fieldInfo = typeof(ParticleEmitterConfig).GetField(propertyName);
 			Color value = (Color) fieldInfo.GetValue(_particleEmitterConfig);
 
-			var r = new UI.TextField(value.R.ToString(), skin).SetMaxLength(4);
-			var g = new UI.TextField(value.G.ToString(), skin).SetMaxLength(4);
-			var b = new UI.TextField(value.B.ToString(), skin).SetMaxLength(4);
-			var a = new UI.TextField(value.A.ToString(), skin).SetMaxLength(4);
+			var r = new TextField(value.R.ToString(), skin).SetMaxLength(4);
+			var g = new TextField(value.G.ToString(), skin).SetMaxLength(4);
+			var b = new TextField(value.B.ToString(), skin).SetMaxLength(4);
+			var a = new TextField(value.A.ToString(), skin).SetMaxLength(4);
 
-			void OnChanged(UI.TextField box, string str)
+			void OnChanged(TextField box, string str)
 			{
 				if (int.TryParse(r.GetText(), out int newR)
 				    && int.TryParse(g.GetText(), out int newG)
@@ -499,7 +499,7 @@ namespace Nez.Samples
 			var contentTable = dialog.GetContentTable();
 			contentTable.Add("Filename: ").Left();
 			contentTable.Row();
-			var outField = new UI.TextField("output.pex", skin);
+			var outField = new TextField("output.pex", skin);
 			contentTable.Add(outField).Center();
 
 			var buttonTable = dialog.GetButtonTable();

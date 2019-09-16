@@ -18,7 +18,7 @@ namespace Nez.Samples
 		public override void Initialize()
 		{
 			ClearColor = Color.Black;
-			SetDesignResolution(640, 368, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
+			SetDesignResolution(640, 368, SceneResolutionPolicy.ShowAllPixelPerfect);
 			Screen.SetSize(1280, 736);
 
 			// load a TiledMap and move it back so is drawn before other entities

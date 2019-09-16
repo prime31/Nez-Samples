@@ -24,7 +24,7 @@ namespace Nez.Samples
 			base.Initialize();
 
 			// setup screen that fits our map based on the bg size
-			SetDesignResolution(137 * 9, 89 * 9, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
+			SetDesignResolution(137 * 9, 89 * 9, SceneResolutionPolicy.ShowAllPixelPerfect);
 			Screen.SetSize(137 * 9, 89 * 9);
 			ClearColor = Color.DarkGray;
 

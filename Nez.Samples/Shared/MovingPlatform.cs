@@ -34,8 +34,8 @@ namespace Nez.Samples
 			var xToTheSpeedFactor = Mathf.Pow(x, _speedFactor);
 			var alpha = 1f - xToTheSpeedFactor / xToTheSpeedFactor + Mathf.Pow(1 - x, _speedFactor);
 
-			var deltaY = Nez.Tweens.Lerps.Lerp(_minY, _maxY, alpha) - Entity.Position.Y;
-			var deltaX = Nez.Tweens.Lerps.Lerp(_minX, _maxX, alpha) - Entity.Position.X;
+			var deltaY = Tweens.Lerps.Lerp(_minY, _maxY, alpha) - Entity.Position.Y;
+			var deltaX = Tweens.Lerps.Lerp(_minX, _maxX, alpha) - Entity.Position.X;
 
 			// TODO: probably query Physics to fetch the actors that we will intersect instead of blindly grabbing them all
 			var ridingActors = GetAllRidingActors();

@@ -14,7 +14,7 @@ namespace Nez.Samples
 		public override void Initialize()
 		{
 			// setup a pixel perfect screen that fits our map
-			SetDesignResolution(640, 480, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
+			SetDesignResolution(640, 480, SceneResolutionPolicy.ShowAllPixelPerfect);
 			Screen.SetSize(640 * 2, 480 * 2);
 
 			// load up our TiledMap

@@ -126,7 +126,7 @@ namespace Nez.Samples
 				{
 					MinerState.Fatigue++;
 					MinerState.CurrentLocation = location;
-					_distanceToNextLocation = Nez.Random.Range(2, 8);
+					_distanceToNextLocation = Random.Range(2, 8);
 
 					return TaskStatus.Success;
 				}

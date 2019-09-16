@@ -144,14 +144,14 @@ namespace Nez.Samples
 				{
 					MinerState.Fatigue++;
 					MinerState.CurrentLocation = _destinationLocation;
-					_distanceToNextLocation = Nez.Random.Range(2, 8);
+					_distanceToNextLocation = Random.Range(2, 8);
 				}
 			}
 			else
 			{
 				MinerState.CurrentLocation = MinerState.Location.InTransit;
 				_destinationLocation = location;
-				_distanceToNextLocation = Nez.Random.Range(2, 8);
+				_distanceToNextLocation = Random.Range(2, 8);
 			}
 		}
 	}

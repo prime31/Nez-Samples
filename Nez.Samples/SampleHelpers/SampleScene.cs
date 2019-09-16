@@ -180,9 +180,9 @@ namespace Nez.Samples
 
 		public SampleSceneAttribute(string buttonName, int order, string instructionText = null)
 		{
-			this.ButtonName = buttonName;
-			this.Order = order;
-			this.InstructionText = instructionText;
+			ButtonName = buttonName;
+			Order = order;
+			InstructionText = instructionText;
 		}
 	}
 }

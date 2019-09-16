@@ -20,7 +20,7 @@ namespace Nez.Samples
 			base.Initialize();
 
 			// setup a pixel perfect screen that fits our map
-			SetDesignResolution(512, 256, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
+			SetDesignResolution(512, 256, SceneResolutionPolicy.ShowAllPixelPerfect);
 			Screen.SetSize(512 * 3, 256 * 3);
 
 
@@ -83,10 +83,6 @@ namespace Nez.Samples
 			entity.AddComponent(new ProjectileMover());
 			entity.AddComponent(new FireballProjectileController(velocity));
 
-			// render after (under) our player who is on renderLayer 0, the default
-			var sprite = entity.AddComponent<SpriteRenderer>();
-			sprite.RenderLayer = 1;
-
 			// add a collider so we can detect intersections
 			var collider = entity.AddComponent<CircleCollider>();
 			Flags.SetFlagExclusive(ref collider.CollidesWithLayers, 0);
@@ -100,7 +96,9 @@ namespace Nez.Samples
 			// add the Sprite to the Entity and play the animation after creating it
 			var animator = entity.AddComponent(new SpriteAnimator());
 
-			sprite.RenderLayer = 1;
+			// render after (under) our player who is on renderLayer 0, the default
+			animator.RenderLayer = 1;
+
 			animator.AddAnimation("default", sprites.ToArray());
 			animator.Play("default");
 

@@ -19,7 +19,7 @@ namespace Nez.Samples
 		public override void Initialize()
 		{
 			ClearColor = Color.Black;
-			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.ShowAll);
+			SetDesignResolution(1280, 720, SceneResolutionPolicy.ShowAll);
 			Screen.SetSize(1280, 720);
 
 			// create an Entity and Component to manage the Verlet World and tick its update method
@@ -72,8 +72,8 @@ namespace Nez.Samples
 			polygonEntity.AddComponent(new PolygonCollider(polyPoints));
 
 			polygonEntity.TweenRotationDegreesTo(180, 3f)
-				.SetLoops(Nez.Tweens.LoopType.PingPong, 50)
-				.SetEaseType(Nez.Tweens.EaseType.Linear)
+				.SetLoops(Tweens.LoopType.PingPong, 50)
+				.SetEaseType(Tweens.EaseType.Linear)
 				.Start();
 		}
 

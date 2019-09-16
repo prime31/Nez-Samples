@@ -143,7 +143,7 @@ namespace Nez.Samples
 			}
 			else
 			{
-				_distanceToNextLocation = Nez.Random.Range(2, 8);
+				_distanceToNextLocation = Random.Range(2, 8);
 				MinerState.CurrentLocation = MinerState.Location.InTransit;
 			}
 		}

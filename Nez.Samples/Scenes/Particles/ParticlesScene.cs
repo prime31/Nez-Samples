@@ -17,7 +17,7 @@ namespace Nez.Samples
 		public override void Initialize()
 		{
 			ClearColor = Color.Black;
-			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.None);
+			SetDesignResolution(1280, 720, SceneResolutionPolicy.None);
 			Screen.SetSize(1280, 720);
 
 			// add the ParticleSystemSelector which handles input for the scene and a SimpleMover to move it around with the keyboard

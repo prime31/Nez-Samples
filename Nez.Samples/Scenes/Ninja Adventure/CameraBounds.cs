@@ -17,8 +17,8 @@ namespace Nez.Samples
 
 		public CameraBounds(Vector2 min, Vector2 max) : this()
 		{
-			this.Min = min;
-			this.Max = max;
+			Min = min;
+			Max = max;
 		}
 
 

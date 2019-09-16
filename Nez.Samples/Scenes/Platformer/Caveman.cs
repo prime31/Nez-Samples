@@ -2,7 +2,6 @@
 using Nez.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Nez.Tiled;
 
@@ -15,19 +14,7 @@ namespace Nez.Samples
 		public float Gravity = 1000;
 		public float JumpHeight = 16 * 5;
 
-		enum Animations
-		{
-			Walk,
-			Run,
-			Idle,
-			Attack,
-			Death,
-			Falling,
-			Hurt,
-			Jumping
-		}
-
-		SpriteAnimationRenderer<Animations> _animation;
+		SpriteAnimator _animator;
 		TiledMapMover _mover;
 		BoxCollider _boxCollider;
 		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
@@ -40,77 +27,76 @@ namespace Nez.Samples
 		public override void OnAddedToEntity()
 		{
 			var texture = Entity.Scene.Content.Load<Texture2D>(Content.Platformer.Caveman);
-			var subtextures = Sprite.SpritesFromAtlas(texture, 32, 32);
+			var sprites = Sprite.SpritesFromAtlas(texture, 32, 32);
 
 			_boxCollider = Entity.GetComponent<BoxCollider>();
 			_mover = Entity.GetComponent<TiledMapMover>();
-			_animation = Entity.AddComponent(new SpriteAnimationRenderer<Animations>(subtextures[0]));
+			_animator = Entity.AddComponent(new SpriteAnimator(sprites[0]));
 
 			// extract the animations from the atlas. they are setup in rows with 8 columns
-			_animation.AddAnimation(Animations.Walk, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Walk", new[]
 			{
-				subtextures[0],
-				subtextures[1],
-				subtextures[2],
-				subtextures[3],
-				subtextures[4],
-				subtextures[5]
-			}));
+				sprites[0],
+				sprites[1],
+				sprites[2],
+				sprites[3],
+				sprites[4],
+				sprites[5]
+			});
 
-			_animation.AddAnimation(Animations.Run, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Run", new[]
 			{
-				subtextures[8 + 0],
-				subtextures[8 + 1],
-				subtextures[8 + 2],
-				subtextures[8 + 3],
-				subtextures[8 + 4],
-				subtextures[8 + 5],
-				subtextures[8 + 6]
-			}));
+				sprites[8 + 0],
+				sprites[8 + 1],
+				sprites[8 + 2],
+				sprites[8 + 3],
+				sprites[8 + 4],
+				sprites[8 + 5],
+				sprites[8 + 6]
+			});
 
-			_animation.AddAnimation(Animations.Idle, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Idle", new[]
 			{
-				subtextures[16]
-			}));
+				sprites[16]
+			});
 
-			_animation.AddAnimation(Animations.Attack, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Attack", new[]
 			{
-				subtextures[24 + 0],
-				subtextures[24 + 1],
-				subtextures[24 + 2],
-				subtextures[24 + 3]
-			}));
+				sprites[24 + 0],
+				sprites[24 + 1],
+				sprites[24 + 2],
+				sprites[24 + 3]
+			});
 
-			_animation.AddAnimation(Animations.Death, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Death", new[]
 			{
-				subtextures[40 + 0],
-				subtextures[40 + 1],
-				subtextures[40 + 2],
-				subtextures[40 + 3]
-			}));
+				sprites[40 + 0],
+				sprites[40 + 1],
+				sprites[40 + 2],
+				sprites[40 + 3]
+			});
 
-			_animation.AddAnimation(Animations.Falling, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Falling", new[]
 			{
-				subtextures[48]
-			}));
+				sprites[48]
+			});
 
-			_animation.AddAnimation(Animations.Hurt, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Hurt", new[]
 			{
-				subtextures[64],
-				subtextures[64 + 1]
-			}));
+				sprites[64],
+				sprites[64 + 1]
+			});
 
-			_animation.AddAnimation(Animations.Jumping, new SpriteAnimation(new List<Sprite>()
+			_animator.AddAnimation("Jumping", new[]
 			{
-				subtextures[72 + 0],
-				subtextures[72 + 1],
-				subtextures[72 + 2],
-				subtextures[72 + 3]
-			}));
+				sprites[72 + 0],
+				sprites[72 + 1],
+				sprites[72 + 2],
+				sprites[72 + 3]
+			});
 
 			SetupInput();
 		}
-
 
 		public override void OnRemovedFromEntity()
 		{
@@ -119,58 +105,56 @@ namespace Nez.Samples
 			_xAxisInput.Deregister();
 		}
 
-
 		void SetupInput()
 		{
 			// setup input for jumping. we will allow z on the keyboard or a on the gamepad
 			_jumpInput = new VirtualButton();
-			_jumpInput.Nodes.Add(new Nez.VirtualButton.KeyboardKey(Keys.Z));
-			_jumpInput.Nodes.Add(new Nez.VirtualButton.GamePadButton(0, Buttons.A));
+			_jumpInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Z));
+			_jumpInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
 
 			// horizontal input from dpad, left stick or keyboard left/right
 			_xAxisInput = new VirtualIntegerAxis();
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadDpadLeftRight());
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadLeftStickX());
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left,
+			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadDpadLeftRight());
+			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadLeftStickX());
+			_xAxisInput.Nodes.Add(new VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left,
 				Keys.Right));
 		}
-
 
 		void IUpdatable.Update()
 		{
 			// handle movement and animations
 			var moveDir = new Vector2(_xAxisInput.Value, 0);
-			var animation = Animations.Idle;
+			string animation = null;
 
 			if (moveDir.X < 0)
 			{
 				if (_collisionState.Below)
-					animation = Animations.Run;
-				_animation.FlipX = true;
+					animation = "Run";
+				_animator.FlipX = true;
 				_velocity.X = -MoveSpeed;
 			}
 			else if (moveDir.X > 0)
 			{
 				if (_collisionState.Below)
-					animation = Animations.Run;
-				_animation.FlipX = false;
+					animation = "Run";
+				_animator.FlipX = false;
 				_velocity.X = MoveSpeed;
 			}
 			else
 			{
 				_velocity.X = 0;
 				if (_collisionState.Below)
-					animation = Animations.Idle;
+					animation = "Idle";
 			}
 
 			if (_collisionState.Below && _jumpInput.IsPressed)
 			{
-				animation = Animations.Jumping;
+				animation = "Jumping";
 				_velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
 			}
 
 			if (!_collisionState.Below && _velocity.Y > 0)
-				animation = Animations.Falling;
+				animation = "Falling";
 
 			// apply gravity
 			_velocity.Y += Gravity * Time.DeltaTime;
@@ -181,10 +165,9 @@ namespace Nez.Samples
 			if (_collisionState.Below)
 				_velocity.Y = 0;
 
-			if (!_animation.IsAnimationPlaying(animation))
-				_animation.Play(animation);
+			if (animation != null && !_animator.IsAnimationPlaying(animation))
+				_animator.Play(animation);
 		}
-
 
 		#region ITriggerListener implementation
 
@@ -192,7 +175,6 @@ namespace Nez.Samples
 		{
 			Debug.Log("triggerEnter: {0}", other.Entity.Name);
 		}
-
 
 		void ITriggerListener.OnTriggerExit(Collider other, Collider self)
 		{

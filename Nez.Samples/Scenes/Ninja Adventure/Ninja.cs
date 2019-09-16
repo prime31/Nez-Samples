@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 
 namespace Nez.Samples
@@ -37,7 +36,6 @@ namespace Nez.Samples
 			var texture = Entity.Scene.Content.Load<Texture2D>("NinjaAdventure/characters/" + characterPng);
 			var sprites = Sprite.SpritesFromAtlas(texture, 16, 16);
 
-			Entity.AddComponent<SpriteRenderer>();
 			_mover = Entity.AddComponent(new Mover());
 			_animator = Entity.AddComponent<SpriteAnimator>();
 
@@ -49,20 +47,6 @@ namespace Nez.Samples
 			shadow.RenderLayer = -2; // ABOVE our tiledmap layer so it is visible
 
 			// extract the animations from the atlas
-			_animator.AddAnimation("WalkDown", new[]
-			{
-				sprites[0],
-				sprites[4],
-				sprites[8],
-				sprites[12]
-			});
-			_animator.AddAnimation("WalkUp", new[]
-			{
-				sprites[1],
-				sprites[5],
-				sprites[9],
-				sprites[13]
-			});
 			_animator.AddAnimation("WalkLeft", new[]
 			{
 				sprites[2],
@@ -76,6 +60,20 @@ namespace Nez.Samples
 				sprites[7],
 				sprites[11],
 				sprites[15]
+			});
+			_animator.AddAnimation("WalkDown", new[]
+			{
+				sprites[0],
+				sprites[4],
+				sprites[8],
+				sprites[12]
+			});
+			_animator.AddAnimation("WalkUp", new[]
+			{
+				sprites[1],
+				sprites[5],
+				sprites[9],
+				sprites[13]
 			});
 
 			SetupInput();
@@ -91,20 +89,20 @@ namespace Nez.Samples
 		{
 			// setup input for shooting a fireball. we will allow z on the keyboard or a on the gamepad
 			_fireInput = new VirtualButton();
-			_fireInput.Nodes.Add(new Nez.VirtualButton.KeyboardKey(Keys.Z));
-			_fireInput.Nodes.Add(new Nez.VirtualButton.GamePadButton(0, Buttons.A));
+			_fireInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Z));
+			_fireInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
 
 			// horizontal input from dpad, left stick or keyboard left/right
 			_xAxisInput = new VirtualIntegerAxis();
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadDpadLeftRight());
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadLeftStickX());
-			_xAxisInput.Nodes.Add(new Nez.VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left,Keys.Right));
+			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadDpadLeftRight());
+			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadLeftStickX());
+			_xAxisInput.Nodes.Add(new VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left,Keys.Right));
 
 			// vertical input from dpad, left stick or keyboard up/down
 			_yAxisInput = new VirtualIntegerAxis();
-			_yAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadDpadUpDown());
-			_yAxisInput.Nodes.Add(new Nez.VirtualAxis.GamePadLeftStickY());
-			_yAxisInput.Nodes.Add(new Nez.VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Up,Keys.Down));
+			_yAxisInput.Nodes.Add(new VirtualAxis.GamePadDpadUpDown());
+			_yAxisInput.Nodes.Add(new VirtualAxis.GamePadLeftStickY());
+			_yAxisInput.Nodes.Add(new VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Up,Keys.Down));
 		}
 
 		void IUpdatable.Update()

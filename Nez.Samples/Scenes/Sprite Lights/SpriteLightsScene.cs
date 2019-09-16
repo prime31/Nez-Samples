@@ -27,7 +27,7 @@ namespace Nez.Samples
 			base.Initialize();
 
 			// setup screen that fits our map
-			SetDesignResolution(1280, 720, Scene.SceneResolutionPolicy.ShowAll);
+			SetDesignResolution(1280, 720, SceneResolutionPolicy.ShowAll);
 			Screen.SetSize(1280, 720);
 
 			AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer, SpriteLightRenderLayer));
@@ -154,7 +154,7 @@ namespace Nez.Samples
 			// get a random point on screen and a random delay for the tweens
 			var target = new Vector2(Random.Range(50, SceneRenderTargetSize.X - 100),
 				Random.Range(50, SceneRenderTargetSize.Y - 100));
-			var delay = Nez.Random.Range(0f, 1f);
+			var delay = Random.Range(0f, 1f);
 
 			var transform = tween.GetTargetObject() as Transform;
 			tween.PrepareForReuse(transform.Position, target, 2f)
