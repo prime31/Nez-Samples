@@ -28,7 +28,7 @@ namespace Nez.Samples
 			var tiledEntity = CreateEntity("tiled-map-entity");
 			var map = Content.LoadTiledMap("Content/NinjaAdventure/map/tilemap.tmx");
 			var tiledMapRenderer = tiledEntity.AddComponent(new TiledMapRenderer(map, "collision"));
-			tiledMapRenderer.SetLayersToRender(new string[] { "tiles", "terrain", "details" });
+			tiledMapRenderer.SetLayersToRender(new[] { "tiles", "terrain", "details" });
 
 			// render below/behind everything else. our player is at 0 and projectile is at 1.
 			tiledMapRenderer.RenderLayer = 10;
@@ -83,6 +83,10 @@ namespace Nez.Samples
 			entity.AddComponent(new ProjectileMover());
 			entity.AddComponent(new FireballProjectileController(velocity));
 
+			// render after (under) our player who is on renderLayer 0, the default
+			var sprite = entity.AddComponent<SpriteRenderer>();
+			sprite.RenderLayer = 1;
+
 			// add a collider so we can detect intersections
 			var collider = entity.AddComponent<CircleCollider>();
 			Flags.SetFlagExclusive(ref collider.CollidesWithLayers, 0);
@@ -91,21 +95,14 @@ namespace Nez.Samples
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
 			var texture = Content.Load<Texture2D>(Nez.Content.NinjaAdventure.Plume);
-			var subtextures = Sprite.SpritesFromAtlas(texture, 16, 16);
-
-			var spriteAnimation = new SpriteAnimation(subtextures)
-			{
-				Loop = true,
-				Fps = 10
-			};
+			var sprites = Sprite.SpritesFromAtlas(texture, 16, 16);
 
 			// add the Sprite to the Entity and play the animation after creating it
-			var sprite = entity.AddComponent(new SpriteAnimationRenderer<int>(subtextures[0]));
+			var animator = entity.AddComponent(new SpriteAnimator());
 
-			// render after (under) our player who is on renderLayer 0, the default
 			sprite.RenderLayer = 1;
-			sprite.AddAnimation(0, spriteAnimation);
-			sprite.Play(0);
+			animator.AddAnimation("default", sprites.ToArray());
+			animator.Play("default");
 
 
 			// clone the projectile and fire it off in the opposite direction

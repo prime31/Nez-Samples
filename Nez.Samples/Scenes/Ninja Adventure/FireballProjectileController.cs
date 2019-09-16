@@ -13,17 +13,9 @@ namespace Nez.Samples
 		ProjectileMover _mover;
 
 
-		public FireballProjectileController(Vector2 velocity)
-		{
-			this.Velocity = velocity;
-		}
+		public FireballProjectileController(Vector2 velocity) => Velocity = velocity;
 
-
-		public override void OnAddedToEntity()
-		{
-			_mover = Entity.GetComponent<ProjectileMover>();
-		}
-
+		public override void OnAddedToEntity() => _mover = Entity.GetComponent<ProjectileMover>();
 
 		void IUpdatable.Update()
 		{
