@@ -17,14 +17,14 @@ namespace Nez.Samples
 		{
 		}
 
-		public override void Render(Graphics graphics, Camera camera)
+		public override void Render(Batcher batcher, Camera camera)
 		{
-			graphics.Batcher.DrawPixel(_lastPosition.X, _lastPosition.Y, Color.Yellow, 4);
-			graphics.Batcher.DrawPixel(Transform.Position.X, Transform.Position.Y, Color.White, 4);
-			graphics.Batcher.DrawLine(_lastPosition, Transform.Position, Color.White);
+			batcher.DrawPixel(_lastPosition.X, _lastPosition.Y, Color.Yellow, 4);
+			batcher.DrawPixel(Transform.Position.X, Transform.Position.Y, Color.White, 4);
+			batcher.DrawLine(_lastPosition, Transform.Position, Color.White);
 			if (_collisionPosition.X > 0 && _collisionPosition.Y > 0)
 			{
-				graphics.Batcher.DrawPixel(_collisionPosition.X, _collisionPosition.Y, Color.Red, 10);
+				batcher.DrawPixel(_collisionPosition.X, _collisionPosition.Y, Color.Red, 10);
 			}
 		}
 

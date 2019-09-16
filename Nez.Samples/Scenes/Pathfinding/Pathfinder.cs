@@ -75,7 +75,7 @@ namespace Nez.Samples
 			}
 		}
 
-		public override void Render(Graphics graphics, Camera camera)
+		public override void Render(Batcher batcher, Camera camera)
 		{
 			// if we have a path render all the nodes
 			if (_breadthSearchPath != null)
@@ -85,7 +85,7 @@ namespace Nez.Samples
 					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
 					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.Batcher.DrawPixel(x + 2, y + 2, Color.Yellow, 4);
+					batcher.DrawPixel(x + 2, y + 2, Color.Yellow, 4);
 				}
 			}
 
@@ -96,7 +96,7 @@ namespace Nez.Samples
 					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
 					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.Batcher.DrawPixel(x - 2, y - 2, Color.Blue, 4);
+					batcher.DrawPixel(x - 2, y - 2, Color.Blue, 4);
 				}
 			}
 
@@ -107,7 +107,7 @@ namespace Nez.Samples
 					var x = node.X * _tilemap.TileWidth + _tilemap.TileWidth * 0.5f;
 					var y = node.Y * _tilemap.TileHeight + _tilemap.TileHeight * 0.5f;
 
-					graphics.Batcher.DrawPixel(x, y, Color.Orange, 4);
+					batcher.DrawPixel(x, y, Color.Orange, 4);
 				}
 			}
 		}

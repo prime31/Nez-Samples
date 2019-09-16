@@ -61,9 +61,9 @@ namespace Nez.Samples
 		}
 
 
-		public override void Render(Graphics graphics, Camera camera)
+		public override void Render(Batcher batcher, Camera camera)
 		{
-			World.DebugRender(graphics.Batcher);
+			World.DebugRender(batcher);
 		}
 	}
 }
