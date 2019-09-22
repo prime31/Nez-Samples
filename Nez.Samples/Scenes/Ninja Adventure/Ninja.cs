@@ -124,8 +124,10 @@ namespace Nez.Samples
 
 			if (moveDir != Vector2.Zero)
 			{
-				if (!_animator.IsAnimationPlaying(animation))
+				if (!_animator.IsAnimationActive(animation))
 					_animator.Play(animation);
+				else
+					_animator.UnPause();
 
 				var movement = moveDir * _moveSpeed * Time.DeltaTime;
 

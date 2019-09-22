@@ -116,8 +116,7 @@ namespace Nez.Samples
 			_xAxisInput = new VirtualIntegerAxis();
 			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadDpadLeftRight());
 			_xAxisInput.Nodes.Add(new VirtualAxis.GamePadLeftStickX());
-			_xAxisInput.Nodes.Add(new VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left,
-				Keys.Right));
+			_xAxisInput.Nodes.Add(new VirtualAxis.KeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Left, Keys.Right));
 		}
 
 		void IUpdatable.Update()
@@ -165,7 +164,7 @@ namespace Nez.Samples
 			if (_collisionState.Below)
 				_velocity.Y = 0;
 
-			if (animation != null && !_animator.IsAnimationPlaying(animation))
+			if (animation != null && !_animator.IsAnimationActive(animation))
 				_animator.Play(animation);
 		}
 
