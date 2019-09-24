@@ -61,7 +61,6 @@ namespace Nez.Samples
 				yield return s;
 		}
 
-
 		void SetupSceneSelector()
 		{
 			_table = Canvas.Stage.AddElement(new Table());
@@ -120,7 +119,6 @@ namespace Nez.Samples
 			}
 		}
 
-
 		void AddInstructionText(string text)
 		{
 			var instructionsEntity = CreateEntity("instructions");
@@ -128,7 +126,6 @@ namespace Nez.Samples
 				.AddComponent(new TextComponent(Graphics.Instance.BitmapFont, text, new Vector2(10, 10), Color.White))
 				.SetRenderLayer(ScreenSpaceRenderLayer);
 		}
-
 
 		void OnToggleSceneListClicked(Button butt)
 		{
@@ -141,25 +138,16 @@ namespace Nez.Samples
 
         private Scene _scene;
 
-		public void OnAddedToScene(Scene scene)
-		{
-            _scene = scene;
-        }
+		public void OnAddedToScene(Scene scene) => _scene = scene;
 
-
-		public void OnSceneBackBufferSizeChanged(int newWidth, int newHeight)
-		{
-			_screenSpaceRenderer.OnSceneBackBufferSizeChanged(newWidth, newHeight);
-		}
-
+		public void OnSceneBackBufferSizeChanged(int newWidth, int newHeight) => _screenSpaceRenderer.OnSceneBackBufferSizeChanged(newWidth, newHeight);
 
 		public void HandleFinalRender(RenderTarget2D finalRenderTarget, Color letterboxColor, RenderTarget2D source,
 		                              Rectangle finalRenderDestinationRect, SamplerState samplerState)
 		{
 			Core.GraphicsDevice.SetRenderTarget(null);
 			Core.GraphicsDevice.Clear(letterboxColor);
-			Graphics.Instance.Batcher.Begin(BlendState.Opaque, samplerState, DepthStencilState.None,
-				RasterizerState.CullNone, null);
+			Graphics.Instance.Batcher.Begin(BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null);
 			Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
 			Graphics.Instance.Batcher.End();
 
