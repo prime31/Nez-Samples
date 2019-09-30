@@ -454,6 +454,10 @@
             <Project>{CB893B1D-CE04-4492-B957-31CE0DCA6C15}</Project>
             <Name>Nez.FarseerPhysics</Name>
         </ProjectReference>
+        <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj">
+          <Project>{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}</Project>
+          <Name>Nez.ImGui</Name>
+        </ProjectReference>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Content\nez\" />

@@ -9,11 +9,6 @@ namespace Nez.Samples
 		"Arrow keys to move. Exiting the Camera view will cull the particles.\nQ/W changes the particle system being played")]
 	public class ParticlesScene : SampleScene
 	{
-		public ParticlesScene() : base(true, true)
-		{
-		}
-
-
 		public override void Initialize()
 		{
 			ClearColor = Color.Black;

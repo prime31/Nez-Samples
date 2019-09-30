@@ -16,12 +16,6 @@ namespace Nez.Samples
 		SpriteLightPostProcessor _spriteLightPostProcessor;
 		RenderLayerRenderer _lightRenderer;
 
-
-		public SpriteLightsScene() : base(false, true)
-		{
-		}
-
-
 		public override void Initialize()
 		{
 			base.Initialize();

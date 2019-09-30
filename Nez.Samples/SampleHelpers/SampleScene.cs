@@ -5,7 +5,8 @@ using Nez.UI;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Tweens;
 using System.Linq;
-
+using Nez.ImGuiTools;
+using Nez.Console;
 
 namespace Nez.Samples
 {
@@ -21,10 +22,13 @@ namespace Nez.Samples
 		Table _table;
 		List<Button> _sceneButtons = new List<Button>();
 		ScreenSpaceRenderer _screenSpaceRenderer;
+		static bool _needsFullRenderSizeForUi;
 
 
 		public SampleScene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
 		{
+			_needsFullRenderSizeForUi = needsFullRenderSizeForUi;
+
 			// setup one renderer in screen space for the UI and then (optionally) another renderer to render everything else
 			if (needsFullRenderSizeForUi)
 			{
@@ -105,8 +109,8 @@ namespace Nez.Samples
 						{
 							// stop all tweens in case any demo scene started some up
 							TweenManager.StopAllTweens();
-							Core.StartSceneTransition(new FadeTransition(() =>
-								Activator.CreateInstance(type) as Scene));
+							Core.GetGlobalManager<ImGuiManager>()?.SetEnabled(false);
+							Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(type) as Scene));
 						};
 
 						_table.Row().SetPadTop(10);
@@ -133,10 +137,31 @@ namespace Nez.Samples
 				button.SetIsVisible(!button.IsVisible());
 		}
 
+		[Console.Command("toggle-imgui", "Toggles the Dear ImGui renderer")]
+		static void ToggleImGui()
+		{
+			if (_needsFullRenderSizeForUi)
+			{
+				DebugConsole.Instance.Log("Error: due to the way the sample scenes are assembled, only full screen sample scenes can use ImGui");
+				return;
+			}
 
-        #region IFinalRenderDelegate
+			// install the service if it isnt already there
+			var service = Core.GetGlobalManager<ImGuiManager>();
+			if (service == null)
+			{
+				service = new ImGuiManager();
+				Core.RegisterGlobalManager(service);
+			}
+			else
+			{
+				service.SetEnabled(!service.Enabled);
+			}
+		}
 
-        private Scene _scene;
+		#region IFinalRenderDelegate
+
+		private Scene _scene;
 
 		public void OnAddedToScene(Scene scene) => _scene = scene;
 

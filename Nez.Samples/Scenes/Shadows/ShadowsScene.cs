@@ -12,11 +12,6 @@ namespace Nez.Samples
 	[SampleScene("Shadows", 40, "2D shadow system\nArrow keys to move")]
 	public class ShadowsScene : SampleScene
 	{
-		public ShadowsScene() : base(false, true)
-		{
-		}
-
-
 		public override void Initialize()
 		{
 			base.Initialize();

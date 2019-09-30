@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Nez\N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.Samples", "Nez.Samples\Nez.Samples.csproj", "{C680D0AE-9861-4000-AFFC-952D62A01E5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.ImGui", "Nez\Nez.ImGui\Nez.ImGui.csproj", "{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,5 +27,9 @@ Global
 		{C680D0AE-9861-4000-AFFC-952D62A01E5C}.Debug|x86.Build.0 = Debug|x86
 		{C680D0AE-9861-4000-AFFC-952D62A01E5C}.Release|x86.ActiveCfg = Release|x86
 		{C680D0AE-9861-4000-AFFC-952D62A01E5C}.Release|x86.Build.0 = Release|x86
+		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Debug|x86.Build.0 = Debug|Any CPU
+		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
