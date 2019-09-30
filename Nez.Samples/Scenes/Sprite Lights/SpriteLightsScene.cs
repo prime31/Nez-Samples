@@ -36,7 +36,6 @@ namespace Nez.Samples
 			_lightRenderer.RenderTargetClearColor = new Color(10, 10, 10, 255);
 
 			_spriteLightPostProcessor = AddPostProcessor(new SpriteLightPostProcessor(0, _lightRenderer.RenderTexture));
-			AddPostProcessor(new ScanlinesPostProcessor(0));
 
 
 			var bg = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
