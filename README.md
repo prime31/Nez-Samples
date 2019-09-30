@@ -13,6 +13,10 @@ Setup
 - now you can open the Nez.Samples.sln and run any of the projects in there
 
 
+Sample Scenes
+----
+You can click on any of the sample scene buttons on the right of the screen to load samples. If you are running a debug build, you can press the backtick key to open the debug console. Type "help" and press enter to see a list of available commands. You can type "help COMMAND" to see additional help text. Entering the "toggle-imgui" command will open an ImGui inspector letting you play around with the various entities in the scene.
+
 
 Setup FNA
 ----
