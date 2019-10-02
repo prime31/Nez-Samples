@@ -99,13 +99,160 @@
 		<ProjectReference Include="..\FNA\FNA.csproj" />
 		<ProjectReference Include="..\Nez\Nez.Portable\Nez.FNA.csproj" />
 		<ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FNA.FarseerPhysics.csproj" />
+		<ProjectReference Include="..\Nez\Nez.ImGui\Nez.FNA.ImGui.csproj" />
     </ItemGroup>
+	
+	<ItemGroup>
+        <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
+            <Link>Shared\SvgPathBuilder.cs</Link>
+        </Compile>
+	</ItemGroup>
 
 
     <ItemGroup>
-        <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
+        <Link>Content\nez\textures\.\heatDistortionNoise.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\angular.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\pokemon.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\horizontal.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\wink.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\sawTooth.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\diagonalDistort.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\noise.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\crissCross.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
+        <Link>Content\nez\textures\textureWipeTransition\spiral.xnb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\DeferredSprite.fxb">
+        <Link>Content\nez\effects\.\DeferredSprite.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\BloomCombine.fxb">
+        <Link>Content\nez\effects\.\BloomCombine.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\DeferredLighting.fxb">
+        <Link>Content\nez\effects\.\DeferredLighting.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\MultiTexture.fxb">
+        <Link>Content\nez\effects\.\MultiTexture.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Invert.fxb">
+        <Link>Content\nez\effects\.\Invert.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Crosshatch.fxb">
+        <Link>Content\nez\effects\.\Crosshatch.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\ForwardLighting.fxb">
+        <Link>Content\nez\effects\.\ForwardLighting.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Bevels.fxb">
+        <Link>Content\nez\effects\.\Bevels.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Dissolve.fxb">
+        <Link>Content\nez\effects\.\Dissolve.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Noise.fxb">
+        <Link>Content\nez\effects\.\Noise.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\TextureWipe.fxb">
+        <Link>Content\nez\effects\.\TextureWipe.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Letterbox.fxb">
+        <Link>Content\nez\effects\.\Letterbox.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Vignette.fxb">
+        <Link>Content\nez\effects\.\Vignette.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\PolygonLight.fxb">
+        <Link>Content\nez\effects\.\PolygonLight.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\SpriteLines.fxb">
+        <Link>Content\nez\effects\.\SpriteLines.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\MultiTextureOverlay.fxb">
+        <Link>Content\nez\effects\.\MultiTextureOverlay.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\SpriteAlphaTest.fxb">
+        <Link>Content\nez\effects\.\SpriteAlphaTest.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Reflection.fxb">
+        <Link>Content\nez\effects\.\Reflection.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Dots.fxb">
+        <Link>Content\nez\effects\.\Dots.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Wind.fxb">
+        <Link>Content\nez\effects\.\Wind.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\HeatDistortion.fxb">
+        <Link>Content\nez\effects\.\HeatDistortion.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\SpriteBlinkEffect.fxb">
+        <Link>Content\nez\effects\.\SpriteBlinkEffect.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Scanlines.fxb">
+        <Link>Content\nez\effects\.\Scanlines.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Grayscale.fxb">
+        <Link>Content\nez\effects\.\Grayscale.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\PaletteCycler.fxb">
+        <Link>Content\nez\effects\.\PaletteCycler.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\SpriteLightMultiply.fxb">
+        <Link>Content\nez\effects\.\SpriteLightMultiply.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\SpriteEffect.fxb">
+        <Link>Content\nez\effects\.\SpriteEffect.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Twist.fxb">
+        <Link>Content\nez\effects\.\Twist.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Squares.fxb">
+        <Link>Content\nez\effects\.\Squares.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\PixelGlitch.fxb">
+        <Link>Content\nez\effects\.\PixelGlitch.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\BloomExtract.fxb">
+        <Link>Content\nez\effects\.\BloomExtract.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\GaussianBlur.fxb">
+        <Link>Content\nez\effects\.\GaussianBlur.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\Sepia.fxb">
+        <Link>Content\nez\effects\.\Sepia.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\transitions\TextureWipe.fxb">
+        <Link>Content\nez\effects\transitions\TextureWipe.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\transitions\Wind.fxb">
+        <Link>Content\nez\effects\transitions\Wind.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\transitions\Squares.fxb">
+        <Link>Content\nez\effects\transitions\Squares.fxb</Link>
+      </Content>
+    </ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
 </Project>

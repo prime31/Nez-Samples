@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FNA.Samples", "Nez.Samp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{35253CE1-C864-4CD3-8249-4D1319748E8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FNA.ImGui", "Nez\Nez.ImGui\Nez.FNA.ImGui.csproj", "{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,5 +33,9 @@ Global
 		{35253CE1-C864-4CD3-8249-4D1319748E8F}.Debug|x86.Build.0 = Debug|Any CPU
 		{35253CE1-C864-4CD3-8249-4D1319748E8F}.Release|x86.ActiveCfg = Release|Any CPU
 		{35253CE1-C864-4CD3-8249-4D1319748E8F}.Release|x86.Build.0 = Release|Any CPU
+		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
