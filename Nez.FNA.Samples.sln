@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FNA.ImGui", "Nez\Nez.ImGui\Nez.FNA.ImGui.csproj", "{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FNA.Persistence", "Nez\Nez.Persistence\Nez.FNA.Persistence.csproj", "{136941FE-E3A3-4BD6-8B30-514924B2856E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -37,5 +39,9 @@ Global
 		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Debug|x86.Build.0 = Debug|Any CPU
 		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Release|x86.ActiveCfg = Release|Any CPU
 		{EEB096FA-92A0-4DD5-8350-F35B4AB001BA}.Release|x86.Build.0 = Release|Any CPU
+		{136941FE-E3A3-4BD6-8B30-514924B2856E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{136941FE-E3A3-4BD6-8B30-514924B2856E}.Debug|x86.Build.0 = Debug|Any CPU
+		{136941FE-E3A3-4BD6-8B30-514924B2856E}.Release|x86.ActiveCfg = Release|Any CPU
+		{136941FE-E3A3-4BD6-8B30-514924B2856E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
