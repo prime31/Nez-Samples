@@ -51,8 +51,7 @@ namespace Nez.Samples
 			{
 				var movement = moveDir * _speed * Time.DeltaTime;
 
-				CollisionResult res;
-				if (_mover.Move(movement, out res))
+				if (_mover.Move(movement, out CollisionResult res))
 					Debug.DrawLine(Entity.Position, Entity.Position + res.Normal * 100, Color.Black, 0.3f);
 			}
 		}

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.Samples", "Nez.Samples\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.ImGui", "Nez\Nez.ImGui\Nez.ImGui.csproj", "{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.Persistence", "Nez\Nez.Persistence\Nez.Persistence.csproj", "{54A71CF9-8A65-4EE1-9D8F-C451CEF8B252}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,5 +33,9 @@ Global
 		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Debug|x86.Build.0 = Debug|Any CPU
 		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Release|x86.ActiveCfg = Release|Any CPU
 		{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}.Release|x86.Build.0 = Release|Any CPU
+		{54A71CF9-8A65-4EE1-9D8F-C451CEF8B252}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54A71CF9-8A65-4EE1-9D8F-C451CEF8B252}.Debug|x86.Build.0 = Debug|Any CPU
+		{54A71CF9-8A65-4EE1-9D8F-C451CEF8B252}.Release|x86.ActiveCfg = Release|Any CPU
+		{54A71CF9-8A65-4EE1-9D8F-C451CEF8B252}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -57,7 +57,6 @@ namespace Nez.Samples
 			CreateUi();
 		}
 
-
 		void CreateUi()
 		{
 			// stick a UI in so we can play with the sprite light effect
@@ -110,7 +109,6 @@ namespace Nez.Samples
 			};
 		}
 
-
 		void AddSpriteLight(Texture2D texture, Vector2 position, float scale)
 		{
 			// random target to tween towards that is on screen
@@ -140,7 +138,6 @@ namespace Nez.Samples
 					.Start();
 			}
 		}
-
 
 		void LightTweenCompleted(ITween<Vector2> tween)
 		{

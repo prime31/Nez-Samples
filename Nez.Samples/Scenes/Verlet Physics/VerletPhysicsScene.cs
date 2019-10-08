@@ -12,9 +12,7 @@ namespace Nez.Samples
 	public class VerletPhysicsScene : SampleScene
 	{
 		public VerletPhysicsScene() : base(true, true)
-		{
-		}
-
+		{ }
 
 		public override void Initialize()
 		{
@@ -48,10 +46,9 @@ namespace Nez.Samples
 			verletSystem.World.AddComposite(new Ball(new Vector2(200, 60), Random.Range(10, 50)));
 		}
 
-
 		void CreatePolygons()
 		{
-			var trianglePoints = new Vector2[] {new Vector2(0, 0), new Vector2(100, -100), new Vector2(-100, -150)};
+			var trianglePoints = new Vector2[] { new Vector2(0, 0), new Vector2(100, -100), new Vector2(-100, -150) };
 			var triangleEntity = CreateEntity("triangle");
 			triangleEntity.SetPosition(100, 300);
 			triangleEntity.AddComponent(new PolygonMesh(trianglePoints, false).SetColor(Color.LightGreen));
@@ -76,7 +73,6 @@ namespace Nez.Samples
 				.SetEaseType(Tweens.EaseType.Linear)
 				.Start();
 		}
-
 
 		void CreateRope(VerletWorld world)
 		{

@@ -9,8 +9,8 @@ using Nez.Shadows;
 
 namespace Nez.Samples
 {
-	[SampleScene("Shadows", 40, "2D shadow system\nArrow keys to move")]
-	public class ShadowsScene : SampleScene
+	[SampleScene("Mesh Shadows", 40, "2D shadow system\nArrow keys to move")]
+	public class MeshShadowsScene : SampleScene
 	{
 		public override void Initialize()
 		{

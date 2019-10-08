@@ -27,7 +27,7 @@ namespace Nez.Samples
 
 			// add a FSDebugView so that we can see the physics objects
 			CreateEntity("debug-view")
-				.AddComponent(new PressKeyToPerformAction(Keys.Space, () => world.SetEnabled(true)))
+				.AddComponent(new PressKeyToPerformAction(Keys.Space, e => world.SetEnabled(true)))
 				.AddComponent(new FSDebugView(world))
 				.AppendFlags(FSDebugView.DebugViewFlags.ContactPoints);
 

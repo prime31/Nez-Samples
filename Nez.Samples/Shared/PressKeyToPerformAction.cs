@@ -10,10 +10,10 @@ namespace Nez.Samples
 	public class PressKeyToPerformAction : Component, IUpdatable
 	{
 		Keys _key;
-		Action _action;
+		Action<Entity> _action;
 
 
-		public PressKeyToPerformAction(Keys key, Action action)
+		public PressKeyToPerformAction(Keys key, Action<Entity> action)
 		{
 			_key = key;
 			_action = action;
@@ -23,7 +23,7 @@ namespace Nez.Samples
 		void IUpdatable.Update()
 		{
 			if (Input.IsKeyPressed(_key))
-				_action();
+				_action(Entity);
 		}
 	}
 }

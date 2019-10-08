@@ -67,7 +67,7 @@
         <Compile Include="Scenes\Platformer\Caveman.cs" />
         <Compile Include="Scenes\Platformer\PlatformerScene.cs" />
         <Compile Include="Scenes\RigidBodies\RigidBodyScene.cs" />
-        <Compile Include="Scenes\Shadows\ShadowsScene.cs" />
+        <Compile Include="Scenes\Mesh Shadows\MeshShadowsScene.cs" />
         <Compile Include="Scenes\Spring Grid\GridModifier.cs" />
         <Compile Include="Scenes\Spring Grid\SpringGridScene.cs" />
         <Compile Include="Scenes\Sprite Lights\SpriteLightsScene.cs" />
@@ -86,6 +86,8 @@
             <Link>Shared\SvgPathBuilder.cs</Link>
         </Compile>
         <Compile Include="Scenes\Particles\PexExporter.cs" />
+        <Compile Include="Scenes\Stencil Shadows\StencilShadowsScene.cs" />
+        <Compile Include="Scenes\Stencil Shadows\LiveLightController.cs" />
     </ItemGroup>
     
     <ItemGroup>

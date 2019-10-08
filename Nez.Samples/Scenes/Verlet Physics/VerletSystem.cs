@@ -6,7 +6,7 @@ using Nez.Verlet;
 namespace Nez.Samples
 {
 	/// <summary>
-	/// component that manages the Verlet World calling it's update and debugRender methods. Also handles toggling gravity via the G and Z keys.
+	/// component that manages the Verlet World calling it's Update and DebugRender methods. Also handles toggling gravity via the G and Z keys.
 	/// </summary>
 	public class VerletSystem : RenderableComponent, IUpdatable
 	{
@@ -19,7 +19,7 @@ namespace Nez.Samples
 
 		public VerletSystem()
 		{
-			World = new VerletWorld(new Rectangle(0, 0, (int) Width, (int) Height));
+			World = new VerletWorld(new Rectangle(0, 0, (int)Width, (int)Height));
 		}
 
 
@@ -61,9 +61,6 @@ namespace Nez.Samples
 		}
 
 
-		public override void Render(Batcher batcher, Camera camera)
-		{
-			World.DebugRender(batcher);
-		}
+		public override void Render(Batcher batcher, Camera camera) => World.DebugRender(batcher);
 	}
 }
