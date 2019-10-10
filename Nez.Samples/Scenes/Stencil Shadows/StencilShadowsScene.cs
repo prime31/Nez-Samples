@@ -6,11 +6,11 @@ using Nez.Textures;
 
 namespace Nez.Samples
 {
-	[SampleScene("Stencil Shadows", 41, "2D Stencil shadow system\nArrow keys to move")]
+	[SampleScene("Stencil Shadows", 41, "2D Stencil shadow system with a mouse controller light\nHold a/d to cycle color\nHold w/s to change radius\nClick to clone the light")]
 	public class StencilShadowsScene : SampleScene
 	{
 		const int LIGHT_LAYER = 5;
-		const int SATANS_LAYER = 666;
+		const int LIGHT_MAP_LAYER = 10;
 		const int BG_LAYER = 15;
 
 		public StencilShadowsScene() : base(false)
@@ -26,19 +26,25 @@ namespace Nez.Samples
 			// render layer for all lights
 			ClearColor = Color.White;
 
-			// create a Renderer that renders all but the light layer and screen space layer
-			AddRenderer(new RenderLayerExcludeRenderer(5, LIGHT_LAYER, ScreenSpaceRenderLayer, SATANS_LAYER, BG_LAYER, 1, -1));
-			//AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
-			AddRenderer(new RenderLayerRenderer(1, SATANS_LAYER));
+			// create the StencilLightRenderer that renders only the light layer into a render target. Remember, when we render into a RenderTexture
+			// we need to render before other renderers so we set our renderOrder to -1
+			var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
 
-			// create a Renderer that renders only the light layer into a render target
-			var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER));
-			lightRenderer.RenderTargetClearColor = new Color(0, 0, 0, 255);
-			lightRenderer.RenderTexture = new RenderTexture();
+			// the clear color acts as ambient light. We set it to a dark color to make the lights stand out a bit.
+			lightRenderer.RenderTargetClearColor = new Color(20, 20, 20, 255);
 
-			//AddPostProcessor(new SpriteLightPostProcessor(0, lightRenderer.RenderTexture));
+			// renderer for the background image and the light map (created by StencilLightRenderer)
+			AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
+			AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
 
+			// lastly, we render all the obstacles AFTER the light map. This keeps them above it so they are always visible.
+			AddRenderer(new RenderLayerRenderer(2, 0));
 
+			CreateLights();
+			CreateBoxes();
+			CreateObstacles();
+
+			// create the background texture, settig it to the correct RenderLayer
 			var bgTexture = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
 			CreateEntity("bg")
 				.SetPosition(Screen.Center)
@@ -46,6 +52,44 @@ namespace Nez.Samples
 				.AddComponent(new SpriteRenderer(bgTexture))
 				.SetRenderLayer(BG_LAYER);
 
+			// the light-map will render the lightmap that our StencilLightRenderer creates for us with multiplicative blending
+			CreateEntity("light-map")
+				.SetPosition(Screen.Center)
+				.AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
+				.SetMaterial(Material.BlendMultiply())
+				.SetRenderLayer(LIGHT_MAP_LAYER);
+		}
+
+		/// <summary>
+		/// creates some StencilLights and a SpriteRenderer light
+		/// </summary>
+		void CreateLights()
+		{
+			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
+			CreateEntity("texture-light")
+				.SetPosition(Screen.Center + new Vector2(200, 200))
+				.SetScale(8)
+				.AddComponent(new SpriteRenderer(lightTex))
+				.SetRenderLayer(LIGHT_LAYER)
+				.SetColor(Color.GreenYellow);
+
+			CreateEntity("light2")
+				.SetPosition(Screen.Center + new Vector2(200, -200))
+				.AddComponent(new StencilLight(400, Color.AntiqueWhite))
+				.SetRenderLayer(LIGHT_LAYER);
+
+			CreateEntity("light3")
+				.SetPosition(300, 600)
+				.AddComponent(new StencilLight(400, new Color(200, 20, 20)))
+				.SetRenderLayer(LIGHT_LAYER)
+				.AddComponent<LiveLightController>();
+		}
+
+		/// <summary>
+		/// creates some textures boxes
+		/// </summary>
+		void CreateBoxes()
+		{
 			var blockTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Block);
 			CreateEntity("block1")
 				.SetPosition(Screen.Center)
@@ -56,57 +100,29 @@ namespace Nez.Samples
 				.SetPosition(Screen.Center - new Vector2(200, 200))
 				.AddComponent(new SpriteRenderer(blockTexture))
 				.AddComponent<BoxCollider>();
-
-
-			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
-			CreateEntity("light1")
-				.SetPosition(Screen.Center + new Vector2(200, 200))
-				.SetScale(12)
-				.AddComponent(new SpriteRenderer(lightTex))
-				.SetRenderLayer(LIGHT_LAYER)
-				.SetColor(Color.GreenYellow)//.SetColor(Color.White)
-				.AddComponent<LiveLightController>();
-
-			CreateEntity("light2")
-				.SetPosition(Screen.Center + new Vector2(200, -200))
-				.SetScale(12)
-				.AddComponent(new SpriteRenderer(lightTex))
-				.SetColor(Color.Firebrick).SetColor(Color.White)
-				.SetRenderLayer(LIGHT_LAYER);
-
-
-			var effect = Content.LoadEffect<Effect>("spriteLightMultiply", EffectResource.GetFileResourceBytes("Content/nez/effects/SpriteLightMultiply.mgfxo"));
-			CreateEntity("poop")
-				.SetPosition(Screen.Center)
-				.AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
-				.SetRenderLayer(SATANS_LAYER)
-				.SetMaterial(new Material(effect)).SetMaterial(Material.BlendDarken());
-			effect.Parameters["_lightTexture"].SetValue(lightRenderer.RenderTexture);
-			effect.Parameters["_multiplicativeFactor"].SetValue(0.4f);
-
-			CreatePolygons();
 		}
 
-		void CreatePolygons()
+		/// <summary>
+		/// create some polygons and a circle so the lights have something interesting to interact with
+		/// </summary>
+		void CreateObstacles()
 		{
-			var trianglePoints = new Vector2[] { new Vector2(-100, -150), new Vector2(100, -100), new Vector2(0, 0) };
-			var triangleEntity = CreateEntity("triangle");
-			triangleEntity.SetPosition(100, 300)
+			var trianglePoints = new Vector2[] { new Vector2(0, 0), new Vector2(100, -100), new Vector2(-100, -150) };
+			CreateEntity("triangle")
+				.SetPosition(100, 300)
 				.AddComponent(new PolygonMesh(trianglePoints, false).SetColor(Color.LightGreen))
 				.AddComponent(new PolygonCollider(trianglePoints));
 
-
-			var circleEntity = CreateEntity("circle");
-			circleEntity.SetPosition(1000, 250);
-			circleEntity.AddComponent(new SpriteRenderer(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
+			CreateEntity("circle")
+				.SetPosition(1000, 250)
+				.AddComponent(new SpriteRenderer(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
 				.SetColor(Color.LightGreen)
 				.AddComponent(new CircleCollider(64));
-
 
 			var polyPoints = Polygon.BuildSymmetricalPolygon(5, 140);
 			var polygonEntity = CreateEntity("polygon");
 			polygonEntity.SetPosition(460, 450)
-				.AddComponent(new PolygonMesh(polyPoints)).SetColor(Color.LightGreen)
+				.AddComponent(new PolygonMesh(polyPoints)).SetTexture(Content.Load<Texture2D>(Nez.Content.Shared.Moon))
 				.AddComponent(new PolygonCollider(polyPoints));
 
 			polygonEntity.TweenRotationDegreesTo(180, 3f)

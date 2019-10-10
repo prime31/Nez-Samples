@@ -90,12 +90,10 @@ namespace Nez.Samples
 
 			// create a player block
 			var entity = CreateEntity("player-block");
-			entity.Position = new Vector2(220, 220);
-			var sprite = new SpriteRenderer(blockTexture);
-			sprite.RenderLayer = lightRenderLayer;
-			entity.AddComponent(sprite);
-			entity.AddComponent(new SimpleMover());
-			entity.AddComponent<BoxCollider>();
+			entity.SetPosition(new Vector2(220, 220))
+				.AddComponent(new SpriteRenderer(blockTexture).SetRenderLayer(lightRenderLayer))
+				.AddComponent(new SimpleMover())
+				.AddComponent<BoxCollider>();
 
 
 			// add a follow camera
@@ -109,8 +107,8 @@ namespace Nez.Samples
 			pointLight.Power = 1f;
 
 			var light = CreateEntity("light");
-			light.Position = new Vector2(700f, 300f);
-			light.AddComponent(pointLight);
+			light.SetPosition(new Vector2(700f, 300f))
+				.AddComponent(pointLight);
 
 			pointLight.TweenColorTo(new Color(0, 0, 255, 255), 1f)
 				.SetEaseType(EaseType.Linear)

@@ -294,6 +294,10 @@
             <Link>Content\nez\effects\SpriteLines.mgfxo</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Include="..\Nez\DefaultContent\effects\StencilLight.mgfxo">
+            <Link>Content\nez\effects\StencilLight.mgfxo</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Include="..\Nez\DefaultContent\effects\Twist.mgfxo">
             <Link>Content\nez\effects\Twist.mgfxo</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
