@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" nextobjectid="7">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="4" columns="2">
   <image source="tileset.png" width="32" height="32"/>
+  <tile id="0">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
   <tile id="2">
    <properties>
+    <property name="filewtf" type="file" value=""/>
+    <property name="floaty" type="float" value="0"/>
+    <property name="inty" type="int" value="0"/>
     <property name="nez:isOneWayPlatform" type="bool" value="true"/>
+    <property name="poop" type="color" value=""/>
    </properties>
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="16" height="3"/>
+   </objectgroup>
   </tile>
   <tile id="3">
    <properties>
@@ -13,9 +25,14 @@
     <property name="nez:slopeTopLeft" type="int" value="0"/>
     <property name="nez:slopeTopRight" type="int" value="15"/>
    </properties>
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0">
+     <polygon points="0,0 0,16 16,16"/>
+    </object>
+   </objectgroup>
   </tile>
  </tileset>
- <layer name="main" width="40" height="30">
+ <layer id="1" name="main" width="40" height="30">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -49,7 +66,7 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
  </layer>
- <objectgroup name="objects">
+ <objectgroup id="2" name="objects">
   <object id="6" name="spawn" x="48.4346" y="240.503" width="14.8796" height="14.8796"/>
  </objectgroup>
 </map>
