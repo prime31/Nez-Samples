@@ -51,6 +51,11 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 		
+	    <!-- Tmx and png files -->
+        <Content Include="Content/**/*.tmx;Content/**/*.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+		
 		<!-- Include the Content bin (MGCB output). Copy it to the Content folder in the build. -->
         <Content Include="Content/bin/DesktopGL/Content/**">
 			<Link>Content\%(RecursiveDir)\%(Filename)%(Extension)</Link>
@@ -251,6 +256,9 @@
       </Content>
       <Content Update="..\Nez\DefaultContent\FNAEffects\transitions\Squares.fxb">
         <Link>Content\nez\effects\transitions\Squares.fxb</Link>
+      </Content>
+      <Content Update="..\Nez\DefaultContent\FNAEffects\StencilLight.fxb">
+        <Link>Content\nez\effects\.\StencilLight.fxb</Link>
       </Content>
     </ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
