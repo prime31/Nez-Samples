@@ -91,91 +91,91 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Content Include="Content\bin\DesktopGL\Content\Platformer\caveman.xnb">
+        <Content Include="Content\bin\DesktopGL\Platformer\caveman.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Platformer\\caveman.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\sprite-light.xnb">
+        <Content Include="Content\bin\DesktopGL\Shadows\sprite-light.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shadows\\sprite-light.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\BlockGlow.xnb">
+        <Content Include="Content\bin\DesktopGL\Shadows\BlockGlow.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shadows\\BlockGlow.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\Block.xnb">
+        <Content Include="Content\bin\DesktopGL\Shadows\Block.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shadows\\Block.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orangeNorm.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\orangeNorm.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\orangeNorm.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moonNorm.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\moonNorm.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\moonNorm.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orange.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\orange.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\orange.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moon.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\moon.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\moon.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bgNorm.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\bgNorm.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\bgNorm.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bg.xnb">
+        <Content Include="Content\bin\DesktopGL\DeferredLighting\bg.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\DeferredLighting\\bg.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shared\moon.xnb">
+        <Content Include="Content\bin\DesktopGL\Shared\moon.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\Shared\\moon.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\plume.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\plume.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\\plume.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\6.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\6.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\6.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\4.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\4.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\4.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\5.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\5.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\5.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\1.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\1.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\1.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\2.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\2.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\2.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\3.xnb">
+        <Content Include="Content\bin\DesktopGL\NinjaAdventure\characters\3.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\NinjaAdventure\characters\\3.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\sprite-light.xnb">
+        <Content Include="Content\bin\DesktopGL\SpriteLights\sprite-light.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\SpriteLights\\sprite-light.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\pixel-sprite-light.xnb">
+        <Content Include="Content\bin\DesktopGL\SpriteLights\pixel-sprite-light.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\SpriteLights\\pixel-sprite-light.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\tube-light.xnb">
+        <Content Include="Content\bin\DesktopGL\SpriteLights\tube-light.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\SpriteLights\\tube-light.xnb</Link>
         </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\bg.xnb">
+        <Content Include="Content\bin\DesktopGL\SpriteLights\bg.xnb">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>Content\SpriteLights\\bg.xnb</Link>
         </Content>
