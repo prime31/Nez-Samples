@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 namespace Nez.Samples
 {
 	/// <summary>
-	/// Tiled map import that includes animated tiles from multiple different tileset images
+	/// Set up and demonstrate water reflection effect
 	/// </summary>
 	[SampleScene("Water Reflection Effect", 70, "Water Reflection Effect")]
 	public class WaterPlaneScene : SampleScene
@@ -19,9 +19,7 @@ namespace Nez.Samples
 			var waterrenderer = new RenderLayerRenderer(-1, _waterPaneRenderLayer);
 			waterrenderer.WantsToRenderAfterPostProcessors = true;
 			AddRenderer(waterrenderer);
-
 		}
-
 
 		public override void Initialize()
 		{
@@ -34,7 +32,6 @@ namespace Nez.Samples
 
 		public override void OnStart()
 		{
-
 			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
 			var playerEntity = CreateEntity("player", new Vector2(Screen.Width / 2, Screen.Height * .7f));
 			playerEntity.AddComponent(new SpriteRenderer(moonTex));
