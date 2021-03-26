@@ -20,7 +20,7 @@ namespace Nez.Samples
 		public UICanvas Canvas;
 
 		Table _table;
-		List<Button> _sceneButtons = new List<Button>();
+        
 		ScreenSpaceRenderer _screenSpaceRenderer;
 		static bool _needsFullRenderSizeForUi;
 
@@ -60,14 +60,16 @@ namespace Nez.Samples
 				.Where(t => t.GetCustomAttributes(typeof(SampleSceneAttribute), true).Length > 0)
 				.OrderBy(t =>
 					((SampleSceneAttribute) t.GetCustomAttributes(typeof(SampleSceneAttribute), true)[0]).Order);
-
-			foreach (var s in scenes)
+            foreach (var s in scenes)
 				yield return s;
 		}
 
 		void SetupSceneSelector()
 		{
 			_table = Canvas.Stage.AddElement(new Table());
+            var sampleScenes = new Table().PadRight(5);
+            var documentationScenes = new Table().PadLeft(5);
+
 			_table.SetFillParent(true).Right().Top();
 
 			var topButtonStyle = new TextButtonStyle(new PrimitiveDrawable(Color.Black, 10f),
@@ -75,18 +77,35 @@ namespace Nez.Samples
 			{
 				DownFontColor = Color.Black
 			};
-			_table.Add(new TextButton("Toggle Scene List", topButtonStyle)).SetFillX().SetMinHeight(30)
-				.GetElement<Button>().OnClicked += OnToggleSceneListClicked;
+            _table.Add(new TextButton("Toggle Scene List", topButtonStyle)).SetFillX().SetMinHeight(30)
+				.GetElement<Button>().OnClicked += butt =>
+            {
+                sampleScenes.SetIsVisible(!sampleScenes.IsVisible());
+                documentationScenes.SetIsVisible(!documentationScenes.IsVisible());
+            };
 
-			_table.Row().SetPadTop(10);
-			var checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
-			{
-				CheckboxOn = new PrimitiveDrawable(30, Color.Green),
-				CheckboxOff = new PrimitiveDrawable(30, new Color(0x00, 0x3c, 0xe7, 0xff))
-			})).GetElement<CheckBox>();
-			checkbox.OnChanged += enabled => Core.DebugRenderEnabled = enabled;
-			checkbox.IsChecked = Core.DebugRenderEnabled;
-			_table.Row().SetPadTop(30);
+            CheckBox checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
+            {
+                CheckboxOn = new PrimitiveDrawable(30, Color.Green),
+                CheckboxOff = new PrimitiveDrawable(30, new Color(0x00, 0x3c, 0xe7, 0xff))
+            })).GetElement<CheckBox>();
+            checkbox.OnChanged += enabled => Core.DebugRenderEnabled = enabled;
+            checkbox.IsChecked = Core.DebugRenderEnabled;
+
+			_table.Row();
+
+			_table.Add(sampleScenes).SetAlign(Align.Top);
+
+            _table.Add(documentationScenes).SetAlign(Align.Top);
+
+			sampleScenes.Row();
+            sampleScenes.Add(new Label("Samples", new LabelStyle())).SetFillX().SetMinHeight(30);
+            sampleScenes.Row();
+
+            documentationScenes.Row();
+            documentationScenes.Add(new Label("Documentation", new LabelStyle())).Top().SetFillX().SetMinHeight(30);
+           
+			documentationScenes.Row();
 
 			var buttonStyle = new TextButtonStyle(new PrimitiveDrawable(new Color(78, 91, 98), 10f),
 				new PrimitiveDrawable(new Color(244, 23, 135)), new PrimitiveDrawable(new Color(168, 207, 115)))
@@ -102,10 +121,12 @@ namespace Nez.Samples
 					if (attr.GetType() == typeof(SampleSceneAttribute))
 					{
 						var sampleAttr = attr as SampleSceneAttribute;
-						var button = _table.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
+
+                        Table targetTable = sampleAttr.Documentation ? documentationScenes : sampleScenes;
+
+						var button = targetTable.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
 							.SetMinHeight(30).GetElement<TextButton>();
-						_sceneButtons.Add(button);
-						button.OnClicked += butt =>
+                        button.OnClicked += butt =>
 						{
 							// stop all tweens in case any demo scene started some up
 							TweenManager.StopAllTweens();
@@ -113,7 +134,7 @@ namespace Nez.Samples
 							Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(type) as Scene));
 						};
 
-						_table.Row().SetPadTop(10);
+                        targetTable.Row().SetPadTop(10);
 
 						// optionally add instruction text for the current scene
 						if (sampleAttr.InstructionText != null && type == GetType())
@@ -121,6 +142,8 @@ namespace Nez.Samples
 					}
 				}
 			}
+
+			
 		}
 
 		void AddInstructionText(string text)
@@ -131,13 +154,7 @@ namespace Nez.Samples
 				.SetRenderLayer(ScreenSpaceRenderLayer);
 		}
 
-		void OnToggleSceneListClicked(Button butt)
-		{
-			foreach (var button in _sceneButtons)
-				button.SetIsVisible(!button.IsVisible());
-		}
-
-		[Console.Command("toggle-imgui", "Toggles the Dear ImGui renderer")]
+        [Console.Command("toggle-imgui", "Toggles the Dear ImGui renderer")]
 		static void ToggleImGui()
 		{
 			if (_needsFullRenderSizeForUi)
@@ -189,13 +206,14 @@ namespace Nez.Samples
 		public string ButtonName;
 		public int Order;
 		public string InstructionText;
+        public bool Documentation;
 
-
-		public SampleSceneAttribute(string buttonName, int order, string instructionText = null)
+		public SampleSceneAttribute(string buttonName, int order, string instructionText = null, bool documentation = false)
 		{
 			ButtonName = buttonName;
 			Order = order;
 			InstructionText = instructionText;
-		}
+            Documentation = documentation;
+        }
 	}
 }

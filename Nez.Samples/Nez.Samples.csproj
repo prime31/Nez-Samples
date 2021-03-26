@@ -1,481 +1,479 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-        <ProjectGuid>{C680D0AE-9861-4000-AFFC-952D62A01E5C}</ProjectGuid>
-        <OutputType>Exe</OutputType>
-        <RootNamespace>Nez.Samples</RootNamespace>
-        <AssemblyName>Nez.Samples</AssemblyName>
-        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-        <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug</OutputPath>
-        <DefineConstants>DEBUG;</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <PlatformTarget>x64</PlatformTarget>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <PlatformTarget>x86</PlatformTarget>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="System" />
-        <Reference Include="System.Xml" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Drawing" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Game1.cs" />
-        <Compile Include="Program.cs" />
-        <Compile Include="Scenes\AI\AIScene.cs" />
-        <Compile Include="Scenes\AI\AIUI.cs" />
-        <Compile Include="Scenes\AI\BehaviorTreeMiner.cs" />
-        <Compile Include="Scenes\AI\GOAPMiner.cs" />
-        <Compile Include="Scenes\AI\MinerState.cs" />
-        <Compile Include="Scenes\AI\UtilityMiner.cs" />
-        <Compile Include="Scenes\AI\UtilityAIActions\ChooseBestLocation.cs" />
-        <Compile Include="Scenes\AI\UtilityAIActions\MoveToBestLocation.cs" />
-        <Compile Include="Scenes\Animated Tiles\AnimatedTilesScene.cs" />
-        <Compile Include="Scenes\Deferred Lighting\DeferredLightingController.cs" />
-        <Compile Include="Scenes\Deferred Lighting\DeferredLightingScene.cs" />
-        <Compile Include="Scenes\Destructable Tilemap\DestructableTilemapScene.cs" />
-        <Compile Include="Scenes\Destructable Tilemap\PlayerDashMover.cs" />
-        <Compile Include="Scenes\Empty Scene\BasicScene.cs" />
-        <Compile Include="Scenes\Farseer SVG\FarseerSVGScene.cs" />
-        <Compile Include="Scenes\LineCasting\LineCaster.cs" />
-        <Compile Include="Scenes\LineCasting\LineCastingScene.cs" />
-        <Compile Include="Scenes\Ninja Adventure\CameraBounds.cs" />
-        <Compile Include="Scenes\Ninja Adventure\FireballProjectileController.cs" />
-        <Compile Include="Scenes\Ninja Adventure\Ninja.cs" />
-        <Compile Include="Scenes\Ninja Adventure\NinjaAdventureScene.cs" />
-        <Compile Include="Scenes\Ninja Adventure\ProjectileHitDetector.cs" />
-        <Compile Include="Scenes\Particles\ParticleSystemSelector.cs" />
-        <Compile Include="Scenes\Particles\ParticlesScene.cs" />
-        <Compile Include="Scenes\Pathfinding\Pathfinder.cs" />
-        <Compile Include="Scenes\Pathfinding\PathfindingScene.cs" />
-        <Compile Include="Scenes\Platformer\Caveman.cs" />
-        <Compile Include="Scenes\Platformer\PlatformerScene.cs" />
-        <Compile Include="Scenes\RigidBodies\RigidBodyScene.cs" />
-        <Compile Include="Scenes\Mesh Shadows\MeshShadowsScene.cs" />
-        <Compile Include="Scenes\Spring Grid\GridModifier.cs" />
-        <Compile Include="Scenes\Spring Grid\SpringGridScene.cs" />
-        <Compile Include="Scenes\Sprite Lights\SpriteLightsScene.cs" />
-        <Compile Include="Scenes\Verlet Physics\VerletPhysicsScene.cs" />
-        <Compile Include="Scenes\Verlet Physics\VerletSystem.cs" />
-        <Compile Include="SampleHelpers\MouseFollow.cs" />
-        <Compile Include="SampleHelpers\SampleScene.cs" />
-        <Compile Include="Shared\ContentPathGenerator.cs">
-            <DependentUpon>ContentPathGenerator.tt</DependentUpon>
-        </Compile>
-        <Compile Include="Shared\MovingPlatform.cs" />
-        <Compile Include="Shared\PressKeyToPerformAction.cs" />
-        <Compile Include="Shared\SimpleMover.cs" />
-        <Compile Include="Shared\TriggerListener.cs" />
-        <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
-            <Link>Shared\SvgPathBuilder.cs</Link>
-        </Compile>
-        <Compile Include="Scenes\Particles\PexExporter.cs" />
-        <Compile Include="Scenes\Stencil Shadows\StencilShadowsScene.cs" />
-        <Compile Include="Scenes\Stencil Shadows\LiveLightController.cs" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Content Include="Content\bin\DesktopGL\Content\Platformer\caveman.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\Platformer\\caveman.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\sprite-light.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\Shadows\\sprite-light.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\BlockGlow.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\Shadows\\BlockGlow.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shadows\Block.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\Shadows\\Block.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orangeNorm.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\orangeNorm.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moonNorm.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\moonNorm.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orange.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\orange.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moon.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\moon.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bgNorm.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\bgNorm.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bg.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\DeferredLighting\\bg.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\Shared\moon.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\Shared\\moon.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\plume.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\\plume.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\6.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\6.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\4.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\4.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\5.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\5.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\1.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\1.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\2.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\2.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\3.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\NinjaAdventure\characters\\3.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\sprite-light.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\SpriteLights\\sprite-light.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\pixel-sprite-light.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\SpriteLights\\pixel-sprite-light.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\tube-light.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\SpriteLights\\tube-light.xnb</Link>
-        </Content>
-        <Content Include="Content\bin\DesktopGL\Content\SpriteLights\bg.xnb">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-          <Link>Content\SpriteLights\\bg.xnb</Link>
-        </Content>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Include="..\Nez\DefaultContent\effects\Bevels.mgfxo">
-            <Link>Content\nez\effects\Bevels.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\BloomCombine.mgfxo">
-            <Link>Content\nez\effects\BloomCombine.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\BloomExtract.mgfxo">
-            <Link>Content\nez\effects\BloomExtract.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Crosshatch.mgfxo">
-            <Link>Content\nez\effects\Crosshatch.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\DeferredLighting.mgfxo">
-            <Link>Content\nez\effects\DeferredLighting.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\DeferredSprite.mgfxo">
-            <Link>Content\nez\effects\DeferredSprite.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Dissolve.mgfxo">
-            <Link>Content\nez\effects\Dissolve.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Dots.mgfxo">
-            <Link>Content\nez\effects\Dots.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\ForwardLighting.mgfxo">
-            <Link>Content\nez\effects\ForwardLighting.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\GaussianBlur.mgfxo">
-            <Link>Content\nez\effects\GaussianBlur.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Grayscale.mgfxo">
-            <Link>Content\nez\effects\Grayscale.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\HeatDistortion.mgfxo">
-            <Link>Content\nez\effects\HeatDistortion.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Invert.mgfxo">
-            <Link>Content\nez\effects\Invert.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Letterbox.mgfxo">
-            <Link>Content\nez\effects\Letterbox.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\MultiTexture.mgfxo">
-            <Link>Content\nez\effects\MultiTexture.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\MultiTextureOverlay.mgfxo">
-            <Link>Content\nez\effects\MultiTextureOverlay.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Noise.mgfxo">
-            <Link>Content\nez\effects\Noise.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\PaletteCycler.mgfxo">
-            <Link>Content\nez\effects\PaletteCycler.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\PixelGlitch.mgfxo">
-            <Link>Content\nez\effects\PixelGlitch.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\PolygonLight.mgfxo">
-            <Link>Content\nez\effects\PolygonLight.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Reflection.mgfxo">
-            <Link>Content\nez\effects\Reflection.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Scanlines.mgfxo">
-            <Link>Content\nez\effects\Scanlines.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Sepia.mgfxo">
-            <Link>Content\nez\effects\Sepia.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\SpriteAlphaTest.mgfxo">
-            <Link>Content\nez\effects\SpriteAlphaTest.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\SpriteBlinkEffect.mgfxo">
-            <Link>Content\nez\effects\SpriteBlinkEffect.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\SpriteEffect.mgfxo">
-            <Link>Content\nez\effects\SpriteEffect.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\SpriteLightMultiply.mgfxo">
-            <Link>Content\nez\effects\SpriteLightMultiply.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\SpriteLines.mgfxo">
-            <Link>Content\nez\effects\SpriteLines.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\StencilLight.mgfxo">
-            <Link>Content\nez\effects\StencilLight.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Twist.mgfxo">
-            <Link>Content\nez\effects\Twist.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\Vignette.mgfxo">
-            <Link>Content\nez\effects\Vignette.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\transitions\Squares.mgfxo">
-            <Link>Content\nez\effects\transitions\Squares.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\transitions\TextureWipe.mgfxo">
-            <Link>Content\nez\effects\transitions\TextureWipe.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\effects\transitions\Wind.mgfxo">
-            <Link>Content\nez\effects\transitions\Wind.mgfxo</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
-            <Link>Content\nez\textures\heatDistortionNoise.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\angular.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\crissCross.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\diagonalDistort.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\horizontal.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\noise.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\pokemon.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\sawTooth.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\spiral.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
-            <Link>Content\nez\textures\textureWipeTransition\wink.xnb</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Shared\ContentPathGenerator.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>ContentPathGenerator.cs</LastGenOutput>
-        </None>
-        <None Include="Content\SVG\farseer-svg.svg">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\Shadows\Block.png" />
-        <None Include="Content\Shadows\BlockGlow.png" />
-        <None Include="Content\Shadows\Light.fx" />
-        <None Include="Content\Shadows\Light.mgfxo" />
-        <None Include="Content\Shadows\sprite-light.png" />
-        <None Include="Content\Platformer\tiledMap.tmx">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\Platformer\tileset.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\NinjaAdventure\map\tilemap.tmx">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\NinjaAdventure\map\tileset.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\DestructableMap\desert-palace-tiles2x.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\DestructableMap\destructable-map.tmx">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\AnimatedTiles\desert-palace-lamp.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\AnimatedTiles\desert-palace-tiles.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="Content\AnimatedTiles\desert-palace.tmx">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-
-		<!-- Include Particle Designer files -->
-        <Content Include="Content/ParticleDesigner/*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Visible="false" Include="Icon.ico" />
-    </ItemGroup>
-    <ItemGroup>
-        <MonoGameContentReference Include="Content\Content.mgcb" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
-            <Link>x86\SDL2.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
-            <Link>x64\SDL2.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
-            <Link>x86\soft_oal.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
-            <Link>x64\soft_oal.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
-            <Link>x86\libSDL2-2.0.so.0</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
-            <Link>x64\libSDL2-2.0.so.0</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
-            <Link>x86\libopenal.so.1</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
-            <Link>x64\libopenal.so.1</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
-            <Link>libSDL2-2.0.0.dylib</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
-            <Link>libopenal.1.dylib</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj">
-            <Project>{60B7197D-D0D5-405C-90A2-A56903E9B039}</Project>
-            <Name>Nez</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj">
-            <Project>{CB893B1D-CE04-4492-B957-31CE0DCA6C15}</Project>
-            <Name>Nez.FarseerPhysics</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj">
-          <Project>{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}</Project>
-          <Name>Nez.ImGui</Name>
-        </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="Content\nez\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL">
-          <Version>3.7.1.189</Version>
-        </PackageReference>
-    </ItemGroup>
-
-    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{C680D0AE-9861-4000-AFFC-952D62A01E5C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Nez.Samples</RootNamespace>
+    <AssemblyName>Nez.Samples</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Scenes\Documentation\Deferred Lighting\DeferredLightingDocumentationScene.cs" />
+    <Compile Include="Scenes\Samples\AI\AIScene.cs" />
+    <Compile Include="Scenes\Samples\AI\AIUI.cs" />
+    <Compile Include="Scenes\Samples\AI\BehaviorTreeMiner.cs" />
+    <Compile Include="Scenes\Samples\AI\GOAPMiner.cs" />
+    <Compile Include="Scenes\Samples\AI\MinerState.cs" />
+    <Compile Include="Scenes\Samples\AI\UtilityMiner.cs" />
+    <Compile Include="Scenes\Samples\AI\UtilityAIActions\ChooseBestLocation.cs" />
+    <Compile Include="Scenes\Samples\AI\UtilityAIActions\MoveToBestLocation.cs" />
+    <Compile Include="Scenes\Samples\Animated Tiles\AnimatedTilesScene.cs" />
+    <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingController.cs" />
+    <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingScene.cs" />
+    <Compile Include="Scenes\Samples\Destructable Tilemap\DestructableTilemapScene.cs" />
+    <Compile Include="Scenes\Samples\Destructable Tilemap\PlayerDashMover.cs" />
+    <Compile Include="Scenes\Samples\Empty Scene\BasicScene.cs" />
+    <Compile Include="Scenes\Samples\Farseer SVG\FarseerSVGScene.cs" />
+    <Compile Include="Scenes\Samples\LineCasting\LineCaster.cs" />
+    <Compile Include="Scenes\Samples\LineCasting\LineCastingScene.cs" />
+    <Compile Include="Scenes\Samples\Ninja Adventure\CameraBounds.cs" />
+    <Compile Include="Scenes\Samples\Ninja Adventure\FireballProjectileController.cs" />
+    <Compile Include="Scenes\Samples\Ninja Adventure\Ninja.cs" />
+    <Compile Include="Scenes\Samples\Ninja Adventure\NinjaAdventureScene.cs" />
+    <Compile Include="Scenes\Samples\Ninja Adventure\ProjectileHitDetector.cs" />
+    <Compile Include="Scenes\Samples\Particles\ParticleSystemSelector.cs" />
+    <Compile Include="Scenes\Samples\Particles\ParticlesScene.cs" />
+    <Compile Include="Scenes\Samples\Pathfinding\Pathfinder.cs" />
+    <Compile Include="Scenes\Samples\Pathfinding\PathfindingScene.cs" />
+    <Compile Include="Scenes\Samples\Platformer\Caveman.cs" />
+    <Compile Include="Scenes\Samples\Platformer\PlatformerScene.cs" />
+    <Compile Include="Scenes\Samples\RigidBodies\RigidBodyScene.cs" />
+    <Compile Include="Scenes\Samples\Mesh Shadows\MeshShadowsScene.cs" />
+    <Compile Include="Scenes\Samples\Spring Grid\GridModifier.cs" />
+    <Compile Include="Scenes\Samples\Spring Grid\SpringGridScene.cs" />
+    <Compile Include="Scenes\Samples\Sprite Lights\SpriteLightsScene.cs" />
+    <Compile Include="Scenes\Samples\Verlet Physics\VerletPhysicsScene.cs" />
+    <Compile Include="Scenes\Samples\Verlet Physics\VerletSystem.cs" />
+    <Compile Include="SampleHelpers\MouseFollow.cs" />
+    <Compile Include="SampleHelpers\SampleScene.cs" />
+    <Compile Include="Shared\ContentPathGenerator.cs">
+      <DependentUpon>ContentPathGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\MovingPlatform.cs" />
+    <Compile Include="Shared\PressKeyToPerformAction.cs" />
+    <Compile Include="Shared\SimpleMover.cs" />
+    <Compile Include="Shared\TriggerListener.cs" />
+    <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
+      <Link>Shared\SvgPathBuilder.cs</Link>
+    </Compile>
+    <Compile Include="Scenes\Samples\Particles\PexExporter.cs" />
+    <Compile Include="Scenes\Samples\Stencil Shadows\StencilShadowsScene.cs" />
+    <Compile Include="Scenes\Samples\Stencil Shadows\LiveLightController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bin\DesktopGL\Content\Platformer\caveman.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\Platformer\\caveman.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\Shadows\sprite-light.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\Shadows\\sprite-light.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\Shadows\BlockGlow.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\Shadows\\BlockGlow.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\Shadows\Block.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\Shadows\\Block.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orangeNorm.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\orangeNorm.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moonNorm.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\moonNorm.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\orange.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\orange.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\moon.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\moon.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bgNorm.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\bgNorm.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\DeferredLighting\bg.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\DeferredLighting\\bg.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\Shared\moon.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\Shared\\moon.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\plume.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\\plume.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\6.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\6.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\4.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\4.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\5.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\5.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\1.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\2.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\NinjaAdventure\characters\3.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\NinjaAdventure\characters\\3.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\SpriteLights\sprite-light.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\SpriteLights\\sprite-light.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\SpriteLights\pixel-sprite-light.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\SpriteLights\\pixel-sprite-light.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\SpriteLights\tube-light.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\SpriteLights\\tube-light.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\DesktopGL\Content\SpriteLights\bg.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\SpriteLights\\bg.xnb</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Nez\DefaultContent\effects\Bevels.mgfxo">
+      <Link>Content\nez\effects\Bevels.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\BloomCombine.mgfxo">
+      <Link>Content\nez\effects\BloomCombine.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\BloomExtract.mgfxo">
+      <Link>Content\nez\effects\BloomExtract.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Crosshatch.mgfxo">
+      <Link>Content\nez\effects\Crosshatch.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\DeferredLighting.mgfxo">
+      <Link>Content\nez\effects\DeferredLighting.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\DeferredSprite.mgfxo">
+      <Link>Content\nez\effects\DeferredSprite.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Dissolve.mgfxo">
+      <Link>Content\nez\effects\Dissolve.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Dots.mgfxo">
+      <Link>Content\nez\effects\Dots.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\ForwardLighting.mgfxo">
+      <Link>Content\nez\effects\ForwardLighting.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\GaussianBlur.mgfxo">
+      <Link>Content\nez\effects\GaussianBlur.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Grayscale.mgfxo">
+      <Link>Content\nez\effects\Grayscale.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\HeatDistortion.mgfxo">
+      <Link>Content\nez\effects\HeatDistortion.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Invert.mgfxo">
+      <Link>Content\nez\effects\Invert.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Letterbox.mgfxo">
+      <Link>Content\nez\effects\Letterbox.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\MultiTexture.mgfxo">
+      <Link>Content\nez\effects\MultiTexture.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\MultiTextureOverlay.mgfxo">
+      <Link>Content\nez\effects\MultiTextureOverlay.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Noise.mgfxo">
+      <Link>Content\nez\effects\Noise.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\PaletteCycler.mgfxo">
+      <Link>Content\nez\effects\PaletteCycler.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\PixelGlitch.mgfxo">
+      <Link>Content\nez\effects\PixelGlitch.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\PolygonLight.mgfxo">
+      <Link>Content\nez\effects\PolygonLight.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Reflection.mgfxo">
+      <Link>Content\nez\effects\Reflection.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Scanlines.mgfxo">
+      <Link>Content\nez\effects\Scanlines.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Sepia.mgfxo">
+      <Link>Content\nez\effects\Sepia.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteAlphaTest.mgfxo">
+      <Link>Content\nez\effects\SpriteAlphaTest.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteBlinkEffect.mgfxo">
+      <Link>Content\nez\effects\SpriteBlinkEffect.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteEffect.mgfxo">
+      <Link>Content\nez\effects\SpriteEffect.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteLightMultiply.mgfxo">
+      <Link>Content\nez\effects\SpriteLightMultiply.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\SpriteLines.mgfxo">
+      <Link>Content\nez\effects\SpriteLines.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\StencilLight.mgfxo">
+      <Link>Content\nez\effects\StencilLight.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Twist.mgfxo">
+      <Link>Content\nez\effects\Twist.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\Vignette.mgfxo">
+      <Link>Content\nez\effects\Vignette.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\transitions\Squares.mgfxo">
+      <Link>Content\nez\effects\transitions\Squares.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\transitions\TextureWipe.mgfxo">
+      <Link>Content\nez\effects\transitions\TextureWipe.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\effects\transitions\Wind.mgfxo">
+      <Link>Content\nez\effects\transitions\Wind.mgfxo</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\heatDistortionNoise.xnb">
+      <Link>Content\nez\textures\heatDistortionNoise.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\angular.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\angular.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\crissCross.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\crissCross.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\diagonalDistort.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\diagonalDistort.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\horizontal.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\horizontal.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\noise.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\noise.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\pokemon.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\pokemon.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\sawTooth.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\sawTooth.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\spiral.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\spiral.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Nez\DefaultContent\textures\textureWipeTransition\wink.xnb">
+      <Link>Content\nez\textures\textureWipeTransition\wink.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shared\ContentPathGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ContentPathGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="Content\SVG\farseer-svg.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shadows\Block.png" />
+    <None Include="Content\Shadows\BlockGlow.png" />
+    <None Include="Content\Shadows\Light.fx" />
+    <None Include="Content\Shadows\Light.mgfxo" />
+    <None Include="Content\Shadows\sprite-light.png" />
+    <None Include="Content\Platformer\tiledMap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Platformer\tileset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\NinjaAdventure\map\tilemap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\NinjaAdventure\map\tileset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\DestructableMap\desert-palace-tiles2x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\DestructableMap\destructable-map.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\AnimatedTiles\desert-palace-lamp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\AnimatedTiles\desert-palace-tiles.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\AnimatedTiles\desert-palace.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Include Particle Designer files -->
+    <Content Include="Content/ParticleDesigner/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Visible="false" Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Visible="false" Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj">
+      <Project>{60B7197D-D0D5-405C-90A2-A56903E9B039}</Project>
+      <Name>Nez</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj">
+      <Project>{CB893B1D-CE04-4492-B957-31CE0DCA6C15}</Project>
+      <Name>Nez.FarseerPhysics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj">
+      <Project>{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}</Project>
+      <Name>Nez.ImGui</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\DeferredLighting\" />
+    <Folder Include="Content\NinjaAdventure\characters\" />
+    <Folder Include="Content\Shared\" />
+    <Folder Include="Content\SpriteLights\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL">
+      <Version>3.7.1.189</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
