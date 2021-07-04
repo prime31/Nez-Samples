@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -30,65 +30,65 @@
         <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Drawing"/>
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Drawing" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Game1.cs"/>
-        <Compile Include="Program.cs"/>
-        <Compile Include="Scenes\Documentation\Deferred Lighting\DeferredLightingDocumentationScene.cs"/>
-        <Compile Include="Scenes\Samples\AI\AIScene.cs"/>
-        <Compile Include="Scenes\Samples\AI\AIUI.cs"/>
-        <Compile Include="Scenes\Samples\AI\BehaviorTreeMiner.cs"/>
-        <Compile Include="Scenes\Samples\AI\GOAPMiner.cs"/>
-        <Compile Include="Scenes\Samples\AI\MinerState.cs"/>
-        <Compile Include="Scenes\Samples\AI\UtilityMiner.cs"/>
-        <Compile Include="Scenes\Samples\AI\UtilityAIActions\ChooseBestLocation.cs"/>
-        <Compile Include="Scenes\Samples\AI\UtilityAIActions\MoveToBestLocation.cs"/>
-        <Compile Include="Scenes\Samples\Animated Tiles\AnimatedTilesScene.cs"/>
-        <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingController.cs"/>
-        <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingScene.cs"/>
-        <Compile Include="Scenes\Samples\Destructable Tilemap\DestructableTilemapScene.cs"/>
-        <Compile Include="Scenes\Samples\Destructable Tilemap\PlayerDashMover.cs"/>
-        <Compile Include="Scenes\Samples\Empty Scene\BasicScene.cs"/>
-        <Compile Include="Scenes\Samples\Farseer SVG\FarseerSVGScene.cs"/>
-        <Compile Include="Scenes\Samples\LineCasting\LineCaster.cs"/>
-        <Compile Include="Scenes\Samples\LineCasting\LineCastingScene.cs"/>
-        <Compile Include="Scenes\Samples\Ninja Adventure\CameraBounds.cs"/>
-        <Compile Include="Scenes\Samples\Ninja Adventure\FireballProjectileController.cs"/>
-        <Compile Include="Scenes\Samples\Ninja Adventure\Ninja.cs"/>
-        <Compile Include="Scenes\Samples\Ninja Adventure\NinjaAdventureScene.cs"/>
-        <Compile Include="Scenes\Samples\Ninja Adventure\ProjectileHitDetector.cs"/>
-        <Compile Include="Scenes\Samples\Particles\ParticleSystemSelector.cs"/>
-        <Compile Include="Scenes\Samples\Particles\ParticlesScene.cs"/>
-        <Compile Include="Scenes\Samples\Pathfinding\Pathfinder.cs"/>
-        <Compile Include="Scenes\Samples\Pathfinding\PathfindingScene.cs"/>
-        <Compile Include="Scenes\Samples\Platformer\Caveman.cs"/>
-        <Compile Include="Scenes\Samples\Platformer\PlatformerScene.cs"/>
-        <Compile Include="Scenes\Samples\RigidBodies\RigidBodyScene.cs"/>
-        <Compile Include="Scenes\Samples\Mesh Shadows\MeshShadowsScene.cs"/>
-        <Compile Include="Scenes\Samples\Spring Grid\GridModifier.cs"/>
-        <Compile Include="Scenes\Samples\Spring Grid\SpringGridScene.cs"/>
-        <Compile Include="Scenes\Samples\Sprite Lights\SpriteLightsScene.cs"/>
-        <Compile Include="Scenes\Samples\Verlet Physics\VerletPhysicsScene.cs"/>
-        <Compile Include="Scenes\Samples\Verlet Physics\VerletSystem.cs"/>
-        <Compile Include="SampleHelpers\MouseFollow.cs"/>
-        <Compile Include="SampleHelpers\SampleScene.cs"/>
+        <Compile Include="Game1.cs" />
+        <Compile Include="Program.cs" />
+        <Compile Include="Scenes\Documentation\Deferred Lighting\DeferredLightingDocumentationScene.cs" />
+        <Compile Include="Scenes\Samples\AI\AIScene.cs" />
+        <Compile Include="Scenes\Samples\AI\AIUI.cs" />
+        <Compile Include="Scenes\Samples\AI\BehaviorTreeMiner.cs" />
+        <Compile Include="Scenes\Samples\AI\GOAPMiner.cs" />
+        <Compile Include="Scenes\Samples\AI\MinerState.cs" />
+        <Compile Include="Scenes\Samples\AI\UtilityMiner.cs" />
+        <Compile Include="Scenes\Samples\AI\UtilityAIActions\ChooseBestLocation.cs" />
+        <Compile Include="Scenes\Samples\AI\UtilityAIActions\MoveToBestLocation.cs" />
+        <Compile Include="Scenes\Samples\Animated Tiles\AnimatedTilesScene.cs" />
+        <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingController.cs" />
+        <Compile Include="Scenes\Samples\Deferred Lighting\DeferredLightingScene.cs" />
+        <Compile Include="Scenes\Samples\Destructable Tilemap\DestructableTilemapScene.cs" />
+        <Compile Include="Scenes\Samples\Destructable Tilemap\PlayerDashMover.cs" />
+        <Compile Include="Scenes\Samples\Empty Scene\BasicScene.cs" />
+        <Compile Include="Scenes\Samples\Farseer SVG\FarseerSVGScene.cs" />
+        <Compile Include="Scenes\Samples\LineCasting\LineCaster.cs" />
+        <Compile Include="Scenes\Samples\LineCasting\LineCastingScene.cs" />
+        <Compile Include="Scenes\Samples\Ninja Adventure\CameraBounds.cs" />
+        <Compile Include="Scenes\Samples\Ninja Adventure\FireballProjectileController.cs" />
+        <Compile Include="Scenes\Samples\Ninja Adventure\Ninja.cs" />
+        <Compile Include="Scenes\Samples\Ninja Adventure\NinjaAdventureScene.cs" />
+        <Compile Include="Scenes\Samples\Ninja Adventure\ProjectileHitDetector.cs" />
+        <Compile Include="Scenes\Samples\Particles\ParticleSystemSelector.cs" />
+        <Compile Include="Scenes\Samples\Particles\ParticlesScene.cs" />
+        <Compile Include="Scenes\Samples\Pathfinding\Pathfinder.cs" />
+        <Compile Include="Scenes\Samples\Pathfinding\PathfindingScene.cs" />
+        <Compile Include="Scenes\Samples\Platformer\Caveman.cs" />
+        <Compile Include="Scenes\Samples\Platformer\PlatformerScene.cs" />
+        <Compile Include="Scenes\Samples\RigidBodies\RigidBodyScene.cs" />
+        <Compile Include="Scenes\Samples\Mesh Shadows\MeshShadowsScene.cs" />
+        <Compile Include="Scenes\Samples\Spring Grid\GridModifier.cs" />
+        <Compile Include="Scenes\Samples\Spring Grid\SpringGridScene.cs" />
+        <Compile Include="Scenes\Samples\Sprite Lights\SpriteLightsScene.cs" />
+        <Compile Include="Scenes\Samples\Verlet Physics\VerletPhysicsScene.cs" />
+        <Compile Include="Scenes\Samples\Verlet Physics\VerletSystem.cs" />
+        <Compile Include="SampleHelpers\MouseFollow.cs" />
+        <Compile Include="SampleHelpers\SampleScene.cs" />
         <Compile Include="Shared\ContentPathGenerator.cs">
             <DependentUpon>ContentPathGenerator.tt</DependentUpon>
         </Compile>
-        <Compile Include="Shared\MovingPlatform.cs"/>
-        <Compile Include="Shared\PressKeyToPerformAction.cs"/>
-        <Compile Include="Shared\SimpleMover.cs"/>
-        <Compile Include="Shared\TriggerListener.cs"/>
+        <Compile Include="Shared\MovingPlatform.cs" />
+        <Compile Include="Shared\PressKeyToPerformAction.cs" />
+        <Compile Include="Shared\SimpleMover.cs" />
+        <Compile Include="Shared\TriggerListener.cs" />
         <Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs">
             <Link>Shared\SvgPathBuilder.cs</Link>
         </Compile>
-        <Compile Include="Scenes\Samples\Particles\PexExporter.cs"/>
-        <Compile Include="Scenes\Samples\Stencil Shadows\StencilShadowsScene.cs"/>
-        <Compile Include="Scenes\Samples\Stencil Shadows\LiveLightController.cs"/>
+        <Compile Include="Scenes\Samples\Particles\PexExporter.cs" />
+        <Compile Include="Scenes\Samples\Stencil Shadows\StencilShadowsScene.cs" />
+        <Compile Include="Scenes\Samples\Stencil Shadows\LiveLightController.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="Content\bin\DesktopGL\Content\Platformer\caveman.xnb">
@@ -364,11 +364,11 @@
         <None Include="Content\SVG\farseer-svg.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="Content\Shadows\Block.png"/>
-        <None Include="Content\Shadows\BlockGlow.png"/>
-        <None Include="Content\Shadows\Light.fx"/>
-        <None Include="Content\Shadows\Light.mgfxo"/>
-        <None Include="Content\Shadows\sprite-light.png"/>
+        <None Include="Content\Shadows\Block.png" />
+        <None Include="Content\Shadows\BlockGlow.png" />
+        <None Include="Content\Shadows\Light.fx" />
+        <None Include="Content\Shadows\Light.mgfxo" />
+        <None Include="Content\Shadows\sprite-light.png" />
         <None Include="Content\Platformer\tiledMap.tmx">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
@@ -402,10 +402,10 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Visible="false" Include="Icon.ico"/>
+        <EmbeddedResource Visible="false" Include="Icon.ico" />
     </ItemGroup>
     <ItemGroup>
-        <MonoGameContentReference Include="Content\Content.mgcb"/>
+        <MonoGameContentReference Include="Content\Content.mgcb" />
     </ItemGroup>
     <ItemGroup>
         <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
@@ -464,17 +464,17 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Content\DeferredLighting\"/>
-        <Folder Include="Content\NinjaAdventure\characters\"/>
-        <Folder Include="Content\Shared\"/>
-        <Folder Include="Content\SpriteLights\"/>
+        <Folder Include="Content\DeferredLighting\" />
+        <Folder Include="Content\NinjaAdventure\characters\" />
+        <Folder Include="Content\Shared\" />
+        <Folder Include="Content\SpriteLights\" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0"/>
+        <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
         <PackageReference Include="MonoGame.Framework.DesktopGL">
             <Version>3.7.1.189</Version>
         </PackageReference>
     </ItemGroup>
-    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
-    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets"/>
+    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
