@@ -7,7 +7,7 @@
 <#@ import namespace="System.Globalization" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 
-<# var sourceFolders = new string[] { "../Content/bin/DesktopGL", "../Content" }; #>
+<# var sourceFolders = new string[] { "../Content" }; #>
 
 
 namespace Nez
@@ -26,11 +26,6 @@ namespace Nez
 		{
 			var dirName = new DirectoryInfo( dir ).Name.ToLower();
 			if( dirName == "bin" || dirName == "obj" || dirName == "content" )
-				continue;
-
-			// dont delve into directories that don't contan xnb files
-			var xnbFiles = Directory.GetFiles( dir, "*.xnb", SearchOption.AllDirectories );
-			if( xnbFiles.Length == 0 )
 				continue;
 
 			// start off the recursive directory printing
@@ -83,20 +78,21 @@ namespace Nez
 	{
 		var firstIndent = new string( '\t', depth );
 
-		foreach( var file in Directory.GetFiles( dir, "*.xnb" ) )
+		foreach( var file in Directory.GetFiles( dir ) )
 		{
+			if (file.Contains("DS_Store") || file.EndsWith("mgfxo"))
+				continue;
+			
 			// clear out all of the path up to the sourceFolder so we get just the relative path to the Content folder
-			var finalPath = file.Substring( file.IndexOf( sourceFolder ) + sourceFolder.Length )
-				.Replace( ".xnb", string.Empty );
+			var finalPath = file.Substring( file.IndexOf( sourceFolder ) + 3 );
 			var fileInfo = new FileInfo( file );
-			var fileName = fileInfo.Name.Replace( ".xnb", string.Empty );
-			var className = GenerateClassName( fileName );
+			var className = GenerateClassName( fileInfo.Name.Replace(Path.GetExtension(fileInfo.Name), "") );
 
 			if( finalPath[0] == '/' || finalPath[0] == '\\' )
 				finalPath = finalPath.Substring( 1 );
 
             // if file name is reserved insert a leading '@'
-			if( Keywords.Contains( className ) )
+			if( Keywords.Contains( fileInfo.Name ) )
 				className = className.Insert( 0, "@" );
 
 			WriteLine( "{0}public const string {1} = @\"{2}\";", firstIndent, className, finalPath );

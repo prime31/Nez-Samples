@@ -1,5 +1,5 @@
 <particleEmitterConfig>
-  <texture name="thingy.png"/>
+  <texture name="thingy_tex.png"/>
   <sourcePosition x="300.00" y="300.00"/>
   <sourcePositionVariance x="5.31" y="850.77"/>
   <speed value="279.97"/>

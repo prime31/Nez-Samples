@@ -45,7 +45,7 @@ namespace Nez.Samples
 			CreateObstacles();
 
 			// create the background texture, settig it to the correct RenderLayer
-			var bgTexture = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
+			var bgTexture = Content.LoadTexture(Nez.Content.SpriteLights.Bg);
 			CreateEntity("bg")
 				.SetPosition(Screen.Center)
 				.SetScale(9.4f)
@@ -65,7 +65,7 @@ namespace Nez.Samples
 		/// </summary>
 		void CreateLights()
 		{
-			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
+			var lightTex = Content.LoadTexture(Nez.Content.SpriteLights.Spritelight);
 			CreateEntity("texture-light")
 				.SetPosition(Screen.Center + new Vector2(200, 200))
 				.SetScale(8)
@@ -90,7 +90,7 @@ namespace Nez.Samples
 		/// </summary>
 		void CreateBoxes()
 		{
-			var blockTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Block);
+			var blockTexture = Content.LoadTexture(Nez.Content.Shadows.Block);
 			CreateEntity("block1")
 				.SetPosition(Screen.Center)
 				.AddComponent(new SpriteRenderer(blockTexture))
@@ -115,14 +115,14 @@ namespace Nez.Samples
 
 			CreateEntity("circle")
 				.SetPosition(1000, 250)
-				.AddComponent(new SpriteRenderer(Content.Load<Texture2D>(Nez.Content.Shared.Moon)))
+				.AddComponent(new SpriteRenderer(Content.LoadTexture(Nez.Content.Shared.Moon)))
 				.SetColor(Color.LightGreen)
 				.AddComponent(new CircleCollider(64));
 
 			var polyPoints = Polygon.BuildSymmetricalPolygon(5, 140);
 			var polygonEntity = CreateEntity("polygon");
 			polygonEntity.SetPosition(460, 450)
-				.AddComponent(new PolygonMesh(polyPoints)).SetTexture(Content.Load<Texture2D>(Nez.Content.Shared.Moon))
+				.AddComponent(new PolygonMesh(polyPoints)).SetTexture(Content.LoadTexture(Nez.Content.Shared.Moon))
 				.AddComponent(new PolygonCollider(polyPoints));
 
 			polygonEntity.TweenRotationDegreesTo(180, 3f)

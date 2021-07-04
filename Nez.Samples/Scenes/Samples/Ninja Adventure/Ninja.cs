@@ -33,7 +33,7 @@ namespace Nez.Samples
 		{
 			// load up our character texture atlas. we have different characters in 1 - 6.png for variety
 			var characterPng = Random.Range(1, 7);
-			var texture = Entity.Scene.Content.Load<Texture2D>("NinjaAdventure/characters/" + characterPng);
+			var texture = Entity.Scene.Content.LoadTexture("Content/NinjaAdventure/characters/" + characterPng + ".png");
 			var sprites = Sprite.SpritesFromAtlas(texture, 16, 16);
 
 			_mover = Entity.AddComponent(new Mover());

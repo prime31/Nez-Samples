@@ -5,83 +5,132 @@ namespace Nez
 {
     class Content
     {
+		public static class SVG
+		{
+			public const string Farseersvg = @"Content/SVG/farseer-svg.svg";
+		}
+
 		public static class Platformer
 		{
-			public const string Caveman = @"Platformer/caveman";
+			public const string Caveman = @"Content/Platformer/caveman.png";
+			public const string TiledMap = @"Content/Platformer/tiledMap.tmx";
+			public const string Tileset = @"Content/Platformer/tileset.png";
+		}
+
+		public static class DestructableMap
+		{
+			public const string Destructablemap = @"Content/DestructableMap/destructable-map.tmx";
+			public const string Desertpalacetiles2x = @"Content/DestructableMap/desert-palace-tiles2x.png";
+		}
+
+		public static class Nez
+		{
+			public static class Textures
+			{
+				public static class TextureWipeTransition
+				{
+				}
+
+			}
+
+			public static class Effects
+			{
+				public static class Transitions
+				{
+				}
+
+			}
+
 		}
 
 		public static class Shadows
 		{
-			public const string Spritelight = @"Shadows/sprite-light";
-			public const string BlockGlow = @"Shadows/BlockGlow";
-			public const string Block = @"Shadows/Block";
+			public const string Spritelight = @"Content/Shadows/sprite-light.png";
+			public const string Light = @"Content/Shadows/Light.fx";
+			public const string BlockGlow = @"Content/Shadows/BlockGlow.png";
+			public const string Block = @"Content/Shadows/Block.png";
 		}
 
 		public static class ParticleDesigner
 		{
-			public const string PlasmaGlow = @"ParticleDesigner/Plasma Glow";
-			public const string RealPopcorn = @"ParticleDesigner/Real Popcorn";
-			public const string WinnerStars = @"ParticleDesigner/Winner Stars";
-			public const string ShootingFireball = @"ParticleDesigner/Shooting Fireball";
-			public const string TheSun = @"ParticleDesigner/The Sun";
-			public const string Fire = @"ParticleDesigner/Fire";
-			public const string Wu1 = @"ParticleDesigner/wu1";
-			public const string MeksBloodSpill = @"ParticleDesigner/Meks Blood Spill";
-			public const string JasonChoi_Flash = @"ParticleDesigner/JasonChoi_Flash";
-			public const string Trippy = @"ParticleDesigner/Trippy";
-			public const string TouchUp = @"ParticleDesigner/Touch Up";
-			public const string Snow = @"ParticleDesigner/Snow";
-			public const string CrazyBlue = @"ParticleDesigner/Crazy Blue";
-			public const string AtomicBubble = @"ParticleDesigner/Atomic Bubble";
-			public const string Comet = @"ParticleDesigner/Comet";
-			public const string Electrons = @"ParticleDesigner/Electrons";
-			public const string BlueFlame = @"ParticleDesigner/Blue Flame";
-			public const string Foam = @"ParticleDesigner/Foam";
-			public const string BlueGalaxy = @"ParticleDesigner/Blue Galaxy";
-			public const string JasonChoi_Swirl01 = @"ParticleDesigner/JasonChoi_Swirl01";
-			public const string JasonChoi_risingup = @"ParticleDesigner/JasonChoi_rising up";
-			public const string IntoTheBlue = @"ParticleDesigner/Into The Blue";
-			public const string Leaves = @"ParticleDesigner/Leaves";
-			public const string Huo1 = @"ParticleDesigner/huo1";
-			public const string GirosGratis = @"ParticleDesigner/Giros Gratis";
+			public const string TouchUp = @"Content/ParticleDesigner/Touch Up.pex";
+			public const string Trippy = @"Content/ParticleDesigner/Trippy.pex";
+			public const string Snow = @"Content/ParticleDesigner/Snow.pex";
+			public const string Thingy = @"Content/ParticleDesigner/Thingy.pex";
+			public const string MeksBloodSpill = @"Content/ParticleDesigner/Meks Blood Spill.pex";
+			public const string JasonChoi_Flash = @"Content/ParticleDesigner/JasonChoi_Flash.pex";
+			public const string TheSun = @"Content/ParticleDesigner/The Sun.pex";
+			public const string Fire = @"Content/ParticleDesigner/Fire.pex";
+			public const string ShootingFireball = @"Content/ParticleDesigner/Shooting Fireball.pex";
+			public const string Wu1 = @"Content/ParticleDesigner/wu1.pex";
+			public const string PlasmaGlow = @"Content/ParticleDesigner/Plasma Glow.pex";
+			public const string RealPopcorn = @"Content/ParticleDesigner/Real Popcorn.pex";
+			public const string WinnerStars = @"Content/ParticleDesigner/Winner Stars.pex";
+			public const string GirosGratis = @"Content/ParticleDesigner/Giros Gratis.pex";
+			public const string Huo1 = @"Content/ParticleDesigner/huo1.pex";
+			public const string Leaves = @"Content/ParticleDesigner/Leaves.pex";
+			public const string JasonChoi_Swirl01 = @"Content/ParticleDesigner/JasonChoi_Swirl01.pex";
+			public const string IntoTheBlue = @"Content/ParticleDesigner/Into The Blue.pex";
+			public const string JasonChoi_risingup = @"Content/ParticleDesigner/JasonChoi_rising up.pex";
+			public const string Thingy_tex = @"Content/ParticleDesigner/thingy_tex.png";
+			public const string AtomicBubble = @"Content/ParticleDesigner/Atomic Bubble.pex";
+			public const string CrazyBlue = @"Content/ParticleDesigner/Crazy Blue.pex";
+			public const string Electrons = @"Content/ParticleDesigner/Electrons.pex";
+			public const string Comet = @"Content/ParticleDesigner/Comet.pex";
+			public const string Foam = @"Content/ParticleDesigner/Foam.pex";
+			public const string BlueGalaxy = @"Content/ParticleDesigner/Blue Galaxy.pex";
+			public const string BlueFlame = @"Content/ParticleDesigner/Blue Flame.pex";
+		}
+
+		public static class AnimatedTiles
+		{
+			public const string Desertpalacetiles = @"Content/AnimatedTiles/desert-palace-tiles.png";
+			public const string Desertpalace = @"Content/AnimatedTiles/desert-palace.tmx";
+			public const string Desertpalacelamp = @"Content/AnimatedTiles/desert-palace-lamp.png";
 		}
 
 		public static class DeferredLighting
 		{
-			public const string OrangeNorm = @"DeferredLighting/orangeNorm";
-			public const string MoonNorm = @"DeferredLighting/moonNorm";
-			public const string Orange = @"DeferredLighting/orange";
-			public const string Moon = @"DeferredLighting/moon";
-			public const string BgNorm = @"DeferredLighting/bgNorm";
-			public const string Bg = @"DeferredLighting/bg";
+			public const string MoonNorm = @"Content/DeferredLighting/moonNorm.png";
+			public const string OrangeNorm = @"Content/DeferredLighting/orangeNorm.png";
+			public const string Orange = @"Content/DeferredLighting/orange.png";
+			public const string Moon = @"Content/DeferredLighting/moon.png";
+			public const string BgNorm = @"Content/DeferredLighting/bgNorm.png";
+			public const string Bg = @"Content/DeferredLighting/bg.png";
 		}
 
 		public static class Shared
 		{
-			public const string Moon = @"Shared/moon";
+			public const string Moon = @"Content/Shared/moon.png";
 		}
 
 		public static class NinjaAdventure
 		{
-			public static class Characters
+			public static class Map
 			{
-				public const string _6 = @"NinjaAdventure/characters/6";
-				public const string _4 = @"NinjaAdventure/characters/4";
-				public const string _5 = @"NinjaAdventure/characters/5";
-				public const string _1 = @"NinjaAdventure/characters/1";
-				public const string _2 = @"NinjaAdventure/characters/2";
-				public const string _3 = @"NinjaAdventure/characters/3";
+				public const string Tilemap = @"Content/NinjaAdventure/map/tilemap.tmx";
+				public const string Tileset = @"Content/NinjaAdventure/map/tileset.png";
 			}
 
-			public const string Plume = @"NinjaAdventure/plume";
+			public static class Characters
+			{
+				public const string _4 = @"Content/NinjaAdventure/characters/4.png";
+				public const string _5 = @"Content/NinjaAdventure/characters/5.png";
+				public const string _6 = @"Content/NinjaAdventure/characters/6.png";
+				public const string _2 = @"Content/NinjaAdventure/characters/2.png";
+				public const string _3 = @"Content/NinjaAdventure/characters/3.png";
+				public const string _1 = @"Content/NinjaAdventure/characters/1.png";
+			}
+
+			public const string Plume = @"Content/NinjaAdventure/plume.tga";
 		}
 
 		public static class SpriteLights
 		{
-			public const string Spritelight = @"SpriteLights/sprite-light";
-			public const string Pixelspritelight = @"SpriteLights/pixel-sprite-light";
-			public const string Tubelight = @"SpriteLights/tube-light";
-			public const string Bg = @"SpriteLights/bg";
+			public const string Spritelight = @"Content/SpriteLights/sprite-light.png";
+			public const string Tubelight = @"Content/SpriteLights/tube-light.png";
+			public const string Pixelspritelight = @"Content/SpriteLights/pixel-sprite-light.png";
+			public const string Bg = @"Content/SpriteLights/bg.png";
 		}
 
 

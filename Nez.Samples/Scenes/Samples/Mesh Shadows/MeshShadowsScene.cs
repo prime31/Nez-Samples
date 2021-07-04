@@ -35,10 +35,10 @@ namespace Nez.Samples
 				.SetEnableBlur(true)
 				.SetBlurAmount(0.5f);
 
-			var lightTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Spritelight);
-			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
-			var blockTexture = Content.Load<Texture2D>(Nez.Content.Shadows.Block);
-			var blockGlowTexture = Content.Load<Texture2D>(Nez.Content.Shadows.BlockGlow);
+			var lightTexture = Content.LoadTexture(Nez.Content.Shadows.Spritelight);
+			var moonTexture = Content.LoadTexture(Nez.Content.Shared.Moon);
+			var blockTexture = Content.LoadTexture(Nez.Content.Shadows.Block);
+			var blockGlowTexture = Content.LoadTexture(Nez.Content.Shadows.BlockGlow);
 
 			// create some boxes
 			Action<Vector2, string, bool> boxMaker = (Vector2 pos, string name, bool isTrigger) =>

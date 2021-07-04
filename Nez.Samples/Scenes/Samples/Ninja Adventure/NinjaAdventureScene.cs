@@ -26,7 +26,7 @@ namespace Nez.Samples
 
 			// load the TiledMap and display it with a TiledMapComponent
 			var tiledEntity = CreateEntity("tiled-map-entity");
-			var map = Content.LoadTiledMap("Content/NinjaAdventure/map/tilemap.tmx");
+			var map = Content.LoadTiledMap(Nez.Content.NinjaAdventure.Map.Tilemap);
 			var tiledMapRenderer = tiledEntity.AddComponent(new TiledMapRenderer(map, "collision"));
 			tiledMapRenderer.SetLayersToRender(new[] { "tiles", "terrain", "details" });
 
@@ -64,7 +64,7 @@ namespace Nez.Samples
 			Camera.Entity.AddComponent(new FollowCamera(playerEntity));
 
 			// stick something to shoot in the level
-			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
+			var moonTexture = Content.LoadTexture(Nez.Content.Shared.Moon);
 			var moonEntity = CreateEntity("moon", new Vector2(412, 460));
 			moonEntity.AddComponent(new SpriteRenderer(moonTexture));
 			moonEntity.AddComponent(new ProjectileHitDetector());
@@ -90,7 +90,7 @@ namespace Nez.Samples
 
 
 			// load up a Texture that contains a fireball animation and setup the animation frames
-			var texture = Content.Load<Texture2D>(Nez.Content.NinjaAdventure.Plume);
+			var texture = Content.LoadTexture(Nez.Content.NinjaAdventure.Plume);
 			var sprites = Sprite.SpritesFromAtlas(texture, 16, 16);
 
 			// add the Sprite to the Entity and play the animation after creating it

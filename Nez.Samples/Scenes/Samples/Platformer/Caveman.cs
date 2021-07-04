@@ -26,7 +26,7 @@ namespace Nez.Samples
 
 		public override void OnAddedToEntity()
 		{
-			var texture = Entity.Scene.Content.Load<Texture2D>(Content.Platformer.Caveman);
+			var texture = Entity.Scene.Content.LoadTexture(Content.Platformer.Caveman);
 			var sprites = Sprite.SpritesFromAtlas(texture, 32, 32);
 
 			_boxCollider = Entity.GetComponent<BoxCollider>();

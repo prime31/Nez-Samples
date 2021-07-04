@@ -32,20 +32,20 @@ namespace Nez.Samples
 			_spriteLightPostProcessor = AddPostProcessor(new SpriteLightPostProcessor(0, _lightRenderer.RenderTexture));
 
 
-			var bg = Content.Load<Texture2D>(Nez.Content.SpriteLights.Bg);
+			var bg = Content.LoadTexture(Nez.Content.SpriteLights.Bg);
 			var bgEntity = CreateEntity("bg");
 			bgEntity.Position = Screen.Center;
 			bgEntity.AddComponent(new SpriteRenderer(bg));
 			bgEntity.Scale = new Vector2(9.4f);
 
-			var moonTex = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
+			var moonTex = Content.LoadTexture(Nez.Content.Shared.Moon);
 			var entity = CreateEntity("moon");
 			entity.AddComponent(new SpriteRenderer(moonTex));
 			entity.Position = new Vector2(Screen.Width / 4, Screen.Height / 8);
 
 
-			var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
-			var pixelLightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Pixelspritelight);
+			var lightTex = Content.LoadTexture(Nez.Content.SpriteLights.Spritelight);
+			var pixelLightTex = Content.LoadTexture(Nez.Content.SpriteLights.Pixelspritelight);
 
 			AddSpriteLight(lightTex, new Vector2(50, 50), 2);
 			AddSpriteLight(lightTex, Screen.Center, 3);
@@ -103,7 +103,7 @@ namespace Nez.Samples
 				.GetElement<TextButton>();
 			button.OnClicked += butt =>
 			{
-				var lightTex = Content.Load<Texture2D>(Nez.Content.SpriteLights.Spritelight);
+				var lightTex = Content.LoadTexture(Nez.Content.SpriteLights.Spritelight);
 				var position = new Vector2(Random.Range(0, Screen.Width), Random.Range(0, Screen.Height));
 				AddSpriteLight(lightTex, position, Random.Range(2f, 3f));
 			};

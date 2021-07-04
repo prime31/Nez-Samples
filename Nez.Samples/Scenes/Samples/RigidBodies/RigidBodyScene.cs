@@ -15,7 +15,7 @@ namespace Nez.Samples
 
 			Screen.SetSize(1280, 720);
 
-			var moonTexture = Content.Load<Texture2D>(Nez.Content.Shared.Moon);
+			var moonTexture = Content.LoadTexture(Nez.Content.Shared.Moon);
 
 			var friction = 0.3f;
 			var elasticity = 0.4f;

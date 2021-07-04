@@ -34,12 +34,12 @@ namespace Nez.Samples
 			deferredRenderer.EnableDebugBufferRender = false;
 
 			// prep our textures. we have diffuse and normal maps to interact with the lights.
-			var moonTex = Content.Load<Texture2D>(Nez.Content.DeferredLighting.Moon);
-			var moonNorm = Content.Load<Texture2D>(Nez.Content.DeferredLighting.MoonNorm);
-			var orangeTexture = Content.Load<Texture2D>(Nez.Content.DeferredLighting.Orange);
-			var orangeNormalMap = Content.Load<Texture2D>(Nez.Content.DeferredLighting.OrangeNorm);
-			var bgTexture = Content.Load<Texture2D>(Nez.Content.DeferredLighting.Bg);
-			var bgNormalMap = Content.Load<Texture2D>(Nez.Content.DeferredLighting.BgNorm);
+			var moonTex = Content.LoadTexture(Nez.Content.DeferredLighting.Moon);
+			var moonNorm = Content.LoadTexture(Nez.Content.DeferredLighting.MoonNorm);
+			var orangeTexture = Content.LoadTexture(Nez.Content.DeferredLighting.Orange);
+			var orangeNormalMap = Content.LoadTexture(Nez.Content.DeferredLighting.OrangeNorm);
+			var bgTexture = Content.LoadTexture(Nez.Content.DeferredLighting.Bg);
+			var bgNormalMap = Content.LoadTexture(Nez.Content.DeferredLighting.BgNorm);
 
 			// prep our Materials. Deferred lighting requires a Material that is normal map aware. We can also leave our Material null and
 			// a default Material will be used that is diffuse lighting only (no normal map).

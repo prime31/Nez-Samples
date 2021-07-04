@@ -68,7 +68,6 @@ namespace Nez.Samples
 		{
 			_table = Canvas.Stage.AddElement(new Table());
             var sampleScenes = new Table().PadRight(5);
-            var documentationScenes = new Table().PadLeft(5);
 
 			_table.SetFillParent(true).Right().Top();
 
@@ -81,10 +80,10 @@ namespace Nez.Samples
 				.GetElement<Button>().OnClicked += butt =>
             {
                 sampleScenes.SetIsVisible(!sampleScenes.IsVisible());
-                documentationScenes.SetIsVisible(!documentationScenes.IsVisible());
             };
 
-            CheckBox checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
+			_table.Row().SetPadTop(10);
+			var checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
             {
                 CheckboxOn = new PrimitiveDrawable(30, Color.Green),
                 CheckboxOff = new PrimitiveDrawable(30, new Color(0x00, 0x3c, 0xe7, 0xff))
@@ -96,16 +95,9 @@ namespace Nez.Samples
 
 			_table.Add(sampleScenes).SetAlign(Align.Top);
 
-            _table.Add(documentationScenes).SetAlign(Align.Top);
-
 			sampleScenes.Row();
             sampleScenes.Add(new Label("Samples", new LabelStyle())).SetFillX().SetMinHeight(30);
             sampleScenes.Row();
-
-            documentationScenes.Row();
-            documentationScenes.Add(new Label("Documentation", new LabelStyle())).Top().SetFillX().SetMinHeight(30);
-           
-			documentationScenes.Row();
 
 			var buttonStyle = new TextButtonStyle(new PrimitiveDrawable(new Color(78, 91, 98), 10f),
 				new PrimitiveDrawable(new Color(244, 23, 135)), new PrimitiveDrawable(new Color(168, 207, 115)))
@@ -121,10 +113,7 @@ namespace Nez.Samples
 					if (attr.GetType() == typeof(SampleSceneAttribute))
 					{
 						var sampleAttr = attr as SampleSceneAttribute;
-
-                        Table targetTable = sampleAttr.Documentation ? documentationScenes : sampleScenes;
-
-						var button = targetTable.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
+						var button = sampleScenes.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
 							.SetMinHeight(30).GetElement<TextButton>();
                         button.OnClicked += butt =>
 						{
@@ -134,7 +123,7 @@ namespace Nez.Samples
 							Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(type) as Scene));
 						};
 
-                        targetTable.Row().SetPadTop(10);
+						sampleScenes.Row().SetPadTop(10);
 
 						// optionally add instruction text for the current scene
 						if (sampleAttr.InstructionText != null && type == GetType())
@@ -206,14 +195,12 @@ namespace Nez.Samples
 		public string ButtonName;
 		public int Order;
 		public string InstructionText;
-        public bool Documentation;
 
-		public SampleSceneAttribute(string buttonName, int order, string instructionText = null, bool documentation = false)
+		public SampleSceneAttribute(string buttonName, int order, string instructionText = null)
 		{
 			ButtonName = buttonName;
 			Order = order;
 			InstructionText = instructionText;
-            Documentation = documentation;
         }
 	}
 }
