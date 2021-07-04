@@ -9,8 +9,7 @@ Setup
 
 `git clone --recursive https://github.com/prime31/Nez-Samples.git`
 
-- open Nez/Nez.sln and build that first. This is required so that the NuGet packages are downloaded and the pipeline tool DLL is generated.
-- now you can open the Nez.Samples.sln and run any of the projects in there
+- now you can open the `Nez.MG17.Samples.sln` (for MonoGame 1.7) or the `Nez.MG18.Samples.sln` (for MonoGame 1.8 and NET Core 3) and run the project (for NET Core 3 you can also run with the command `dotnet run --project Nez.MG18.Samples.csproj`)
 
 
 Sample Scenes
