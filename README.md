@@ -1,6 +1,6 @@
 # Nez-Samples
 
-Samples and demos of various [Nez](https://github.com/prime31/Nez) features. The Samples repo is built against MonoGame 3.5.
+Samples and demos of various [Nez](https://github.com/prime31/Nez) features. The Samples repo is built against MonoGame 3.7 + 3.8 + FNA.
 
 
 Setup
