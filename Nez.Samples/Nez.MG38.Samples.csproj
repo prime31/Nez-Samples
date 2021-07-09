@@ -51,9 +51,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Nez\Nez.Portable\Nez.MG18.csproj" />
-		<ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.MG18.FarseerPhysics.csproj" />
-		<ProjectReference Include="..\Nez\Nez.ImGui\Nez.MG18.ImGui.csproj" />
+		<ProjectReference Include="..\Nez\Nez.Portable\Nez.MG38.csproj" />
+		<ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.MG38.FarseerPhysics.csproj" />
+		<ProjectReference Include="..\Nez\Nez.ImGui\Nez.MG38.ImGui.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
