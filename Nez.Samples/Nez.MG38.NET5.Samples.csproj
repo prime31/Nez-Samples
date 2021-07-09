@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+	    <OutputType>WinExe</OutputType>
+	    <TargetFramework>net5</TargetFramework>
+	    <PublishReadyToRun>false</PublishReadyToRun>
+	    <TieredCompilation>false</TieredCompilation>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+	</ItemGroup>
+  
+	<ItemGroup>
+		<Compile Update="Shared\ContentPathGenerator.cs">
+			<DependentUpon>ContentPathGenerator.tt</DependentUpon>
+		</Compile>
+		<Compile Include="..\Nez\Nez.Portable\Graphics\SVG\Shapes\Paths\SvgPathBuilder.cs" Link="Shared\SvgPathBuilder.cs" />
+	</ItemGroup>
+
+	<!-- Includes Content folder, Nez default effects and textures -->
+	<ItemGroup>
+		<Content Include="../Nez/DefaultContent/MG3.8Effects/**/*.mgfxo">
+			<Link>Content/nez/effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="../Nez/DefaultContent/textures/**/*.xnb">
+			<Link>Content/nez/textures/%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+    <!-- Include the Content directory (except for .fx files, since we use .fxb at runtime) -->
+    <ItemGroup>
+        <Content Include="Content\**\*" Exclude="**\*.fx">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+	<ItemGroup>
+		<None Include="Shared\ContentPathGenerator.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>ContentPathGenerator.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Visible="false" Include="Icon.ico" />
+		<EmbeddedResource Visible="false" Include="Icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Nez\Nez.Portable\Nez.MG38.csproj" />
+		<ProjectReference Include="..\Nez\Nez.FarseerPhysics\Nez.MG38.FarseerPhysics.csproj" />
+		<ProjectReference Include="..\Nez\Nez.ImGui\Nez.MG38.ImGui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+	</ItemGroup>
+</Project>
