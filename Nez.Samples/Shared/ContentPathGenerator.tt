@@ -7,19 +7,27 @@
 <#@ import namespace="System.Globalization" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 
-<# var sourceFolders = new string[] { "../Content" }; #>
-
+<#
+    // Paths to the content folders, relative to the .tt file
+	string[] sourceFolders = new string[] { "../Content" }; 
+#>
 
 namespace Nez
 {
+    /// <summary>
+    /// class that contains the names of all of the files processed by the Pipeline Tool
+    /// </summary>
+    /// <remarks>
+    /// Nez includes a T4 template that will auto-generate the content of this file.
+    /// See: https://github.com/prime31/Nez/blob/master/FAQs/ContentManagement.md#auto-generating-content-paths"
+    /// </remarks>
     class Content
     {
 <#
-
-	// loop through all of our sourceFolders
+    // loop through all of our sourceFolders
 	foreach( var sourceFolder in sourceFolders )
 	{
-		var directories = Directory.GetDirectories( Host.ResolvePath( sourceFolder ) );
+		var directories = Directory.GetDirectories(Host.ResolvePath(sourceFolder));
 		
 		// loop through all the directories in our sourceFolder
 		foreach( var dir in directories )
@@ -40,8 +48,6 @@ namespace Nez
 
     }
 }
-
-
 
 <#+
 	// C# reserved keywords
@@ -98,22 +104,7 @@ namespace Nez
 			WriteLine( "{0}public const string {1} = @\"{2}\";", firstIndent, className, finalPath );
 		}
 	}
-
-
-	string StripInvalidPathChars( string input )
-	{
-		var invalidChars = Path.GetInvalidPathChars();
-    	return new string( input.Where( m => !invalidChars.Contains( m ) ).ToArray<char>() );
-	}
-
-
-	string StripInvalidFilenameChars( string input )
-	{
-		var invalidChars = Path.GetInvalidFileNameChars();
-    	return new string( input.Where( m => !invalidChars.Contains( m ) ).ToArray<char>() );
-	}
-
-
+    
 	// attempts to generate a proper path name
 	string GenerateClassName( string className )
 	{
