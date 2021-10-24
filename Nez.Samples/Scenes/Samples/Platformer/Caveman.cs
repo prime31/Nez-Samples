@@ -8,7 +8,7 @@ using Nez.Tiled;
 
 namespace Nez.Samples
 {
-	public class Caveman : Component, ITriggerListener, IUpdatable
+	public class Caveman : Component, IUpdatable
 	{
 		public float MoveSpeed = 150;
 		public float Gravity = 1000;
@@ -19,10 +19,10 @@ namespace Nez.Samples
 		BoxCollider _boxCollider;
 		TiledMapMover.CollisionState _collisionState = new TiledMapMover.CollisionState();
 		Vector2 _velocity;
+		ColliderTriggerHelper _triggerHelper;
 
 		VirtualButton _jumpInput;
 		VirtualIntegerAxis _xAxisInput;
-
 
 		public override void OnAddedToEntity()
 		{
@@ -32,6 +32,11 @@ namespace Nez.Samples
 			_boxCollider = Entity.GetComponent<BoxCollider>();
 			_mover = Entity.GetComponent<TiledMapMover>();
 			_animator = Entity.AddComponent(new SpriteAnimator(sprites[0]));
+
+			// the TiledMapMover does not call ITriggerListener Methods on collision.
+			// To achieve ITriggerListener calling, this ColliderTriggerHelper can be used.
+			// See the Update() function below, to see how this helper can be used.
+			_triggerHelper = new ColliderTriggerHelper(Entity);
 
 			// extract the animations from the atlas. they are setup in rows with 8 columns
 			_animator.AddAnimation("Walk", new[]
@@ -160,6 +165,10 @@ namespace Nez.Samples
 
 			// move
 			_mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collisionState);
+			
+			// Update the TriggerHelper. This will check if our collider intersects with a
+			// trigger-collider and call ITriggerListener if necessary.
+			_triggerHelper.Update();
 
 			if (_collisionState.Below)
 				_velocity.Y = 0;
@@ -167,19 +176,5 @@ namespace Nez.Samples
 			if (animation != null && !_animator.IsAnimationActive(animation))
 				_animator.Play(animation);
 		}
-
-		#region ITriggerListener implementation
-
-		void ITriggerListener.OnTriggerEnter(Collider other, Collider self)
-		{
-			Debug.Log("triggerEnter: {0}", other.Entity.Name);
-		}
-
-		void ITriggerListener.OnTriggerExit(Collider other, Collider self)
-		{
-			Debug.Log("triggerExit: {0}", other.Entity.Name);
-		}
-
-		#endregion
 	}
 }

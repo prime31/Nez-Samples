@@ -7,15 +7,24 @@
 <#@ import namespace="System.Globalization" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 
-<# var sourceFolders = new string[] { "../Content" }; #>
+<#
+    // Paths to the content folders, relative to the .tt file
+	string[] sourceFolders = new string[] { "../Content" }; 
+#>
 
 namespace Nez
 {
+    /// <summary>
+    /// class that contains the names of all of the files processed by the Pipeline Tool
+    /// </summary>
+    /// <remarks>
+    /// Nez includes a T4 template that will auto-generate the content of this file.
+    /// See: https://github.com/prime31/Nez/blob/master/FAQs/ContentManagement.md#auto-generating-content-paths"
+    /// </remarks>
     class Content
     {
 <#
-
-	// loop through all of our sourceFolders
+    // loop through all of our sourceFolders
 	foreach( var sourceFolder in sourceFolders )
 	{
 		List<string> directories = Directory.GetDirectories(Host.ResolvePath(sourceFolder))
