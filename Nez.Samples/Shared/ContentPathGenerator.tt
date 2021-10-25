@@ -27,10 +27,12 @@ namespace Nez
     // loop through all of our sourceFolders
 	foreach( var sourceFolder in sourceFolders )
 	{
-		var directories = Directory.GetDirectories(Host.ResolvePath(sourceFolder));
+		List<string> directories = Directory.GetDirectories(Host.ResolvePath(sourceFolder))
+			.OrderBy(s => s)
+			.ToList();
 		
 		// loop through all the directories in our sourceFolder
-		foreach( var dir in directories )
+		foreach(var dir in directories)
 		{
 			var dirName = new DirectoryInfo( dir ).Name.ToLower();
 			if( dirName == "bin" || dirName == "obj" || dirName == "content" )
@@ -69,7 +71,7 @@ namespace Nez
 		WriteLine( "{0}public static class {1}\n{2}{{", firstIndent, className, firstIndent );
 
 		// handle subdirectories
-		foreach( var subdir in Directory.GetDirectories( dir ) )
+		foreach(var subdir in Directory.GetDirectories(dir).OrderBy(s => s))
 			PrintDirectoryClass( subdir, depth + 1, sourceFolder );
 
 		// handle files
@@ -83,8 +85,8 @@ namespace Nez
 	void PrintContentFiles( string dir, int depth, string sourceFolder )
 	{
 		var firstIndent = new string( '\t', depth );
-
-		foreach( var file in Directory.GetFiles( dir ) )
+        
+		foreach(var file in Directory.GetFiles( dir ).OrderBy(s => s))
 		{
 			if (file.Contains("DS_Store") || file.EndsWith("mgfxo"))
 				continue;
