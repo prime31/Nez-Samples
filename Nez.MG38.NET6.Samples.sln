@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "Nez\Nez.Portable\Nez
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Nez\Nez.FarseerPhysics\Nez.MG38.FarseerPhysics.csproj", "{CB893B1D-CE04-4492-B957-31CE0DCA6C15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.Samples", "Nez.Samples\Nez.MG38.NET5.Samples.csproj", "{C680D0AE-9861-4000-AFFC-952D62A01E5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.MG38.NET6.Samples", "Nez.Samples\Nez.MG38.NET6.Samples.csproj", "{C680D0AE-9861-4000-AFFC-952D62A01E5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.ImGui", "Nez\Nez.ImGui\Nez.MG38.ImGui.csproj", "{C0AB8DD9-380E-48C4-86D0-F2B53CC5507D}"
 EndProject

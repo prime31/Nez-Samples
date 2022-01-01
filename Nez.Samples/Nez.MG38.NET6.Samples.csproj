@@ -2,10 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 	    <OutputType>WinExe</OutputType>
-	    <TargetFramework>net5</TargetFramework>
+	    <TargetFramework>net6</TargetFramework>
 	    <PublishReadyToRun>false</PublishReadyToRun>
 	    <TieredCompilation>false</TieredCompilation>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<RootNamespace>Nez.MG38.NET5.Samples</RootNamespace>
 	</PropertyGroup>
 	
 	<ItemGroup>
