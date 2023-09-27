@@ -42,11 +42,9 @@
         </Content>
 
     <!-- Include the Content directory (except for .fx files, since we use .fxb at runtime) -->
-    <ItemGroup>
         <Content Include="Content\**\*" Exclude="**\*.fx">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-    </ItemGroup>
 		
 		<!-- Include the Content bin (MGCB output). Copy it to the Content folder in the build. -->
         <Content Include="Content/bin/DesktopGL/Content/**">
