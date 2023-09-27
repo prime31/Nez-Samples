@@ -41,20 +41,12 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 
-	    <!-- Include the Content directory svg files -->
-        <Content Include="Content/**/*.svg">
+    <!-- Include the Content directory (except for .fx files, since we use .fxb at runtime) -->
+    <ItemGroup>
+        <Content Include="Content\**\*" Exclude="**\*.fx">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-		
-	    <!-- Include Particle Designer files -->
-        <Content Include="Content/ParticleDesigner/*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-		
-	    <!-- Tmx and png files -->
-        <Content Include="Content/**/*.tmx;Content/**/*.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
+    </ItemGroup>
 		
 		<!-- Include the Content bin (MGCB output). Copy it to the Content folder in the build. -->
         <Content Include="Content/bin/DesktopGL/Content/**">
