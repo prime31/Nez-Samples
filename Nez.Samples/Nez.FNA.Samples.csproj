@@ -41,18 +41,8 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 
-	    <!-- Include the Content directory svg files -->
-        <Content Include="Content/**/*.svg">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-		
-	    <!-- Include Particle Designer files -->
-        <Content Include="Content/ParticleDesigner/*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-		
-	    <!-- Tmx and png files -->
-        <Content Include="Content/**/*.tmx;Content/**/*.png">
+    <!-- Include the Content directory (except for .fx files, since we use .fxb at runtime) -->
+        <Content Include="Content\**\*" Exclude="**\*.fx">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
 		
