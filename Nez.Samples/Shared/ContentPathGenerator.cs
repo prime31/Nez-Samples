@@ -52,7 +52,7 @@ namespace Nez
 				public const string Tileset = @"Content/NinjaAdventure/map/tileset.png";
 			}
 
-			public const string Plume = @"Content/NinjaAdventure/plume.tga";
+			public const string Plume = @"Content/NinjaAdventure/plume.png";
 		}
 
 		public static class ParticleDesigner
