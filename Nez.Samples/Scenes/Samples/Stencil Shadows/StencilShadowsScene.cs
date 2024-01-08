@@ -44,7 +44,7 @@ namespace Nez.Samples
 			CreateBoxes();
 			CreateObstacles();
 
-			// create the background texture, settig it to the correct RenderLayer
+			// create the background texture, setting it to the correct RenderLayer
 			var bgTexture = Content.LoadTexture(Nez.Content.SpriteLights.Bg);
 			CreateEntity("bg")
 				.SetPosition(Screen.Center)
