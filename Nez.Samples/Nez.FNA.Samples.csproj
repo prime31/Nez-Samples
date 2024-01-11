@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
     <PropertyGroup>
         <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     </PropertyGroup>
@@ -105,7 +105,7 @@
 
 
     <ItemGroup>
-        <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
     </ItemGroup>
 
     <ItemGroup>
