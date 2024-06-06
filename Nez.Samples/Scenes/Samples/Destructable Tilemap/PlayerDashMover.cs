@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Nez.Sprites;
 
+using Nez.Sprites;
 
 namespace Nez.Samples
 {
@@ -97,7 +97,9 @@ namespace Nez.Samples
 					if (!_destroyedTile && tile != null && tile.TilesetTile == null)
 					{
 						_destroyedTile = true;
-						_tiledMapRenderer.CollisionLayer.RemoveTile(tile.X, tile.Y);
+						var tilePosX = _tiledMapRenderer.TiledMap.WorldToTilePositionX(pos.X);
+						var tilePosY = _tiledMapRenderer.TiledMap.WorldToTilePositionY(pos.Y);
+						_tiledMapRenderer.CollisionLayer.RemoveTile(tilePosX, tilePosY);
 						_tiledMapRenderer.RemoveColliders();
 						_tiledMapRenderer.AddColliders();
 					}
