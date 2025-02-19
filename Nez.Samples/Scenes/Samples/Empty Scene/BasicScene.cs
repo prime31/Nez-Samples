@@ -9,8 +9,6 @@ namespace Nez.Samples
 	{
 		public override void Initialize()
 		{
-			base.Initialize();
-
 			// default to 1280x720 with no SceneResolutionPolicy
 			SetDesignResolution(1280, 720, SceneResolutionPolicy.None);
 			Screen.SetSize(1280, 720);
