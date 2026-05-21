@@ -2,17 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 	    <OutputType>WinExe</OutputType>
-	    <TargetFramework>net6</TargetFramework>
+	    <TargetFramework>net10.0</TargetFramework>
 	    <PublishReadyToRun>false</PublishReadyToRun>
 	    <TieredCompilation>false</TieredCompilation>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-		<RootNamespace>Nez.MG38.NET5.Samples</RootNamespace>
+		<RootNamespace>Nez.MG38.NET10.Samples</RootNamespace>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
 	</ItemGroup>
-  
+
 	<ItemGroup>
 		<Compile Update="Shared\ContentPathGenerator.cs">
 			<DependentUpon>ContentPathGenerator.tt</DependentUpon>
@@ -58,7 +58,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
-		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.2.1105" />
 	</ItemGroup>
 </Project>
