@@ -22,7 +22,7 @@
 
 	<!-- Includes Content folder, Nez default effects and textures -->
 	<ItemGroup>
-		<Content Include="../Nez/DefaultContent/MG3.8Effects/**/*.mgfxo">
+		<Content Include="../Nez/DefaultContent/MG3.8.2Effects/**/*.mgfxo">
 			<Link>Content/nez/effects/%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
